@@ -11,6 +11,7 @@
 
 //Системные библиотеки POSIX
 #include <sys/socket.h> // для работы с сокетами
+#include <arpa/inet.h>  // Для inet_ntoa
 #include <netinet/in.h> // для описания структуры адресации и работы с IP-адресами
 #include <unistd.h> // для системных вызовов close() и для read(), write()
 #include <fcntl.h> // для управления дескрипторами файлов
@@ -19,7 +20,7 @@
 #include <errno.h> // для обработки ошибок, связанных с системными вызовами
 
 //Пользовательские библиотеки
-//e.g.  Logger
+#include "Client.hpp"
 
 
 //Библиотеки для CGI
