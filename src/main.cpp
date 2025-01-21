@@ -25,13 +25,17 @@ int main(int argc, char **argv)
         std::string response = "HTTP/1.1 200 OK\r\nContent-Length: 13\r\n\r\nHello, World!"; // ответ
         while(1)
         {
-            int client_fd = accept(server_fd, nullptr, nullptr); //изменить nullptr, если нужно хранить информацию про клиента
+            sockaddr_in client_adr; // Тут запишется информация про клиента
+            socklen_t client_len = sizeof(client_adr); // размер клиента
+
+            int client_fd = accept(server_fd, (struct sockaddr*) &client_adr, &client_len); 
             if(client_fd == -1)
             {
                 std::cerr << "Error: Error with listening";
                 return (1);
             }
-            std::cout << "Client connected: " << client_fd << std::endl;
+            Client client = Client(client_fd, client_adr);// инициализация клиента
+            std::cout << client._sockfd << "\n" << client._ip << "\n" << client._port << std::endl;
             send(client_fd, response.c_str(), response.size(), 0);
             close(client_fd);
         }

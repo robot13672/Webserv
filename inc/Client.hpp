@@ -4,7 +4,7 @@
 
 struct Client
 {
-    private:
+    public://change to private
         int _sockfd; //дескриптор сокета
         sockaddr_in _adress; // для хранения адреса(IP, порт)
         std::string _ip;
