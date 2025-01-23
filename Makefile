@@ -28,9 +28,9 @@ WHITE	= \033[0;97m
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	echo "$(GREEN)"
+	@echo "$(GREEN)"
 	$(CC) $(LDFLAGS) $(OBJS) -o $(NAME)
-	echo "$(RESET)"
+	@echo "$(RESET)"
 
 %.o: %.cpp inc/*.hpp
 	@echo "$(YELLOW)"

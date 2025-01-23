@@ -22,9 +22,9 @@
 //Пользовательские библиотеки
 #include "Client.hpp"
 
-
 //Библиотеки для CGI
 
 
+#include "ConfParser.hpp"
 
 
