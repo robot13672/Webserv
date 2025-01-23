@@ -12,6 +12,6 @@ class ConfParser
 		ConfParser();
 		~ConfParser();
 		
-		int createCluster(std::string);
+		void createCluster(const std::string &);
 };
 #endif // CONFPARSER_HPP
