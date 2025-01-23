@@ -6,6 +6,7 @@
 #include <vector>
 #include <map>
 #include <set>
+#include <list>
 #include <exception> // для работы с исключениями
 #include <sstream> //для форматирования строк при генерации HTTP ответов
 
@@ -21,6 +22,9 @@
 
 //Пользовательские библиотеки
 #include "Client.hpp"
+#include "Logger.hpp"
+#include "Server.hpp"
+#include "ServerConfig.hpp"
 
 
 //Библиотеки для CGI
