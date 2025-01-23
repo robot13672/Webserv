@@ -9,6 +9,7 @@
 #include <list>
 #include <exception> // для работы с исключениями
 #include <sstream> //для форматирования строк при генерации HTTP ответов
+#include <cstdlib> // для exit
 
 //Системные библиотеки POSIX
 #include <sys/socket.h> // для работы с сокетами

@@ -14,8 +14,10 @@ class ServerConfig
         std::string                     root;
         std::string                     _index;// начальная страница
         std::map<short, std::string>    _errorPages; // пути на страницы с ошибками
+        bool                            _autoindex;
         //std::vector<Location> _locations;
     public:
+        ServerConfig(std::string host, u_int16_t port);//для эмуляции отработанного конфиг файла
         //settings
         void setupServer(void);
         //SET

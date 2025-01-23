@@ -1,6 +1,9 @@
 #pragma once
 #include "Webserv.hpp"
 
+class ServerConfig;
+class Client;
+
 class Server
 {
     private:

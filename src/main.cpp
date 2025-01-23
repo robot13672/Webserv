@@ -6,7 +6,13 @@ int main(int argc, char **argv)
     {
         try
         {
-            //config 
+            Server Webservers;
+            std::vector<ServerConfig> servers;
+            servers.push_back(ServerConfig("127.0.0.1", 8080));
+            servers.push_back(ServerConfig("127.0.0.1", 8081));
+            servers.push_back(ServerConfig("127.0.0.1", 8080));
+            Webservers.setupServer(servers);
+            
         }
         catch(const std::exception& e)
         {

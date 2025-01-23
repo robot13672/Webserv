@@ -7,7 +7,7 @@ Client::Client(int sockfd, sockaddr_in adress)
     _lst_msg = time(NULL);
 }
 
-Client::~Client() {};
+Client::~Client() {}
 
 time_t Client::getLstMsg()
 {
