@@ -30,9 +30,12 @@ int main(int argc, char **argv)
         address.sin_addr.s_addr = INADDR_ANY;   
         address.sin_port = htons(8080);
 
-		std::cout << "TEST: " << std::endl;	// ======================> roi
-
-        if(bind(server_fd, (struct sockaddr*)&address, sizeof(address)))
+		int b = bind(server_fd, (struct sockaddr*)&address, sizeof(address)); // ========================> roi
+		std::cout << "server_fd = " << server_fd << ", (struct sockaddr*)&address = " << (struct sockaddr*)&address << ", sizeof(address) = " << sizeof(address) << std::endl;
+		std::cout << "TEST: b = " << b << std::endl;	// ======================> roi
+        // if(bind(server_fd, (struct sockaddr*)&address, sizeof(address))) // original
+		
+		if (b) // ================> roi
         {
             std::cerr << "Error: Error with bind";
             return (1);
