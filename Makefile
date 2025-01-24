@@ -30,6 +30,14 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo "$(GREEN)"
 	$(CC) $(LDFLAGS) $(OBJS) -o $(NAME)
+# animation
+# @for i in / - \\ \|; do \
+# 	echo "$$i"; \
+# 	sleep 0.4; \
+# 	tput cuu1; \
+# 	tput el; \
+# done
+# @echo "webserv ready"
 	@echo "$(RESET)"
 
 %.o: %.cpp inc/*.hpp
