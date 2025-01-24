@@ -6,6 +6,7 @@ ServerConfig::ServerConfig(std::string host, u_int16_t port) //для эмуля
     _port = port; // Example port number
     std::cout << _host << ":" << _port << "\n";
 }
+ServerConfig::ServerConfig() {}
 
 
 //Settings
@@ -15,7 +16,7 @@ void ServerConfig::setupServer()//функция для настройки се�
 
     if(_listen_fd == -1)
     {
-        std::cerr << "Error:...";// Выводить сообщение об ошибке логером.
+        std::cerr << "Error: Fatal socket allocation for host:" << _host << std::endl;// Выводить сообщение об ошибке логером.
         exit(EXIT_FAILURE);
     }
 
@@ -34,7 +35,7 @@ void ServerConfig::setupServer()//функция для настройки се�
 
     if(bind(_listen_fd, (sockaddr *) &_adress, sizeof(_adress)) == -1)
     {
-        //вывести ошибку через логер об неуспешной привязке сокета к порту
+        std::cout << "Error: Error bind host:" << _host << std::endl;//вывести ошибку через логер об неуспешной привязке сокета к порту
         close(_listen_fd); // Закрываем сокет перед завершением
         exit(EXIT_FAILURE);
     }

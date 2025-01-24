@@ -17,6 +17,7 @@ class ServerConfig
         bool                            _autoindex;
         //std::vector<Location> _locations;
     public:
+        ServerConfig();
         ServerConfig(std::string host, u_int16_t port);//для эмуляции отработанного конфиг файла
         //settings
         void setupServer(void);
