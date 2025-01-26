@@ -36,10 +36,32 @@ int Server::findDublicateFr(std::vector<ServerConfig>::iterator cur)
 void Server::startServers()// функция основного цикла сервера
 {
     int ready;// переменна для хранения количества файловых дескрипторов, которые готовы для чтения
+    struct timeval timer; //использую для того, что бы select возвращал значение каждую секунду, и что бы не появлялось зависание сервера
     fd_set request_fd_cpy;
     fd_set response_fd_cpy;
     _max_fd = 0;
     initializeServerConnections();
+    
+    while(true)//основной цикл сервера
+    {
+        timer.tv_sec = 1;
+        timer.tv_usec = 0;
+        request_fd_cpy = _request_fd_pool;
+        response_fd_cpy = _response_fd_pool;
+        
+        if(ready = select(_max_fd + 1, &request_fd_cpy, &response_fd_cpy, NULL, &timer) < 0)
+        {
+            std::cout << "Error: Error with select" << std::endl;
+            exit(EXIT_FAILURE);
+        }
+        for(int i = 0; i < _max_fd + 1; i++)
+        {
+            if(FD_ISSET(i, &request_fd_cpy))
+                int f = 0;//Handler::read...
+        }
+    }
+    
+
 }
 
 void Server::initializeServerConnections()//инициализация наборов дескрипторов, настройка серверных сокетов и обновление данных
@@ -72,4 +94,12 @@ void Server::setupListeningSocket(int fd)
         std::cout << "Error: Non-blocking mode error" << std::endl;//Поменять на логер
         exit(EXIT_FAILURE);
     }
+}
+
+void Server::addNewConnect()
+{
+    struct sockaddr_in client_address;
+    long client_size = sizeof(client_address);
+    int client_sock;
+    
 }

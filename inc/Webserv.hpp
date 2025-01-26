@@ -26,6 +26,7 @@
 #include "Logger.hpp"
 #include "Server.hpp"
 #include "ServerConfig.hpp"
+#include "Handler.hpp"
 
 
 //Библиотеки для CGI

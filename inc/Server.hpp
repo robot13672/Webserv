@@ -25,5 +25,6 @@ class Server
         void initializeServerConnections(void);
         void setupListeningSocket(int fd);
         
+        void addNewConnect(void);
 };
 

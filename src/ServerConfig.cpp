@@ -43,7 +43,6 @@ void ServerConfig::setupServer()//функция для настройки се�
 }
 
 
-
 //SET
 void ServerConfig::setFd(int fd)
 {

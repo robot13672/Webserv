@@ -19,6 +19,7 @@ class ServerConfig
     public:
         ServerConfig();
         ServerConfig(std::string host, u_int16_t port);//для эмуляции отработанного конфиг файла
+        
         //settings
         void setupServer(void);
         //SET
@@ -27,4 +28,5 @@ class ServerConfig
         in_addr_t getHost();
         u_int16_t getPort();
         int getListenFd();
+
 };

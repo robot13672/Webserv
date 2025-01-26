@@ -1,10 +1,8 @@
 #include "../inc/Client.hpp"
 
-Client::Client(int sockfd, sockaddr_in adress)
+Client::Client(ServerConfig &serv)
 {
-    _sockfd = sockfd;
-    _adress = adress;
-    _lst_msg = time(NULL);
+    //new logic for Client
 }
 
 Client::~Client() {}
