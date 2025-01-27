@@ -5,15 +5,15 @@
 class ServerConfig
 {
     private:
-        struct sockaddr_in              _adress;
+        struct sockaddr_in              _adress;		// is not taken from conf file!!
         u_int16_t                       _port;
         in_addr_t                       _host;
-        int                             _listen_fd;
-        int                             _max_body_size; // Возможно нужно будет изменить тип данных
-        std::string                     _name;//имя сервера или домена
-        std::string                     _root;//корневая директория
-        std::string                     _index;// начальная страница
-        std::map<short, std::string>    _errorPages; // пути на страницы с ошибками
+        int                             _listen_fd;		// is not taken from conf file!!
+        int                             _max_body_size; // Возможно нужно будет изменить тип данных - client_max_body_size, nach sch21 video max 20k. the same if is not incicated in conf. file
+        std::string                     _name;			//имя сервера или домена
+        std::string                     _root;			//корневая директория
+        std::string                     _index;			// начальная страница
+        std::map<short, std::string>    _errorPages; 	// пути на страницы с ошибками
         bool                            _autoindex;
         //std::vector<Location> _locations;
     public:
