@@ -1,8 +1,7 @@
 #pragma once
 #include "Webserv.hpp"
-
-class ServerConfig;
-class Client;
+#include "Client.hpp"
+#include "HttpResponse.hpp"
 
 class Server
 {

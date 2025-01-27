@@ -1,4 +1,3 @@
-#pragma once
 #include "../inc/HttpRequest.hpp"
 
 void HttpRequest::setMaxBodySize(long max_body_size)

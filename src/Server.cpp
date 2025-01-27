@@ -120,7 +120,7 @@ void Server::addNewConnect(ServerConfig &serv)
     client.setSocket(client_sock);
     if(_allClients.count(client_sock) != 0)//проверка есть ли уже сокет клиента, если да, то его нужно удалить и переписать
         _allClients.erase(client_sock);//само удаление клиента.
-    _allClients[client_sock] = client;//добавление нового клиента в мапу
+    _allClients.insert(std::make_pair(client_sock, client));//добавление нового клиента в мапу
 }
 
 

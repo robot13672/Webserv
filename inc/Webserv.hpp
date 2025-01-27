@@ -1,3 +1,6 @@
+#ifndef WEBSERV_HPP
+# define WEBSERV_HPP
+
 #pragma once
 
 //standart libs
@@ -22,16 +25,17 @@
 #include <errno.h> // для обработки ошибок, связанных с системными вызовами
 
 //Пользовательские библиотеки
-#include "Client.hpp"
-#include "Logger.hpp"
-#include "Server.hpp"
+
 #include "ServerConfig.hpp"
+// #include "Server.hpp"
+// #include "Logger.hpp"
 #include "HttpRequest.hpp"
-#include "HttpResponse.hpp"
+// #include "HttpResponse.hpp"
+// #include "Client.hpp"
 
 
 //Библиотеки для CGI
 
-
+#endif
 
 

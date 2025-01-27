@@ -1,13 +1,13 @@
 #pragma once
 
 #include "Webserv.hpp"
-
-class ServerConfig;
+#include "HttpRequest.hpp"
+#include "HttpResponse.hpp"
 
 
 class Client
 {
-    private://change to private
+    private:
         int         _sockfd; //дескриптор сокета
         sockaddr_in _adress; // для хранения адреса(IP, порт)
         time_t      _lst_msg;// время последнего сообщения
