@@ -4,7 +4,7 @@ ServerConfig::ServerConfig(std::string host, u_int16_t port) //для эмуля
 {
     _host = inet_addr(host.c_str()); // Example IP address
     _port = port; // Example port number
-    std::cout << _host << ":" << _port << "\n";
+    // std::cout << _host << ":" << _port << "\n";
 }
 ServerConfig::ServerConfig() {}
 
@@ -49,8 +49,40 @@ void ServerConfig::setFd(int fd)
     _listen_fd = fd;
 }
 
+void ServerConfig::setPort(u_int16_t port)
+{
+    _port = port;
+}
 
+void ServerConfig::setHost(std::string host)
+{
+    _host = inet_addr(host.c_str());
+}
 
+void ServerConfig::setMaxBodySize(int max_body_size)
+{
+    _max_body_size = max_body_size;
+}
+
+void ServerConfig::setName(std::string name)
+{
+    _name = name;
+}
+
+void ServerConfig::setRoot(std::string root)
+{
+    _root = root;
+}
+
+void ServerConfig::setIndex(std::string index)
+{
+    _index = index;
+}
+
+void ServerConfig::setErrorPages(std::map<short, std::string> errorPages)
+{
+    _errorPages = errorPages;
+}
 //GET
 in_addr_t ServerConfig::getHost()
 {

@@ -2,7 +2,9 @@
 
 #include "Webserv.hpp"
 
-struct Client
+class ServerConfig;
+
+class Client
 {
     private://change to private
         int _sockfd; //дескриптор сокета

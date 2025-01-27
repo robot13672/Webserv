@@ -12,7 +12,8 @@ int main(int argc, char **argv)
             servers.push_back(ServerConfig("127.0.0.1", 8081));
             servers.push_back(ServerConfig("127.0.0.1", 8080));
             Webservers.setupServer(servers);
-            Webservers.startServers();
+            Webservers.start
+            Servers();
             
         }
         catch(const std::exception& e)
