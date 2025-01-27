@@ -59,7 +59,7 @@ void ServerConfig::setHost(std::string host)
     _host = inet_addr(host.c_str());
 }
 
-void ServerConfig::setMaxBodySize(int max_body_size)
+void ServerConfig::setMaxBodySize(long max_body_size)
 {
     _max_body_size = max_body_size;
 }
@@ -83,6 +83,16 @@ void ServerConfig::setErrorPages(std::map<short, std::string> errorPages)
 {
     _errorPages = errorPages;
 }
+
+void ServerConfig::setMethods(std::vector<std::string> methods)
+{
+    _methods = methods;
+}
+
+void ServerConfig::setLogDirection(std::string logDirection)
+{
+    _logDirection = logDirection;
+}
 //GET
 in_addr_t ServerConfig::getHost()
 {
@@ -97,4 +107,9 @@ u_int16_t ServerConfig::getPort()
 int ServerConfig::getListenFd()
 {
     return _listen_fd;
+}
+
+long ServerConfig::getMaxBodySize()
+{
+    return _max_body_size;
 }

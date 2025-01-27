@@ -49,9 +49,9 @@ void Server::startServers()// функция основного цикла се�
         request_fd_cpy = _request_fd_pool;
         response_fd_cpy = _response_fd_pool;
         
-        if(ready = select(_max_fd + 1, &request_fd_cpy, &response_fd_cpy, NULL, &timer) < 0)
+        if(ready = select(_max_fd + 1, &request_fd_cpy, &response_fd_cpy, NULL, &timer) < 0)//ожидание события на дескрипторах
         {
-            std::cout << "Error: Error with select" << std::endl;
+            std::cout << "Error: Error with select" << std::endl;//change to logger
             exit(EXIT_FAILURE);
         }
         for(int i = 0; i < _max_fd + 1; i++)
@@ -71,7 +71,7 @@ void Server::initializeServerConnections()//инициализация набо�
     {
         setupListeningSocket(it->getListenFd());
         FD_SET(it->getListenFd(),&_request_fd_pool);
-        allServers[it->getListenFd()] = *it;// добавление сервера в список всех серверов с ключевым значением FD
+        _allServers[it->getListenFd()] = *it;// добавление сервера в список всех серверов с ключевым значением FD
     }
     _max_fd = _servers.back().getListenFd();//Обновляю максимальный FD
 }
@@ -96,10 +96,44 @@ void Server::setupListeningSocket(int fd)
     }
 }
 
-void Server::addNewConnect()
+void Server::addNewConnect(ServerConfig &serv)
 {
     struct sockaddr_in client_address;
-    long client_size = sizeof(client_address);
-    int client_sock;
-    
+    Client client(serv);
+    char buff[INET_ADDRSTRLEN];//INET_ADDRSTRLEN - Это константа, она задает максимальную длину строки, необходимую для хранения IP-адреса в текстовом виде
+    int client_sock = accept(serv.getListenFd(), (struct sockaddr *)&client_address, (socklen_t*)sizeof(client_address));
+
+    if(client_sock != 1)
+    {
+        std::cout << "Error: Error with listening server" << serv.getHost() << ":" << serv.getPort() << std::endl;//change to loger
+        return;
+    }
+    std::cout << "New connection from: " << inet_ntop(AF_INET, &client_address, buff, INET_ADDRSTRLEN) << ", with socket " << client_sock;//change to loger
+    addToSet(client_sock, _request_fd_pool);
+    if (fcntl(client_sock, F_SETFL, O_NONBLOCK)) //F_SETFL - указывает, то что я буду изменять флаги, O_NONBLOCK - флаг, который ставит сокет в неблокирующий режим
+    {
+        std::cout << "Error: Error with FCNL " << std::endl; // change to loger
+        removeFromSet(client_sock, _request_fd_pool);
+        close(client_sock);
+        return;
+    }
+    client.setSocket(client_sock);
+    if(_allClients.count(client_sock) != 0)//проверка есть ли уже сокет клиента, если да, то его нужно удалить и переписать
+        _allClients.erase(client_sock);//само удаление клиента.
+    _allClients[client_sock] = client;//добавление нового клиента в мапу
+}
+
+
+void Server::addToSet(int client_sock, fd_set &set)
+{
+    FD_SET(client_sock, &set);//функция которая принимает FD и сет, и добавляет его в сет
+    if(client_sock > _max_fd)
+        _max_fd = client_sock;
+}
+
+void Server::removeFromSet(int client_sock, fd_set &set)
+{
+    FD_CLR(client_sock, &set);//функция которая принимает FD и сет, и убирает его из сета
+    if(client_sock == _max_fd)
+        _max_fd -= 1;
 }

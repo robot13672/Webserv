@@ -7,12 +7,12 @@ class Client;
 class Server
 {
     private:
-        std::vector<ServerConfig> _servers;
-        std::map<int, ServerConfig> allServers;
-        std::map<int, Client> allClients;
-        fd_set _request_fd_pool;
-        fd_set _response_fd_pool;
-        int _max_fd;
+        std::vector<ServerConfig>   _servers;
+        std::map<int, ServerConfig> _allServers;
+        std::map<int, Client>       _allClients;
+        fd_set                      _request_fd_pool;
+        fd_set                      _response_fd_pool;
+        int                         _max_fd;
 
 
     public:
@@ -25,6 +25,9 @@ class Server
         void initializeServerConnections(void);
         void setupListeningSocket(int fd);
         
-        void addNewConnect(void);
+        void addNewConnect(ServerConfig &serv);
+        void addToSet(int client_sock, fd_set &set);
+        void removeFromSet(int client_sock, fd_set &set);
+        
 };
 
