@@ -7,7 +7,7 @@ ConfParser::ConfParser() {}
 ConfParser::~ConfParser() {}
 
 /* 
-g	roi 
+	roi 
 	should check and read config file, split servers to strings and create vector of servers 
 */
 void ConfParser::createCluster(const std::string &conf_file)
