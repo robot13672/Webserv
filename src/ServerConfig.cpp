@@ -3,12 +3,40 @@
 ServerConfig::ServerConfig(std::string host, u_int16_t port) //для эмуляции отработанного конфиг файла
 {
     _host = inet_addr(host.c_str()); // Example IP address
+    if (_host == INADDR_NONE) {
+        std::cerr << "Error: Invalid IP address: " << host << std::endl;
+        exit(EXIT_FAILURE);
+    }
     _port = port; // Example port number
+    _max_body_size = 20000;
     // std::cout << _host << ":" << _port << "\n";
 }
 ServerConfig::ServerConfig() {}
 
+ServerConfig::ServerConfig(const ServerConfig &other)
+{
+    *this = other;
+}
 
+ServerConfig& ServerConfig::operator=(const ServerConfig &other)
+{
+    if (this != &other)
+    {
+        _adress = other._adress;
+        _port = other._port;
+        _host = other._host;
+        _listen_fd = other._listen_fd;
+        _max_body_size = other._max_body_size;
+        // _name = other._name;
+        // _root = other._root;
+        // _index = other._index;
+        // _errorPages = other._errorPages;
+        // _autoindex = other._autoindex;
+        // _methods = other._methods;
+        // _logDirection = other._logDirection;
+    }
+    return *this;
+}
 //Settings
 void ServerConfig::setupServer()//функция для настройки сервера, создание сокета, привязка к порту
 {
@@ -16,14 +44,14 @@ void ServerConfig::setupServer()//функция для настройки се�
 
     if(_listen_fd == -1)
     {
-        std::cerr << "Error: Fatal socket allocation for host:" << _host << std::endl;// Выводить сообщение об ошибке логером.
+        std::cerr << "Error: Fatal socket allocation for host:" << inet_ntoa({ _host }) << std::endl;
         exit(EXIT_FAILURE);
     }
 
     int tmp = 1;
     if (setsockopt(_listen_fd, SOL_SOCKET, SO_REUSEADDR, &tmp, sizeof(int)) == -1) // устраняет проблемы с занятым портом после завершения работы сокета.
     {
-        //вывести сообщение через логер
+        std::cerr << "Error: setsockopt failed for host:" << inet_ntoa({ _host }) << std::endl;
         close(_listen_fd); // Закрываем сокет перед завершением
         exit(EXIT_FAILURE);
     } 
@@ -35,11 +63,12 @@ void ServerConfig::setupServer()//функция для настройки се�
 
     if(bind(_listen_fd, (sockaddr *) &_adress, sizeof(_adress)) == -1)
     {
-        std::cout << "Error: Error bind host:" << _host << std::endl;//вывести ошибку через логер об неуспешной привязке сокета к порту
+        std::cerr << "Error: Error bind host:" << inet_ntoa({ _host }) << std::endl;//вывести ошибку через логер об неуспешной привязке сокета к порту
         close(_listen_fd); // Закрываем сокет перед завершением
         exit(EXIT_FAILURE);
     }
-    //вывести информацию об успешном бинде через логер
+    
+    std::cout << "Successfully bound to host:" << inet_ntoa({ _host }) << ", port:" << _port << " socket:" << _listen_fd << std::endl;
 }
 
 
@@ -57,6 +86,10 @@ void ServerConfig::setPort(u_int16_t port)
 void ServerConfig::setHost(std::string host)
 {
     _host = inet_addr(host.c_str());
+    if (_host == INADDR_NONE) {
+        std::cerr << "Error: Invalid IP address: " << host << std::endl;
+        exit(EXIT_FAILURE);
+    }
 }
 
 void ServerConfig::setMaxBodySize(long max_body_size)
@@ -64,35 +97,35 @@ void ServerConfig::setMaxBodySize(long max_body_size)
     _max_body_size = max_body_size;
 }
 
-void ServerConfig::setName(std::string name)
-{
-    _name = name;
-}
+// void ServerConfig::setName(std::string name)
+// {
+//     _name = name;
+// }
 
-void ServerConfig::setRoot(std::string root)
-{
-    _root = root;
-}
+// void ServerConfig::setRoot(std::string root)
+// {
+//     _root = root;
+// }
 
-void ServerConfig::setIndex(std::string index)
-{
-    _index = index;
-}
+// void ServerConfig::setIndex(std::string index)
+// {
+//     _index = index;
+// }
 
-void ServerConfig::setErrorPages(std::map<short, std::string> errorPages)
-{
-    _errorPages = errorPages;
-}
+// void ServerConfig::setErrorPages(std::map<short, std::string> errorPages)
+// {
+//     _errorPages = errorPages;
+// }
 
-void ServerConfig::setMethods(std::vector<std::string> methods)
-{
-    _methods = methods;
-}
+// void ServerConfig::setMethods(std::vector<std::string> methods)
+// {
+//     _methods = methods;
+// }
 
-void ServerConfig::setLogDirection(std::string logDirection)
-{
-    _logDirection = logDirection;
-}
+// void ServerConfig::setLogDirection(std::string logDirection)
+// {
+//     _logDirection = logDirection;
+// }
 //GET
 in_addr_t ServerConfig::getHost()
 {

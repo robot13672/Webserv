@@ -10,6 +10,7 @@ Client::Client(ServerConfig &serv)
     _response.setServer(serv);
     _request.setMaxBodySize(serv.getMaxBodySize());
     _lst_msg = time(NULL);
+    _sockfd = -1; // Initialize socket file descriptor
 }
 
 Client::~Client() {}

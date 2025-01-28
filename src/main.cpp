@@ -9,9 +9,9 @@ int main(int argc, char **argv)
         {
             Server Webservers;
             std::vector<ServerConfig> servers;
-            servers.push_back(ServerConfig("127.0.0.1", 8080));
-            servers.push_back(ServerConfig("127.0.0.1", 8081));
-            servers.push_back(ServerConfig("127.0.0.1", 8080));
+            servers.push_back(ServerConfig("127.0.0.1", 8082));
+            servers.push_back(ServerConfig("127.0.0.1", 8083));
+            servers.push_back(ServerConfig("127.0.0.1", 8082));
             Webservers.setupServer(servers);
             Webservers.startServers();
             
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
     }
     else
     {
-        std::cerr << "Error: Wrong arguments"; //Change to Logger class
+        std::cerr << "Error: Wrong arguments" << std::endl; //Change to Logger class
     }
     return 0;
 }

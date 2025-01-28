@@ -9,7 +9,7 @@ void Server::setupServer(std::vector<ServerConfig> servers)
             it->setFd(findDublicateFr(it));//ищу дублирующий дескриптор и подставляю его в текущий сервер
         else
             it->setupServer();
-        std::cout << "Server created with host:" << it->getHost() << ", port:" << it->getPort() << std::endl; //Изменить это, и выводить через логер
+        std::cout << "Server created with host:" << inet_ntoa({it->getHost()}) << ", port:" << it->getPort() << std::endl; //Изменить это, и выводить через логер
     }
 }
 
@@ -54,10 +54,13 @@ void Server::startServers()// функция основного цикла се�
             std::cout << "Error: Error with select" << std::endl;//change to logger
             exit(EXIT_FAILURE);
         }
-        for(int i = 0; i < _max_fd + 1; i++)
-        {
+        for(int i = 0; i <= _max_fd ; i++)
+        {   
             if(FD_ISSET(i, &request_fd_cpy))
-                int f = 0;//Handler::read...
+            {
+               addNewConnect(_allServers.find(i)->second);
+            }
+                
         }
     }
     
@@ -69,11 +72,16 @@ void Server::initializeServerConnections()//инициализация набо�
     clearFdSets();
     for(std::vector<ServerConfig>::iterator it = _servers.begin(); it != _servers.end(); it++)
     {
-        setupListeningSocket(it->getListenFd());
-        FD_SET(it->getListenFd(),&_request_fd_pool);
-        _allServers[it->getListenFd()] = *it;// добавление сервера в список всех серверов с ключевым значением FD
+        int fd = it->getListenFd();
+        if (fd == -1) {
+            std::cerr << "Error: Invalid file descriptor for server with host:" << inet_ntoa({ it->getHost() }) << ", port:" << it->getPort() << std::endl;
+            continue;
+        }
+        setupListeningSocket(fd);
+        FD_SET(fd, &_request_fd_pool);
+        _allServers[fd] = *it;
     }
-    _max_fd = _servers.back().getListenFd();//Обновляю максимальный FD
+    _max_fd = _servers.back().getListenFd();
 }
 
 void Server::clearFdSets()//очиста пула файловых дескрипторов
@@ -99,20 +107,20 @@ void Server::setupListeningSocket(int fd)
 void Server::addNewConnect(ServerConfig &serv)
 {
     struct sockaddr_in client_address;
+    socklen_t client_address_len = sizeof(client_address);
     Client client(serv);
     char buff[INET_ADDRSTRLEN];//INET_ADDRSTRLEN - Это константа, она задает максимальную длину строки, необходимую для хранения IP-адреса в текстовом виде
-    int client_sock = accept(serv.getListenFd(), (struct sockaddr *)&client_address, (socklen_t*)sizeof(client_address));
-
-    if(client_sock != 1)
+    int client_sock = accept(serv.getListenFd(), (struct sockaddr *)&client_address, &client_address_len);
+    if(client_sock == -1)
     {
-        std::cout << "Error: Error with listening server" << serv.getHost() << ":" << serv.getPort() << std::endl;//change to loger
+        std::cerr << "Error: Error with listening server " << inet_ntoa({serv.getHost()}) << ":" << serv.getPort() << " - " << strerror(errno) << std::endl;//change to loger
         return;
     }
-    std::cout << "New connection from: " << inet_ntop(AF_INET, &client_address, buff, INET_ADDRSTRLEN) << ", with socket " << client_sock;//change to loger
+    std::cout << "New connection from: " << inet_ntop(AF_INET, &client_address, buff, INET_ADDRSTRLEN) << ", with socket " << client_sock << std::endl;//change to loger
     addToSet(client_sock, _request_fd_pool);
     if (fcntl(client_sock, F_SETFL, O_NONBLOCK)) //F_SETFL - указывает, то что я буду изменять флаги, O_NONBLOCK - флаг, который ставит сокет в неблокирующий режим
     {
-        std::cout << "Error: Error with FCNL " << std::endl; // change to loger
+        std::cerr << "Error: Error with FCNL " << strerror(errno) << std::endl; // change to loger
         removeFromSet(client_sock, _request_fd_pool);
         close(client_sock);
         return;
