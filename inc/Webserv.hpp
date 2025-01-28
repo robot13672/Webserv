@@ -6,8 +6,10 @@
 #include <vector>
 #include <map>
 #include <set>
+#include <list>
 #include <exception> // для работы с исключениями
 #include <sstream> //для форматирования строк при генерации HTTP ответов
+#include <cstdlib> // для exit
 
 //Системные библиотеки POSIX
 #include <sys/socket.h> // для работы с сокетами
@@ -21,6 +23,11 @@
 
 //Пользовательские библиотеки
 #include "Client.hpp"
+#include "Logger.hpp"
+#include "Server.hpp"
+#include "ServerConfig.hpp"
+#include "HttpRequest.hpp"
+#include "HttpResponse.hpp"
 
 //Библиотеки для CGI
 

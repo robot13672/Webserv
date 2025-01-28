@@ -2,13 +2,28 @@
 
 #include "Webserv.hpp"
 
-struct Client
+class ServerConfig;
+
+
+class Client
 {
-    public://change to private
-        int _sockfd; //дескриптор сокета
+    private://change to private
+        int         _sockfd; //дескриптор сокета
         sockaddr_in _adress; // для хранения адреса(IP, порт)
-        std::string _ip;
-        unsigned short _port;// порт для более быстрого обращения
+        time_t      _lst_msg;// время последнего сообщения
     public:
-        Client(int sockfd, sockaddr_in adress);
+        Client(ServerConfig &serv);
+        ~Client();
+
+        ServerConfig _server;
+        HttpRequest  _request;
+        HttpResponse _response;
+        
+        //set
+        void setSocket(int socket);
+
+        //get
+        time_t getLstMsg();
+        void updateTime();
+
 };
