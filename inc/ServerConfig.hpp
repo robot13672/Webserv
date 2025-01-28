@@ -4,20 +4,21 @@
 /* 
 by roi
  */
-class LocationConfig
-{
-    private:
-        std::string                     _path;
-        std::string                     _root;			//корневая директория
-        std::string                     _index;			// начальная страница
-        bool                            _autoindex;
-        std::vector<std::string>        _methods;		//все допустимые методы
-        std::string                     _return;
-        std::vector<std::string>        _cgi_path;
-        std::vector<std::string>        _cgi_ext;
-};
-
+// class LocationConfig
+// {
+//     private:
+//         std::string                     _path;
+//         std::string                     _root;			//корневая директория
+//         std::string                     _index;			// начальная страница
+//         bool                            _autoindex;
+//         std::vector<std::string>        _methods;		//все допустимые методы
+//         std::string                     _return;
+//         std::vector<std::string>        _cgi_path;
+//         std::vector<std::string>        _cgi_ext;
+// };
 // std::map Servers<int, ServerConfig>;
+
+
 class ServerConfig
 {
     private:
