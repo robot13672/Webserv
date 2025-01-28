@@ -32,6 +32,8 @@
 //Библиотеки для CGI
 
 
-#include "ConfParser.hpp"
+#include <string>
+#include <vector>
+#include "LocationConfig.hpp"
 
 

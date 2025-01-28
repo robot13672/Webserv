@@ -18,6 +18,7 @@ by roi
 // };
 // std::map Servers<int, ServerConfig>;
 
+class LocationConfig;
 
 class ServerConfig
 {
