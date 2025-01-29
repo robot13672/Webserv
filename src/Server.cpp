@@ -56,10 +56,11 @@ void Server::startServers()// функция основного цикла се�
         }
         for(int i = 0; i <= _max_fd ; i++)
         {   
-            if(FD_ISSET(i, &request_fd_cpy))
+            if(FD_ISSET(i, &request_fd_cpy) && _allServers.count(i))//Если нужно добавлять нового клиента
             {
                addNewConnect(_allServers.find(i)->second);
             }
+            // else if(FD_ISSET(i, &request_fd_cpy) && _allClients.count(i)) //Если нужно читать запрос
                 
         }
     }
