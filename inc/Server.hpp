@@ -17,7 +17,7 @@ class Server
     public:
         void setupServer(std::vector<ServerConfig> servers);
         bool isDublicateFd(std::vector<ServerConfig>::iterator cur);
-        int findDublicateFr(std::vector<ServerConfig>::iterator cur);
+        int  findDublicateFr(std::vector<ServerConfig>::iterator cur);
 
         void startServers(void);
         void clearFdSets(void);
@@ -27,6 +27,7 @@ class Server
         void addNewConnect(ServerConfig &serv);
         void addToSet(int client_sock, fd_set &set);
         void removeFromSet(int client_sock, fd_set &set);
+        void readRequest(long max_body_size);
         
 };
 

@@ -9,7 +9,7 @@ void Server::setupServer(std::vector<ServerConfig> servers)
             it->setFd(findDublicateFr(it));//ищу дублирующий дескриптор и подставляю его в текущий сервер
         else
             it->setupServer();
-        std::cout << "Server created with host:" << inet_ntoa({it->getHost()}) << ", port:" << it->getPort() << std::endl; //Изменить это, и выводить через логер
+        std::cout << "Server created with host:" << it->getHost() << ", port:" << it->getPort() << std::endl; //Изменить это, и выводить через логер
     }
 }
 
@@ -56,12 +56,14 @@ void Server::startServers()// функция основного цикла се�
         }
         for(int i = 0; i <= _max_fd ; i++)
         {   
-            if(FD_ISSET(i, &request_fd_cpy) && _allServers.count(i))//Если нужно добавлять нового клиента
+            if(FD_ISSET(i, &request_fd_cpy) && _allServers.count(i))//Если нужно добавлять нового клиента и обязательно проверять, что это серверный сокет
             {
                addNewConnect(_allServers.find(i)->second);
             }
-            // else if(FD_ISSET(i, &request_fd_cpy) && _allClients.count(i)) //Если нужно читать запрос
-                
+            else if(FD_ISSET(i, &request_fd_cpy) && _allClients.count(i)) //Если нужно читать запрос
+            {
+                readRequest(_allClients.find(i)->second._server.getMaxBodySize());
+            }
         }
     }
     
@@ -75,7 +77,7 @@ void Server::initializeServerConnections()//инициализация набо�
     {
         int fd = it->getListenFd();
         if (fd == -1) {
-            std::cerr << "Error: Invalid file descriptor for server with host:" << inet_ntoa({ it->getHost() }) << ", port:" << it->getPort() << std::endl;
+            std::cerr << "Error: Invalid file descriptor for server with host:" << it->getHost() << ", port:" << it->getPort() << std::endl;
             continue;
         }
         setupListeningSocket(fd);
@@ -105,6 +107,13 @@ void Server::setupListeningSocket(int fd)
     }
 }
 
+void Server::readRequest(long max_body_size)
+{
+    std::vector<char> buffer(max_body_size);
+    int read_bytes = 0;
+    read_bytes = read(i)
+}
+
 void Server::addNewConnect(ServerConfig &serv)
 {
     struct sockaddr_in client_address;
@@ -114,7 +123,7 @@ void Server::addNewConnect(ServerConfig &serv)
     int client_sock = accept(serv.getListenFd(), (struct sockaddr *)&client_address, &client_address_len);
     if(client_sock == -1)
     {
-        std::cerr << "Error: Error with listening server " << inet_ntoa({serv.getHost()}) << ":" << serv.getPort() << " - " << strerror(errno) << std::endl;//change to loger
+        std::cerr << "Error: Error with listening server " << serv.getHost() << ":" << serv.getPort() << " - " << strerror(errno) << std::endl;//change to loger
         return;
     }
     std::cout << "New connection from: " << inet_ntop(AF_INET, &client_address, buff, INET_ADDRSTRLEN) << ", with socket " << client_sock << std::endl;//change to loger
