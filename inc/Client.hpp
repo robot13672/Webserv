@@ -12,6 +12,7 @@ class Client
         sockaddr_in _adress; // для хранения адреса(IP, порт)
         time_t      _lst_msg;// время последнего сообщения
     public:
+        Client();
         Client(ServerConfig &serv);
         ~Client();
 

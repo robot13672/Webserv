@@ -54,7 +54,7 @@ void Server::startServers()// функция основного цикла се�
             std::cout << "Error: Error with select" << std::endl;//change to logger
             exit(EXIT_FAILURE);
         }
-        for(int i = 0; i <= _max_fd ; i++)
+        for(int i = 3; i <= _max_fd ; i++)
         {   
             if(FD_ISSET(i, &request_fd_cpy) && _allServers.count(i))//Если нужно добавлять нового клиента и обязательно проверять, что это серверный сокет
             {
@@ -62,7 +62,7 @@ void Server::startServers()// функция основного цикла се�
             }
             else if(FD_ISSET(i, &request_fd_cpy) && _allClients.count(i)) //Если нужно читать запрос
             {
-                readRequest(_allClients.find(i)->second._server.getMaxBodySize());
+                readRequest(i, _allClients[i]);
             }
         }
     }
@@ -107,13 +107,60 @@ void Server::setupListeningSocket(int fd)
     }
 }
 
-void Server::readRequest(long max_body_size)
+void Server::readRequest(int &fd, Client &client)
 {
-    std::vector<char> buffer(max_body_size);
-    int read_bytes = 0;
-    read_bytes = read(i)
+    const int BUFFER_SIZE = 16384; // 16 kb
+    char buffer[BUFFER_SIZE];
+    int readedBytes = read(fd, buffer, BUFFER_SIZE);
+    
+    if(readedBytes == 0)
+    {
+        handleClientDisconnection(fd);
+        return;
+    }
+    if(readedBytes < 0)
+    {
+        handleReadError(fd);
+        return;
+    }
+    processClientData(client, buffer, readedBytes);
+    std::cout << "New message from " << fd << std::endl;
+    //TODO: вернуться сюда, когда Ростик сделает реквесты
+    //Если проверка парсинга уже сделана, или в запросе обнаруженна ошибка
+    //Вызов функции обработки запроса.
 }
 
+void Server::handleClientDisconnection(int clientFd)
+{
+    std::cout << "webserv: Conenction with " << clientFd << "fd closed!" <<  std::endl; // change to logger
+    closeFd(clientFd);
+}
+
+void Server::handleReadError(int clientFd)
+{
+    std::cout << "Error: error with read message from: " << clientFd << std::endl; // change to logger
+    closeFd(clientFd);
+}
+
+void Server::processClientData(Client &client, char *buffer, int readedBytes)
+{
+    client.updateTime();
+    //TODO: отправить реквест который получили от клиента
+    memset(buffer, 0, readedBytes);
+}
+void Server::closeFd(int fd)
+{
+    if(FD_ISSET(fd, &_request_fd_pool))
+    {
+        removeFromSet(fd, _request_fd_pool);
+    }
+    if(FD_ISSET(fd, &_response_fd_pool))
+    {
+        removeFromSet(fd, _response_fd_pool);
+    }
+    close(fd);
+    _allClients.erase(fd);
+}
 void Server::addNewConnect(ServerConfig &serv)
 {
     struct sockaddr_in client_address;

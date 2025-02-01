@@ -27,7 +27,12 @@ class Server
         void addNewConnect(ServerConfig &serv);
         void addToSet(int client_sock, fd_set &set);
         void removeFromSet(int client_sock, fd_set &set);
-        void readRequest(long max_body_size);
+        void readRequest(int &fd, Client &client);
+
+        void handleClientDisconnection(int clientFd);
+        void handleReadError(int clientFd);
+        void closeFd(int fd);
+        void processClientData(Client &client, char *buffer, int readedBytes);
         
 };
 

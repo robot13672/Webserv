@@ -1,9 +1,9 @@
 #include "../inc/Client.hpp"
 
-// Client::Client(ServerConfig &serv)
-// {
-//     _lst_msg = time(NULL);//присваиваю текущее время
-// }
+Client::Client()
+{
+    this->_lst_msg = time(NULL);
+}
 
 Client::Client(ServerConfig &serv)
 {
