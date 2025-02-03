@@ -67,7 +67,7 @@ void Server::startServers()// функция основного цикла се�
             }
             else if(FD_ISSET(i, &response_fd_cpy) && _allClients.count(i))//Если нужно отправить респонс
             {
-
+                sendResponse(i, _allClients[i]);
             }
 
         }
@@ -114,7 +114,7 @@ void Server::setupListeningSocket(int fd)
     }
 }
 
-void Server::readRequest(int &fd, Client &client)
+void Server::readRequest(int fd, Client &client)
 {
     const int BUFFER_SIZE = 16384; // 16 kb
     char buffer[BUFFER_SIZE];
@@ -136,11 +136,25 @@ void Server::readRequest(int &fd, Client &client)
     //TODO: вернуться сюда, когда Ростик сделает реквесты
     //Если проверка парсинга уже сделана, или в запросе обнаруженна ошибка
     //Вызов функции обработки запроса.
+    removeFromSet(fd, _request_fd_pool);
+    addToSet(fd, _response_fd_pool);
 }
 
-void Server::sendResponse(int &fd, Client &Client)
+void Server::sendResponse(int fd, Client &client)
 {
-    
+    int sendedBytes = 0;
+    //TODO поменять на реальный ответ
+    std::string response = "HTTP/1.1 200 OK\r\n"
+           "Content-Type: text/plain\r\n"
+           "Content-Length: 13\r\n"
+           "\r\n"
+           "Hello, World!";
+    //TODO: дописать все конструкторы копирования, что бы можно было обратиться к макс боти сайз
+    // if(response.length() >= client._server.getMaxBodySize())
+    //     std::cout << "Error 413";
+    sendedBytes = write(fd, response.c_str(), response.length());
+    removeFromSet(fd, _response_fd_pool);
+    addToSet(fd, _request_fd_pool);
 }
 
 void Server::handleClientDisconnection(int clientFd)

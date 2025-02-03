@@ -13,6 +13,17 @@ Client::Client(ServerConfig &serv)
     _sockfd = -1; // Initialize socket file descriptor
 }
 
+Client::Client(const Client &cop)
+{
+    *this = cop;
+}
+
+// Client Client::operator=(const Client &cop)
+// {
+    
+// }
+
+
 Client::~Client() {}
 
 void Client::setSocket(int socket)
@@ -25,10 +36,6 @@ time_t Client::getLstMsg()
     return _lst_msg;
 }
 
-HttpResponse Client::getResponse()
-{
-    return _response;
-}
 
 void Client::updateTime()
 {

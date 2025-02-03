@@ -6,6 +6,8 @@ class HttpResponse
 {
     private:
         ServerConfig _server;
+        
+
 
     public:
         void setServer(ServerConfig &serv);
