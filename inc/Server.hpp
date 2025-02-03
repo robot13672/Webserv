@@ -28,11 +28,12 @@ class Server
         void addToSet(int client_sock, fd_set &set);
         void removeFromSet(int client_sock, fd_set &set);
         void readRequest(int &fd, Client &client);
+        void sendResponse(int &fd, Client &Client);
 
         void handleClientDisconnection(int clientFd);
         void handleReadError(int clientFd);
         void closeFd(int fd);
         void processClientData(Client &client, char *buffer, int readedBytes);
-        
+        void checkTimeout(void);
 };
 

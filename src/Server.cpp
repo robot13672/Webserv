@@ -48,8 +48,9 @@ void Server::startServers()// функция основного цикла се�
         timer.tv_usec = 0;
         request_fd_cpy = _request_fd_pool;
         response_fd_cpy = _response_fd_pool;
-        
-        if(ready = select(_max_fd + 1, &request_fd_cpy, &response_fd_cpy, NULL, &timer) < 0)//ожидание события на дескрипторах
+        ready = select(_max_fd + 1, &request_fd_cpy, &response_fd_cpy, NULL, &timer);
+
+        if(ready < 0)//ожидание события на дескрипторах
         {
             std::cout << "Error: Error with select" << std::endl;//change to logger
             exit(EXIT_FAILURE);
@@ -64,7 +65,13 @@ void Server::startServers()// функция основного цикла се�
             {
                 readRequest(i, _allClients[i]);
             }
+            else if(FD_ISSET(i, &response_fd_cpy) && _allClients.count(i))//Если нужно отправить респонс
+            {
+
+            }
+
         }
+        checkTimeout();
     }
     
 
@@ -123,11 +130,17 @@ void Server::readRequest(int &fd, Client &client)
         handleReadError(fd);
         return;
     }
+    // std::cout << buffer << std::endl;
     processClientData(client, buffer, readedBytes);
     std::cout << "New message from " << fd << std::endl;
     //TODO: вернуться сюда, когда Ростик сделает реквесты
     //Если проверка парсинга уже сделана, или в запросе обнаруженна ошибка
     //Вызов функции обработки запроса.
+}
+
+void Server::sendResponse(int &fd, Client &Client)
+{
+    
 }
 
 void Server::handleClientDisconnection(int clientFd)
@@ -201,4 +214,14 @@ void Server::removeFromSet(int client_sock, fd_set &set)
     FD_CLR(client_sock, &set);//функция которая принимает FD и сет, и убирает его из сета
     if(client_sock == _max_fd)
         _max_fd -= 1;
+}
+
+void Server::checkTimeout()
+{
+    for(int i = 0; i <= _max_fd; i++)
+    {
+        if(_allClients.count(i))
+            if (time(NULL) - _allClients.find(i)->second.getLstMsg() > 60)
+                handleClientDisconnection(i);
+    }
 }

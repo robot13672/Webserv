@@ -25,6 +25,11 @@ time_t Client::getLstMsg()
     return _lst_msg;
 }
 
+HttpResponse Client::getResponse()
+{
+    return _response;
+}
+
 void Client::updateTime()
 {
     _lst_msg = time(NULL);

@@ -1,6 +1,3 @@
-#ifndef HTTPRESPONSE_HPP
-# define HTTPRESPONSE_HPP
-
 #pragma once
 
 #include "Webserv.hpp"
@@ -15,5 +12,3 @@ class HttpResponse
 
 
 };
-
-#endif
