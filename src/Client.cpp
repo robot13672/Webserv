@@ -15,16 +15,33 @@ Client::Client(ServerConfig &serv)
 
 Client::Client(const Client &cop)
 {
-    *this = cop;
+    this->_sockfd = cop._sockfd;
+    this->_lst_msg = cop._lst_msg;
+    this->_response = cop._response;
+    this->_request = cop._request;
+    this->_server = cop._server;
+    this->_adress = cop._adress;
 }
 
-// Client Client::operator=(const Client &cop)
-// {
-    
-// }
+Client Client::operator=(const Client &cop)
+{
+    if (this != &cop)
+    {
+        this->_sockfd = cop._sockfd;
+        this->_lst_msg = cop._lst_msg;
+        this->_response = cop._response;
+        this->_request = cop._request;
+    }
+    return *this;
+}
 
-
-Client::~Client() {}
+Client::~Client()
+{
+    if (_sockfd != -1)
+    {
+        close(_sockfd); // Close the socket if it is open
+    }
+}
 
 void Client::setSocket(int socket)
 {

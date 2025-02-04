@@ -18,7 +18,8 @@ class Client
         Client();
         Client(ServerConfig &serv);
         Client(Client const &cop);
-        // Client operator=(Client const &cop);
+        Client operator=(Client const &cop);
+
         ~Client();
 
         
