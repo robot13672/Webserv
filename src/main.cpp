@@ -1,12 +1,14 @@
 #include "../inc/Webserv.hpp"
 #include "../inc/Server.hpp"
 
+
 int main(int argc, char **argv)
 {
     if(argc == 1 || argc == 2)
     {
         try
         {
+            logger.setFile("logger.txt");//нужно будет ставить реальный с конфига
             Server Webservers;
             std::vector<ServerConfig> servers;
             servers.push_back(ServerConfig("127.0.0.1", 8082));
@@ -18,14 +20,14 @@ int main(int argc, char **argv)
         }
         catch(const std::exception& e)
         {
-            std::cerr << e.what() << '\n';
+            logger.writeMessage(e.what());
             return 1;
         }
        
     }
     else
     {
-        std::cerr << "Error: Wrong arguments" << std::endl; //Change to Logger class
+        logger.writeMessage("Error: Wrong arguments");
     }
     return 0;
 }

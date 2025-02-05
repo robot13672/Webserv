@@ -9,6 +9,7 @@ void Server::setupServer(std::vector<ServerConfig> servers)
             it->setFd(findDublicateFr(it));//ищу дублирующий дескриптор и подставляю его в текущий сервер
         else
             it->setupServer();
+        std::cout << 
         std::cout << "Server created with host:" << it->getHost() << ", port:" << it->getPort() << std::endl; //Изменить это, и выводить через логер
     }
 }
@@ -104,7 +105,7 @@ void Server::setupListeningSocket(int fd)
 {
     if(listen(fd, 512) == -1)
     {
-        std::cout << "Error: Listening error" << std::endl;//Поменять на логер
+        logger.writeMessage("Error: Listening error");
         exit(EXIT_FAILURE);
     }
     if(fcntl(fd, F_SETFL, O_NONBLOCK) == -1)

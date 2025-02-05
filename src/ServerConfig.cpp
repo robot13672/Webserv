@@ -63,7 +63,7 @@ void ServerConfig::setupServer()//функция для настройки се�
 
     if(bind(_listen_fd, (sockaddr *) &_adress, sizeof(_adress)) == -1)
     {
-        std::cerr << "Error: Error bind host" << std::endl;//вывести ошибку через логер об неуспешной привязке сокета к порту
+        logger.writeMessage("Error: Error bind host");
         close(_listen_fd); // Закрываем сокет перед завершением
         exit(EXIT_FAILURE);
     }
