@@ -36,7 +36,8 @@ class ServerConfig
         void setMethods(std::vector<std::string> methods);
         void setLogDirection(std::string logDirection);
         //GET
-        in_addr_t getHost(void);
+        // in_addr_t getHost(void);
+        std::string getHost();
         u_int16_t getPort(void);
         int getListenFd(void);
         long getMaxBodySize(void);

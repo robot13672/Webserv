@@ -67,8 +67,7 @@ void ServerConfig::setupServer()//функция для настройки се�
         close(_listen_fd); // Закрываем сокет перед завершением
         exit(EXIT_FAILURE);
     }
-    
-    std::cout << "Successfully bound to host:" << _host << ", port:" << _port << " socket:" << _listen_fd << std::endl;
+    logger.writeMessage("Successfully bound to host:" + getHost() + ", port:" + uint16ToString(getPort()) + " socket:" + intToString(_listen_fd));
 }
 
 
@@ -127,9 +126,16 @@ void ServerConfig::setLogDirection(std::string logDirection)
     _logDirection = logDirection;
 }
 //GET
-in_addr_t ServerConfig::getHost()
+// in_addr_t ServerConfig::getHost()
+// {
+//     return _host;
+// }
+
+std::string ServerConfig::getHost()
 {
-    return _host;
+    struct in_addr addr;
+    addr.s_addr = _host;
+    return std::string(inet_ntoa(addr));
 }
 
 u_int16_t ServerConfig::getPort()

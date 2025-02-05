@@ -33,6 +33,7 @@
 // #include "Server.hpp"
 #include "Logger.hpp"
 #include "HttpRequest.hpp"
+#include "Utils.hpp"
 // #include "HttpResponse.hpp"
 // #include "Client.hpp"
 

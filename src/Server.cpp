@@ -9,8 +9,8 @@ void Server::setupServer(std::vector<ServerConfig> servers)
             it->setFd(findDublicateFr(it));//ищу дублирующий дескриптор и подставляю его в текущий сервер
         else
             it->setupServer();
-        std::cout << 
-        std::cout << "Server created with host:" << it->getHost() << ", port:" << it->getPort() << std::endl; //Изменить это, и выводить через логер
+        logger.writeMessage("Server created with host:" + it->getHost() + ", port:" + uint16ToString(it->getPort()));
+        // std::cout << "Server created with host:" << it->getHost() << ", port:" << it->getPort() << std::endl; //Изменить это, и выводить через логер
     }
 }
 
@@ -53,7 +53,7 @@ void Server::startServers()// функция основного цикла се�
 
         if(ready < 0)//ожидание события на дескрипторах
         {
-            std::cout << "Error: Error with select" << std::endl;//change to logger
+            logger.writeMessage("Error: Error with select");
             exit(EXIT_FAILURE);
         }
         for(int i = 3; i <= _max_fd ; i++)
@@ -198,9 +198,10 @@ void Server::addNewConnect(ServerConfig &serv)
     int client_sock = accept(serv.getListenFd(), (struct sockaddr *)&client_address, &client_address_len);
     if(client_sock == -1)
     {
-        std::cerr << "Error: Error with listening server " << serv.getHost() << ":" << serv.getPort() << " - " << strerror(errno) << std::endl;//change to loger
+        logger.writeMessage("Error: Error with listening server " + serv.getHost() + ":" + uint16ToString(serv.getPort()) + "-");
         return;
     }
+    // logger.writeMessage("New connection from: " + );
     std::cout << "New connection from: " << inet_ntop(AF_INET, &client_address, buff, INET_ADDRSTRLEN) << ", with socket " << client_sock << std::endl;//change to loger
     addToSet(client_sock, _request_fd_pool);
     if (fcntl(client_sock, F_SETFL, O_NONBLOCK)) //F_SETFL - указывает, то что я буду изменять флаги, O_NONBLOCK - флаг, который ставит сокет в неблокирующий режим
