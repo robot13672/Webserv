@@ -69,4 +69,15 @@ void Logger::writeMessage(std::string message)
     std::cout << getCurrTime() << ": " << message << std::endl;     
 }
 
+void Logger::closeFile()
+{
+    if(_fileStream.is_open())
+    {
+        _fileStream << "-------------------------------------------------" << std::endl;
+        _fileStream << "Session finish: " << getCurrTime() << std::endl;
+        _fileStream << "-------------------------------------------------" << std::endl;
+        _fileStream.close();
+    }
+}
+
 Logger logger;

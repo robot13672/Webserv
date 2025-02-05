@@ -20,8 +20,6 @@ class Client
         Client(Client const &cop);
         Client operator=(Client const &cop);
 
-        ~Client();
-
         
         //set
         void setSocket(int socket);

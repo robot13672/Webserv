@@ -36,3 +36,269 @@ New session: 2025-02-05 13:50:56
 -------------------------------------------------
 Session finish: 2025-02-05 13:50:59
 -------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-05 14:15:12
+-------------------------------------------------
+2025-02-05 14:15:12: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:15:12: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:15:12: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:15:12: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:15:12: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:15:28: Error: Error with select
+-------------------------------------------------
+Session finish: 2025-02-05 14:15:28
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-05 14:16:22
+-------------------------------------------------
+2025-02-05 14:16:22: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:16:22: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:16:22: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:16:22: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:16:22: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+New session: 2025-02-05 14:17:42
+-------------------------------------------------
+2025-02-05 14:17:42: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:17:42: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:17:42: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:17:42: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:17:42: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+New session: 2025-02-05 14:20:33
+-------------------------------------------------
+2025-02-05 14:20:33: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:20:33: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:20:33: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:20:33: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:20:33: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:20:35: Error: Error with select
+-------------------------------------------------
+Session finish: 2025-02-05 14:20:35
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-05 14:20:39
+-------------------------------------------------
+2025-02-05 14:20:39: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:20:39: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:20:39: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:20:39: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:20:39: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+New session: 2025-02-05 14:24:18
+-------------------------------------------------
+2025-02-05 14:24:18: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:24:18: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:24:18: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:24:18: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:24:18: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:24:23: Error: Error with select
+-------------------------------------------------
+Session finish: 2025-02-05 14:24:23
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-05 14:25:23
+-------------------------------------------------
+2025-02-05 14:25:23: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:25:23: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:25:23: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:25:23: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:25:23: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:25:27: Error: Error with select
+-------------------------------------------------
+Session finish: 2025-02-05 14:25:27
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-05 14:27:26
+-------------------------------------------------
+2025-02-05 14:27:26: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:27:26: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:27:26: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:27:26: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:27:26: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:27:29: Error: Error with select
+-------------------------------------------------
+Session finish: 2025-02-05 14:27:29
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-05 14:28:00
+-------------------------------------------------
+2025-02-05 14:28:00: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:28:00: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:28:00: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:28:00: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:28:00: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+New session: 2025-02-05 14:28:16
+-------------------------------------------------
+2025-02-05 14:28:16: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:28:16: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:28:16: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:28:16: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:28:16: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+New session: 2025-02-05 14:29:18
+-------------------------------------------------
+2025-02-05 14:29:18: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:29:18: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:29:18: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:29:18: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:29:18: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+New session: 2025-02-05 14:30:22
+-------------------------------------------------
+2025-02-05 14:30:22: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:30:22: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:30:22: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:30:22: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:30:22: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+New session: 2025-02-05 14:32:22
+-------------------------------------------------
+2025-02-05 14:32:22: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:32:22: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:32:22: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:32:22: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:32:22: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+New session: 2025-02-05 14:43:20
+-------------------------------------------------
+2025-02-05 14:43:20: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:43:20: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:43:20: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:43:20: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:43:20: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:43:24: Error: Error with select: Bad file descriptor
+-------------------------------------------------
+Session finish: 2025-02-05 14:43:24
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-05 14:44:08
+-------------------------------------------------
+2025-02-05 14:44:08: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:44:08: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:44:08: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:44:08: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:44:08: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+New session: 2025-02-05 14:45:23
+-------------------------------------------------
+2025-02-05 14:45:23: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:45:23: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:45:23: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:45:23: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:45:23: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:45:24: Error: Error with select: Bad file descriptor
+-------------------------------------------------
+Session finish: 2025-02-05 14:45:24
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-05 14:45:52
+-------------------------------------------------
+2025-02-05 14:45:52: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:45:52: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:45:52: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:45:52: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:45:52: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+New session: 2025-02-05 14:47:22
+-------------------------------------------------
+2025-02-05 14:47:22: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:47:22: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:47:22: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:47:22: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:47:22: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+New session: 2025-02-05 14:48:59
+-------------------------------------------------
+2025-02-05 14:48:59: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:48:59: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:48:59: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:48:59: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:48:59: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+New session: 2025-02-05 14:59:29
+-------------------------------------------------
+2025-02-05 14:59:29: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 14:59:29: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:59:29: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 14:59:29: Server created with host:127.0.0.1, port:8083
+2025-02-05 14:59:29: Server created with host:127.0.0.1, port:8082
+2025-02-05 14:59:32: New connection from: 127.0.0.1, with socket 6
+2025-02-05 14:59:32: New connection from: 127.0.0.1, with socket 7
+-------------------------------------------------
+New session: 2025-02-05 15:00:08
+-------------------------------------------------
+2025-02-05 15:00:08: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 15:00:08: Server created with host:127.0.0.1, port:8082
+2025-02-05 15:00:08: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 15:00:08: Server created with host:127.0.0.1, port:8083
+2025-02-05 15:00:08: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+New session: 2025-02-05 15:01:04
+-------------------------------------------------
+2025-02-05 15:01:04: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 15:01:04: Server created with host:127.0.0.1, port:8082
+2025-02-05 15:01:04: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 15:01:04: Server created with host:127.0.0.1, port:8083
+2025-02-05 15:01:04: Server created with host:127.0.0.1, port:8082
+2025-02-05 15:01:06: New message from 6
+2025-02-05 15:01:07: New message from 6
+-------------------------------------------------
+New session: 2025-02-05 15:01:24
+-------------------------------------------------
+2025-02-05 15:01:24: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 15:01:24: Server created with host:127.0.0.1, port:8082
+2025-02-05 15:01:24: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 15:01:24: Server created with host:127.0.0.1, port:8083
+2025-02-05 15:01:24: Server created with host:127.0.0.1, port:8082
+2025-02-05 15:01:25: New message from 6
+2025-02-05 15:01:25: New message from 6
+-------------------------------------------------
+New session: 2025-02-05 15:02:13
+-------------------------------------------------
+2025-02-05 15:02:13: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 15:02:13: Server created with host:127.0.0.1, port:8082
+2025-02-05 15:02:13: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 15:02:13: Server created with host:127.0.0.1, port:8083
+2025-02-05 15:02:13: Server created with host:127.0.0.1, port:8082
+2025-02-05 15:02:15: New connection from: 127.0.0.1, with socket 6
+2025-02-05 15:02:15: New message from 6
+2025-02-05 15:02:15: New connection from: 127.0.0.1, with socket 7
+2025-02-05 15:02:15: New message from 6
+2025-02-05 15:03:20: webserv: Conenction with 7fd closed!
+2025-02-05 15:07:22: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+New session: 2025-02-05 15:11:56
+-------------------------------------------------
+2025-02-05 15:11:56: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 15:11:56: Server created with host:127.0.0.1, port:8082
+2025-02-05 15:11:56: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 15:11:56: Server created with host:127.0.0.1, port:8083
+2025-02-05 15:11:56: Server created with host:127.0.0.1, port:8082
+2025-02-05 15:12:01: New connection from: 127.0.0.1, with socket 6
+2025-02-05 15:12:01: New message from 6
+2025-02-05 15:12:01: New connection from: 127.0.0.1, with socket 7
+2025-02-05 15:12:01: New message from 6
+-------------------------------------------------
+New session: 2025-02-05 15:12:50
+-------------------------------------------------
+2025-02-05 15:12:50: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 15:12:50: Server created with host:127.0.0.1, port:8082
+2025-02-05 15:12:50: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 15:12:50: Server created with host:127.0.0.1, port:8083
+2025-02-05 15:12:50: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+Session finish: 2025-02-05 15:12:52
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-05 15:14:09
+-------------------------------------------------
+2025-02-05 15:14:09: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-05 15:14:09: Server created with host:127.0.0.1, port:8082
+2025-02-05 15:14:09: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-05 15:14:09: Server created with host:127.0.0.1, port:8083
+2025-02-05 15:14:09: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+Session finish: 2025-02-05 15:14:21
+-------------------------------------------------

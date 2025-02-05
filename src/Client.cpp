@@ -35,13 +35,6 @@ Client Client::operator=(const Client &cop)
     return *this;
 }
 
-Client::~Client()
-{
-    if (_sockfd != -1)
-    {
-        close(_sockfd); // Close the socket if it is open
-    }
-}
 
 void Client::setSocket(int socket)
 {

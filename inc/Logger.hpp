@@ -17,7 +17,9 @@ class Logger
         ~Logger();
         std::string getCurrTime();
         void setFile(std::string _file);
-        void writeMessage(std::string message);     
+        void writeMessage(std::string message);
+        void closeFile(void);
+             
 };
 
 extern Logger logger;

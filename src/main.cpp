@@ -2,12 +2,20 @@
 #include "../inc/Server.hpp"
 
 
+void signalHandler(int signum) {
+
+    logger.closeFile();
+
+    exit(signum);  // Завершаем программу
+}
+
 int main(int argc, char **argv)
 {
     if(argc == 1 || argc == 2)
     {
         try
         {
+            signal(SIGINT, signalHandler);
             logger.setFile("logger.txt");//нужно будет ставить реальный с конфига
             Server Webservers;
             std::vector<ServerConfig> servers;

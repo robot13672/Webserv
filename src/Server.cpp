@@ -53,7 +53,8 @@ void Server::startServers()// функция основного цикла се�
 
         if(ready < 0)//ожидание события на дескрипторах
         {
-            logger.writeMessage("Error: Error with select");
+            logger.writeMessage("Error: Error with select: " + std::string(strerror(errno)));
+            std::cout << strerror(errno) << std::endl;
             exit(EXIT_FAILURE);
         }
         for(int i = 3; i <= _max_fd ; i++)
@@ -110,12 +111,12 @@ void Server::setupListeningSocket(int fd)
     }
     if(fcntl(fd, F_SETFL, O_NONBLOCK) == -1)
     {
-        std::cout << "Error: Non-blocking mode error" << std::endl;//Поменять на логер
+        logger.writeMessage("Error: Non-blocking mode error");
         exit(EXIT_FAILURE);
     }
 }
 
-void Server::readRequest(int fd, Client &client)
+void Server::readRequest(int &fd, Client &client)
 {
     const int BUFFER_SIZE = 16384; // 16 kb
     char buffer[BUFFER_SIZE];
@@ -133,7 +134,7 @@ void Server::readRequest(int fd, Client &client)
     }
     // std::cout << buffer << std::endl;
     processClientData(client, buffer, readedBytes);
-    std::cout << "New message from " << fd << std::endl;
+    logger.writeMessage("New message from " + intToString(fd));
     //TODO: вернуться сюда, когда Ростик сделает реквесты
     //Если проверка парсинга уже сделана, или в запросе обнаруженна ошибка
     //Вызов функции обработки запроса.
@@ -141,7 +142,7 @@ void Server::readRequest(int fd, Client &client)
     addToSet(fd, _response_fd_pool);
 }
 
-void Server::sendResponse(int fd, Client &client)
+void Server::sendResponse(int &fd, Client &client)
 {
     int sendedBytes = 0;
     //TODO поменять на реальный ответ
@@ -160,13 +161,13 @@ void Server::sendResponse(int fd, Client &client)
 
 void Server::handleClientDisconnection(int clientFd)
 {
-    std::cout << "webserv: Conenction with " << clientFd << "fd closed!" <<  std::endl; // change to logger
+    logger.writeMessage("webserv: Conenction with " + intToString(clientFd) + "fd closed!");
     closeFd(clientFd);
 }
 
 void Server::handleReadError(int clientFd)
 {
-    std::cout << "Error: error with read message from: " << clientFd << std::endl; // change to logger
+    logger.writeMessage("Error: error with read message from: " + intToString(clientFd));
     closeFd(clientFd);
 }
 
@@ -196,13 +197,13 @@ void Server::addNewConnect(ServerConfig &serv)
     Client client(serv);
     char buff[INET_ADDRSTRLEN];//INET_ADDRSTRLEN - Это константа, она задает максимальную длину строки, необходимую для хранения IP-адреса в текстовом виде
     int client_sock = accept(serv.getListenFd(), (struct sockaddr *)&client_address, &client_address_len);
+    client.setSocket(client_sock);
     if(client_sock == -1)
     {
         logger.writeMessage("Error: Error with listening server " + serv.getHost() + ":" + uint16ToString(serv.getPort()) + "-");
         return;
     }
-    // logger.writeMessage("New connection from: " + );
-    std::cout << "New connection from: " << inet_ntop(AF_INET, &client_address, buff, INET_ADDRSTRLEN) << ", with socket " << client_sock << std::endl;//change to loger
+    logger.writeMessage("New connection from: " + sockaddrToString(client_address) + ", with socket " + intToString(client_sock));
     addToSet(client_sock, _request_fd_pool);
     if (fcntl(client_sock, F_SETFL, O_NONBLOCK)) //F_SETFL - указывает, то что я буду изменять флаги, O_NONBLOCK - флаг, который ставит сокет в неблокирующий режим
     {
