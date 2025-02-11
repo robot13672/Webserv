@@ -1,3 +1,2 @@
 #include "../inc/CGI.hpp"
 
-    
