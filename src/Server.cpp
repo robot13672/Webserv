@@ -132,7 +132,7 @@ void Server::readRequest(int &fd, Client &client)
         handleReadError(fd);
         return;
     }
-    // std::cout << buffer << std::endl;
+    std::cout << buffer << std::endl;
     processClientData(client, buffer, readedBytes);
     logger.writeMessage("New message from " + intToString(fd));
     //TODO: вернуться сюда, когда Ростик сделает реквесты
