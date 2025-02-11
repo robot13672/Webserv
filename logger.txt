@@ -302,3 +302,37 @@ New session: 2025-02-05 15:14:09
 -------------------------------------------------
 Session finish: 2025-02-05 15:14:21
 -------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-06 14:31:21
+-------------------------------------------------
+2025-02-06 14:31:21: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-06 14:31:21: Server created with host:127.0.0.1, port:8082
+2025-02-06 14:31:21: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-06 14:31:21: Server created with host:127.0.0.1, port:8083
+2025-02-06 14:31:21: Server created with host:127.0.0.1, port:8082
+2025-02-06 14:31:29: New connection from: 127.0.0.1, with socket 6
+2025-02-06 14:31:29: New message from 6
+2025-02-06 14:31:29: New connection from: 127.0.0.1, with socket 7
+2025-02-06 14:31:31: New message from 6
+2025-02-06 14:31:55: webserv: Conenction with 7fd closed!
+2025-02-06 14:31:55: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-02-06 14:49:14
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-11 12:18:40
+-------------------------------------------------
+2025-02-11 12:18:40: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-11 12:18:40: Server created with host:127.0.0.1, port:8082
+2025-02-11 12:18:40: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-11 12:18:40: Server created with host:127.0.0.1, port:8083
+2025-02-11 12:18:40: Server created with host:127.0.0.1, port:8082
+2025-02-11 12:18:47: New connection from: 127.0.0.1, with socket 6
+2025-02-11 12:18:47: New message from 6
+2025-02-11 12:18:47: New connection from: 127.0.0.1, with socket 7
+2025-02-11 12:18:48: New message from 6
+2025-02-11 12:19:07: New message from 6
+2025-02-11 12:19:07: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-11 12:19:26
+-------------------------------------------------
