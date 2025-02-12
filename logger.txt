@@ -708,3 +708,219 @@ New session: 2025-02-11 18:08:46
 Session finish: 2025-02-11 18:09:19
 >>>>>>> main
 -------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-12 15:45:34
+-------------------------------------------------
+2025-02-12 15:45:34: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 15:45:34: Server created with host:127.0.0.1, port:8082
+2025-02-12 15:45:34: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 15:45:34: Server created with host:127.0.0.1, port:8083
+2025-02-12 15:45:34: Server created with host:127.0.0.1, port:8082
+2025-02-12 15:45:41: New connection from: 127.0.0.1, with socket 6
+2025-02-12 15:45:41: Created file: 1739371541.txt
+-------------------------------------------------
+New session: 2025-02-12 15:45:55
+-------------------------------------------------
+2025-02-12 15:45:55: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 15:45:55: Server created with host:127.0.0.1, port:8082
+2025-02-12 15:45:55: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 15:45:55: Server created with host:127.0.0.1, port:8083
+2025-02-12 15:45:55: Server created with host:127.0.0.1, port:8082
+2025-02-12 15:45:57: New connection from: 127.0.0.1, with socket 6
+2025-02-12 15:45:57: Created file: 1739371557.txt
+2025-02-12 15:47:03: Deleted file: 1739371557.txt
+2025-02-12 15:47:09: New message from 6
+2025-02-12 15:47:16: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+New session: 2025-02-12 15:47:25
+-------------------------------------------------
+2025-02-12 15:47:25: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 15:47:25: Server created with host:127.0.0.1, port:8082
+2025-02-12 15:47:25: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 15:47:25: Server created with host:127.0.0.1, port:8083
+2025-02-12 15:47:25: Server created with host:127.0.0.1, port:8082
+2025-02-12 15:47:29: New connection from: 127.0.0.1, with socket 6
+2025-02-12 15:47:29: Created file: 1739371649.txt
+-------------------------------------------------
+New session: 2025-02-12 16:02:24
+-------------------------------------------------
+2025-02-12 16:02:24: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 16:02:24: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:02:24: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 16:02:24: Server created with host:127.0.0.1, port:8083
+2025-02-12 16:02:24: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:02:31: New connection from: 127.0.0.1, with socket 6
+2025-02-12 16:02:31: Created file: 1739372551.txt
+-------------------------------------------------
+New session: 2025-02-12 16:05:21
+-------------------------------------------------
+2025-02-12 16:05:21: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 16:05:21: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:05:21: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 16:05:21: Server created with host:127.0.0.1, port:8083
+2025-02-12 16:05:21: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:05:43: New connection from: 127.0.0.1, with socket 6
+2025-02-12 16:05:43: Created file: 1739372743.txt
+2025-02-12 16:05:43: Deleted file: 1739372743.txt
+2025-02-12 16:05:43: New message from 6
+2025-02-12 16:05:43: New connection from: 127.0.0.1, with socket 7
+2025-02-12 16:05:44: Created file: 1739372744.txt
+2025-02-12 16:05:44: Deleted file: 1739372744.txt
+2025-02-12 16:05:44: New message from 6
+2025-02-12 16:05:49: New connection from: 127.0.0.1, with socket 8
+2025-02-12 16:05:49: Created file: 1739372749.txt
+2025-02-12 16:05:49: Deleted file: 1739372749.txt
+2025-02-12 16:05:49: New message from 8
+2025-02-12 16:06:44: webserv: Conenction with 7fd closed!
+2025-02-12 16:06:45: webserv: Conenction with 6fd closed!
+2025-02-12 16:06:50: webserv: Conenction with 8fd closed!
+2025-02-12 16:11:47: New connection from: 127.0.0.1, with socket 6
+2025-02-12 16:11:47: Created file: 1739373107.txt
+2025-02-12 16:11:47: Deleted file: 1739373107.txt
+2025-02-12 16:11:47: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-12 16:11:52
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-12 16:11:57
+-------------------------------------------------
+2025-02-12 16:11:57: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 16:11:57: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:11:57: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 16:11:57: Server created with host:127.0.0.1, port:8083
+2025-02-12 16:11:57: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:12:02: New connection from: 127.0.0.1, with socket 6
+2025-02-12 16:12:02: Created file: 1739373122.txt
+-------------------------------------------------
+New session: 2025-02-12 16:16:00
+-------------------------------------------------
+2025-02-12 16:16:00: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 16:16:00: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:16:00: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 16:16:00: Server created with host:127.0.0.1, port:8083
+2025-02-12 16:16:00: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:16:04: New connection from: 127.0.0.1, with socket 6
+2025-02-12 16:16:04: Created file: 1739373364.txt
+-------------------------------------------------
+New session: 2025-02-12 16:19:17
+-------------------------------------------------
+2025-02-12 16:19:17: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 16:19:17: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:19:17: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 16:19:17: Server created with host:127.0.0.1, port:8083
+2025-02-12 16:19:17: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:19:19: New connection from: 127.0.0.1, with socket 6
+2025-02-12 16:19:19: Created file: 1739373559.txt
+2025-02-12 16:19:19: Deleted file: 1739373559.txt
+2025-02-12 16:19:19: New message from 6
+2025-02-12 16:20:20: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-02-12 16:21:02
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-12 16:21:05
+-------------------------------------------------
+2025-02-12 16:21:05: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 16:21:05: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:21:05: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 16:21:05: Server created with host:127.0.0.1, port:8083
+2025-02-12 16:21:05: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:21:13: New connection from: 127.0.0.1, with socket 6
+2025-02-12 16:21:13: New connection from: 127.0.0.1, with socket 7
+2025-02-12 16:21:13: Created file: 1739373673.txt
+-------------------------------------------------
+New session: 2025-02-12 16:21:21
+-------------------------------------------------
+2025-02-12 16:21:21: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 16:21:21: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:21:21: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 16:21:21: Server created with host:127.0.0.1, port:8083
+2025-02-12 16:21:21: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:21:23: New connection from: 127.0.0.1, with socket 6
+2025-02-12 16:21:23: Created file: 1739373683.txt
+-------------------------------------------------
+New session: 2025-02-12 16:21:44
+-------------------------------------------------
+2025-02-12 16:21:44: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 16:21:44: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:21:44: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 16:21:44: Server created with host:127.0.0.1, port:8083
+2025-02-12 16:21:44: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:21:46: New connection from: 127.0.0.1, with socket 6
+2025-02-12 16:21:46: Created file: 1739373706.txt
+2025-02-12 16:21:46: Deleted file: 1739373706.txt
+2025-02-12 16:21:46: New message from 6
+2025-02-12 16:21:47: New connection from: 127.0.0.1, with socket 7
+2025-02-12 16:21:47: Created file: 1739373707.txt
+2025-02-12 16:21:47: Deleted file: 1739373707.txt
+2025-02-12 16:21:47: New message from 7
+2025-02-12 16:21:47: New connection from: 127.0.0.1, with socket 8
+2025-02-12 16:21:49: Created file: 1739373709.txt
+2025-02-12 16:21:49: Deleted file: 1739373709.txt
+2025-02-12 16:21:49: New message from 7
+-------------------------------------------------
+Session finish: 2025-02-12 16:21:51
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-12 16:22:00
+-------------------------------------------------
+2025-02-12 16:22:00: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 16:22:00: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:22:00: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 16:22:00: Server created with host:127.0.0.1, port:8083
+2025-02-12 16:22:00: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:22:05: New connection from: 127.0.0.1, with socket 6
+2025-02-12 16:22:05: Created file: 1739373725.txt
+-------------------------------------------------
+New session: 2025-02-12 16:27:48
+-------------------------------------------------
+2025-02-12 16:27:48: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 16:27:48: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:27:48: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 16:27:48: Server created with host:127.0.0.1, port:8083
+2025-02-12 16:27:48: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:27:51: New connection from: 127.0.0.1, with socket 6
+2025-02-12 16:27:51: Created file: 1739374071.txt
+2025-02-12 16:27:51: Deleted file: 1739374071.txt
+2025-02-12 16:27:51: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-12 16:27:55
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-12 16:37:29
+-------------------------------------------------
+2025-02-12 16:37:29: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 16:37:29: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:37:29: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 16:37:29: Server created with host:127.0.0.1, port:8083
+2025-02-12 16:37:29: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:37:32: New connection from: 127.0.0.1, with socket 6
+2025-02-12 16:37:32: Created file: 1739374652.txt
+2025-02-12 16:37:32: Deleted file: 1739374652.txt
+2025-02-12 16:37:32: New message from 6
+2025-02-12 16:37:32: New connection from: 127.0.0.1, with socket 7
+2025-02-12 16:37:33: Created file: 1739374653.txt
+2025-02-12 16:37:33: Deleted file: 1739374653.txt
+2025-02-12 16:37:33: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-12 16:37:38
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-12 16:37:48
+-------------------------------------------------
+2025-02-12 16:37:48: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 16:37:48: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:37:48: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 16:37:48: Server created with host:127.0.0.1, port:8083
+2025-02-12 16:37:48: Server created with host:127.0.0.1, port:8082
+2025-02-12 16:37:50: New connection from: 127.0.0.1, with socket 6
+2025-02-12 16:37:50: Created file: 1739374670.txt
+2025-02-12 16:37:50: Deleted file: 1739374670.txt
+2025-02-12 16:37:50: New message from 6
+2025-02-12 16:37:50: New connection from: 127.0.0.1, with socket 7
+2025-02-12 16:37:50: Created file: 1739374670.txt
+2025-02-12 16:37:50: Deleted file: 1739374670.txt
+2025-02-12 16:37:50: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-12 16:37:57
+-------------------------------------------------

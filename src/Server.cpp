@@ -176,6 +176,7 @@ void Server::handleReadError(int clientFd)
 void Server::processClientData(Client &client, int fd, int readedBytes)
 {
     client.updateTime();
+    client._request.parseRequest(fd, readedBytes);
     //TODO: отправить реквест который получили от клиента
     
     
