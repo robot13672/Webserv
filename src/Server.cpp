@@ -132,12 +132,14 @@ void Server::readRequest(int &fd, Client &client)
         handleReadError(fd);
         return;
     }
-    // std::cout << buffer << std::endl;
-    processClientData(client, buffer, readedBytes);
+    std::string file = createNewTxt(buffer);
+    int buff_fd = open(file.c_str(), O_RDONLY);
+    processClientData(client, buff_fd, readedBytes);
+    memset(buffer, 0, readedBytes);
+    close(buff_fd);
+    if(!remove(file.c_str()))
+        logger.writeMessage("Deleted file: " + file);
     logger.writeMessage("New message from " + intToString(fd));
-    //TODO: вернуться сюда, когда Ростик сделает реквесты
-    //Если проверка парсинга уже сделана, или в запросе обнаруженна ошибка
-    //Вызов функции обработки запроса.
     removeFromSet(fd, _request_fd_pool);
     addToSet(fd, _response_fd_pool);
 }
@@ -171,11 +173,12 @@ void Server::handleReadError(int clientFd)
     closeFd(clientFd);
 }
 
-void Server::processClientData(Client &client, char *buffer, int readedBytes)
+void Server::processClientData(Client &client, int fd, int readedBytes)
 {
     client.updateTime();
     //TODO: отправить реквест который получили от клиента
-    memset(buffer, 0, readedBytes);
+    
+    
 }
 void Server::closeFd(int fd)
 {
@@ -241,4 +244,21 @@ void Server::checkTimeout()
             if (time(NULL) - _allClients.find(i)->second.getLstMsg() > 60)
                 handleClientDisconnection(i);
     }
+}
+
+std::string Server::createNewTxt(char *buff)
+{
+    std::string fileName = intToString(time(NULL)) + ".txt";
+    std::ofstream outFile(fileName.c_str());
+    if (outFile.is_open()) 
+    {
+        outFile << buff;
+        outFile.close();
+    } 
+    else 
+    {
+        logger.writeMessage("Error: Unable to open file " + fileName);
+    }
+    logger.writeMessage("Created file: " + fileName);
+    return fileName;
 }

@@ -33,7 +33,8 @@ class Server
         void handleClientDisconnection(int clientFd);
         void handleReadError(int clientFd);
         void closeFd(int fd);
-        void processClientData(Client &client, char *buffer, int readedBytes);
+        void processClientData(Client &client, int fd, int readedBytes);
         void checkTimeout(void);
+        std::string createNewTxt(char *buff);// функция для создания файла для буффера
 };
 

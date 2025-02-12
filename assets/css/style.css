@@ -1,0 +1,86 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    color: white;
+    text-align: center;
+}
+
+/* Главный контейнер */
+.main-container {
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+}
+
+/* Заголовок */
+h1.main-title {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Блок с кнопками */
+.github-links,
+.api-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Кнопки */
+.btn {
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* GitHub-кнопки */
+.github-links .btn {
+    background-color: #333;
+}
+
+.github-links .btn:hover {
+    background-color: #555;
+}
+
+/* API-кнопки */
+.api-buttons .btn-get {
+    background-color: #28a745;
+}
+
+.api-buttons .btn-get:hover {
+    background-color: #218838;
+}
+
+.api-buttons .btn-post {
+    background-color: #ffc107;
+    color: black;
+}
+
+.api-buttons .btn-post:hover {
+    background-color: #e0a800;
+}
+
+.api-buttons .btn-delete {
+    background-color: #dc3545;
+}
+
+.api-buttons .btn-delete:hover {
+    background-color: #c82333;
+}
