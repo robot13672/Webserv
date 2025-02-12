@@ -924,3 +924,57 @@ New session: 2025-02-12 16:37:48
 -------------------------------------------------
 Session finish: 2025-02-12 16:37:57
 -------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-12 17:29:49
+-------------------------------------------------
+2025-02-12 17:29:49: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 17:29:49: Server created with host:127.0.0.1, port:8082
+2025-02-12 17:29:49: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 17:29:49: Server created with host:127.0.0.1, port:8083
+2025-02-12 17:29:49: Server created with host:127.0.0.1, port:8082
+2025-02-12 17:29:53: New connection from: 127.0.0.1, with socket 6
+2025-02-12 17:29:53: New connection from: 127.0.0.1, with socket 7
+2025-02-12 17:29:53: Created file: 1739377793.txt
+2025-02-12 17:29:53: Deleted file: 1739377793.txt
+2025-02-12 17:29:53: New message from 6
+2025-02-12 17:29:53: Created file: 1739377793.txt
+2025-02-12 17:29:53: Deleted file: 1739377793.txt
+2025-02-12 17:29:53: New message from 6
+2025-02-12 17:30:54: webserv: Conenction with 6fd closed!
+2025-02-12 17:30:54: webserv: Conenction with 7fd closed!
+-------------------------------------------------
+Session finish: 2025-02-12 17:45:10
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-12 17:48:06
+-------------------------------------------------
+2025-02-12 17:48:06: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-12 17:48:06: Server created with host:127.0.0.1, port:8082
+2025-02-12 17:48:06: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-12 17:48:06: Server created with host:127.0.0.1, port:8083
+2025-02-12 17:48:06: Server created with host:127.0.0.1, port:8082
+2025-02-12 17:48:12: New connection from: 127.0.0.1, with socket 6
+2025-02-12 17:48:12: New connection from: 127.0.0.1, with socket 7
+2025-02-12 17:48:12: Created file: 1739378892.txt
+2025-02-12 17:48:12: Deleted file: 1739378892.txt
+2025-02-12 17:48:12: New message from 7
+2025-02-12 17:48:12: Created file: 1739378892.txt
+2025-02-12 17:48:12: Deleted file: 1739378892.txt
+2025-02-12 17:48:12: New message from 7
+2025-02-12 17:48:13: Created file: 1739378893.txt
+2025-02-12 17:48:13: Deleted file: 1739378893.txt
+2025-02-12 17:48:13: New message from 7
+2025-02-12 17:48:13: Created file: 1739378893.txt
+2025-02-12 17:48:13: Deleted file: 1739378893.txt
+2025-02-12 17:48:13: New message from 7
+2025-02-12 17:48:13: Created file: 1739378893.txt
+2025-02-12 17:48:13: Deleted file: 1739378893.txt
+2025-02-12 17:48:13: New message from 7
+2025-02-12 17:48:13: Created file: 1739378893.txt
+2025-02-12 17:48:13: Deleted file: 1739378893.txt
+2025-02-12 17:48:13: New message from 7
+2025-02-12 17:49:13: webserv: Conenction with 6fd closed!
+2025-02-12 17:49:14: webserv: Conenction with 7fd closed!
+-------------------------------------------------
+Session finish: 2025-02-12 17:49:30
+-------------------------------------------------
