@@ -19,7 +19,6 @@ class Client
         Client(ServerConfig &serv);
         Client(Client const &cop);
         Client operator=(Client const &cop);
-
         
         //set
         void setSocket(int socket);
