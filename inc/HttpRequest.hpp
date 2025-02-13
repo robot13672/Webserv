@@ -13,6 +13,8 @@ private:
     std::string _httpVersion;
     std::map<std::string, std::string> _headers;
     std::string _body;
+    int _statusCode;  // Новый член класса
+
     size_t _maxBodySize;  // Новый член класса
     bool _isChunked;  // Флаг для chunked передачи
     std::string _path;  // Часть URI до знака ?
@@ -48,6 +50,8 @@ public:
     const std::map<std::string, std::string>& getHeaders() const;
     const std::string& getBody() const;
     std::string getHeader(const std::string& key) const;
+    void setStatusCode(int code);
+    int getStatusCode() const;  // Новый геттер для кода состояния
     
     // Новые геттеры для query параметров
     const std::string& getPath() const;

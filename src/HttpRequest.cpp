@@ -1,6 +1,8 @@
 #include "../inc/HttpRequest.hpp"
 #include <algorithm>
 #include <unistd.h>
+#include <vector>  // Добавляем включение vector
+#include <sstream> // Добавляем включение sstream
 
 HttpRequest::HttpRequest(){
     _method = "";
@@ -45,7 +47,10 @@ HttpRequest::HttpRequest(const std::string& rawRequest) {
     parseRequest(rawRequest);
 }
 
-HttpRequest::~HttpRequest() {}
+HttpRequest::~HttpRequest() {
+    _headers.clear();
+    _queryParams.clear();
+}
 
 bool HttpRequest::parseRequest(const std::string& rawRequest) 
 {
@@ -87,13 +92,10 @@ bool HttpRequest::parseRequest(int fd, size_t contentLength)
     // Используем stringstream для парсинга
     std::istringstream requestStream(rawRequest);
     std::string firstLine;
-    
     if (!std::getline(requestStream, firstLine))
         return false;
-    
     if (!parseRequestLine(firstLine))
-        return false;
-        
+        return false;    
     if (!parseHeaders(requestStream))
         return false;
         
@@ -106,13 +108,10 @@ bool HttpRequest::parseRequestLine(const std::string& line) {
     std::string _fullUri;
     lineStream >> _fullUri;
     lineStream >> _httpVersion;
-    
     if (lineStream.fail())
-        return false;
-        
+        return false;   
     parseUri(_fullUri);
     _uri = _fullUri;  // сохраняем оригинальный URI
-    
     return true;
 }
 
@@ -122,70 +121,105 @@ bool HttpRequest::parseHeaders(std::istringstream& requestStream) {
         size_t colonPos = line.find(':');
         if (colonPos == std::string::npos)
             return false;
-            
         std::string key = line.substr(0, colonPos);
         std::string value = line.substr(colonPos + 1);
-        
         // Trim whitespace
         value.erase(0, value.find_first_not_of(" "));
         value.erase(value.find_last_not_of(" \r") + 1);
-        
         _headers[key] = value;
     }
-    
     // Check for chunked transfer encoding after parsing headers
     std::string transferEncoding = getHeader("Transfer-Encoding");
     _isChunked = (transferEncoding == "chunked");
-    
     return true;
 }
+
 
 bool HttpRequest::parseBody(std::istringstream& requestStream) {
     if (_isChunked) {
         return parseChunkedBody(requestStream);
     }
-    _body.assign(std::istreambuf_iterator<char>(requestStream),
-                std::istreambuf_iterator<char>());
+
+    // Получаем размер контента из заголовков
+    std::string contentLength = getHeader("Content-Length");
+    if (!contentLength.empty()) {
+        size_t length = std::strtoul(contentLength.c_str(), NULL, 10);
+        
+        // Проверяем, не превышает ли размер максимально допустимый
+        if (length > _maxBodySize) {
+            _statusCode = 413; // Payload Too Large
+            return false;
+        }
+
+        // Читаем тело запроса по частям
+        char buffer[8192]; // Буфер для чтения по 8KB
+        size_t totalRead = 0;
+        _body.reserve(length); // Резервируем память заранее
+
+        while (totalRead < length && !requestStream.eof()) {
+            size_t remaining = length - totalRead;
+            size_t toRead = std::min(remaining, sizeof(buffer));
+            
+            requestStream.read(buffer, toRead);
+            size_t bytesRead = requestStream.gcount();
+            
+            if (bytesRead == 0) break;
+            
+            _body.append(buffer, bytesRead);
+            totalRead += bytesRead;
+        }
+
+        return totalRead == length;
+    }
     return true;
 }
-
 bool HttpRequest::parseChunkedBody(std::istringstream& requestStream) {
     std::string chunk_line;
     _body.clear();
-    
+    size_t totalSize = 0;
+
     while (std::getline(requestStream, chunk_line)) {
-        // Remove \r if present
+        // Удаляем \r если есть
         if (!chunk_line.empty() && chunk_line[chunk_line.length()-1] == '\r') {
             chunk_line = chunk_line.substr(0, chunk_line.length()-1);
         }
-        
-        // Parse chunk size
+
+        // Парсим размер чанка
         size_t chunk_size = parseChunkSize(chunk_line);
-        if (chunk_size == 0) {
-            return true; // End of chunks
-        }
         
-        // Check _body size limit
-        if (_body.length() + chunk_size > _maxBodySize) {
+        // Проверяем на последний чанк
+        if (chunk_size == 0) {
+            return true;
+        }
+
+        // Проверяем общий размер
+        totalSize += chunk_size;
+        if (totalSize > _maxBodySize) {
+            _statusCode = 413; // Payload Too Large
             return false;
         }
-        
-        // Read chunk data
-        std::string chunk_data;
-        chunk_data.resize(chunk_size);
+
+        // Читаем данные чанка
+        std::vector<char> chunk_data(chunk_size);
         requestStream.read(&chunk_data[0], chunk_size);
         
         if (requestStream.gcount() != static_cast<std::streamsize>(chunk_size)) {
             return false;
         }
-        
-        _body += chunk_data;
-        
-        // Skip the CRLF after chunk
+
+        // Добавляем данные в тело
+        _body.append(chunk_data.begin(), chunk_data.end());
+
+        // Пропускаем CRLF после чанка
         std::getline(requestStream, chunk_line);
     }
-    
-    return false; // Unexpected end of stream
+
+    return false; // Неожиданный конец потока
+}
+
+// Добавьте в класс новый метод для установки кода состояния
+void HttpRequest::setStatusCode(int code) {
+    _statusCode = code;
 }
 
 size_t HttpRequest::parseChunkSize(const std::string& line) {
@@ -250,19 +284,15 @@ void HttpRequest::setMaxBodySize(size_t size) {
 
 void HttpRequest::parseUri(const std::string& fullUri) {
     size_t questionPos = fullUri.find('?');
-    
     if (questionPos == std::string::npos) {
         _path = fullUri;
         return;
     }
-    
     _path = fullUri.substr(0, questionPos);
     std::string queryString = fullUri.substr(questionPos + 1);
-    
     // Парсим query параметры
     size_t start = 0;
     size_t end;
-    
     while ((end = queryString.find('&', start)) != std::string::npos) {
         parseQueryParam(queryString.substr(start, end - start));
         start = end + 1;

@@ -30,7 +30,10 @@ HttpResponse& HttpResponse::operator=(const HttpResponse& copy) {
     return *this;
 }
 
-HttpResponse::~HttpResponse() {}
+HttpResponse::~HttpResponse() {
+    _headers.clear();
+    _body.clear();
+}
 
 void HttpResponse::setServer(ServerConfig &serv) {
     _server = serv;
