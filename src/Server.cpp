@@ -118,9 +118,9 @@ void Server::setupListeningSocket(int fd)
 
 void Server::readRequest(int &fd, Client &client)
 {
-    const int BUFFER_SIZE = 16384; // 16 kb
-    char buffer[BUFFER_SIZE + 1];
-    int readedBytes = read(fd, buffer, BUFFER_SIZE);
+    const long BUFFER_SIZE = 1048576000; // 1048 mb
+    std::vector<char> buffer(BUFFER_SIZE);
+    int readedBytes = read(fd, buffer.data(), BUFFER_SIZE);
     
     if(readedBytes == 0)
     {
@@ -134,17 +134,39 @@ void Server::readRequest(int &fd, Client &client)
     }
 
     buffer[readedBytes] = '\0';
-
-    std::string file = createNewTxt(buffer, readedBytes);
-    int buff_fd = open(file.c_str(), O_RDONLY | O_APPEND);
-    processClientData(client, buff_fd, readedBytes);
-    memset(buffer, 0, readedBytes + 1);
-    close(buff_fd);
-    // if(!remove(file.c_str()))
-    //     logger.writeMessage("Deleted file: " + file);
+    processClientData(client,buffer, readedBytes);
+    buffer.clear();
     logger.writeMessage("New message from " + intToString(fd));
     removeFromSet(fd, _request_fd_pool);
     addToSet(fd, _response_fd_pool);
+    
+    // const int BUFFER_SIZE = 16384; // 16 kb
+    // char buffer[BUFFER_SIZE + 1];
+    // int readedBytes = read(fd, buffer, BUFFER_SIZE);
+    
+    // if(readedBytes == 0)
+    // {
+    //     handleClientDisconnection(fd);
+    //     return;
+    // }
+    // if(readedBytes < 0)
+    // {
+    //     handleReadError(fd);
+    //     return;
+    // }
+
+    // buffer[readedBytes] = '\0';
+
+    // std::string file = createNewTxt(buffer, readedBytes);
+    // int buff_fd = open(file.c_str(), O_RDONLY | O_APPEND);
+    // processClientData(client, buff_fd, readedBytes);
+    // memset(buffer, 0, readedBytes + 1);
+    // close(buff_fd);
+    // // if(!remove(file.c_str()))
+    // //     logger.writeMessage("Deleted file: " + file);
+    // logger.writeMessage("New message from " + intToString(fd));
+    // removeFromSet(fd, _request_fd_pool);
+    // addToSet(fd, _response_fd_pool);
 }
 
 void Server::sendResponse(int &fd, Client &client)
@@ -176,10 +198,10 @@ void Server::handleReadError(int clientFd)
     closeFd(clientFd);
 }
 
-void Server::processClientData(Client &client, int fd, int readedBytes)
+void Server::processClientData(Client &client, std::vector<char> buffer, int readedBytes)
 {
     client.updateTime();
-    client._request.parseRequest(fd, readedBytes);
+    client._request.parseRequest(buffer, readedBytes);
     //TODO: отправить реквест который получили от клиента
     
     

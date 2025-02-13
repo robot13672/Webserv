@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <sstream>
+#include <vector>  // Добавляем include для vector
 
 class HttpRequest 
 {
@@ -25,11 +26,6 @@ private:
     void parseUri(const std::string& fullUri);
     void parseQueryParam(const std::string& param);  // Добавляем объявление метода
     
-    std::string getBoundary() const;
-    bool parseMultipartFormData(std::istringstream& requestStream, const std::string& boundary);
-    bool saveUploadedFile(const std::string& filename, const std::string& content);
-    std::string extractFilename(const std::string& contentDisposition);
-    
 public:
     // Constructors and destructor
     HttpRequest();
@@ -37,8 +33,8 @@ public:
     ~HttpRequest();
     
     // Parse methods
-    bool parseRequest(const std::string& rawRequest);
-    bool parseRequest(int fd, size_t contentLength);
+    bool parseRequest(const std::vector<char>& buffer, size_t contentLength);  // Исправляем сигнатуру
+    bool parseRequest(const std::string& rawRequest);  // Добавляем обратно эту версию
     bool parseRequestLine(const std::string& line);
     bool parseHeaders(std::istringstream& requestStream);
     bool parseBody(std::istringstream& requestStream);
@@ -67,7 +63,4 @@ public:
     
     // New method
     bool isChunkedTransfer() const;
-
-    static const std::string UPLOAD_DIR;
 };
-
