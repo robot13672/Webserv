@@ -19,9 +19,9 @@ int main(int argc, char **argv)
             logger.setFile("logger.txt");//нужно будет ставить реальный с конфига
             Server Webservers;
             std::vector<ServerConfig> servers;
-            servers.push_back(ServerConfig("127.0.0.1", 8082));
-            servers.push_back(ServerConfig("127.0.0.1", 8083));
-            servers.push_back(ServerConfig("127.0.0.1", 8082));
+            servers.push_back(ServerConfig("127.0.0.1", 8084));
+            servers.push_back(ServerConfig("127.0.0.1", 8085));
+            servers.push_back(ServerConfig("127.0.0.1", 8084));
             Webservers.setupServer(servers);
             Webservers.startServers();
             

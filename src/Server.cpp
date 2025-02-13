@@ -119,7 +119,7 @@ void Server::setupListeningSocket(int fd)
 void Server::readRequest(int &fd, Client &client)
 {
     const int BUFFER_SIZE = 16384; // 16 kb
-    char buffer[BUFFER_SIZE];
+    char buffer[BUFFER_SIZE + 1];
     int readedBytes = read(fd, buffer, BUFFER_SIZE);
     
     if(readedBytes == 0)
@@ -132,13 +132,16 @@ void Server::readRequest(int &fd, Client &client)
         handleReadError(fd);
         return;
     }
-    std::string file = createNewTxt(buffer);
-    int buff_fd = open(file.c_str(), O_RDONLY);
+
+    buffer[readedBytes] = '\0';
+
+    std::string file = createNewTxt(buffer, readedBytes);
+    int buff_fd = open(file.c_str(), O_RDONLY | O_APPEND);
     processClientData(client, buff_fd, readedBytes);
-    memset(buffer, 0, readedBytes);
+    memset(buffer, 0, readedBytes + 1);
     close(buff_fd);
-    if(!remove(file.c_str()))
-        logger.writeMessage("Deleted file: " + file);
+    // if(!remove(file.c_str()))
+    //     logger.writeMessage("Deleted file: " + file);
     logger.writeMessage("New message from " + intToString(fd));
     removeFromSet(fd, _request_fd_pool);
     addToSet(fd, _response_fd_pool);
@@ -247,13 +250,13 @@ void Server::checkTimeout()
     }
 }
 
-std::string Server::createNewTxt(char *buff)
+std::string Server::createNewTxt(char *buff, int size)
 {
     std::string fileName = intToString(time(NULL)) + ".txt";
     std::ofstream outFile(fileName.c_str());
     if (outFile.is_open()) 
     {
-        outFile << buff;
+        outFile.write(buff, size);
         outFile.close();
     } 
     else 

@@ -35,6 +35,6 @@ class Server
         void closeFd(int fd);
         void processClientData(Client &client, int fd, int readedBytes);
         void checkTimeout(void);
-        std::string createNewTxt(char *buff);// функция для создания файла для буффера
+        std::string createNewTxt(char *buff, int size);// функция для создания файла для буффера
 };
 

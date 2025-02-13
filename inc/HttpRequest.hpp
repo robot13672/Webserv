@@ -25,6 +25,11 @@ private:
     void parseUri(const std::string& fullUri);
     void parseQueryParam(const std::string& param);  // Добавляем объявление метода
     
+    std::string getBoundary() const;
+    bool parseMultipartFormData(std::istringstream& requestStream, const std::string& boundary);
+    bool saveUploadedFile(const std::string& filename, const std::string& content);
+    std::string extractFilename(const std::string& contentDisposition);
+    
 public:
     // Constructors and destructor
     HttpRequest();
@@ -62,5 +67,7 @@ public:
     
     // New method
     bool isChunkedTransfer() const;
+
+    static const std::string UPLOAD_DIR;
 };
 

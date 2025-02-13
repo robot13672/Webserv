@@ -1,6 +1,10 @@
 #include "../inc/HttpRequest.hpp"
 #include <algorithm>
 #include <unistd.h>
+#include <sys/stat.h>
+#include <fstream>
+
+const std::string HttpRequest::UPLOAD_DIR = "downloads";
 
 HttpRequest::HttpRequest() : method(""), uri(""), httpVersion(""), maxBodySize(0), isChunked(false) {}
 
@@ -104,9 +108,22 @@ bool HttpRequest::parseHeaders(std::istringstream& requestStream) {
 }
 
 bool HttpRequest::parseBody(std::istringstream& requestStream) {
+    // Создаем директорию для загрузок, если её нет
+    mkdir(UPLOAD_DIR.c_str(), 0777);
+
+    std::string contentType = getHeader("Content-Type");
+    
+    if (contentType.find("multipart/form-data") != std::string::npos) {
+        std::string boundary = getBoundary();
+        if (!boundary.empty()) {
+            return parseMultipartFormData(requestStream, boundary);
+        }
+    }
+
     if (isChunked) {
         return parseChunkedBody(requestStream);
     }
+    
     body.assign(std::istreambuf_iterator<char>(requestStream),
                 std::istreambuf_iterator<char>());
     return true;
@@ -207,9 +224,9 @@ void HttpRequest::setMaxBodySize(size_t size) {
     maxBodySize = size;
 }
 
-// bool HttpRequest::isChunkedTransfer() const {
-//     return isChunked;
-// }
+bool HttpRequest::isChunkedTransfer() const {
+    return isChunked;
+}
 
 void HttpRequest::parseUri(const std::string& fullUri) {
     size_t questionPos = fullUri.find('?');
@@ -257,4 +274,73 @@ std::string HttpRequest::getQueryParam(const std::string& key) const {
 
 bool HttpRequest::hasQueryParam(const std::string& key) const {
     return queryParams.find(key) != queryParams.end();
+}
+
+std::string HttpRequest::getBoundary() const {
+    std::string contentType = getHeader("Content-Type");
+    size_t boundaryPos = contentType.find("boundary=");
+    if (boundaryPos != std::string::npos) {
+        return "--" + contentType.substr(boundaryPos + 9);
+    }
+    return "";
+}
+
+bool HttpRequest::parseMultipartFormData(std::istringstream& requestStream, const std::string& boundary) {
+    std::string line;
+    std::string currentContent;
+    bool isFile = false;
+    std::string filename;
+
+    while (std::getline(requestStream, line)) {
+        if (line.find(boundary) != std::string::npos) {
+            // Сохраняем предыдущий файл, если он был
+            if (isFile && !filename.empty() && !currentContent.empty()) {
+                saveUploadedFile(filename, currentContent);
+            }
+            
+            // Читаем заголовки новой части
+            std::string contentDisposition;
+            std::getline(requestStream, contentDisposition);
+            
+            isFile = contentDisposition.find("filename=") != std::string::npos;
+            if (isFile) {
+                filename = extractFilename(contentDisposition);
+            }
+            
+            // Пропускаем пустую строку
+            std::getline(requestStream, line);
+            currentContent.clear();
+            continue;
+        }
+        
+        if (isFile) {
+            currentContent += line + "\n";
+        }
+    }
+    
+    return true;
+}
+
+std::string HttpRequest::extractFilename(const std::string& contentDisposition) {
+    size_t filenamePos = contentDisposition.find("filename=");
+    if (filenamePos != std::string::npos) {
+        size_t start = contentDisposition.find("\"", filenamePos) + 1;
+        size_t end = contentDisposition.find("\"", start);
+        return contentDisposition.substr(start, end - start);
+    }
+    return "";
+}
+
+bool HttpRequest::saveUploadedFile(const std::string& filename, const std::string& content) {
+    if (filename.empty()) return false;
+
+    std::string filepath = UPLOAD_DIR + "/" + filename;
+    std::ofstream file(filepath.c_str(), std::ios::binary);
+    
+    if (!file.is_open()) return false;
+    
+    file.write(content.c_str(), content.length());
+    file.close();
+    
+    return true;
 }
