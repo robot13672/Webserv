@@ -91,20 +91,17 @@ void HttpResponse::handleRequest(const std::string& path, const std::string& met
         setHeader("Allow", "GET, POST, DELETE");
         return;
     }
-
     // Check if path exists
     std::ifstream file(path.c_str());
     if (!file) {
         setErrorResponse(404, "Not Found");
         return;
     }
-
     // Check permissions
     if (access(path.c_str(), R_OK) != 0) {
         setErrorResponse(403, "Forbidden");
         return;
     }
-
     // Handle different status codes
     switch (_statusCode) {
         case 200:
@@ -163,17 +160,14 @@ void HttpResponse::sendFile(const std::string& filePath) {
         setErrorResponse(404, "Not Found");
         return;
     }
-
     // Check file size
     file.seekg(0, std::ios::end);
     std::streampos fileSize = file.tellg();
     file.seekg(0, std::ios::beg);
-
     if (fileSize > _server.getMaxBodySize()) {
         setErrorResponse(413, "Content Too Large");
         return;
     }
-
     // Read and set file content
     try {
         std::stringstream buffer;
