@@ -267,7 +267,7 @@ void Server::checkTimeout()
     for(int i = 0; i <= _max_fd; i++)
     {
         if(_allClients.count(i))
-            if (time(NULL) - _allClients.find(i)->second.getLstMsg() > 60)
+            if (time(NULL) - _allClients.find(i)->second.getLstMsg() > 6000)//TODO: изменить на 60
                 handleClientDisconnection(i);
     }
 }

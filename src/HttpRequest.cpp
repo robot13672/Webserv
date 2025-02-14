@@ -18,13 +18,12 @@ bool HttpRequest::parseRequest(const std::string& rawRequest)
     
     if (!std::getline(requestStream, firstLine))
         return false;
-    
+        
     if (!parseRequestLine(firstLine))
         return false;
         
     if (!parseHeaders(requestStream))
         return false;
-        
     return parseBody(requestStream);
 }
 
@@ -42,7 +41,7 @@ bool HttpRequest::parseRequest(const std::vector<char>& buffer, size_t contentLe
     
     if (!std::getline(requestStream, firstLine))
         return false;
-    
+        
     if (!parseRequestLine(firstLine))
         return false;
         
@@ -93,7 +92,8 @@ bool HttpRequest::parseHeaders(std::istringstream& requestStream) {
 }
 
 bool HttpRequest::parseBody(std::istringstream& requestStream) {
-    if (isChunked) {
+    if(isChunked) 
+    {
         return parseChunkedBody(requestStream);
     }
     body.assign(std::istreambuf_iterator<char>(requestStream),
@@ -103,7 +103,7 @@ bool HttpRequest::parseBody(std::istringstream& requestStream) {
 
 bool HttpRequest::parseChunkedBody(std::istringstream& requestStream) {
     std::string chunk_line;
-    body.clear();
+    // body.clear();//удалить
     
     while (std::getline(requestStream, chunk_line)) {
         // Remove \r if present
