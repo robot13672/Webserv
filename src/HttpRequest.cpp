@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <unistd.h>
 #include <vector>  // Добавляем include для vector
+#include <iostream>
 
 HttpRequest::HttpRequest() : method(""), uri(""), httpVersion(""), maxBodySize(0), isChunked(false) {}
 
@@ -38,15 +39,17 @@ bool HttpRequest::parseRequest(const std::vector<char>& buffer, size_t contentLe
     // Используем stringstream для парсинга
     std::istringstream requestStream(rawRequest);
     std::string firstLine;
-    
-    if (!std::getline(requestStream, firstLine))
-        return false;
+    if(!isChunked)
+    {
+        if (!std::getline(requestStream, firstLine))
+            return false;
         
-    if (!parseRequestLine(firstLine))
-        return false;
+        if (!parseRequestLine(firstLine))
+            return false;
         
-    if (!parseHeaders(requestStream))
-        return false;
+        if (!parseHeaders(requestStream))
+            return false;
+    }
         
     return parseBody(requestStream);
 }
@@ -98,46 +101,44 @@ bool HttpRequest::parseBody(std::istringstream& requestStream) {
     }
     body.assign(std::istreambuf_iterator<char>(requestStream),
                 std::istreambuf_iterator<char>());
-    return true;
+    isDone = true;
+    return isDone;
 }
 
-bool HttpRequest::parseChunkedBody(std::istringstream& requestStream) {
-    std::string chunk_line;
-    // body.clear();//удалить
-    
-    while (std::getline(requestStream, chunk_line)) {
-        // Remove \r if present
-        if (!chunk_line.empty() && chunk_line[chunk_line.length()-1] == '\r') {
-            chunk_line = chunk_line.substr(0, chunk_line.length()-1);
-        }
-        
-        // Parse chunk size
-        size_t chunk_size = parseChunkSize(chunk_line);
-        if (chunk_size == 0) {
-            return true; // End of chunks
-        }
-        
-        // Check body size limit
-        if (body.length() + chunk_size > maxBodySize) {
-            return false;
-        }
-        
-        // Read chunk data
-        std::string chunk_data;
-        chunk_data.resize(chunk_size);
-        requestStream.read(&chunk_data[0], chunk_size);
-        
-        if (requestStream.gcount() != static_cast<std::streamsize>(chunk_size)) {
-            return false;
-        }
-        
-        body += chunk_data;
-        
-        // Skip the CRLF after chunk
-        std::getline(requestStream, chunk_line);
+bool HttpRequest::parseChunkedBody(std::istringstream& buffer) {
+    body.append(std::string(std::istreambuf_iterator<char>(buffer), 
+                           std::istreambuf_iterator<char>()));
+
+    // Check if body ends with "\r\n0\r\n\r\n" which indicates end of chunked transfer
+    isDone = (body.find("\r\n0\r\n\r\n") != std::string::npos);
+    return isDone; 
+}
+
+void HttpRequest::parseFullChankedBody()
+{
+    std::string processedBody;
+    std::istringstream bodyStream(body);
+    std::string line;
+
+    while (std::getline(bodyStream, line)) {
+        // Skip chunk size lines (hex numbers)
+        if (line.find_first_not_of("0123456789abcdefABCDEF\r\n") == std::string::npos)
+            continue;
+
+        // Remove \r if present at the end of the line
+        if (!line.empty() && line[line.length() - 1] == '\r')
+            line = line.substr(0, line.length() - 1);
+
+        // Skip empty lines
+        if (!line.empty())
+            processedBody += line + "\n";
     }
-    
-    return false; // Unexpected end of stream
+
+    // Remove the last newline if present
+    if (!processedBody.empty() && processedBody[processedBody.length() - 1] == '\n')
+        processedBody = processedBody.substr(0, processedBody.length() - 1);
+
+    body = processedBody;
 }
 
 size_t HttpRequest::parseChunkSize(const std::string& line) {
@@ -196,9 +197,10 @@ void HttpRequest::setMaxBodySize(size_t size) {
     maxBodySize = size;
 }
 
-// bool HttpRequest::isChunkedTransfer() const {
-//     return isChunked;
-// }
+bool HttpRequest::isChunkedTransfer() const 
+{
+    return isChunked;
+}
 
 void HttpRequest::parseUri(const std::string& fullUri) {
     size_t questionPos = fullUri.find('?');
@@ -246,4 +248,9 @@ std::string HttpRequest::getQueryParam(const std::string& key) const {
 
 bool HttpRequest::hasQueryParam(const std::string& key) const {
     return queryParams.find(key) != queryParams.end();
+}
+
+bool HttpRequest::getStatus()
+{
+    return isDone;
 }

@@ -8,7 +8,7 @@ ServerConfig::ServerConfig(std::string host, u_int16_t port) //для эмуля
         exit(EXIT_FAILURE);
     }
     _port = port; // Example port number
-    _max_body_size = 20000;
+    _max_body_size = 200000000000;
     // std::cout << _host << ":" << _port << "\n";
 }
 ServerConfig::ServerConfig() {}

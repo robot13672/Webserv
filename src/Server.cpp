@@ -57,7 +57,7 @@ void Server::startServers()// функция основного цикла се�
             std::cout << strerror(errno) << std::endl;
             exit(EXIT_FAILURE);
         }
-        for(int i = 3; i <= _max_fd ; i++)
+         for(int i = 3; i <= _max_fd ; i++)
         {   
             if(FD_ISSET(i, &request_fd_cpy) && _allServers.count(i))//Если нужно добавлять нового клиента и обязательно проверять, что это серверный сокет
             {
@@ -137,8 +137,15 @@ void Server::readRequest(int &fd, Client &client)
     processClientData(client,buffer, readedBytes);
     buffer.clear();
     logger.writeMessage("New message from " + intToString(fd));
-    removeFromSet(fd, _request_fd_pool);
-    addToSet(fd, _response_fd_pool);
+    if(client._request.getStatus())//Проверка на полное чтение запроса
+    {
+        if(client._request.isChunkedTransfer())
+        {
+            client._request.parseFullChankedBody();
+        }
+        removeFromSet(fd, _request_fd_pool);
+        addToSet(fd, _response_fd_pool);
+    }
     
     // const int BUFFER_SIZE = 16384; // 16 kb
     // char buffer[BUFFER_SIZE + 1];

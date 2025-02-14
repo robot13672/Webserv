@@ -15,6 +15,7 @@ private:
     std::string body;
     size_t maxBodySize;  // Новый член класса
     bool isChunked;  // Флаг для chunked передачи
+    bool isDone;
     std::string path;  // Часть URI до знака ?
     std::map<std::string, std::string> queryParams;  // Параметры после ?
     
@@ -38,6 +39,7 @@ public:
     bool parseRequestLine(const std::string& line);
     bool parseHeaders(std::istringstream& requestStream);
     bool parseBody(std::istringstream& requestStream);
+    void parseFullChankedBody(void);
     
     // Getters
     const std::string& getMethod() const;
@@ -46,6 +48,7 @@ public:
     const std::map<std::string, std::string>& getHeaders() const;
     const std::string& getBody() const;
     std::string getHeader(const std::string& key) const;
+    bool getStatus();
     
     // Новые геттеры для query параметров
     const std::string& getPath() const;
