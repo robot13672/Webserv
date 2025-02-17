@@ -63,6 +63,7 @@ public:
     bool isValidMethod() const;
     bool isValidUri() const;
     bool isValidHttpVersion() const;
+    // bool isChunkedTransfer() const;
 
     // New method
     void setMaxBodySize(size_t size);

@@ -139,95 +139,131 @@ bool HttpRequest::parseBody(std::istringstream& requestStream) {
     if (_isChunked) {
         return parseChunkedBody(requestStream);
     }
-
     // Получаем размер контента из заголовков
     std::string contentLength = getHeader("Content-Length");
     if (!contentLength.empty()) {
-        size_t length = std::strtoul(contentLength.c_str(), NULL, 10);
-        
+        size_t length = std::strtoul(contentLength.c_str(), NULL, 10);  
         // Проверяем, не превышает ли размер максимально допустимый
         if (length > _maxBodySize) {
             _statusCode = 413; // Payload Too Large
             return false;
         }
-
         // Читаем тело запроса по частям
         char buffer[8192]; // Буфер для чтения по 8KB
         size_t totalRead = 0;
         _body.reserve(length); // Резервируем память заранее
-
         while (totalRead < length && !requestStream.eof()) {
             size_t remaining = length - totalRead;
             size_t toRead = std::min(remaining, sizeof(buffer));
-            
             requestStream.read(buffer, toRead);
             size_t bytesRead = requestStream.gcount();
-            
             if (bytesRead == 0) break;
-            
             _body.append(buffer, bytesRead);
             totalRead += bytesRead;
         }
-
         return totalRead == length;
     }
     return true;
 }
+// bool HttpRequest::parseChunkedBody(std::istringstream& requestStream) {
+//     std::string chunk_line;
+//     _body.clear();
+//     size_t totalSize = 0;
+
+//     while (std::getline(requestStream, chunk_line)) {
+//         // Удаляем \r если есть
+//         if (!chunk_line.empty() && chunk_line[chunk_line.length()-1] == '\r') {
+//             chunk_line = chunk_line.substr(0, chunk_line.length()-1);
+//         }
+//         // Парсим размер чанка
+//         size_t chunk_size = parseChunkSize(chunk_line);
+//         // Проверяем на последний чанк
+//         if (chunk_size == 0) {
+//             return true;
+//         }
+//         // Проверяем общий размер
+//         totalSize += chunk_size;
+//         if (totalSize > _maxBodySize) {
+//             _statusCode = 413; // Payload Too Large
+//             return false;
+//         }
+//         // Читаем данные чанка
+//         std::vector<char> chunk_data(chunk_size);
+//         requestStream.read(&chunk_data[0], chunk_size);
+//         if (requestStream.gcount() != static_cast<std::streamsize>(chunk_size)) {
+//             return false;
+//         }
+//         // Добавляем данные в тело
+//         _body.append(chunk_data.begin(), chunk_data.end());
+//         // Пропускаем CRLF после чанка
+//         std::getline(requestStream, chunk_line);
+//     }
+//     return false; // Неожиданный конец потока
+// }
 bool HttpRequest::parseChunkedBody(std::istringstream& requestStream) {
     std::string chunk_line;
     _body.clear();
     size_t totalSize = 0;
 
     while (std::getline(requestStream, chunk_line)) {
-        // Удаляем \r если есть
+        // Remove \r if present
         if (!chunk_line.empty() && chunk_line[chunk_line.length()-1] == '\r') {
             chunk_line = chunk_line.substr(0, chunk_line.length()-1);
         }
-
-        // Парсим размер чанка
+        // Parse chunk size (hex)
         size_t chunk_size = parseChunkSize(chunk_line);
-        
-        // Проверяем на последний чанк
+        // Check if this is the last chunk (0\r\n\r\n)
         if (chunk_size == 0) {
+            // Read the final \r\n
+            std::string finalLine;
+            std::getline(requestStream, finalLine);
             return true;
         }
-
-        // Проверяем общий размер
+        // Check total size
         totalSize += chunk_size;
         if (totalSize > _maxBodySize) {
             _statusCode = 413; // Payload Too Large
             return false;
         }
-
-        // Читаем данные чанка
+        // Read chunk data
         std::vector<char> chunk_data(chunk_size);
         requestStream.read(&chunk_data[0], chunk_size);
-        
         if (requestStream.gcount() != static_cast<std::streamsize>(chunk_size)) {
             return false;
         }
-
-        // Добавляем данные в тело
+        // Append chunk data to body
         _body.append(chunk_data.begin(), chunk_data.end());
-
-        // Пропускаем CRLF после чанка
-        std::getline(requestStream, chunk_line);
+        // Skip CRLF after chunk data
+        std::string delimiter;
+        std::getline(requestStream, delimiter);
+        if (delimiter.length() > 2 || (delimiter.length() > 0 && delimiter[0] != '\r')) {
+            return false; // Invalid chunk format
+        }
     }
-
-    return false; // Неожиданный конец потока
-}
-
-// Добавьте в класс новый метод для установки кода состояния
-void HttpRequest::setStatusCode(int code) {
-    _statusCode = code;
+    return false; // Unexpected end of stream
 }
 
 size_t HttpRequest::parseChunkSize(const std::string& line) {
     size_t chunk_size = 0;
     std::istringstream hex_stream(line);
-    hex_stream >> std::hex >> chunk_size;
+    // Skip any chunk extensions
+    std::string size_str;
+    hex_stream >> size_str;
+    // Convert hex string to size_t
+    std::istringstream(size_str) >> std::hex >> chunk_size;
     return chunk_size;
 }
+// Добавьте в класс новый метод для установки кода состояния
+void HttpRequest::setStatusCode(int code) {
+    _statusCode = code;
+}
+
+// size_t HttpRequest::parseChunkSize(const std::string& line) {
+//     size_t chunk_size = 0;
+//     std::istringstream hex_stream(line);
+//     hex_stream >> std::hex >> chunk_size;
+//     return chunk_size;
+// }
 
 const std::string& HttpRequest::getMethod() const {
     return _method;
@@ -278,9 +314,9 @@ void HttpRequest::setMaxBodySize(size_t size) {
     _maxBodySize = size;
 }
 
-// bool HttpRequest::isChunkedTransfer() const {
-//     return isChunked;
-// }
+bool HttpRequest::isChunkedTransfer() const {
+    return _isChunked;
+}
 
 void HttpRequest::parseUri(const std::string& fullUri) {
     size_t questionPos = fullUri.find('?');
