@@ -19060,3 +19060,53 @@ New session: 2025-02-17 20:43:52
 2025-02-17 20:43:52: Server created with host:127.0.0.1, port:8084
 2025-02-17 20:43:55: New connection from: 127.0.0.1, with socket 6
 2025-02-17 20:44:27: New message from 6
+-------------------------------------------------
+New session: 2025-02-17 21:37:23
+-------------------------------------------------
+2025-02-17 21:37:23: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-17 21:37:23: Server created with host:127.0.0.1, port:8084
+2025-02-17 21:37:23: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-17 21:37:23: Server created with host:127.0.0.1, port:8085
+2025-02-17 21:37:23: Server created with host:127.0.0.1, port:8084
+2025-02-17 21:37:28: New connection from: 127.0.0.1, with socket 6
+2025-02-17 21:37:29: New message from 6
+2025-02-17 21:37:31: New message from 6
+2025-02-17 21:37:32: New message from 6
+2025-02-17 21:37:32: Created body file: 1739824652_body.pdf
+2025-02-17 21:37:33: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-02-17 21:39:19
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-17 21:40:15
+-------------------------------------------------
+2025-02-17 21:40:15: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-17 21:40:15: Server created with host:127.0.0.1, port:8084
+2025-02-17 21:40:15: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-17 21:40:15: Server created with host:127.0.0.1, port:8085
+2025-02-17 21:40:15: Server created with host:127.0.0.1, port:8084
+2025-02-17 21:40:18: New connection from: 127.0.0.1, with socket 6
+2025-02-17 21:40:19: New message from 6
+2025-02-17 21:40:21: New message from 6
+2025-02-17 21:40:22: New message from 6
+2025-02-17 21:40:23: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-02-17 21:43:49
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-17 21:45:01
+-------------------------------------------------
+2025-02-17 21:45:01: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-17 21:45:01: Server created with host:127.0.0.1, port:8084
+2025-02-17 21:45:01: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-17 21:45:01: Server created with host:127.0.0.1, port:8085
+2025-02-17 21:45:01: Server created with host:127.0.0.1, port:8084
+2025-02-17 21:45:04: New connection from: 127.0.0.1, with socket 6
+2025-02-17 21:45:05: New message from 6
+2025-02-17 21:45:06: New message from 6
+2025-02-17 21:45:08: New message from 6
+2025-02-17 21:45:08: Created PDF file: response_1739825108.pdf
+2025-02-17 21:45:08: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-02-17 21:46:29
+-------------------------------------------------
