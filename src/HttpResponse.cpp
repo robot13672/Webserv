@@ -1,6 +1,9 @@
 #include "../inc/HttpResponse.hpp"
 #include <sstream>
 #include <fstream>
+#include <sys/stat.h>
+#include <time.h>
+#include <unistd.h>
 
 HttpResponse::HttpResponse() : 
     _httpVersion("HTTP/1.1"),
@@ -87,56 +90,144 @@ bool HttpResponse::isChunked() const {
     return _chunked;
 }
 
+// void HttpResponse::handleRequest(const std::string& path, const std::string& method) {
+//     // Check if method is allowed
+//     if (method != "GET" && method != "POST" && method != "DELETE") {
+//         setErrorResponse(405, "Method Not Allowed");
+//         setHeader("Allow", "GET, POST, DELETE");
+//         return;
+//     }
+//     // Check if path exists
+//     std::ifstream file(path.c_str());
+//     if (!file) {
+//         setErrorResponse(404, "Not Found");
+//         return;
+//     }
+//     // Check permissions
+//     if (access(path.c_str(), R_OK) != 0) {
+//         setErrorResponse(403, "Forbidden");
+//         return;
+//     }
+//     // Handle different status codes
+//     switch (_statusCode) {
+//         case 200:
+//             sendFile(path);
+//             break;
+//         case 301:
+//             setRedirectResponse(path);
+//             break;
+//         case 400:
+//             setErrorResponse(400, "Bad Request");
+//             break;
+//         case 403:
+//             setErrorResponse(403, "Forbidden");
+//             break;
+//         case 404:
+//             setErrorResponse(404, "Not Found");
+//             break;
+//         case 405:
+//             setErrorResponse(405, "Method Not Allowed");
+//             break;
+//         case 413:
+//             setErrorResponse(413, "Content Too Large");
+//             break;
+//         case 500:
+//             setErrorResponse(500, "Internal Server Error");
+//             break;
+//         case 501:
+//             setErrorResponse(501, "Not Implemented");
+//             break;
+//         default:
+//             setErrorResponse(500, "Internal Server Error");
+//     }
+// }
+
 void HttpResponse::handleRequest(const std::string& path, const std::string& method) {
-    // Check if method is allowed
+    // Добавляем базовые заголовки
+    setHeader("Server", "webserv/1.0");
+    setHeader("Date", getCurrentTime());
+    setHeader("Connection", "keep-alive");
+    
+    // Проверяем метод до проверки файла
     if (method != "GET" && method != "POST" && method != "DELETE") {
         setErrorResponse(405, "Method Not Allowed");
         setHeader("Allow", "GET, POST, DELETE");
         return;
     }
-    // Check if path exists
-    std::ifstream file(path.c_str());
-    if (!file) {
-        setErrorResponse(404, "Not Found");
+    
+    // Для DELETE метода
+    if (method == "DELETE") {
+        handleDelete(path);
         return;
     }
-    // Check permissions
-    if (access(path.c_str(), R_OK) != 0) {
+    
+    // Проверяем существование и доступность файла
+    if (!isFileAccessible(path)) {
+        return; // isFileAccessible устанавливает соответствующий код ошибки
+    }
+    
+    // Для GET и POST
+    if (method == "GET") {
+        sendFile(path);
+    } else if (method == "POST") {
+        handlePost(path);
+    }
+}
+void HttpResponse::handleDelete(const std::string& path) {
+    if (unlink(path.c_str()) == 0) {
+        setStatus(200, "OK");
+        setHeader("Content-Type", "text/plain");
+        setBody("File successfully deleted");
+    } else {
+        if (errno == EACCES) {
+            setErrorResponse(403, "Forbidden");
+        } else {
+            setErrorResponse(500, "Internal Server Error");
+        }
+    }
+}
+
+void HttpResponse::handlePost(const std::string& path) {
+    // Проверяем существование директории
+    std::string dir = path.substr(0, path.find_last_of('/'));
+    struct stat st;
+    if (stat(dir.c_str(), &st) != 0 || !S_ISDIR(st.st_mode)) {
+        setErrorResponse(404, "Directory Not Found");
+        return;
+    }
+
+    // Проверяем права на запись
+    if (access(dir.c_str(), W_OK) != 0) {
         setErrorResponse(403, "Forbidden");
         return;
     }
-    // Handle different status codes
-    switch (_statusCode) {
-        case 200:
-            sendFile(path);
-            break;
-        case 301:
-            setRedirectResponse(path);
-            break;
-        case 400:
-            setErrorResponse(400, "Bad Request");
-            break;
-        case 403:
-            setErrorResponse(403, "Forbidden");
-            break;
-        case 404:
-            setErrorResponse(404, "Not Found");
-            break;
-        case 405:
-            setErrorResponse(405, "Method Not Allowed");
-            break;
-        case 413:
-            setErrorResponse(413, "Content Too Large");
-            break;
-        case 500:
-            setErrorResponse(500, "Internal Server Error");
-            break;
-        case 501:
-            setErrorResponse(501, "Not Implemented");
-            break;
-        default:
-            setErrorResponse(500, "Internal Server Error");
+
+    setStatus(201, "Created");
+    setHeader("Content-Type", "text/plain");
+    setBody("File successfully processed");
+}
+
+bool HttpResponse::isFileAccessible(const std::string& path) {
+    struct stat st;
+    if (stat(path.c_str(), &st) != 0) {
+        setErrorResponse(404, "Not Found");
+        return false;
     }
+    
+    if (access(path.c_str(), R_OK) != 0) {
+        setErrorResponse(403, "Forbidden");
+        return false;
+    }
+    
+    return true;
+}
+
+std::string HttpResponse::getCurrentTime() {
+    time_t now = time(0);
+    struct tm tm = *gmtime(&now);
+    char buf[100];
+    strftime(buf, sizeof(buf), "%a, %d %b %Y %H:%M:%S GMT", &tm);
+    return std::string(buf);
 }
 
 void HttpResponse::setErrorResponse(int code, const std::string& message) {

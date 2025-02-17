@@ -1053,3 +1053,20 @@ New session: 2025-02-14 12:06:53
 -------------------------------------------------
 Session finish: 2025-02-14 12:07:54
 -------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-17 17:41:10
+-------------------------------------------------
+2025-02-17 17:41:10: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-02-17 17:41:10: Server created with host:127.0.0.1, port:8082
+2025-02-17 17:41:10: Successfully bound to host:127.0.0.1, port:8083 socket:5
+2025-02-17 17:41:10: Server created with host:127.0.0.1, port:8083
+2025-02-17 17:41:10: Server created with host:127.0.0.1, port:8082
+2025-02-17 17:41:15: New connection from: 127.0.0.1, with socket 6
+2025-02-17 17:41:15: New connection from: 127.0.0.1, with socket 7
+2025-02-17 17:41:16: New message from 6
+2025-02-17 17:41:17: New message from 6
+2025-02-17 17:41:18: webserv: Conenction with 6fd closed!
+2025-02-17 17:41:19: webserv: Conenction with 7fd closed!
+-------------------------------------------------
+Session finish: 2025-02-17 17:41:23
+-------------------------------------------------

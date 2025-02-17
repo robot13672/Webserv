@@ -1,24 +1,23 @@
-#ifndef HTTP_REQUEST_HPP
-#define HTTP_REQUEST_HPP
+#pragma once
 
 #include <string>
 #include <map>
 #include <sstream>
+#include <vector>  // Добавляем include для vector
 
 class HttpRequest 
 {
 private:
-    std::string _method;
-    std::string _uri;
-    std::string _httpVersion;
-    std::map<std::string, std::string> _headers;
-    std::string _body;
-    int _statusCode;  // Новый член класса
-
-    size_t _maxBodySize;  // Новый член класса
-    bool _isChunked;  // Флаг для chunked передачи
-    std::string _path;  // Часть URI до знака ?
-    std::map<std::string, std::string> _queryParams;  // Параметры после ?
+    std::string method;
+    std::string uri;
+    std::string httpVersion;
+    std::map<std::string, std::string> headers;
+    std::string body;
+    size_t maxBodySize;  // Новый член класса
+    bool isChunked;  // Флаг для chunked передачи
+    bool isDone;
+    std::string path;  // Часть URI до знака ?
+    std::map<std::string, std::string> queryParams;  // Параметры после ?
     
     // Private helper method for chunked parsing
     bool parseChunkedBody(std::istringstream& requestStream);
@@ -33,15 +32,14 @@ public:
     HttpRequest();
     explicit HttpRequest(const std::string& rawRequest);
     ~HttpRequest();
-    HttpRequest(const HttpRequest& copy);
-    HttpRequest& operator=(const HttpRequest& copy);
     
     // Parse methods
-    bool parseRequest(const std::string& rawRequest);
-    bool parseRequest(int fd, size_t contentLength);
+    bool parseRequest(const std::vector<char>& buffer, size_t contentLength);  // Исправляем сигнатуру
+    bool parseRequest(const std::string& rawRequest);  // Добавляем обратно эту версию
     bool parseRequestLine(const std::string& line);
     bool parseHeaders(std::istringstream& requestStream);
     bool parseBody(std::istringstream& requestStream);
+    void parseFullChankedBody(void);
     
     // Getters
     const std::string& getMethod() const;
@@ -50,8 +48,7 @@ public:
     const std::map<std::string, std::string>& getHeaders() const;
     const std::string& getBody() const;
     std::string getHeader(const std::string& key) const;
-    void setStatusCode(int code);
-    int getStatusCode() const;  // Новый геттер для кода состояния
+    bool getStatus();
     
     // Новые геттеры для query параметров
     const std::string& getPath() const;
@@ -63,7 +60,6 @@ public:
     bool isValidMethod() const;
     bool isValidUri() const;
     bool isValidHttpVersion() const;
-    // bool isChunkedTransfer() const;
 
     // New method
     void setMaxBodySize(size_t size);
@@ -71,5 +67,3 @@ public:
     // New method
     bool isChunkedTransfer() const;
 };
-
-#endif  // HTTP_REQUEST_HPP

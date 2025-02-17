@@ -57,7 +57,7 @@ void Server::startServers()// функция основного цикла се�
             std::cout << strerror(errno) << std::endl;
             exit(EXIT_FAILURE);
         }
-        for(int i = 3; i <= _max_fd ; i++)
+         for(int i = 3; i <= _max_fd ; i++)
         {   
             if(FD_ISSET(i, &request_fd_cpy) && _allServers.count(i))//Если нужно добавлять нового клиента и обязательно проверять, что это серверный сокет
             {
@@ -118,9 +118,9 @@ void Server::setupListeningSocket(int fd)
 
 void Server::readRequest(int &fd, Client &client)
 {
-    const int BUFFER_SIZE = 16384; // 16 kb
-    char buffer[BUFFER_SIZE];
-    int readedBytes = read(fd, buffer, BUFFER_SIZE);
+    const long BUFFER_SIZE = 1048576000; // 1048 mb
+    std::vector<char> buffer(BUFFER_SIZE);
+    int readedBytes = read(fd, buffer.data(), BUFFER_SIZE);
     
     if(readedBytes == 0)
     {
@@ -132,16 +132,48 @@ void Server::readRequest(int &fd, Client &client)
         handleReadError(fd);
         return;
     }
-    std::string file = createNewTxt(buffer);
-    int buff_fd = open(file.c_str(), O_RDONLY);
-    processClientData(client, buff_fd, readedBytes);
-    memset(buffer, 0, readedBytes);
-    close(buff_fd);
-    if(!remove(file.c_str()))
-        logger.writeMessage("Deleted file: " + file);
+
+    buffer[readedBytes] = '\0';
+    processClientData(client,buffer, readedBytes);
+    buffer.clear();
     logger.writeMessage("New message from " + intToString(fd));
-    removeFromSet(fd, _request_fd_pool);
-    addToSet(fd, _response_fd_pool);
+    if(client._request.getStatus())//Проверка на полное чтение запроса
+    {
+        if(client._request.isChunkedTransfer())
+        {
+            client._request.parseFullChankedBody();
+        }
+        removeFromSet(fd, _request_fd_pool);
+        addToSet(fd, _response_fd_pool);
+    }
+    
+    // const int BUFFER_SIZE = 16384; // 16 kb
+    // char buffer[BUFFER_SIZE + 1];
+    // int readedBytes = read(fd, buffer, BUFFER_SIZE);
+    
+    // if(readedBytes == 0)
+    // {
+    //     handleClientDisconnection(fd);
+    //     return;
+    // }
+    // if(readedBytes < 0)
+    // {
+    //     handleReadError(fd);
+    //     return;
+    // }
+
+    // buffer[readedBytes] = '\0';
+
+    // std::string file = createNewTxt(buffer, readedBytes);
+    // int buff_fd = open(file.c_str(), O_RDONLY | O_APPEND);
+    // processClientData(client, buff_fd, readedBytes);
+    // memset(buffer, 0, readedBytes + 1);
+    // close(buff_fd);
+    // // if(!remove(file.c_str()))
+    // //     logger.writeMessage("Deleted file: " + file);
+    // logger.writeMessage("New message from " + intToString(fd));
+    // removeFromSet(fd, _request_fd_pool);
+    // addToSet(fd, _response_fd_pool);
 }
 
 void Server::sendResponse(int &fd, Client &client)
@@ -173,10 +205,10 @@ void Server::handleReadError(int clientFd)
     closeFd(clientFd);
 }
 
-void Server::processClientData(Client &client, int fd, int readedBytes)
+void Server::processClientData(Client &client, std::vector<char> buffer, int readedBytes)
 {
     client.updateTime();
-    client._request.parseRequest(fd, readedBytes);
+    client._request.parseRequest(buffer, readedBytes);
     //TODO: отправить реквест который получили от клиента
     
     
@@ -242,18 +274,18 @@ void Server::checkTimeout()
     for(int i = 0; i <= _max_fd; i++)
     {
         if(_allClients.count(i))
-            if (time(NULL) - _allClients.find(i)->second.getLstMsg() > 60)
+            if (time(NULL) - _allClients.find(i)->second.getLstMsg() > 6000)//TODO: изменить на 60
                 handleClientDisconnection(i);
     }
 }
 
-std::string Server::createNewTxt(char *buff)
+std::string Server::createNewTxt(char *buff, int size)
 {
     std::string fileName = intToString(time(NULL)) + ".txt";
     std::ofstream outFile(fileName.c_str());
     if (outFile.is_open()) 
     {
-        outFile << buff;
+        outFile.write(buff, size);
         outFile.close();
     } 
     else 

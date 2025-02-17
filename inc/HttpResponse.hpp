@@ -57,6 +57,11 @@ public:
     void setErrorResponse(int code, const std::string& message);
     void setRedirectResponse(const std::string& newLocation);
 
+    bool isFileAccessible(const std::string& path) ;
+    std::string getCurrentTime();
+    void handleDelete(const std::string& path);
+    void handlePost(const std::string& path);
+
     // Main methods
     std::string toString() const;
     void clear();

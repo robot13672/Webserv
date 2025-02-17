@@ -1,56 +1,16 @@
 #include "../inc/HttpRequest.hpp"
 #include <algorithm>
 #include <unistd.h>
-#include <vector>  // Добавляем включение vector
-#include <sstream> // Добавляем включение sstream
+#include <vector>  // Добавляем include для vector
+#include <iostream>
 
-HttpRequest::HttpRequest(){
-    _method = "";
-    _uri = "";
-    _httpVersion = "";
-    _headers = std::map<std::string, std::string>();
-    _body = "";
-    _isChunked = false;
-    _maxBodySize = 0;
-    _path = "";
-    _queryParams = std::map<std::string, std::string>();
-}
-
-HttpRequest::HttpRequest(const HttpRequest& copy) {
-    _method = copy._method;
-    _uri = copy._uri;
-    _httpVersion = copy._httpVersion;
-    _headers = copy._headers;
-    _body = copy._body;
-    _isChunked = copy._isChunked;
-    _maxBodySize = copy._maxBodySize;
-    _path = copy._path;
-    _queryParams = copy._queryParams;
-}
-
-HttpRequest& HttpRequest::operator=(const HttpRequest& copy) {
-    if (this != &copy) {
-        _method = copy._method;
-        _uri = copy._uri;
-        _httpVersion = copy._httpVersion;
-        _headers = copy._headers;
-        _body = copy._body;
-        _isChunked = copy._isChunked;
-        _maxBodySize = copy._maxBodySize;
-        _path = copy._path;
-        _queryParams = copy._queryParams;
-    }
-    return *this;
-}
+HttpRequest::HttpRequest() : method(""), uri(""), httpVersion(""), maxBodySize(0), isChunked(false) {}
 
 HttpRequest::HttpRequest(const std::string& rawRequest) {
     parseRequest(rawRequest);
 }
 
-HttpRequest::~HttpRequest() {
-    _headers.clear();
-    _queryParams.clear();
-}
+HttpRequest::~HttpRequest() {}
 
 bool HttpRequest::parseRequest(const std::string& rawRequest) 
 {
@@ -59,59 +19,54 @@ bool HttpRequest::parseRequest(const std::string& rawRequest)
     
     if (!std::getline(requestStream, firstLine))
         return false;
-    
+        
     if (!parseRequestLine(firstLine))
         return false;
         
     if (!parseHeaders(requestStream))
         return false;
-        
     return parseBody(requestStream);
 }
 
-bool HttpRequest::parseRequest(int fd, size_t contentLength) 
+bool HttpRequest::parseRequest(const std::vector<char>& buffer, size_t contentLength) 
 {
-    if (fd < 0 || contentLength == 0)
+    if (buffer.empty() || contentLength == 0)
         return false;
 
-    // Читаем весь запрос в строку
-    std::string rawRequest;
-    char buffer[16384];
-    size_t bytesRead;
-    size_t totalRead = 0;
-
-    while (totalRead < contentLength && (bytesRead = read(fd, buffer, sizeof(buffer))) > 0) 
-    {
-        rawRequest.append(buffer, bytesRead);
-        totalRead += bytesRead;
-    }
-
-    if (totalRead != contentLength)
-        return false;
-
+    // Создаем строку из буфера
+    std::string rawRequest(buffer.begin(), buffer.begin() + contentLength);
+    
     // Используем stringstream для парсинга
     std::istringstream requestStream(rawRequest);
     std::string firstLine;
-    if (!std::getline(requestStream, firstLine))
-        return false;
-    if (!parseRequestLine(firstLine))
-        return false;    
-    if (!parseHeaders(requestStream))
-        return false;
+    if(!isChunked)
+    {
+        if (!std::getline(requestStream, firstLine))
+            return false;
+        
+        if (!parseRequestLine(firstLine))
+            return false;
+        
+        if (!parseHeaders(requestStream))
+            return false;
+    }
         
     return parseBody(requestStream);
 }
 
 bool HttpRequest::parseRequestLine(const std::string& line) {
     std::istringstream lineStream(line);
-    lineStream >> _method;
-    std::string _fullUri;
-    lineStream >> _fullUri;
-    lineStream >> _httpVersion;
+    lineStream >> method;
+    std::string fullUri;
+    lineStream >> fullUri;
+    lineStream >> httpVersion;
+    
     if (lineStream.fail())
-        return false;   
-    parseUri(_fullUri);
-    _uri = _fullUri;  // сохраняем оригинальный URI
+        return false;
+        
+    parseUri(fullUri);
+    uri = fullUri;  // сохраняем оригинальный URI
+    
     return true;
 }
 
@@ -121,173 +76,101 @@ bool HttpRequest::parseHeaders(std::istringstream& requestStream) {
         size_t colonPos = line.find(':');
         if (colonPos == std::string::npos)
             return false;
+            
         std::string key = line.substr(0, colonPos);
         std::string value = line.substr(colonPos + 1);
+        
         // Trim whitespace
         value.erase(0, value.find_first_not_of(" "));
         value.erase(value.find_last_not_of(" \r") + 1);
-        _headers[key] = value;
+        
+        headers[key] = value;
     }
+    
     // Check for chunked transfer encoding after parsing headers
     std::string transferEncoding = getHeader("Transfer-Encoding");
-    _isChunked = (transferEncoding == "chunked");
+    isChunked = (transferEncoding == "chunked");
+    
     return true;
 }
-
 
 bool HttpRequest::parseBody(std::istringstream& requestStream) {
-    if (_isChunked) {
+    if(isChunked) 
+    {
         return parseChunkedBody(requestStream);
     }
-    // Получаем размер контента из заголовков
-    std::string contentLength = getHeader("Content-Length");
-    if (!contentLength.empty()) {
-        size_t length = std::strtoul(contentLength.c_str(), NULL, 10);  
-        // Проверяем, не превышает ли размер максимально допустимый
-        if (length > _maxBodySize) {
-            _statusCode = 413; // Payload Too Large
-            return false;
-        }
-        // Читаем тело запроса по частям
-        char buffer[8192]; // Буфер для чтения по 8KB
-        size_t totalRead = 0;
-        _body.reserve(length); // Резервируем память заранее
-        while (totalRead < length && !requestStream.eof()) {
-            size_t remaining = length - totalRead;
-            size_t toRead = std::min(remaining, sizeof(buffer));
-            requestStream.read(buffer, toRead);
-            size_t bytesRead = requestStream.gcount();
-            if (bytesRead == 0) break;
-            _body.append(buffer, bytesRead);
-            totalRead += bytesRead;
-        }
-        return totalRead == length;
-    }
-    return true;
+    body.assign(std::istreambuf_iterator<char>(requestStream),
+                std::istreambuf_iterator<char>());
+    isDone = true;
+    return isDone;
 }
-// bool HttpRequest::parseChunkedBody(std::istringstream& requestStream) {
-//     std::string chunk_line;
-//     _body.clear();
-//     size_t totalSize = 0;
 
-//     while (std::getline(requestStream, chunk_line)) {
-//         // Удаляем \r если есть
-//         if (!chunk_line.empty() && chunk_line[chunk_line.length()-1] == '\r') {
-//             chunk_line = chunk_line.substr(0, chunk_line.length()-1);
-//         }
-//         // Парсим размер чанка
-//         size_t chunk_size = parseChunkSize(chunk_line);
-//         // Проверяем на последний чанк
-//         if (chunk_size == 0) {
-//             return true;
-//         }
-//         // Проверяем общий размер
-//         totalSize += chunk_size;
-//         if (totalSize > _maxBodySize) {
-//             _statusCode = 413; // Payload Too Large
-//             return false;
-//         }
-//         // Читаем данные чанка
-//         std::vector<char> chunk_data(chunk_size);
-//         requestStream.read(&chunk_data[0], chunk_size);
-//         if (requestStream.gcount() != static_cast<std::streamsize>(chunk_size)) {
-//             return false;
-//         }
-//         // Добавляем данные в тело
-//         _body.append(chunk_data.begin(), chunk_data.end());
-//         // Пропускаем CRLF после чанка
-//         std::getline(requestStream, chunk_line);
-//     }
-//     return false; // Неожиданный конец потока
-// }
-bool HttpRequest::parseChunkedBody(std::istringstream& requestStream) {
-    std::string chunk_line;
-    _body.clear();
-    size_t totalSize = 0;
+bool HttpRequest::parseChunkedBody(std::istringstream& buffer) {
+    body.append(std::string(std::istreambuf_iterator<char>(buffer), 
+                           std::istreambuf_iterator<char>()));
 
-    while (std::getline(requestStream, chunk_line)) {
-        // Remove \r if present
-        if (!chunk_line.empty() && chunk_line[chunk_line.length()-1] == '\r') {
-            chunk_line = chunk_line.substr(0, chunk_line.length()-1);
-        }
-        // Parse chunk size (hex)
-        size_t chunk_size = parseChunkSize(chunk_line);
-        // Check if this is the last chunk (0\r\n\r\n)
-        if (chunk_size == 0) {
-            // Read the final \r\n
-            std::string finalLine;
-            std::getline(requestStream, finalLine);
-            return true;
-        }
-        // Check total size
-        totalSize += chunk_size;
-        if (totalSize > _maxBodySize) {
-            _statusCode = 413; // Payload Too Large
-            return false;
-        }
-        // Read chunk data
-        std::vector<char> chunk_data(chunk_size);
-        requestStream.read(&chunk_data[0], chunk_size);
-        if (requestStream.gcount() != static_cast<std::streamsize>(chunk_size)) {
-            return false;
-        }
-        // Append chunk data to body
-        _body.append(chunk_data.begin(), chunk_data.end());
-        // Skip CRLF after chunk data
-        std::string delimiter;
-        std::getline(requestStream, delimiter);
-        if (delimiter.length() > 2 || (delimiter.length() > 0 && delimiter[0] != '\r')) {
-            return false; // Invalid chunk format
-        }
+    // Check if body ends with "\r\n0\r\n\r\n" which indicates end of chunked transfer
+    isDone = (body.find("\r\n0\r\n\r\n") != std::string::npos);
+    return isDone; 
+}
+
+void HttpRequest::parseFullChankedBody()
+{
+    std::string processedBody;
+    std::istringstream bodyStream(body);
+    std::string line;
+
+    while (std::getline(bodyStream, line)) {
+        // Skip chunk size lines (hex numbers)
+        if (line.find_first_not_of("0123456789abcdefABCDEF\r\n") == std::string::npos)
+            continue;
+
+        // Remove \r if present at the end of the line
+        if (!line.empty() && line[line.length() - 1] == '\r')
+            line = line.substr(0, line.length() - 1);
+
+        // Skip empty lines
+        if (!line.empty())
+            processedBody += line + "\n";
     }
-    return false; // Unexpected end of stream
+
+    // Remove the last newline if present
+    if (!processedBody.empty() && processedBody[processedBody.length() - 1] == '\n')
+        processedBody = processedBody.substr(0, processedBody.length() - 1);
+
+    body = processedBody;
 }
 
 size_t HttpRequest::parseChunkSize(const std::string& line) {
     size_t chunk_size = 0;
     std::istringstream hex_stream(line);
-    // Skip any chunk extensions
-    std::string size_str;
-    hex_stream >> size_str;
-    // Convert hex string to size_t
-    std::istringstream(size_str) >> std::hex >> chunk_size;
+    hex_stream >> std::hex >> chunk_size;
     return chunk_size;
 }
-// Добавьте в класс новый метод для установки кода состояния
-void HttpRequest::setStatusCode(int code) {
-    _statusCode = code;
-}
-
-// size_t HttpRequest::parseChunkSize(const std::string& line) {
-//     size_t chunk_size = 0;
-//     std::istringstream hex_stream(line);
-//     hex_stream >> std::hex >> chunk_size;
-//     return chunk_size;
-// }
 
 const std::string& HttpRequest::getMethod() const {
-    return _method;
+    return method;
 }
 
 const std::string& HttpRequest::getUri() const {
-    return _uri;
+    return uri;
 }
 
 const std::string& HttpRequest::getHttpVersion() const {
-    return _httpVersion;
+    return httpVersion;
 }
 
 const std::map<std::string, std::string>& HttpRequest::getHeaders() const {
-    return _headers;
+    return headers;
 }
 
 const std::string& HttpRequest::getBody() const {
-    return _body;
+    return body;
 }
 
 std::string HttpRequest::getHeader(const std::string& key) const {
-    std::map<std::string, std::string>::const_iterator iter = _headers.find(key);
-    return (iter != _headers.end()) ? iter->second : "";
+    std::map<std::string, std::string>::const_iterator iter = headers.find(key);
+    return (iter != headers.end()) ? iter->second : "";
 }
 
 bool HttpRequest::isValidMethod() const {
@@ -295,7 +178,7 @@ bool HttpRequest::isValidMethod() const {
     const size_t methodCount = sizeof(validMethods) / sizeof(validMethods[0]);
     
     for (size_t i = 0; i < methodCount; ++i) {
-        if (_method == validMethods[i]) {
+        if (method == validMethods[i]) {
             return true;
         }
     }
@@ -303,32 +186,37 @@ bool HttpRequest::isValidMethod() const {
 }
 
 bool HttpRequest::isValidUri() const {
-    return !_uri.empty() && _uri[0] == '/';
+    return !uri.empty() && uri[0] == '/';
 }
 
 bool HttpRequest::isValidHttpVersion() const {
-    return _httpVersion == "HTTP/1.1" || _httpVersion == "HTTP/1.0";
+    return httpVersion == "HTTP/1.1" || httpVersion == "HTTP/1.0";
 }
 
 void HttpRequest::setMaxBodySize(size_t size) {
-    _maxBodySize = size;
+    maxBodySize = size;
 }
 
-bool HttpRequest::isChunkedTransfer() const {
-    return _isChunked;
+bool HttpRequest::isChunkedTransfer() const 
+{
+    return isChunked;
 }
 
 void HttpRequest::parseUri(const std::string& fullUri) {
     size_t questionPos = fullUri.find('?');
+    
     if (questionPos == std::string::npos) {
-        _path = fullUri;
+        path = fullUri;
         return;
     }
-    _path = fullUri.substr(0, questionPos);
+    
+    path = fullUri.substr(0, questionPos);
     std::string queryString = fullUri.substr(questionPos + 1);
+    
     // Парсим query параметры
     size_t start = 0;
     size_t end;
+    
     while ((end = queryString.find('&', start)) != std::string::npos) {
         parseQueryParam(queryString.substr(start, end - start));
         start = end + 1;
@@ -341,23 +229,28 @@ void HttpRequest::parseQueryParam(const std::string& param) {
     if (equalPos != std::string::npos) {
         std::string key = param.substr(0, equalPos);
         std::string value = param.substr(equalPos + 1);
-        _queryParams[key] = value;
+        queryParams[key] = value;
     }
 }
 
 const std::string& HttpRequest::getPath() const {
-    return _path;
+    return path;
 }
 
 const std::map<std::string, std::string>& HttpRequest::getQueryParams() const {
-    return _queryParams;
+    return queryParams;
 }
 
 std::string HttpRequest::getQueryParam(const std::string& key) const {
-    std::map<std::string, std::string>::const_iterator it = _queryParams.find(key);
-    return (it != _queryParams.end()) ? it->second : "";
+    std::map<std::string, std::string>::const_iterator it = queryParams.find(key);
+    return (it != queryParams.end()) ? it->second : "";
 }
 
 bool HttpRequest::hasQueryParam(const std::string& key) const {
-    return _queryParams.find(key) != _queryParams.end();
+    return queryParams.find(key) != queryParams.end();
+}
+
+bool HttpRequest::getStatus()
+{
+    return isDone;
 }
