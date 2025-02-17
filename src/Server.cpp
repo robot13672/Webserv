@@ -45,6 +45,7 @@ void Server::startServers()// функция основного цикла се�
     
     while(true)//основной цикл сервера
     {
+        (void*)this;
         timer.tv_sec = 1;
         timer.tv_usec = 0;
         request_fd_cpy = _request_fd_pool;
@@ -118,7 +119,7 @@ void Server::setupListeningSocket(int fd)
 
 void Server::readRequest(int &fd, Client &client)
 {
-    const long BUFFER_SIZE = 1048576000; // 1048 mb
+    const long BUFFER_SIZE = 1048576000; 
     std::vector<char> buffer(BUFFER_SIZE);
     int readedBytes = read(fd, buffer.data(), BUFFER_SIZE);
     
@@ -252,6 +253,7 @@ void Server::addNewConnect(ServerConfig &serv)
     if(_allClients.count(client_sock) != 0)//проверка есть ли уже сокет клиента, если да, то его нужно удалить и переписать
         _allClients.erase(client_sock);//само удаление клиента.
     _allClients.insert(std::make_pair(client_sock, client));//добавление нового клиента в мапу
+
 }
 
 

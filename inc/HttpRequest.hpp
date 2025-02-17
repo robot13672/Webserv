@@ -13,7 +13,7 @@ private:
     std::string httpVersion;
     std::map<std::string, std::string> headers;
     std::string body;
-    size_t maxBodySize;  // Новый член класса
+    long maxBodySize;  // Новый член класса
     bool isChunked;  // Флаг для chunked передачи
     bool isDone;
     std::string path;  // Часть URI до знака ?

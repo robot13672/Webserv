@@ -15,7 +15,18 @@ ServerConfig::ServerConfig() {}
 
 ServerConfig::ServerConfig(const ServerConfig &other)
 {
-    *this = other;
+    _adress = other._adress;
+    _port = other._port;
+    _host = other._host;
+    _listen_fd = other._listen_fd;
+    _max_body_size = other._max_body_size;
+    _name = other._name;
+    _root = other._root;
+    _index = other._index;
+    _errorPages = other._errorPages;
+    _autoindex = other._autoindex;
+    _methods = other._methods;
+    _logDirection = other._logDirection;
 }
 
 ServerConfig& ServerConfig::operator=(const ServerConfig &other)

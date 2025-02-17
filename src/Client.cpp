@@ -7,10 +7,10 @@ Client::Client()
 
 Client::Client(ServerConfig &serv)
 {
-    _response.setServer(serv);
-    _request.setMaxBodySize(serv.getMaxBodySize());
-    _lst_msg = time(NULL);
+    _server = serv; // Initialize _server with the provided ServerConfig object
+    _lst_msg = time(NULL); // Initialize _lst_msg with the current time
     _sockfd = -1; // Initialize socket file descriptor
+    _request.setMaxBodySize(serv.getMaxBodySize());
 }
 
 Client::Client(const Client &cop)
