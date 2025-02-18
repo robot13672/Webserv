@@ -117,26 +117,39 @@ bool HttpRequest::parseChunkedBody(std::istringstream& buffer) {
 void HttpRequest::parseFullChankedBody()
 {
     std::string processedBody;
-    std::istringstream bodyStream(body);
-    std::string line;
+    size_t pos = 0;
+    size_t totalSize = 0;
 
-    while (std::getline(bodyStream, line)) {
-        // Skip chunk size lines (hex numbers)
-        if (line.find_first_not_of("0123456789abcdefABCDEF\r\n") == std::string::npos)
-            continue;
+    while (pos < body.length()) {
+        // Находим конец строки с размером чанка
+        size_t lineEnd = body.find("\r\n", pos);
+        if (lineEnd == std::string::npos)
+            break;
 
-        // Remove \r if present at the end of the line
-        if (!line.empty() && line[line.length() - 1] == '\r')
-            line = line.substr(0, line.length() - 1);
+        // Извлекаем размер чанка в hex формате
+        std::string chunkSizeHex = body.substr(pos, lineEnd - pos);
+        size_t chunkSize;
+        std::istringstream ss(chunkSizeHex);
+        ss >> std::hex >> chunkSize;
 
-        // Skip empty lines
-        if (!line.empty())
-            processedBody += line + "\n";
+        // Пропускаем размер чанка и \r\n
+        pos = lineEnd + 2;
+
+        // Если размер чанка 0, это конец данных
+        if (chunkSize == 0)
+            break;
+
+        // Проверяем, достаточно ли данных осталось
+        if (pos + chunkSize > body.length())
+            break;
+
+        // Копируем чанк напрямую, включая все байты (даже нулевые)
+        processedBody.append(body.data() + pos, chunkSize);
+        totalSize += chunkSize;
+
+        // Перемещаемся к следующему чанку, пропуская \r\n
+        pos += chunkSize + 2;
     }
-
-    // Remove the last newline if present
-    if (!processedBody.empty() && processedBody[processedBody.length() - 1] == '\n')
-        processedBody = processedBody.substr(0, processedBody.length() - 1);
 
     body = processedBody;
 }

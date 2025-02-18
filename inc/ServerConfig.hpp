@@ -9,7 +9,7 @@ class ServerConfig
         u_int16_t                       _port;
         in_addr_t                       _host;
         int                             _listen_fd;		// is not taken from conf file!!
-        long                      _max_body_size; // Возможно нужно будет изменить тип данных - client_max_body_size, nach sch21 video max 20k. the same if is not incicated in conf. file
+        unsigned long long              _max_body_size; // Возможно нужно будет изменить тип данных - client_max_body_size, nach sch21 video max 20k. the same if is not incicated in conf. file
         std::string                     _name;			//имя сервера или домена
         std::string                     _root;			//корневая директория
         std::string                     _index;			// начальная страница

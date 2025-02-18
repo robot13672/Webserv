@@ -144,7 +144,7 @@ bool HttpResponse::isChunked() const {
 
 void HttpResponse::handleRequest(const std::string& path, const std::string& method) {
     // Добавляем базовые заголовки
-    setHeader("Server", "webserv/1.0");
+    setHeader("Server", "text/plain");
     setHeader("Date", getCurrentTime());
     setHeader("Connection", "keep-alive");
     
@@ -173,6 +173,7 @@ void HttpResponse::handleRequest(const std::string& path, const std::string& met
         handlePost(path);
     }
 }
+
 void HttpResponse::handleDelete(const std::string& path) {
     if (unlink(path.c_str()) == 0) {
         setStatus(200, "OK");
@@ -249,7 +250,11 @@ void HttpResponse::setRedirectResponse(const std::string& newLocation) {
 }
 
 void HttpResponse::sendFile(const std::string& filePath) {
-    std::ifstream file(filePath.c_str(), std::ios::binary);
+    // std::ifstream file(filePath.c_str(), std::ios::binary);
+    std::string localPath = filePath;
+    if (localPath == "/")
+        localPath = "assets/html/index.html";
+    std::ifstream file(localPath.c_str(), std::ios::binary);
     if (!file) {
         setErrorResponse(404, "Not Found");
         return;
