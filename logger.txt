@@ -19171,3 +19171,477 @@ New session: 2025-02-18 18:11:29
 2025-02-18 18:11:29: Successfully bound to host:127.0.0.1, port:8085 socket:5
 2025-02-18 18:11:29: Server created with host:127.0.0.1, port:8085
 2025-02-18 18:11:29: Server created with host:127.0.0.1, port:8084
+-------------------------------------------------
+New session: 2025-02-18 19:51:42
+-------------------------------------------------
+2025-02-18 19:51:42: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-18 19:51:42: Server created with host:127.0.0.1, port:8084
+2025-02-18 19:51:42: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-18 19:51:42: Server created with host:127.0.0.1, port:8085
+2025-02-18 19:51:42: Server created with host:127.0.0.1, port:8084
+2025-02-18 19:51:46: New connection from: 127.0.0.1, with socket 6
+2025-02-18 19:51:46: New connection from: 127.0.0.1, with socket 7
+2025-02-18 19:51:47: New message from 6
+2025-02-18 19:52:33: webserv: Conenction with 6fd closed!
+2025-02-18 19:52:33: webserv: Conenction with 7fd closed!
+2025-02-18 19:53:41: New connection from: 127.0.0.1, with socket 6
+2025-02-18 19:53:41: New message from 6
+2025-02-18 19:53:42: New message from 6
+2025-02-18 19:53:43: New message from 6
+2025-02-18 19:53:44: New message from 6
+2025-02-18 19:53:45: New message from 6
+2025-02-18 19:53:45: webserv: Conenction with 6fd closed!
+2025-02-18 19:53:49: New connection from: 127.0.0.1, with socket 6
+2025-02-18 19:53:49: New connection from: 127.0.0.1, with socket 7
+2025-02-18 19:53:50: New message from 6
+2025-02-18 19:54:10: New connection from: 127.0.0.1, with socket 8
+2025-02-18 19:54:11: New message from 8
+2025-02-18 19:54:12: New message from 8
+2025-02-18 19:54:12: New message from 8
+2025-02-18 19:54:14: New message from 8
+2025-02-18 19:54:14: New message from 8
+2025-02-18 19:54:15: webserv: Conenction with 8fd closed!
+-------------------------------------------------
+Session finish: 2025-02-18 19:54:39
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 12:26:02
+-------------------------------------------------
+2025-02-19 12:26:02: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 12:26:02: Server created with host:127.0.0.1, port:8084
+2025-02-19 12:26:02: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 12:26:02: Server created with host:127.0.0.1, port:8085
+2025-02-19 12:26:02: Server created with host:127.0.0.1, port:8084
+2025-02-19 12:26:04: New connection from: 127.0.0.1, with socket 6
+2025-02-19 12:26:04: New connection from: 127.0.0.1, with socket 7
+2025-02-19 12:26:05: New message from 7
+2025-02-19 12:26:05: New message from 7
+2025-02-19 12:30:09: webserv: Conenction with 6fd closed!
+2025-02-19 12:31:12: webserv: Conenction with 7fd closed!
+-------------------------------------------------
+Session finish: 2025-02-19 13:04:56
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 13:05:02
+-------------------------------------------------
+2025-02-19 13:05:02: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:05:02: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:05:02: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:05:02: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:05:02: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:05:05: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:05:05: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:05:05: New message from 6
+2025-02-19 13:06:05: webserv: Conenction with 7fd closed!
+-------------------------------------------------
+Session finish: 2025-02-19 13:06:56
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 13:11:19
+-------------------------------------------------
+2025-02-19 13:11:19: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:11:19: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:11:19: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:11:19: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:11:19: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:11:21: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:11:21: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:11:21: New message from 6
+2025-02-19 13:11:28: New message from 6
+2025-02-19 13:11:34: New message from 6
+2025-02-19 13:12:27: webserv: Conenction with 6fd closed!
+2025-02-19 13:12:27: webserv: Conenction with 7fd closed!
+-------------------------------------------------
+Session finish: 2025-02-19 13:12:30
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 13:13:02
+-------------------------------------------------
+2025-02-19 13:13:02: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:13:02: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:13:02: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:13:02: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:13:02: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:13:05: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:13:05: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:13:07: New message from 6
+2025-02-19 13:13:08: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-19 13:14:14
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 13:14:20
+-------------------------------------------------
+2025-02-19 13:14:20: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:14:20: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:14:20: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:14:20: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:14:20: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:14:23: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:14:23: New message from 6
+2025-02-19 13:14:23: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:14:58: New message from 6
+2025-02-19 13:15:14: New message from 6
+2025-02-19 13:15:16: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-19 13:15:32
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 13:15:36
+-------------------------------------------------
+2025-02-19 13:15:36: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:15:36: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:15:36: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:15:36: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:15:36: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:15:41: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:15:41: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:15:41: New message from 6
+-------------------------------------------------
+New session: 2025-02-19 13:16:13
+-------------------------------------------------
+2025-02-19 13:16:13: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:16:13: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:16:13: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:16:13: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:16:13: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:16:13: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:16:13: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:16:14: New message from 6
+2025-02-19 13:16:20: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-19 13:16:24
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 13:16:26
+-------------------------------------------------
+2025-02-19 13:16:26: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:16:26: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:16:26: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:16:26: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:16:26: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:16:31: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:16:31: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:16:32: New message from 7
+2025-02-19 13:17:40: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+New session: 2025-02-19 13:18:15
+-------------------------------------------------
+2025-02-19 13:18:15: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:18:15: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:18:15: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:18:15: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:18:15: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:18:19: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:18:19: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:18:19: New message from 6
+-------------------------------------------------
+New session: 2025-02-19 13:19:06
+-------------------------------------------------
+2025-02-19 13:19:06: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:19:06: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:19:06: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:19:06: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:19:06: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:19:09: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:19:09: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:19:10: New message from 6
+-------------------------------------------------
+New session: 2025-02-19 13:19:54
+-------------------------------------------------
+2025-02-19 13:19:54: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:19:54: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:19:54: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:19:54: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:19:54: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:19:54: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:19:55: New message from 6
+2025-02-19 13:19:55: New connection from: 127.0.0.1, with socket 7
+-------------------------------------------------
+New session: 2025-02-19 13:20:12
+-------------------------------------------------
+2025-02-19 13:20:12: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:20:12: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:20:12: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:20:12: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:20:12: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:20:12: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:20:12: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:20:13: New message from 7
+2025-02-19 13:20:13: New connection from: 127.0.0.1, with socket 8
+2025-02-19 13:20:17: New message from 7
+-------------------------------------------------
+New session: 2025-02-19 13:20:32
+-------------------------------------------------
+2025-02-19 13:20:32: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:20:32: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:20:32: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:20:32: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:20:32: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:20:33: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:20:33: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:20:34: New message from 6
+-------------------------------------------------
+New session: 2025-02-19 13:20:51
+-------------------------------------------------
+2025-02-19 13:20:51: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:20:51: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:20:51: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:20:51: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:20:51: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:20:57: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:20:57: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:20:57: New message from 7
+-------------------------------------------------
+New session: 2025-02-19 13:21:37
+-------------------------------------------------
+2025-02-19 13:21:37: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:21:37: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:21:37: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:21:37: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:21:37: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:21:39: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:21:39: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:21:39: New message from 6
+-------------------------------------------------
+New session: 2025-02-19 13:22:37
+-------------------------------------------------
+2025-02-19 13:22:37: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:22:37: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:22:37: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:22:37: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:22:37: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:22:37: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:22:38: New message from 6
+2025-02-19 13:22:38: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:22:38: New connection from: 127.0.0.1, with socket 8
+-------------------------------------------------
+Session finish: 2025-02-19 13:22:45
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 13:22:48
+-------------------------------------------------
+2025-02-19 13:22:48: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 13:22:48: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:22:48: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 13:22:48: Server created with host:127.0.0.1, port:8085
+2025-02-19 13:22:48: Server created with host:127.0.0.1, port:8084
+2025-02-19 13:22:54: New connection from: 127.0.0.1, with socket 6
+2025-02-19 13:22:54: New connection from: 127.0.0.1, with socket 7
+2025-02-19 13:22:54: New message from 7
+-------------------------------------------------
+New session: 2025-02-19 17:20:12
+-------------------------------------------------
+2025-02-19 17:20:12: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 17:20:12: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:20:12: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 17:20:12: Server created with host:127.0.0.1, port:8085
+2025-02-19 17:20:12: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:20:13: New connection from: 127.0.0.1, with socket 6
+2025-02-19 17:20:13: New connection from: 127.0.0.1, with socket 7
+2025-02-19 17:20:15: New message from 7
+2025-02-19 17:20:23: New message from 7
+-------------------------------------------------
+Session finish: 2025-02-19 17:20:36
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 17:21:47
+-------------------------------------------------
+2025-02-19 17:21:47: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 17:21:47: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:21:47: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 17:21:47: Server created with host:127.0.0.1, port:8085
+2025-02-19 17:21:47: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:21:50: New connection from: 127.0.0.1, with socket 6
+2025-02-19 17:21:51: New message from 6
+2025-02-19 17:21:51: New connection from: 127.0.0.1, with socket 7
+-------------------------------------------------
+New session: 2025-02-19 17:26:38
+-------------------------------------------------
+2025-02-19 17:26:38: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 17:26:38: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:26:38: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 17:26:38: Server created with host:127.0.0.1, port:8085
+2025-02-19 17:26:38: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:26:40: New connection from: 127.0.0.1, with socket 6
+2025-02-19 17:26:42: New message from 6
+2025-02-19 17:26:42: New connection from: 127.0.0.1, with socket 7
+-------------------------------------------------
+Session finish: 2025-02-19 17:29:07
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 17:29:55
+-------------------------------------------------
+2025-02-19 17:29:55: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 17:29:55: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:29:55: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 17:29:55: Server created with host:127.0.0.1, port:8085
+2025-02-19 17:29:55: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:29:56: New connection from: 127.0.0.1, with socket 6
+2025-02-19 17:29:56: New connection from: 127.0.0.1, with socket 7
+2025-02-19 17:29:57: New message from 6
+2025-02-19 17:29:57: New connection from: 127.0.0.1, with socket 8
+2025-02-19 17:30:01: New message from 6
+2025-02-19 17:31:55: webserv: Conenction with 8fd closed!
+2025-02-19 17:31:55: webserv: Conenction with 7fd closed!
+2025-02-19 17:32:21: New connection from: 127.0.0.1, with socket 7
+2025-02-19 17:32:23: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-19 17:33:27
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 17:34:23
+-------------------------------------------------
+2025-02-19 17:34:23: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 17:34:23: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:34:23: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 17:34:23: Server created with host:127.0.0.1, port:8085
+2025-02-19 17:34:23: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:34:26: New connection from: 127.0.0.1, with socket 6
+2025-02-19 17:34:27: New message from 6
+2025-02-19 17:34:27: New connection from: 127.0.0.1, with socket 7
+2025-02-19 17:35:46: webserv: Conenction with 7fd closed!
+2025-02-19 17:39:43: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-02-19 17:41:30
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 17:41:48
+-------------------------------------------------
+2025-02-19 17:41:48: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 17:41:48: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:41:48: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 17:41:48: Server created with host:127.0.0.1, port:8085
+2025-02-19 17:41:48: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:41:52: New connection from: 127.0.0.1, with socket 6
+2025-02-19 17:41:53: New message from 6
+2025-02-19 17:41:53: New connection from: 127.0.0.1, with socket 7
+2025-02-19 17:41:54: New message from 6
+2025-02-19 17:41:55: New message from 7
+2025-02-19 17:42:28: webserv: Conenction with 6fd closed!
+2025-02-19 17:42:28: webserv: Conenction with 7fd closed!
+2025-02-19 17:42:54: New connection from: 127.0.0.1, with socket 6
+2025-02-19 17:42:55: New message from 6
+2025-02-19 17:42:55: New connection from: 127.0.0.1, with socket 7
+2025-02-19 17:42:56: New message from 6
+2025-02-19 17:42:58: New message from 7
+2025-02-19 17:44:43: New message from 7
+2025-02-19 17:44:44: New message from 7
+2025-02-19 17:44:46: New message from 6
+2025-02-19 17:45:05: New message from 6
+2025-02-19 17:45:06: New message from 6
+2025-02-19 17:45:08: New message from 7
+2025-02-19 17:47:27: New message from 7
+2025-02-19 17:48:04: New message from 7
+2025-02-19 17:48:05: New message from 7
+2025-02-19 17:48:07: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-19 17:54:32
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 17:55:45
+-------------------------------------------------
+2025-02-19 17:55:45: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 17:55:45: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:55:45: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 17:55:45: Server created with host:127.0.0.1, port:8085
+2025-02-19 17:55:45: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:55:47: New connection from: 127.0.0.1, with socket 6
+2025-02-19 17:55:47: New connection from: 127.0.0.1, with socket 7
+2025-02-19 17:55:50: New message from 6
+2025-02-19 17:55:52: New message from 6
+2025-02-19 17:55:54: New message from 6
+2025-02-19 17:55:55: New message from 7
+2025-02-19 17:56:03: New message from 7
+-------------------------------------------------
+Session finish: 2025-02-19 17:56:58
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 17:57:57
+-------------------------------------------------
+2025-02-19 17:57:57: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 17:57:57: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:57:57: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 17:57:57: Server created with host:127.0.0.1, port:8085
+2025-02-19 17:57:57: Server created with host:127.0.0.1, port:8084
+2025-02-19 17:57:59: New connection from: 127.0.0.1, with socket 6
+2025-02-19 17:58:00: New message from 6
+2025-02-19 17:58:00: New connection from: 127.0.0.1, with socket 7
+2025-02-19 17:58:02: New message from 6
+2025-02-19 17:58:03: New message from 6
+2025-02-19 17:58:05: New message from 7
+2025-02-19 17:58:08: New message from 7
+2025-02-19 17:58:25: New message from 7
+2025-02-19 17:58:28: New message from 7
+2025-02-19 17:58:30: New message from 7
+2025-02-19 17:58:31: New message from 6
+2025-02-19 17:58:38: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-19 18:02:05
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-19 18:03:06
+-------------------------------------------------
+2025-02-19 18:03:06: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-19 18:03:06: Server created with host:127.0.0.1, port:8084
+2025-02-19 18:03:06: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-19 18:03:06: Server created with host:127.0.0.1, port:8085
+2025-02-19 18:03:06: Server created with host:127.0.0.1, port:8084
+2025-02-19 18:03:09: New connection from: 127.0.0.1, with socket 6
+2025-02-19 18:03:09: New connection from: 127.0.0.1, with socket 7
+2025-02-19 18:03:10: New message from 6
+2025-02-19 18:03:12: New message from 6
+2025-02-19 18:03:15: New message from 6
+2025-02-19 18:03:16: New message from 6
+2025-02-19 18:03:18: New message from 7
+2025-02-19 18:05:40: New message from 7
+2025-02-19 18:05:41: New message from 7
+2025-02-19 18:05:41: New message from 6
+2025-02-19 18:05:43: New message from 6
+2025-02-19 18:05:45: New message from 6
+2025-02-19 18:06:04: New message from 6
+2025-02-19 18:06:04: New message from 6
+2025-02-19 18:06:05: New message from 7
+2025-02-19 18:06:09: New message from 7
+2025-02-19 18:06:14: New message from 7
+2025-02-19 18:06:59: New message from 7
+2025-02-19 18:07:05: New message from 7
+2025-02-19 18:07:06: New message from 7
+2025-02-19 18:07:07: New message from 6
+2025-02-19 18:07:16: New message from 6
+2025-02-19 18:07:20: New message from 6
+2025-02-19 18:08:33: webserv: Conenction with 6fd closed!
+2025-02-19 18:08:33: webserv: Conenction with 7fd closed!
+2025-02-19 18:11:40: New connection from: 127.0.0.1, with socket 6
+2025-02-19 18:11:41: New message from 6
+2025-02-19 18:11:41: New connection from: 127.0.0.1, with socket 7
+2025-02-19 18:11:42: New message from 6
+2025-02-19 18:11:44: New message from 7
+2025-02-19 18:11:46: New message from 6
+2025-02-19 18:12:02: New message from 6
+2025-02-19 18:12:02: New message from 6
+2025-02-19 18:12:04: New message from 7
+2025-02-19 18:12:04: New connection from: 127.0.0.1, with socket 8
+2025-02-19 18:12:05: New message from 8
+2025-02-19 18:12:08: New message from 8
+2025-02-19 18:12:27: webserv: Conenction with 6fd closed!
+2025-02-19 18:12:27: webserv: Conenction with 7fd closed!
+2025-02-19 18:12:28: webserv: Conenction with 8fd closed!
+2025-02-19 18:12:40: New connection from: 127.0.0.1, with socket 6
+2025-02-19 18:12:42: New message from 6
+2025-02-19 18:12:42: New connection from: 127.0.0.1, with socket 7
+2025-02-19 18:12:44: New message from 6
+2025-02-19 18:12:48: New message from 6
+2025-02-19 18:12:49: New message from 6
+2025-02-19 18:12:50: New message from 6
+2025-02-19 18:12:51: New message from 7
+2025-02-19 18:12:53: New message from 7
+2025-02-19 18:12:56: New message from 7
+2025-02-19 18:13:13: New message from 7
+2025-02-19 18:13:15: New message from 7
+2025-02-19 18:13:25: New message from 7
+2025-02-19 18:13:40: New message from 7
+2025-02-19 18:13:44: New message from 7
+-------------------------------------------------
+Session finish: 2025-02-19 18:13:58
+-------------------------------------------------

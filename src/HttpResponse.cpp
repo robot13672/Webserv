@@ -210,16 +210,24 @@ void HttpResponse::handlePost(const std::string& path) {
 
 bool HttpResponse::isFileAccessible(const std::string& path) {
     struct stat st;
-    if (stat(path.c_str(), &st) != 0) {
+    
+    std::string localPath;
+    if (path == "/")
+        localPath = "assets/html/index.html";
+    else 
+        localPath = "assets/html" + path + ".html";
+
+    std::cout << "Path: " << path << std::endl;           
+    if (stat(localPath.c_str(), &st) != 0) {
         setErrorResponse(404, "Not Found");
         return false;
     }
     
-    if (access(path.c_str(), R_OK) != 0) {
+    if (access(localPath.c_str(), R_OK) != 0) {
         setErrorResponse(403, "Forbidden");
         return false;
     }
-    
+    std::cout << "File is accessible" << std::endl;
     return true;
 }
 
@@ -251,9 +259,11 @@ void HttpResponse::setRedirectResponse(const std::string& newLocation) {
 
 void HttpResponse::sendFile(const std::string& filePath) {
     // std::ifstream file(filePath.c_str(), std::ios::binary);
-    std::string localPath = filePath;
-    if (localPath == "/")
+    std::string localPath;
+    if (filePath == "/")
         localPath = "assets/html/index.html";
+    else 
+        localPath = "assets/html" + filePath + ".html";
     std::ifstream file(localPath.c_str(), std::ios::binary);
     if (!file) {
         setErrorResponse(404, "Not Found");

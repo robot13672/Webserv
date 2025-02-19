@@ -1,0 +1,123 @@
+<!-- <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web_Server CREATORS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .nickname {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nickname">ikhristi</div>
+        <div class="nickname">rkrechun</div>
+    </div>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web_Server CREATORS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            width: 60%;
+        }
+
+        .profile {
+            text-align: center;
+        }
+
+        .profile img {
+            width: 150px;  /* Размер фото */
+            height: 150px;
+            border-radius: 50%; /* Делаем круглые фото */
+            object-fit: cover; /* Обрезка изображения */
+            border: 3px solid #333;
+        }
+
+        .nickname {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+        .home-button {
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            background: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .home-button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Левая колонка -->
+        <div class="profile">
+            <img src="./ikhristi.jpg" alt="ikhristi">
+            <div class="nickname">ikhristi</div>
+        </div>
+
+        <!-- Правая колонка -->
+        <div class="profile">
+            <img src="./rkrechun.jpg" alt="rkrechun">
+            <div class="nickname">rkrechun</div>
+        </div>
+    </div>
+
+    <button class="home-button" onclick="location.href='/'">HOME</button>
+</body>
+</html>
