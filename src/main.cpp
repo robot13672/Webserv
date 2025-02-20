@@ -1,4 +1,13 @@
 #include "../inc/Webserv.hpp"
+#include "../inc/Server.hpp"
+
+
+void signalHandler(int signum) {
+
+    logger.closeFile();
+
+    exit(signum);  // Завершаем программу
+}
 
 int main(int argc, char **argv)
 {
@@ -6,29 +15,27 @@ int main(int argc, char **argv)
     {
         try
         {
-            // roi=start
-			ConfParser cluster;
-			cluster.createCluster("default.conf");
-			// roi =end
-			Server Webservers;
+            signal(SIGINT, signalHandler);
+            logger.setFile("logger.txt");//нужно будет ставить реальный с конфига
+            Server Webservers;
             std::vector<ServerConfig> servers;
-            servers.push_back(ServerConfig("127.0.0.1", 8080));
-            servers.push_back(ServerConfig("127.0.0.1", 8081));
-            servers.push_back(ServerConfig("127.0.0.1", 8080));
+            servers.push_back(ServerConfig("127.0.0.1", 8084));
+            servers.push_back(ServerConfig("127.0.0.1", 8085));
+            servers.push_back(ServerConfig("127.0.0.1", 8084));
             Webservers.setupServer(servers);
             Webservers.startServers();
             
         }
         catch(const std::exception& e)
         {
-            std::cerr << e.what() << '\n';
+            logger.writeMessage(e.what());
             return 1;
         }
        
     }
     else
     {
-        std::cerr << "Error: Wrong arguments"; //Change to Logger class
+        logger.writeMessage("Error: Wrong arguments");
     }
     return 0;
 }

@@ -1,3 +1,6 @@
+#ifndef WEBSERV_HPP
+# define WEBSERV_HPP
+
 #pragma once
 
 //standart libs
@@ -10,6 +13,9 @@
 #include <exception> // для работы с исключениями
 #include <sstream> //для форматирования строк при генерации HTTP ответов
 #include <cstdlib> // для exit
+#include <fstream> // для работы с файлами
+#include <sstream> // для рработы с потоками строк
+#include <ctime> 
 
 //Системные библиотеки POSIX
 #include <sys/socket.h> // для работы с сокетами
@@ -21,19 +27,19 @@
 #include <cstring> // для работы с С-строками
 #include <errno.h> // для обработки ошибок, связанных с системными вызовами
 
+
 //Пользовательские библиотеки
-#include "Client.hpp"
-#include "Logger.hpp"
-#include "Server.hpp"
+
 #include "ServerConfig.hpp"
-#include "HttpRequest.hpp"
-#include "HttpResponse.hpp"
+// #include "Server.hpp"
+#include "Logger.hpp"
+// #include "HttpRequest.hpp"
+#include "Utils.hpp"
+// #include "HttpResponse.hpp"
+// #include "Client.hpp"
 
 //Библиотеки для CGI
 
-
-#include <string>
-#include <vector>
-#include "LocationConfig.hpp"
+#endif
 
 

@@ -1,29 +1,31 @@
 #pragma once
 
 #include "Webserv.hpp"
-
-class ServerConfig;
+#include "HttpRequest.hpp"
+#include "HttpResponse.hpp"
 
 
 class Client
 {
-    private://change to private
+    private:
         int         _sockfd; //дескриптор сокета
         sockaddr_in _adress; // для хранения адреса(IP, порт)
         time_t      _lst_msg;// время последнего сообщения
     public:
+        ServerConfig _server;// сервер к конфигурации которого подключен
+        HttpRequest  _request;// запрос
+        HttpResponse _response;// ответ
+        Client();
         Client(ServerConfig &serv);
-        ~Client();
-
-        ServerConfig _server;
-        HttpRequest  _request;
-        HttpResponse _response;
+        Client(Client const &cop);
+        Client operator=(Client const &cop);
         
         //set
         void setSocket(int socket);
 
         //get
         time_t getLstMsg();
-        void updateTime();
+        long getMaxBodySize();
 
+        void updateTime();
 };

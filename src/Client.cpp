@@ -1,18 +1,40 @@
 #include "../inc/Client.hpp"
 
-// Client::Client(ServerConfig &serv)
-// {
-//     _lst_msg = time(NULL);//присваиваю текущее время
-// }
+Client::Client()
+{
+    this->_lst_msg = time(NULL);
+}
 
 Client::Client(ServerConfig &serv)
 {
-    _response.setServer(serv);
+    _server = serv; // Initialize _server with the provided ServerConfig object
+    _lst_msg = time(NULL); // Initialize _lst_msg with the current time
+    _sockfd = -1; // Initialize socket file descriptor
     _request.setMaxBodySize(serv.getMaxBodySize());
-    _lst_msg = time(NULL);
 }
 
-Client::~Client() {}
+Client::Client(const Client &cop)
+{
+    this->_sockfd = cop._sockfd;
+    this->_lst_msg = cop._lst_msg;
+    this->_response = cop._response;
+    this->_request = cop._request;
+    this->_server = cop._server;
+    this->_adress = cop._adress;
+}
+
+Client Client::operator=(const Client &cop)
+{
+    if (this != &cop)
+    {
+        this->_sockfd = cop._sockfd;
+        this->_lst_msg = cop._lst_msg;
+        this->_response = cop._response;
+        this->_request = cop._request;
+    }
+    return *this;
+}
+
 
 void Client::setSocket(int socket)
 {
@@ -23,6 +45,7 @@ time_t Client::getLstMsg()
 {
     return _lst_msg;
 }
+
 
 void Client::updateTime()
 {

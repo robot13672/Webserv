@@ -3,12 +3,51 @@
 ServerConfig::ServerConfig(std::string host, u_int16_t port) //для эмуляции отработанного конфиг файла
 {
     _host = inet_addr(host.c_str()); // Example IP address
+    if (_host == INADDR_NONE) {
+        std::cerr << "Error: Invalid IP address: " << host << std::endl;
+        exit(EXIT_FAILURE);
+    }
     _port = port; // Example port number
+    _max_body_size = 200000000000;
     // std::cout << _host << ":" << _port << "\n";
 }
 ServerConfig::ServerConfig() {}
 
+ServerConfig::ServerConfig(const ServerConfig &other)
+{
+    _adress = other._adress;
+    _port = other._port;
+    _host = other._host;
+    _listen_fd = other._listen_fd;
+    _max_body_size = other._max_body_size;
+    _name = other._name;
+    _root = other._root;
+    _index = other._index;
+    _errorPages = other._errorPages;
+    _autoindex = other._autoindex;
+    _methods = other._methods;
+    _logDirection = other._logDirection;
+}
 
+ServerConfig& ServerConfig::operator=(const ServerConfig &other)
+{
+    if (this != &other)
+    {
+        _adress = other._adress;
+        _port = other._port;
+        _host = other._host;
+        _listen_fd = other._listen_fd;
+        _max_body_size = other._max_body_size;
+        _name = other._name;
+        _root = other._root;
+        _index = other._index;
+        _errorPages = other._errorPages;
+        _autoindex = other._autoindex;
+        _methods = other._methods;
+        _logDirection = other._logDirection;
+    }
+    return *this;
+}
 //Settings
 void ServerConfig::setupServer()//функция для настройки сервера, создание сокета, привязка к порту
 {
@@ -16,14 +55,14 @@ void ServerConfig::setupServer()//функция для настройки се�
 
     if(_listen_fd == -1)
     {
-        std::cerr << "Error: Fatal socket allocation for host:" << _host << std::endl;// Выводить сообщение об ошибке логером.
+        std::cerr << "Error: Fatal socket allocation" << std::endl;
         exit(EXIT_FAILURE);
     }
 
     int tmp = 1;
     if (setsockopt(_listen_fd, SOL_SOCKET, SO_REUSEADDR, &tmp, sizeof(int)) == -1) // устраняет проблемы с занятым портом после завершения работы сокета.
     {
-        //вывести сообщение через логер
+        std::cerr << "Error: setsockopt failed " << std::endl;
         close(_listen_fd); // Закрываем сокет перед завершением
         exit(EXIT_FAILURE);
     } 
@@ -35,11 +74,11 @@ void ServerConfig::setupServer()//функция для настройки се�
 
     if(bind(_listen_fd, (sockaddr *) &_adress, sizeof(_adress)) == -1)
     {
-        std::cout << "Error: Error bind host:" << _host << std::endl;//вывести ошибку через логер об неуспешной привязке сокета к порту
+        logger.writeMessage("Error: Error bind host");
         close(_listen_fd); // Закрываем сокет перед завершением
         exit(EXIT_FAILURE);
     }
-    //вывести информацию об успешном бинде через логер
+    logger.writeMessage("Successfully bound to host:" + getHost() + ", port:" + uint16ToString(getPort()) + " socket:" + intToString(_listen_fd));
 }
 
 
@@ -57,6 +96,10 @@ void ServerConfig::setPort(u_int16_t port)
 void ServerConfig::setHost(std::string host)
 {
     _host = inet_addr(host.c_str());
+    if (_host == INADDR_NONE) {
+        std::cerr << "Error: Invalid IP address: " << host << std::endl;
+        exit(EXIT_FAILURE);
+    }
 }
 
 void ServerConfig::setMaxBodySize(long max_body_size)
@@ -94,9 +137,16 @@ void ServerConfig::setLogDirection(std::string logDirection)
     _logDirection = logDirection;
 }
 //GET
-in_addr_t ServerConfig::getHost()
+// in_addr_t ServerConfig::getHost()
+// {
+//     return _host;
+// }
+
+std::string ServerConfig::getHost()
 {
-    return _host;
+    struct in_addr addr;
+    addr.s_addr = _host;
+    return std::string(inet_ntoa(addr));
 }
 
 u_int16_t ServerConfig::getPort()

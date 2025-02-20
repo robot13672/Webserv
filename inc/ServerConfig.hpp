@@ -27,7 +27,7 @@ class ServerConfig
         u_int16_t                       _port;
         in_addr_t                       _host;
         int                             _listen_fd;		// is not taken from conf file!!
-        long                            _max_body_size; // Возможно нужно будет изменить тип данных - client_max_body_size, nach sch21 video max 20k. the same if is not incicated in conf. file
+        long                      _max_body_size; // Возможно нужно будет изменить тип данных - client_max_body_size, nach sch21 video max 20k. the same if is not incicated in conf. file
         std::string                     _name;			//имя сервера или домена
 		std::vector<LocationConfig>     _locations;     // конфигурации блоков location	 by roi
 		std::map<short, std::string>    _errorPages; 	// пути на страницы с ошибками
@@ -35,7 +35,8 @@ class ServerConfig
     public:
         ServerConfig();
         ServerConfig(std::string host, u_int16_t port);//для эмуляции отработанного конфиг файла
-        
+        ServerConfig(const ServerConfig &other); // Copy constructor
+        ServerConfig& operator=(const ServerConfig &other); // Copy assignment operator
         //settings
         void setupServer(void);
         //SET
@@ -50,7 +51,8 @@ class ServerConfig
         void setMethods(std::vector<std::string> methods);
         void setLogDirection(std::string logDirection);
         //GET
-        in_addr_t getHost(void);
+        // in_addr_t getHost(void);
+        std::string getHost();
         u_int16_t getPort(void);
         int getListenFd(void);
         long getMaxBodySize(void);
