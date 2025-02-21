@@ -214,8 +214,25 @@ bool HttpResponse::isFileAccessible(const std::string& path) {
     std::string localPath;
     if (path == "/")
         localPath = "assets/html/index.html";
-    else 
-        localPath = "assets/html" + path + ".html";
+    else {
+        size_t dotPos = path.find_last_of('.');
+        if (dotPos != std::string::npos) {
+            // If path has an extension (e.g. /about.html)
+            std::string extension = path.substr(dotPos);
+            if (extension == ".png" || extension == ".jpg" || extension == ".jpeg") {
+                localPath = "assets/html" + path;
+            } else {
+                localPath = "assets/html" + path + ".html";
+            }
+        } else {
+            // No extension found, add .html
+            localPath = "assets/html" + path + ".html";
+        }
+    }
+    // else if (path.find_last_of('.'))
+    //     localPath = "assets/html/" + path;
+    // else 
+    //     localPath = "assets/html" + path + ".html";
 
     std::cout << "Path: " << path << std::endl;           
     if (stat(localPath.c_str(), &st) != 0) {
@@ -262,8 +279,25 @@ void HttpResponse::sendFile(const std::string& filePath) {
     std::string localPath;
     if (filePath == "/")
         localPath = "assets/html/index.html";
-    else 
-        localPath = "assets/html" + filePath + ".html";
+    else {
+        size_t dotPos = filePath.find_last_of('.');
+        if (dotPos != std::string::npos) {
+            // If path has an extension (e.g. /about.html)
+            std::string extension = filePath.substr(dotPos);
+            if (extension == ".png" || extension == ".jpg" || extension == ".jpeg") {
+                localPath = "assets/html" + filePath;
+            } else {
+                localPath = "assets/html" + filePath + ".html";
+            }
+        } else {
+            // No extension found, add .html
+            localPath = "assets/html" + filePath + ".html";
+        }
+    }
+    // else if (filePath.find_last_of('.'))
+    //     localPath = "assets/html/" + filePath;
+    // else 
+    //     localPath = "assets/html" + filePath + ".html";
     std::ifstream file(localPath.c_str(), std::ios::binary);
     if (!file) {
         setErrorResponse(404, "Not Found");
