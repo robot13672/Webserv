@@ -526,6 +526,9 @@ void Server::readRequest(int &fd, Client &client)
     std::string path = client._request.getPath();
     std::string method = client._request.getMethod();
     
+    std::cout << "Path: " << path << std::endl;
+    std::cout << "Method: " << method << std::endl;
+
     // Handle the request based on method and path
     response.handleRequest(path, method);
     

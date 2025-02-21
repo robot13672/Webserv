@@ -190,8 +190,9 @@ void HttpResponse::handleDelete(const std::string& path) {
 
 void HttpResponse::handlePost(const std::string& path) {
     // Проверяем существование директории
-    std::string dir = path.substr(0, path.find_last_of('/'));
+    std::string dir = "upload/"; // Добавляем слеш, чтобы проверить директорию
     struct stat st;
+    std::cout << "Dir: " << dir << std::endl;
     if (stat(dir.c_str(), &st) != 0 || !S_ISDIR(st.st_mode)) {
         setErrorResponse(404, "Directory Not Found");
         return;
@@ -244,6 +245,7 @@ bool HttpResponse::isFileAccessible(const std::string& path) {
         setErrorResponse(403, "Forbidden");
         return false;
     }
+    std::cout << "local Path " << localPath << std::endl;
     std::cout << "File is accessible" << std::endl;
     return true;
 }
