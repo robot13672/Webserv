@@ -184,6 +184,7 @@ void Server::sendResponse(int &fd, Client &client)
     std::string response = "HTTP/1.1 200 OK\r\n"
            "Content-Type: text/plain\r\n"
            "Content-Length: 13\r\n"
+           "Set-Cookie: sessionId=123456; Path=/\r\n"
            "\r\n"
            "Hello, World!";
     //TODO: дописать все конструкторы копирования, что бы можно было обратиться к макс боти сайз

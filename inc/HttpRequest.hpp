@@ -11,6 +11,7 @@ private:
     std::string method;
     std::string uri;
     std::string httpVersion;
+    std::string query;
     std::map<std::string, std::string> headers;
     std::string body;
     long maxBodySize;  // Новый член класса
@@ -48,6 +49,7 @@ public:
     const std::string& getHttpVersion() const;
     const std::map<std::string, std::string>& getHeaders() const;
     const std::string& getBody() const;
+    const std::string& getQuery() const;
     std::string getHeader(const std::string& key) const;
     bool getStatus();
     

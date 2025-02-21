@@ -3,7 +3,7 @@
 #include "Webserv.hpp"
 #include "HttpRequest.hpp"
 #include "HttpResponse.hpp"
-
+#include "CGI.hpp"
 
 class Client
 {
@@ -15,6 +15,8 @@ class Client
         ServerConfig _server;// сервер к конфигурации которого подключен
         HttpRequest  _request;// запрос
         HttpResponse _response;// ответ
+        CGI          _cgi;
+
         Client();
         Client(ServerConfig &serv);
         Client(Client const &cop);
