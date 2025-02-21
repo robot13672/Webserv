@@ -25,6 +25,8 @@ bool HttpRequest::parseRequest(const std::string& rawRequest)
         
     if (!parseHeaders(requestStream))
         return false;
+    
+    
     return parseBody(requestStream);
 }
 
@@ -50,7 +52,8 @@ bool HttpRequest::parseRequest(const std::vector<char>& buffer, size_t contentLe
         if (!parseHeaders(requestStream))
             return false;
     }
-        
+    
+    isCgiRequest();// check for CGI
     return parseBody(requestStream);
 }
 
@@ -196,6 +199,18 @@ bool HttpRequest::isValidMethod() const {
         }
     }
     return false;
+}
+
+void HttpRequest::isCgiRequest()
+{
+    // Check if path ends with .py or .cgi
+    size_t dot = path.find_last_of('.');
+    if (dot != std::string::npos) {
+        std::string extension = path.substr(dot);
+        isCGI = (extension == ".py" || extension == ".cgi");
+        return;
+    }
+    isCGI = false;
 }
 
 bool HttpRequest::isValidUri() const {
