@@ -199,77 +199,130 @@ void HttpResponse::handleDelete(const std::string& path) {
 }
 
 void HttpResponse::handlePost() {
-    // Проверяем существование директории
-    if (_request.getBody().empty()) {
-        setErrorResponse(500, "Internal Server Error: No request set");
-        _response = toString();
+    // 1. Check if request has Content-Type header
+    std::string contentType = _request.getHeader("Content-Type");
+    if (contentType.empty()) {
+        setErrorResponse(400, "Bad Request: Missing Content-Type");
+        return;
+    }
+
+    // 2. Parse multipart form data boundary
+    size_t boundaryPos = contentType.find("boundary=");
+    if (boundaryPos == std::string::npos) {
+        setErrorResponse(400, "Bad Request: No boundary in multipart/form-data");
         return;
     }
     
-    std::string dir = "upload/"; // Добавляем слеш, чтобы проверить директорию
-    struct stat st;
-    std::cout << "Dir: " << dir << std::endl;
-    if (stat(dir.c_str(), &st) != 0 || !S_ISDIR(st.st_mode)) {
-        setErrorResponse(404, "Directory Not Found");
-        _response = toString();
-        return;
-    }
-    // Проверяем права на запись
-    if (access(dir.c_str(), W_OK) != 0) {
-        setErrorResponse(403, "Forbidden");
-        _response = toString();
-        return;
-    }
-    //Ilya version
-    // std::string filename = "upload/" + intToString(time(NULL)) + ".png";
-    // Copilot version
-
-    // if (_request.getBody().empty()) 
-    // {
-    std::string fileName ="upload/" + intToString(time(NULL)) + "_body.pdf";
+    std::string boundary = "--" + contentType.substr(boundaryPos + 9);
+    const std::string& body = _request.getBody();
     
-        std::cout << "File name: " << fileName << std::endl;
+    // 3. Find start of file data
+    size_t headerEnd = body.find("\r\n\r\n");
+    if (headerEnd == std::string::npos) {
+        setErrorResponse(400, "Bad Request: Invalid multipart format");
+        return;
+    }
+    
+    // 4. Get actual file content
+    size_t fileStart = headerEnd + 4;
+    size_t fileEnd = body.find(boundary, fileStart) - 4;
+    if (fileEnd == std::string::npos) {
+        setErrorResponse(400, "Bad Request: Invalid file format");
+        return;
+    }
+    
+    std::string fileContent = body.substr(fileStart, fileEnd - fileStart);
 
+    // 5. Save file
+    std::string fileName = "upload/" + intToString(time(NULL)) + ".png";
     std::ofstream outFile(fileName.c_str(), std::ios::binary);
     
-    if (outFile.is_open()) 
-    {
-        const std::string& body = _request.getBody();
-        outFile.write(body.c_str() + 4, body.length() - 4);
-        outFile.close();
-        logger.writeMessage("Created body file: " + fileName);
-    } 
-    else 
-    {
-        logger.writeMessage("Error: Unable to create file " + fileName);
-        _response = toString();
+    if (!outFile.is_open()) {
+        setErrorResponse(500, "Internal Server Error: Cannot create file");
+        return;
     }
-    // }
-    // Save file
-    // std::ofstream outFile(filename.c_str(), std::ios::binary);
-    // if (!outFile) {
-    //     setErrorResponse(500, "Failed to create file");
-    //     _response = toString();
-    //     return;
-    // }
 
-    // // Write file content
-    // const std::string& fileContent = _request.getBody();
-    // outFile.write(fileContent.c_str(), fileContent.length());
-    // outFile.close();
+    outFile.write(fileContent.c_str(), fileContent.length());
+    outFile.close();
 
-    // if (outFile.fail()) {
-    //     setErrorResponse(500, "Failed to write file");
-    //     _response = toString();
-    //     return;
-    // }
-
+    // 6. Set success response
     setStatus(201, "Created");
     setHeader("Content-Type", "text/plain");
-    setBody("File successfully uploaded as: ");
-    _response = toString();
-
+    setBody("File successfully uploaded as: " + fileName);
 }
+
+// void HttpResponse::handlePost() {
+//     // Проверяем существование директории
+//     if (_request.getBody().empty()) {
+//         setErrorResponse(500, "Internal Server Error: No request set");
+//         _response = toString();
+//         return;
+//     }
+    
+//     std::string dir = "upload/"; // Добавляем слеш, чтобы проверить директорию
+//     struct stat st;
+//     std::cout << "Dir: " << dir << std::endl;
+//     if (stat(dir.c_str(), &st) != 0 || !S_ISDIR(st.st_mode)) {
+//         setErrorResponse(404, "Directory Not Found");
+//         _response = toString();
+//         return;
+//     }
+//     // Проверяем права на запись
+//     if (access(dir.c_str(), W_OK) != 0) {
+//         setErrorResponse(403, "Forbidden");
+//         _response = toString();
+//         return;
+//     }
+//     //Ilya version
+//     // std::string filename = "upload/" + intToString(time(NULL)) + ".png";
+//     // Copilot version
+
+//     // if (_request.getBody().empty()) 
+//     // {
+//     std::string fileName ="upload/" + intToString(time(NULL)) + "_body.pdf";
+    
+//         std::cout << "File name: " << fileName << std::endl;
+
+//     std::ofstream outFile(fileName.c_str(), std::ios::binary);
+    
+//     if (outFile.is_open()) 
+//     {
+//         const std::string& body = _request.getBody();
+//         outFile.write(body.c_str() + 4, body.length() - 4);
+//         outFile.close();
+//         logger.writeMessage("Created body file: " + fileName);
+//     } 
+//     else 
+//     {
+//         logger.writeMessage("Error: Unable to create file " + fileName);
+//         _response = toString();
+//     }
+//     // }
+//     // Save file
+//     // std::ofstream outFile(filename.c_str(), std::ios::binary);
+//     // if (!outFile) {
+//     //     setErrorResponse(500, "Failed to create file");
+//     //     _response = toString();
+//     //     return;
+//     // }
+
+//     // // Write file content
+//     // const std::string& fileContent = _request.getBody();
+//     // outFile.write(fileContent.c_str(), fileContent.length());
+//     // outFile.close();
+
+//     // if (outFile.fail()) {
+//     //     setErrorResponse(500, "Failed to write file");
+//     //     _response = toString();
+//     //     return;
+//     // }
+
+//     setStatus(201, "Created");
+//     setHeader("Content-Type", "text/plain");
+//     setBody("File successfully uploaded as: ");
+//     _response = toString();
+
+// }
 
 bool HttpResponse::isFileAccessible() {
     struct stat st;
