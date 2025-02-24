@@ -211,16 +211,64 @@ void HttpResponse::handlePost() {
     std::cout << "Dir: " << dir << std::endl;
     if (stat(dir.c_str(), &st) != 0 || !S_ISDIR(st.st_mode)) {
         setErrorResponse(404, "Directory Not Found");
+        _response = toString();
         return;
     }
     // Проверяем права на запись
     if (access(dir.c_str(), W_OK) != 0) {
         setErrorResponse(403, "Forbidden");
+        _response = toString();
         return;
     }
+    //Ilya version
+    // std::string filename = "upload/" + intToString(time(NULL)) + ".png";
+    // Copilot version
+
+    // if (_request.getBody().empty()) 
+    // {
+    std::string fileName ="upload/" + intToString(time(NULL)) + "_body.pdf";
+    
+        std::cout << "File name: " << fileName << std::endl;
+
+    std::ofstream outFile(fileName.c_str(), std::ios::binary);
+    
+    if (outFile.is_open()) 
+    {
+        const std::string& body = _request.getBody();
+        outFile.write(body.c_str() + 4, body.length() - 4);
+        outFile.close();
+        logger.writeMessage("Created body file: " + fileName);
+    } 
+    else 
+    {
+        logger.writeMessage("Error: Unable to create file " + fileName);
+        _response = toString();
+    }
+    // }
+    // Save file
+    // std::ofstream outFile(filename.c_str(), std::ios::binary);
+    // if (!outFile) {
+    //     setErrorResponse(500, "Failed to create file");
+    //     _response = toString();
+    //     return;
+    // }
+
+    // // Write file content
+    // const std::string& fileContent = _request.getBody();
+    // outFile.write(fileContent.c_str(), fileContent.length());
+    // outFile.close();
+
+    // if (outFile.fail()) {
+    //     setErrorResponse(500, "Failed to write file");
+    //     _response = toString();
+    //     return;
+    // }
+
     setStatus(201, "Created");
     setHeader("Content-Type", "text/plain");
-    setBody("File successfully processed");
+    setBody("File successfully uploaded as: ");
+    _response = toString();
+
 }
 
 bool HttpResponse::isFileAccessible() {

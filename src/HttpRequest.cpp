@@ -25,6 +25,8 @@ bool HttpRequest::parseRequest(const std::string& rawRequest)
         
     if (!parseHeaders(requestStream))
         return false;
+    
+    
     return parseBody(requestStream);
 }
 
@@ -49,8 +51,9 @@ bool HttpRequest::parseRequest(const std::vector<char>& buffer, size_t contentLe
         
         if (!parseHeaders(requestStream))
             return false;
+        isCgiRequest();// check for CGI
     }
-        
+    
     return parseBody(requestStream);
 }
 
@@ -59,6 +62,16 @@ bool HttpRequest::parseRequestLine(const std::string& line) {
     lineStream >> method;
     std::string fullUri;
     lineStream >> fullUri;
+    
+    size_t queryPos = fullUri.find('?');
+    if (queryPos != std::string::npos) 
+    {
+        query = fullUri.substr(queryPos + 1);  // Get everything after '?'
+    } 
+    else 
+    {
+        query = "";  // No query string present
+    }
     lineStream >> httpVersion;
     
     if (lineStream.fail())
@@ -72,7 +85,8 @@ bool HttpRequest::parseRequestLine(const std::string& line) {
 
 bool HttpRequest::parseHeaders(std::istringstream& requestStream) {
     std::string line;
-    while (std::getline(requestStream, line) && line != "\r" && !line.empty()) {
+    while (std::getline(requestStream, line) && line != "\r" && !line.empty()) 
+    {
         size_t colonPos = line.find(':');
         if (colonPos == std::string::npos)
             return false;
@@ -86,7 +100,23 @@ bool HttpRequest::parseHeaders(std::istringstream& requestStream) {
         
         headers[key] = value;
     }
-    
+
+    std::string hostHeader = headers["Host"];
+    if (!hostHeader.empty()) 
+    {
+        size_t colonPos = hostHeader.find(':');
+        if (colonPos != std::string::npos) 
+        {
+            headers["IP"] = hostHeader.substr(0, colonPos);
+            headers["PORT"] = hostHeader.substr(colonPos + 1);
+        } 
+        else 
+        {
+            headers["IP"] = hostHeader;
+            headers["PORT"] = "80";
+        }
+    }
+
     // Check for chunked transfer encoding after parsing headers
     std::string transferEncoding = getHeader("Transfer-Encoding");
     isChunked = (transferEncoding == "chunked");
@@ -186,6 +216,11 @@ std::string HttpRequest::getHeader(const std::string& key) const {
     return (iter != headers.end()) ? iter->second : "";
 }
 
+const std::string &HttpRequest::getQuery() const
+{
+    return query;
+}
+
 bool HttpRequest::isValidMethod() const {
     static const std::string validMethods[] = {"GET", "POST", "DELETE"};
     const size_t methodCount = sizeof(validMethods) / sizeof(validMethods[0]);
@@ -196,6 +231,19 @@ bool HttpRequest::isValidMethod() const {
         }
     }
     return false;
+}
+
+void HttpRequest::isCgiRequest()
+{
+    // Check if path ends with .py or .cgi
+    size_t dot = path.find_last_of('.');
+    if (dot != std::string::npos) 
+    {
+        std::string extension = path.substr(dot);
+        isCGI = (extension == ".py" || extension == ".cgi");
+        return;
+    }
+    isCGI = false;
 }
 
 bool HttpRequest::isValidUri() const {
