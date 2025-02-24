@@ -140,7 +140,7 @@ void Server::readRequest(int &fd, Client &client)
     logger.writeMessage("New message from " + intToString(fd));
     if(client._request.getStatus())//Проверка на полное чтение запроса
     {
-        if(client._request.isChunkedTransfer())
+        if(client._request.isChunkedTransfer() && client._request.getContentLength() == 0)
         {
             client._request.parseFullChankedBody();
         }
@@ -181,16 +181,45 @@ void Server::sendResponse(int &fd, Client &client)
 {
     int sendedBytes = 0;
     //TODO поменять на реальный ответ
-    std::string response = "HTTP/1.1 200 OK\r\n"
-           "Content-Type: text/plain\r\n"
-           "Content-Length: 13\r\n"
-           "Set-Cookie: sessionId=123456; Path=/\r\n"
-           "\r\n"
-           "Hello, World!";
-    //TODO: дописать все конструкторы копирования, что бы можно было обратиться к макс боти сайз
-    // if(response.length() >= client._server.getMaxBodySize())
-    //     std::cout << "Error 413";
-    sendedBytes = write(fd, response.c_str(), response.length());
+    // std::string response = "HTTP/1.1 200 OK\r\n"
+    //        "Content-Type: text/plain\r\n"
+    //        "Content-Length: 13\r\n"
+    //        "\r\n"
+    //        "Hello, World!";
+    // //TODO: дописать все конструкторы копирования, что бы можно было обратиться к макс боти сайз
+    // // if(response.length() >= client._server.getMaxBodySize())
+    // //     std::cout << "Error 413";
+    // sendedBytes = write(fd, response.c_str(), response.length());
+
+    HttpResponse response;
+    response.setServer(client._server);
+    response.setHttpVersion("HTTP/1.1");
+    
+    // Get the path and method from client's request
+    // response.setPath(client._request.getPath());    // Use setter instead of direct access
+    // response.setMethod(client._request.getMethod()); 
+
+
+    // Handle the request based on method and path
+    response.handleResponse(client._request);
+    client._request.clear();//очистка запроса
+    
+    // Check max body size
+    if (response.getBody().length() >= client._server.getMaxBodySize())
+    {
+        response.setErrorResponse(413, "Payload Too Large");
+    }
+
+    // Convert response to string
+    std::string responseStr = response.toString();
+    sendedBytes = write(fd, responseStr.c_str(), responseStr.length());
+    
+    if (sendedBytes < 0)
+    {
+        logger.writeMessage("Error: Failed to send response to client " + intToString(fd));
+        handleClientDisconnection(fd);
+        return;
+    }
     removeFromSet(fd, _response_fd_pool);
     addToSet(fd, _request_fd_pool);
 }

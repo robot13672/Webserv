@@ -15,6 +15,7 @@ private:
     std::map<std::string, std::string> headers;
     std::string body;
     long maxBodySize;  // Новый член класса
+    long contentLength;
     bool isChunked;  // Флаг для chunked передачи
     bool isDone;
     bool isCGI;
@@ -34,6 +35,7 @@ public:
     HttpRequest();
     explicit HttpRequest(const std::string& rawRequest);
     ~HttpRequest();
+    void clear();
     
     // Parse methods
     bool parseRequest(const std::vector<char>& buffer, size_t contentLength);  // Исправляем сигнатуру
@@ -52,6 +54,7 @@ public:
     const std::string& getQuery() const;
     std::string getHeader(const std::string& key) const;
     bool getStatus();
+    long getContentLength();
     
     // Новые геттеры для query параметров
     const std::string& getPath() const;
