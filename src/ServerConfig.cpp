@@ -24,7 +24,7 @@ ServerConfig::ServerConfig(const ServerConfig &other)
     _root = other._root;
     _index = other._index;
     _errorPages = other._errorPages;
-    _autoindex = other._autoindex;
+    // _autoindex = other._autoindex; // commented by roi 0221
     _methods = other._methods;
     _logDirection = other._logDirection;
 }
@@ -42,7 +42,7 @@ ServerConfig& ServerConfig::operator=(const ServerConfig &other)
         _root = other._root;
         _index = other._index;
         _errorPages = other._errorPages;
-        _autoindex = other._autoindex;
+        // _autoindex = other._autoindex;	// commented by roi 0221
         _methods = other._methods;
         _logDirection = other._logDirection;
     }
@@ -127,39 +127,125 @@ void ServerConfig::setErrorPages(std::map<short, std::string> errorPages)
     _errorPages = errorPages;
 }
 
-void ServerConfig::setMethods(std::vector<std::string> methods)
-{
-    _methods = methods;
-}
+
 
 void ServerConfig::setLogDirection(std::string logDirection)
 {
-    _logDirection = logDirection;
+	_logDirection = logDirection;
 }
 //GET
 // in_addr_t ServerConfig::getHost()
 // {
-//     return _host;
-// }
-
-std::string ServerConfig::getHost()
-{
-    struct in_addr addr;
-    addr.s_addr = _host;
-    return std::string(inet_ntoa(addr));
-}
-
+	//     return _host;
+	// }
+	
+	std::string ServerConfig::getHost()
+	{
+		struct in_addr addr;
+		addr.s_addr = _host;
+		return std::string(inet_ntoa(addr));
+	}
+	
 u_int16_t ServerConfig::getPort()
 {
-    return _port;
+	return _port;
 }
 
 int ServerConfig::getListenFd()
 {
-    return _listen_fd;
+	return _listen_fd;
 }
 
 long ServerConfig::getMaxBodySize()
 {
-    return _max_body_size;
+	return _max_body_size;
+}
+
+// made by Kirill
+// void ServerConfig::setMethods(std::vector<std::string> methods)
+// {
+//     _methods = methods;
+// }
+
+/* 
+	sets methods for all locations. : - roi 0224 
+	Rewrited Kirills's function. Pure technically to be able to compile ServerConfgi.cpp. Still do understand in full connection betwwenn
+	- map <string, vector <string>> _methods  and this function
+ */
+// void ServerConfig::setMethods(const std::vector<std::string> &methods)
+// {
+//     for (std::map<std::string, std::vector<std::string> >::iterator it = _methods.begin(); it != _methods.end(); ++it)
+//     {
+//         it->second = methods;
+//     }
+// }
+
+
+/* 
+	3d verstion because every location has its own methods. - roi 0224
+*/
+
+void ServerConfig::setMethods(const std::string &location, const std::vector<std::string> &methods)
+{
+	_methods[location] = methods;
+}
+
+/* 
+	parsing started with methods - roi 0224
+ */
+void ServerConfig::parseConfig(const std::string &filename)
+{
+	std::ifstream file(filename.c_str()); // Преобразование std::string в const char*
+    if (!file.is_open())
+	{
+        std::cerr << "Error: Could not open file " << filename << std::endl;
+        return;
+    }
+
+    std::string line;
+    std::string currentLocation;
+    while (std::getline(file, line))
+	{
+        std::istringstream iss(line);
+        std::string key;
+        iss >> key;
+
+        if (key == "location")
+        {
+            iss >> currentLocation;
+            if (!currentLocation.empty() && currentLocation[currentLocation.size() - 1] == '{')
+			{
+                currentLocation.erase(currentLocation.size() - 1); // Удаление последнего символа '{'
+            }
+        } else if (key == "allow_methods")
+				{
+					std::vector<std::string> methods;
+					std::string method;
+					while (iss >> method)
+					{
+						methods.push_back(method);
+					}
+					setMethods(currentLocation, methods);
+        		}
+    }
+
+    file.close();
+}
+
+/* 
+	Перегрузка оператора << - roi 02024
+ */
+std::ostream& operator<<(std::ostream &os, const ServerConfig &config)
+{
+    os << "ServerConfig Methods:\n";
+    for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._methods.begin(); it != config._methods.end(); ++it)
+	{
+        os << "Location: " << it->first << " Methods: ";
+        for (std::vector<std::string>::const_iterator method_it = it->second.begin(); method_it != it->second.end(); ++method_it)
+		{
+            os << *method_it << " ";
+        }
+        os << "\n";
+    }
+    return os;
 }

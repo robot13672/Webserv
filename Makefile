@@ -11,7 +11,7 @@ LDFLAGS += -Wpedantic
 # garantees no memory leaks:
 LDFLAGS += -fsanitize=address
 
-SRCS 	= $(shell find . -not -path './training/*' -not -name 'main1.cpp' -name '*.cpp')
+SRCS 	= $(shell find . -not -path './training/*' -not -name 'Vctr.cpp' -name '*.cpp')
 OBJS 	= $(SRCS:.cpp=.o)
 
 # Colors

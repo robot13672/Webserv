@@ -1,9 +1,5 @@
 #pragma once
 #include "Webserv.hpp"
-#include <string>
-#include <map>
-#include <vector>
-#include <netinet/in.h>
 /* 
 by roi
  */
@@ -57,7 +53,6 @@ class ServerConfig
         void setRoot(std::string root);
         void setIndex(std::string index);
         void setErrorPages(std::map<short, std::string> errorPages);//нужно передавать уже заполненую мапу
-        void setMethods(std::vector<std::string> methods);
         void setLogDirection(std::string logDirection);
         //GET
         // in_addr_t getHost(void);
@@ -65,5 +60,14 @@ class ServerConfig
         u_int16_t getPort(void);
         int getListenFd(void);
         long getMaxBodySize(void);
+		
+		
+        // void setMethods(const std::vector<std::string> &methods); // made by Kirrill b4 methods a map became - comment by roi 0224
+		void setMethods(const std::string &location, const std::vector<std::string> &methods);
+		void parseConfig(const std::string &filename); //start with methods first - roi 0224
+        friend std::ostream& operator<<(std::ostream &os, const ServerConfig &config); // // Перегрузка оператора << rpi 0224
+
+
+
 
 };
