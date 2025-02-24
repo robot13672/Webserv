@@ -523,14 +523,12 @@ void Server::readRequest(int &fd, Client &client)
     response.setHttpVersion("HTTP/1.1");
     
     // Get the path and method from client's request
-    std::string path = client._request.getPath();
-    std::string method = client._request.getMethod();
-    
-    std::cout << "Path: " << path << std::endl;
-    std::cout << "Method: " << method << std::endl;
+    // response.setPath(client._request.getPath());    // Use setter instead of direct access
+    // response.setMethod(client._request.getMethod()); 
+
 
     // Handle the request based on method and path
-    response.handleRequest(path, method);
+    response.handleResponse(client._request);
     
     // Check max body size
     if (response.getBody().length() >= client._server.getMaxBodySize())

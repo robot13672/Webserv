@@ -3,6 +3,7 @@
 #define HTTP_RESPONSE_HPP
 
 #include "Webserv.hpp"
+#include "HttpRequest.hpp"
 
 // class HttpResponse
 // {
@@ -31,6 +32,10 @@ private:
     std::map<std::string, std::string> _headers;
     std::string _body;
     bool _chunked;
+    HttpRequest _request;
+    std::string _response;
+    std::string _path;
+    std::string _method;
 
 public:
     HttpResponse();
@@ -53,21 +58,24 @@ public:
     bool isChunked() const;
 
     //ERORR
-    void handleRequest(const std::string& path, const std::string& method);
+    void handleRequest();
     void setErrorResponse(int code, const std::string& message);
     void setRedirectResponse(const std::string& newLocation);
 
-    bool isFileAccessible(const std::string& path) ;
+    bool isFileAccessible() ;
     std::string getCurrentTime();
     void handleDelete(const std::string& path);
-    void handlePost(const std::string& path);
+    void handlePost();
 
     // Main methods
     std::string toString() const;
     void clear();
-    void sendFile(const std::string& filePath);
+    void sendFile();
     //old
     void setServer(ServerConfig &serv);
+    void handleResponse(const HttpRequest request) ;
+    void setPath(const std::string& path) { _path = path; }
+    void setMethod(const std::string& method) { _method = method; }
 };
 
 #endif

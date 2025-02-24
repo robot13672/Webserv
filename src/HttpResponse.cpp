@@ -9,7 +9,9 @@ HttpResponse::HttpResponse() :
     _httpVersion("HTTP/1.1"),
     _statusCode(200),
     _statusMessage("OK"),
-    _chunked(false) {}
+    _chunked(false),
+    _path(""),
+    _method(""){}
 
 HttpResponse::HttpResponse(const HttpResponse& copy) :
     _server(copy._server),
@@ -18,7 +20,9 @@ HttpResponse::HttpResponse(const HttpResponse& copy) :
     _statusMessage(copy._statusMessage),
     _headers(copy._headers),
     _body(copy._body),
-    _chunked(copy._chunked) {}
+    _chunked(copy._chunked),
+    _method(copy._method),
+    _path(copy._path) {}
 
 HttpResponse& HttpResponse::operator=(const HttpResponse& copy) {
     if (this != &copy) {
@@ -29,6 +33,8 @@ HttpResponse& HttpResponse::operator=(const HttpResponse& copy) {
         _headers = copy._headers;
         _body = copy._body;
         _chunked = copy._chunked;
+        _path = copy._path;
+        _method = copy._method;
     }
     return *this;
 }
@@ -142,35 +148,39 @@ bool HttpResponse::isChunked() const {
 //     }
 // }
 
-void HttpResponse::handleRequest(const std::string& path, const std::string& method) {
+void HttpResponse::handleResponse(const HttpRequest request) {
+    this->_path = request.getPath();
+    this->_method = request.getMethod();
+    _request = request;
+    handleRequest();
+}
+
+void HttpResponse::handleRequest() {
     // Добавляем базовые заголовки
     setHeader("Server", "text/plain");
     setHeader("Date", getCurrentTime());
     setHeader("Connection", "keep-alive");
     
     // Проверяем метод до проверки файла
-    if (method != "GET" && method != "POST" && method != "DELETE") {
+    if (_method != "GET" && _method != "POST" && _method != "DELETE") {
         setErrorResponse(405, "Method Not Allowed");
         setHeader("Allow", "GET, POST, DELETE");
         return;
     }
-    
     // Для DELETE метода
-    if (method == "DELETE") {
-        handleDelete(path);
+    if (_method == "DELETE") {
+        handleDelete(_path);
         return;
     }
-    
     // Проверяем существование и доступность файла
-    if (!isFileAccessible(path)) {
+    if (!isFileAccessible()) {
         return; // isFileAccessible устанавливает соответствующий код ошибки
     }
-    
     // Для GET и POST
-    if (method == "GET") {
-        sendFile(path);
-    } else if (method == "POST") {
-        handlePost(path);
+    if (_method == "GET") {
+        sendFile();
+    } else if (_method == "POST") {
+        handlePost();
     }
 }
 
@@ -188,8 +198,14 @@ void HttpResponse::handleDelete(const std::string& path) {
     }
 }
 
-void HttpResponse::handlePost(const std::string& path) {
+void HttpResponse::handlePost() {
     // Проверяем существование директории
+    if (_request.getBody().empty()) {
+        setErrorResponse(500, "Internal Server Error: No request set");
+        _response = toString();
+        return;
+    }
+    
     std::string dir = "upload/"; // Добавляем слеш, чтобы проверить директорию
     struct stat st;
     std::cout << "Dir: " << dir << std::endl;
@@ -197,37 +213,35 @@ void HttpResponse::handlePost(const std::string& path) {
         setErrorResponse(404, "Directory Not Found");
         return;
     }
-
     // Проверяем права на запись
     if (access(dir.c_str(), W_OK) != 0) {
         setErrorResponse(403, "Forbidden");
         return;
     }
-
     setStatus(201, "Created");
     setHeader("Content-Type", "text/plain");
     setBody("File successfully processed");
 }
 
-bool HttpResponse::isFileAccessible(const std::string& path) {
+bool HttpResponse::isFileAccessible() {
     struct stat st;
     
     std::string localPath;
-    if (path == "/")
+    if (_path == "/")
         localPath = "assets/html/index.html";
     else {
-        size_t dotPos = path.find_last_of('.');
+        size_t dotPos = _path.find_last_of('.');
         if (dotPos != std::string::npos) {
             // If path has an extension (e.g. /about.html)
-            std::string extension = path.substr(dotPos);
+            std::string extension = _path.substr(dotPos);
             if (extension == ".png" || extension == ".jpg" || extension == ".jpeg") {
-                localPath = "assets/html" + path;
+                localPath = "assets/html" + _path;
             } else {
-                localPath = "assets/html" + path + ".html";
+                localPath = "assets/html" + _path + ".html";
             }
         } else {
             // No extension found, add .html
-            localPath = "assets/html" + path + ".html";
+            localPath = "assets/html" + _path + ".html";
         }
     }
     // else if (path.find_last_of('.'))
@@ -235,7 +249,7 @@ bool HttpResponse::isFileAccessible(const std::string& path) {
     // else 
     //     localPath = "assets/html" + path + ".html";
 
-    std::cout << "Path: " << path << std::endl;           
+    std::cout << "Path: " << _path << std::endl;           
     if (stat(localPath.c_str(), &st) != 0) {
         setErrorResponse(404, "Not Found");
         return false;
@@ -276,24 +290,24 @@ void HttpResponse::setRedirectResponse(const std::string& newLocation) {
     setBody(redirectPage);
 }
 
-void HttpResponse::sendFile(const std::string& filePath) {
+void HttpResponse::sendFile() {
     // std::ifstream file(filePath.c_str(), std::ios::binary);
     std::string localPath;
-    if (filePath == "/")
+    if (_path == "/")
         localPath = "assets/html/index.html";
     else {
-        size_t dotPos = filePath.find_last_of('.');
+        size_t dotPos = _path.find_last_of('.');
         if (dotPos != std::string::npos) {
             // If path has an extension (e.g. /about.html)
-            std::string extension = filePath.substr(dotPos);
+            std::string extension = _path.substr(dotPos);
             if (extension == ".png" || extension == ".jpg" || extension == ".jpeg") {
-                localPath = "assets/html" + filePath;
+                localPath = "assets/html" + _path;
             } else {
-                localPath = "assets/html" + filePath + ".html";
+                localPath = "assets/html" + _path + ".html";
             }
         } else {
             // No extension found, add .html
-            localPath = "assets/html" + filePath + ".html";
+            localPath = "assets/html" + _path + ".html";
         }
     }
     // else if (filePath.find_last_of('.'))
@@ -320,9 +334,9 @@ void HttpResponse::sendFile(const std::string& filePath) {
         setBody(buffer.str());
 
         // Set content type based on file extension
-        size_t dot = filePath.find_last_of('.');
+        size_t dot = _path.find_last_of('.');
         if (dot != std::string::npos) {
-            std::string ext = filePath.substr(dot + 1);
+            std::string ext = _path.substr(dot + 1);
             if (ext == "html") 
                 setHeader("Content-Type", "text/html");
             else if (ext == "css") 
