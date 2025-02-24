@@ -168,7 +168,7 @@ long ServerConfig::getMaxBodySize()
 // }
 
 /* 
-	sets methods for all locations. : - roi 0224 
+	sets methods for all locations. : - roi 0225 
 	Rewrited Kirills's function. Pure technically to be able to compile ServerConfgi.cpp. Still do understand in full connection betwwenn
 	- map <string, vector <string>> _methods  and this function
  */
@@ -182,7 +182,7 @@ long ServerConfig::getMaxBodySize()
 
 
 /* 
-	3d verstion because every location has its own methods. - roi 0224
+	3d verstion because every location has its own methods. - roi 0225
 */
 
 void ServerConfig::setMethods(const std::string &location, const std::vector<std::string> &methods)
@@ -190,14 +190,14 @@ void ServerConfig::setMethods(const std::string &location, const std::vector<std
 	_methods[location] = methods;
 }
 
-// roi 0224 
+// roi 0225 
 const char *ServerConfig::NoFileError::what() const throw()
 {
 	return "Shit, an Error in roi's part: Could not open the file";
 }
 
 /* 
-	parsing started with methods - roi 0224
+	parsing started with methods - roi 0225
  */
 void ServerConfig::parseConfig(const std::string &filename)
 {
@@ -241,7 +241,7 @@ void ServerConfig::parseConfig(const std::string &filename)
 }
 
 /* 
-	Перегрузка оператора << - roi 02024
+	Перегрузка оператора << - roi 0225
  */
 std::ostream& operator<<(std::ostream &os, const ServerConfig &config)
 {

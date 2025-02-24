@@ -1,5 +1,6 @@
 #include "../inc/Webserv.hpp"
 #include "../inc/Server.hpp"
+#include "../inc/Colors.hpp" // roi colors for debugging roi 0225
 
 
 void signalHandler(int signum) {
@@ -17,14 +18,16 @@ int main(int argc, char **argv)
 	{
 		try
 		{
-			/* roi 0224 - insert start */
+			/* roi 0225 - insert start */
 			if (argc == 1)
 				confLoc = "congifs/default.conf";
 			else
 				confLoc = std::string(argv[1]);
-			a.parseConfig(confLoc); // roi 0224 Явное преобразование char* в std::string
-			std::cout << a << std::endl; // debug
-			/* roi 0224 - insert end */
+				a.parseConfig(confLoc); // roi 0224 Явное преобразование char* в std::string
+				std::cout << YELLOW;
+				std::cout << "After parseConfig(): " << a << std::endl; // debug
+				std::cout << RESET;
+			/* roi 0225 - insert end */
 
 			signal(SIGINT, signalHandler);
 			logger.setFile("logger.txt");//нужно будет ставить реальный с конфига
