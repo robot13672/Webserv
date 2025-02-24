@@ -66,6 +66,11 @@ class ServerConfig
 		void setMethods(const std::string &location, const std::vector<std::string> &methods);
 		void parseConfig(const std::string &filename); //start with methods first - roi 0224
         friend std::ostream& operator<<(std::ostream &os, const ServerConfig &config); // // Перегрузка оператора << rpi 0224
+		class NoFileError : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
 
 
 

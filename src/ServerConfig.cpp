@@ -190,16 +190,24 @@ void ServerConfig::setMethods(const std::string &location, const std::vector<std
 	_methods[location] = methods;
 }
 
+// roi 0224 
+const char *ServerConfig::NoFileError::what() const throw()
+{
+	return "Shit, an Error in roi's part: Could not open the file";
+}
+
 /* 
 	parsing started with methods - roi 0224
  */
 void ServerConfig::parseConfig(const std::string &filename)
 {
+	std::cout << "roi debug: string(argv[1]) = " << filename << std::endl;  // debug
 	std::ifstream file(filename.c_str()); // Преобразование std::string в const char*
     if (!file.is_open())
 	{
-        std::cerr << "Error: Could not open file " << filename << std::endl;
-        return;
+        throw NoFileError();
+		// std::cerr << "Error: Could not open file " << filename << std::endl;
+        // return;
     }
 
     std::string line;

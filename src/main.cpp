@@ -11,11 +11,15 @@ void signalHandler(int signum) {
 
 int main(int argc, char **argv)
 {
+	ServerConfig a;
     if(argc == 1 || argc == 2)
     {
         try
         {
-            signal(SIGINT, signalHandler);
+			a.parseConfig(std::string(argv[1])); // roi 0224 Явное преобразование char* в std::string
+			std::cout << a << std::endl; // roi 0224
+
+			signal(SIGINT, signalHandler);
             logger.setFile("logger.txt");//нужно будет ставить реальный с конфига
             Server Webservers;
             std::vector<ServerConfig> servers;
@@ -28,7 +32,8 @@ int main(int argc, char **argv)
         }
         catch(const std::exception& e)
         {
-            logger.writeMessage(e.what());
+            // std::cerr << e.what() << std::endl; // roi 0224 - temporary to check fileopen error
+			logger.writeMessage(e.what());
             return 1;
         }
        
