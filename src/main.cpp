@@ -23,9 +23,7 @@ int main(int argc, char **argv)
 			else
 				confLoc = std::string(argv[1]);
 				a.parseConfig(confLoc); // roi 0224 Явное преобразование char* в std::string
-				std::cout << YELLOW;
-				std::cout << "After parseConfig(): " << a << std::endl; // debug
-				std::cout << RESET;
+				std::cout << YELLOW << "After parseConfig(): " << a << std::endl << RESET; // debug
 			/* roi 0225 - insert end */
 
 			signal(SIGINT, signalHandler);

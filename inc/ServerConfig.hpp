@@ -22,11 +22,11 @@ class LocationConfig;
 class ServerConfig
 {
     private:
-		u_int16_t						 					_port;			// roi
-		in_addr_t						 					_host;
+		u_int16_t						 					_port;			// listen
+		in_addr_t						 					_host; // hosthost 127.0.0.1
 		long												_max_body_size; // Возможно нужно будет изменить тип данных - client_max_body_size, nach sch21 video max 20k. the same if is not incicated in conf. file
-		std::string											_name;			//имя сервера или домена
-		std::string											_root;			// dir where index.html is - roi 0221
+		std::string											_name;			//имя сервера или домена - server_name
+		std::string											_root;			// dir where index.html is, root ./;
 		std::string											_index;			//indexfile name like index.html - roi 0221
 		std::map<short, std::string> 						_errorPages; 	// пути на страницы с ошибками
 		// std::vector<LocationConfig>		_locations;     // конфигурации блоков location	 by roi

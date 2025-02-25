@@ -188,7 +188,7 @@ const char *ServerConfig::NoFileError::what() const throw()
  */
 void ServerConfig::parseConfig(const std::string &filename)
 {
-	// std::cout << "roi debug: string(argv[1]) = " << filename << std::endl;  // debug
+	std::cout << "roi debug: string(argv[1]) = " << filename << std::endl;  // debug
 	std::ifstream file(filename.c_str()); // Преобразование std::string в const char* and initiation of input file stream
     if (!file.is_open())
 	{
@@ -197,7 +197,8 @@ void ServerConfig::parseConfig(const std::string &filename)
 
     std::string line;
     std::string currentLocation;
-    while (std::getline(file, line)) // Читаем файл построчно с помощью
+	bool inLocationBlock = false; // Используется для отслеживания, находимся ли мы внутри блока location.
+	while (std::getline(file, line)) // Читаем файл построчно с помощью
 	{
         std::istringstream iss(line); //4каждой строки создаем поток 4 разбора строки
         std::string key;
@@ -210,26 +211,77 @@ void ServerConfig::parseConfig(const std::string &filename)
             if (!currentLocation.empty() && currentLocation[currentLocation.size() - 1] == '{')
 			{
                 currentLocation.erase(currentLocation.size() - 1); // Удаление последнего символа '{'
+				inLocationBlock = true;
             }
-        } else if (key == "allow_methods")
-				{
-					std::vector<std::string> methods;
-					std::string method;
-					while (iss >> method)
-					{
-						methods.push_back(method);
-					}
-					// std::cout << GREEN << currentLocation << std::endl << RESET; //debug
-					// std::cout << RED << methods << std::endl << RESET; //debug - is not to b working. no operatoin<< implemented jet 0225
-					setMethods(currentLocation, methods);
-        		}
+        }
+		else if (key == "}")
+        {
+            inLocationBlock = false;
+        }
+		else if (inLocationBlock && key == "allow_methods")
+		{
+			std::vector<std::string> methods;
+			std::string method;
+			while (iss >> method)
+			{
+				methods.push_back(method);
+			}
+			// std::cout << GREEN << currentLocatio<< std::endl << RESET; //debug
+			// std::cout << RED << methods <std::endl << RESET; //debug - is not tb working. no operatoin<< implementejet 0225
+			setMethods(currentLocation, methods);
+        }
+		else if (!inLocationBlock)
+        {
+            if (key == "listen")
+            {
+                int port;
+                iss >> port;
+				setPort(port);
+            }
+            else if (key == "server_name")
+            {
+				std::string serverName;
+                iss >> serverName;
+                setName(serverName);
+            }
+            else if (key == "host")
+            {
+				std::string host;
+                iss >> host;
+                if (!host.empty() && host[host.size() - 1] == ';')
+                {
+                    host.erase(host.size() - 1); // Удаление точки с запятой в конце строки somehow the ';' at the end is not critical for other server attributes from *.conf file
+                }
+                setHost(host);
+            }
+            else if (key == "root")
+            {
+                std::string root;
+                iss >> root;
+                setRoot(root);
+            }
+            else if (key == "index")
+            {
+                std::string index;
+                iss >> index;
+                setIndex(index);
+            }
+            else if (key == "error_page")
+            {
+                short errorCode;
+                std::string errorPage;
+                iss >> errorCode >> errorPage;
+                _errorPages[errorCode] = errorPage;
+            }
+        }
     }
 
     file.close();
 }
 
 /* 
-	Перегрузка оператора << - roi 0225
+	Перегрузка оператора << 
+	checks only location and methoes- roi 0225
  */
 std::ostream& operator<<(std::ostream &os, const ServerConfig &config)
 {
