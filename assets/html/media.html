@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Server</title>
+    <title>Web_Server CREATORS</title>
     <style>
         * {
             margin: 0;
@@ -13,22 +13,84 @@
 
         body {
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
             background-color: #f4f4f4;
             font-family: Arial, sans-serif;
         }
 
-        .title {
+        .container {
+            text-align: center;
+        }
+
+        .nickname {
             font-size: 48px;
             font-weight: bold;
             color: #333;
-            margin-bottom: 20px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="nickname">ikhristi</div>
+        <div class="nickname">rkrechun</div>
+    </div>
+
+</body>
+</html> -->
+<!-- <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web_Server CREATORS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            width: 60%;
+        }
+
+        .profile {
+            text-align: center;
+        }
+
+        .profile img {
+            width: 150px;  /* Размер фото */
+            height: 150px;
+            border-radius: 50%; /* Делаем круглые фото */
+            object-fit: cover; /* Обрезка изображения */
+            border: 3px solid #333;
+        }
+
+        .nickname {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
         .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
             padding: 12px 24px;
             font-size: 18px;
             border: none;
@@ -45,9 +107,147 @@
 </head>
 <body>
 
-    <div class="title">ИДИ ДОМОЙ</div>
+    <div class="container">
+        Левая колонка -->
+        <!-- <div class="profile">
+            <img src="ikhristi.jpg" alt="ikhristi">
+            <div class="nickname">ikhristi</div>
+        </div>
+
+        Правая колонка -->
+        <!-- <div class="profile">
+            <img src="rkrechun.png" alt="rkrechun">
+            <div class="nickname">rkrechun</div>
+        </div>
+        <div class="profile">
+            <img src="oruban.jpeg" alt="oruban">
+            <div class="nickname">oruban</div>
+    </div>
 
     <button class="home-button" onclick="location.href='/'">HOME</button>
+</body>
+</html> -->
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Code+Pro:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a1a1a;
+            font-family: 'Roboto', sans-serif;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            width: 80%;
+            gap: 40px;
+            margin-top: 280px; /* Increased from 60px to move content down */
+            align-items: center; /* Center content vertically */
+        }
+
+        .profile {
+            text-align: center;
+            flex: 1;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .profile a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+        }
+
+        .profile img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid #00ff9d;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+        .profile:hover {
+            transform: translateY(-15px); /* Move up on hover */
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .profile:hover img {
+            border-color: #00cc7d;
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+        }
+
+        .nickname {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff9d;
+            margin-top: 20px;
+            text-shadow: 0 0 5px rgba(0, 255, 157, 0.3);
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            background: #00ff9d;
+            color: #1a1a1a;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            background: #00cc7d;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <button class="home-button" onclick="location.href='/'">HOME</button>
+    <div class="container">
+        <div class="profile">
+            <a href="https://profile.intra.42.fr/users/ikhristi" target="_blank">
+                <img src="ikhristi.jpg" alt="ikhristi">
+                <div class="nickname">ikhristi</div>
+            </a>
+        </div>
+        <div class="profile">
+            <a href="https://profile.intra.42.fr/users/rkrechun" target="_blank">
+                <img src="rkrechun.png" alt="rkrechun">
+                <div class="nickname">rkrechun</div>
+            </a>
+        </div>
+        <div class="profile">
+            <a href="https://profile.intra.42.fr/users/oruban" target="_blank">
+                <img src="oruban.jpeg" alt="oruban">
+                <div class="nickname">oruban</div>
+            </a>
+        </div>
+    </div>
 </body>
 </html>

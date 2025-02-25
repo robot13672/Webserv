@@ -314,7 +314,7 @@
 </html> -->
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -460,7 +460,7 @@
     </style>
 </head>
 <body>
-    <button class="home-button" onclick="location.href='/'">HOME</button>
+    <button class="home-button" onclick="location.href='/'">HOME</button> -->
 
     <!-- <form id="uploadForm" enctype="multipart/form-data">
         <div class="upload-area" id="uploadArea">
@@ -479,7 +479,7 @@
         </div>
     </form> -->
 
-    <form id="uploadForm" enctype="multipart/form-data">
+    <!-- <form id="uploadForm" enctype="multipart/form-data">
         <div class="upload-area" id="uploadArea">
             <p>Перетащите файл сюда или</p>
             <input type="file" id="fileInput" name="file">
@@ -588,6 +588,244 @@
                 }
             } catch (error) {
                 showError("Ошибка сети: " + error.message);
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Code+Pro:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #1a1a1a;
+            font-family: 'Roboto', sans-serif;
+            padding: 20px;
+            color: #fff;
+        }
+
+        form {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .upload-area {
+            width: 100%;
+            min-height: 200px;
+            padding: 40px;
+            border: 2px dashed #00ff9d;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area.dragover {
+            background: rgba(0, 255, 157, 0.1);
+            border-color: #00ff9d;
+        }
+
+        .upload-area p {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .upload-button {
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            background: #00ff9d;
+            color: #1a1a1a;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .upload-button:hover {
+            background: #00cc7d;
+            transform: translateY(-2px);
+        }
+
+        .selected-file {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            display: none;
+            word-break: break-all;
+            max-width: 100%;
+        }
+
+        .error-message {
+            color: #ff4444;
+            margin-top: 10px;
+            padding: 10px;
+            display: none;
+        }
+
+        .success-message {
+            color: #00ff9d;
+            margin-top: 10px;
+            padding: 10px;
+            display: none;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            background: #00ff9d;
+            color: #1a1a1a;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            background: #00cc7d;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <button class="home-button" onclick="location.href='/'">HOME</button>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <div class="upload-area" id="uploadArea">
+            <input type="file" id="fileInput" name="file" style="display: none;">
+            <p>Drag & drop files here or</p>
+            <button type="button" class="upload-button" onclick="document.getElementById('fileInput').click()">
+                Choose File
+            </button>
+            <div id="selectedFile" class="selected-file"></div>
+        </div>
+        <button type="submit" class="upload-button">Upload File</button>
+        <div id="errorMessage" class="error-message"></div>
+        <div id="successMessage" class="success-message"></div>
+        <button type="button" class="upload-button" onclick="location.href='/list'" style="display: none;" id="listButton">
+            View Files List
+        </button>
+    </form>
+    <script>
+         const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const uploadForm = document.getElementById('uploadForm');
+        const selectedFile = document.getElementById('selectedFile');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        function showSelectedFile(file) {
+            selectedFile.textContent = `Selected file: ${file.name} (${formatSize(file.size)})`;
+            selectedFile.style.display = 'block';
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+        }
+
+        function formatSize(bytes) {
+            if (bytes < 1024) return bytes + " B";
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + " KB";
+            if (bytes < 1024 * 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+            return (bytes / (1024 * 1024 * 1024)).toFixed(2) + " GB";
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+        }
+
+        function showSuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+        }
+        function showSuccess(message) {
+    successMessage.textContent = message;
+    successMessage.style.display = 'block';
+    errorMessage.style.display = 'none';
+    document.getElementById('listButton').style.display = 'block';
+}
+        // Drag and drop handlers
+        uploadArea.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (event) => {
+            event.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const file = event.dataTransfer.files[0];
+            fileInput.files = event.dataTransfer.files;
+            showSelectedFile(file);
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                showSelectedFile(file);
+            }
+        });
+
+        uploadForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const file = fileInput.files[0];
+            if (!file) {
+                showError("Chose file before upload.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            try {
+                const response = await fetch('/upload', {
+                    method: "POST",
+                    body: formData
+                });
+                
+                const text = await response.text();
+                
+                if (response.ok) {
+                    showSuccess("File succesfull upload!");
+                    fileInput.value = '';
+                    selectedFile.style.display = 'none';
+                } else {
+                    showError("Error: upload file " + text);
+                }
+            } catch (error) {
+                showError("Problem with network: " + error.message);
                 console.error(error);
             }
         });

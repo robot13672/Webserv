@@ -536,6 +536,10 @@ void HttpResponse::sendFile() {
                 setHeader("Content-Type", "text/html");
             else if (ext == "css") 
                 setHeader("Content-Type", "text/css");
+            else if (ext == "txt") 
+                setHeader("Content-Type", "text/plain");
+            else if (ext == "jpeg")
+                setHeader("Content-Type", "image/jpeg");
             else if (ext == "js") 
                 setHeader("Content-Type", "application/javascript");
             else if (ext == "png") 
