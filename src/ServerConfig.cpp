@@ -204,14 +204,14 @@ void ServerConfig::parseConfig(const std::string &filename)
         std::string key;
         iss >> key; //Извлекаем первое слово строки и сохраняем его в var key
 
-        if (key == "location")
+		if (key == "location")
         {
 			iss >> currentLocation;
 			// std::cout << RED << "Locatioin found: " << currentLocation << std::endl << RESET; //debug
-            if (!currentLocation.empty() && currentLocation[currentLocation.size() - 1] == '{')
+            inLocationBlock = true;
+			if (!currentLocation.empty() && currentLocation[currentLocation.size() - 1] == '{')
 			{
                 currentLocation.erase(currentLocation.size() - 1); // Удаление последнего символа '{'
-				inLocationBlock = true;
             }
         }
 		else if (key == "}")
@@ -226,8 +226,8 @@ void ServerConfig::parseConfig(const std::string &filename)
 			{
 				methods.push_back(method);
 			}
-			// std::cout << GREEN << currentLocatio<< std::endl << RESET; //debug
-			// std::cout << RED << methods <std::endl << RESET; //debug - is not tb working. no operatoin<< implementejet 0225
+			// std::cout << GREEN << currentLocation << std::endl << RESET; //debug
+            // std::cout << std::endl; // debug
 			setMethods(currentLocation, methods);
         }
 		else if (!inLocationBlock)
@@ -297,3 +297,4 @@ std::ostream& operator<<(std::ostream &os, const ServerConfig &config)
     }
     return os;
 }
+
