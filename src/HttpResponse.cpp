@@ -261,7 +261,11 @@ void HttpResponse::handleDelete(const std::string& filename) {
     //         setErrorResponse(500, "Internal Server Error");
     //     }
     // }
-    std::string fullPath = "upload/" + filename;
+    // std::string fullPath = "upload/" + filename;
+
+    std::string fullPath;
+    fullPath.append("upload/");
+    fullPath.append(filename);
     
     // Check if file exists
     if (access(fullPath.c_str(), F_OK) != 0) {
@@ -313,7 +317,10 @@ std::string HttpResponse::createUniqueFilename(const std::string& dir, const std
         extension = "";
     }
 
-    std::string fullPath = dir + originalName;
+    // std::string fullPath = dir + originalName;
+    std::string fullPath;
+    fullPath.append(dir);
+    fullPath.append(originalName);
     if (access(fullPath.c_str(), F_OK) != 0) {
         return fullPath;
     }
@@ -436,13 +443,21 @@ bool HttpResponse::isFileAccessible() {
             // If path has an extension (e.g. /about.html)
             std::string extension = _path.substr(dotPos);
             if (extension == ".png" || extension == ".jpg" || extension == ".jpeg") {
-                localPath = "assets/html" + _path;
+                // localPath = "assets/html" + _path;
+                localPath = "assets/html";
+                localPath.append(_path);
             } else {
-                localPath = "assets/html" + _path + ".html";
+                // localPath = "assets/html" + _path + ".html";
+                localPath = "assets/html";
+                localPath.append(_path);
+                localPath.append(".html");
             }
         } else {
             // No extension found, add .html
-            localPath = "assets/html" + _path + ".html";
+            // localPath = "assets/html" + _path + ".html";
+            localPath = "assets/html";
+            localPath.append(_path);
+            localPath.append(".html");
         }
     }
     std::cout << "Path: " << _path << std::endl;           
@@ -491,19 +506,41 @@ void HttpResponse::sendFile() {
     if (_path == "/")
         localPath = "assets/html/index.html";
     else {
+        // size_t dotPos = _path.find_last_of('.');
+        // if (dotPos != std::string::npos) {
+        //     // If path has an extension (e.g. /about.html)
+        //     std::string extension = _path.substr(dotPos);
+        //     if (extension == ".png" || extension == ".jpg" || extension == ".jpeg") {
+        //         localPath = "assets/html" + _path;
+        //     } else {
+        //         localPath = "assets/html" + _path + ".html";
+        //     }
+        // } else {
+        //     // No extension found, add .html
+        //     localPath = "assets/html" + _path + ".html";
+        // }
         size_t dotPos = _path.find_last_of('.');
         if (dotPos != std::string::npos) {
             // If path has an extension (e.g. /about.html)
             std::string extension = _path.substr(dotPos);
             if (extension == ".png" || extension == ".jpg" || extension == ".jpeg") {
-                localPath = "assets/html" + _path;
+                // localPath = "assets/html" + _path;
+                localPath = "assets/html";
+                localPath.append(_path);
             } else {
-                localPath = "assets/html" + _path + ".html";
+                // localPath = "assets/html" + _path + ".html";
+                localPath = "assets/html";
+                localPath.append(_path);
+                localPath.append(".html");
             }
         } else {
             // No extension found, add .html
-            localPath = "assets/html" + _path + ".html";
+            // localPath = "assets/html" + _path + ".html";
+            localPath = "assets/html";
+            localPath.append(_path);
+            localPath.append(".html");
         }
+    
     }
     // else if (filePath.find_last_of('.'))
     //     localPath = "assets/html/" + filePath;
