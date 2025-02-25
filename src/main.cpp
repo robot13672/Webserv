@@ -1,6 +1,5 @@
 #include "../inc/Webserv.hpp"
 #include "../inc/Server.hpp"
-#include "../inc/Colors.hpp" // roi colors for debugging roi 0225
 
 
 void signalHandler(int signum) {

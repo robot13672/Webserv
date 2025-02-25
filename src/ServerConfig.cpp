@@ -168,23 +168,8 @@ long ServerConfig::getMaxBodySize()
 // }
 
 /* 
-	sets methods for all locations. : - roi 0225 
-	Rewrited Kirills's function. Pure technically to be able to compile ServerConfgi.cpp. Still do understand in full connection betwwenn
-	- map <string, vector <string>> _methods  and this function
- */
-// void ServerConfig::setMethods(const std::vector<std::string> &methods)
-// {
-//     for (std::map<std::string, std::vector<std::string> >::iterator it = _methods.begin(); it != _methods.end(); ++it)
-//     {
-//         it->second = methods;
-//     }
-// }
-
-
-/* 
 	3d verstion because every location has its own methods. - roi 0225
 */
-
 void ServerConfig::setMethods(const std::string &location, const std::vector<std::string> &methods)
 {
 	_methods[location] = methods;
@@ -198,29 +183,30 @@ const char *ServerConfig::NoFileError::what() const throw()
 
 /* 
 	parsing started with methods - roi 0225
+	Если директива allow_methods отсутствует, NGINX обрабатвает все методы HTTP-запросов для этой локации.
+	Поэтому такая локация и методы не попадают в мапу methods (std::map<std::string, std::vector <std::string> > 	_methods;)  
  */
 void ServerConfig::parseConfig(const std::string &filename)
 {
-	std::cout << "roi debug: string(argv[1]) = " << filename << std::endl;  // debug
-	std::ifstream file(filename.c_str()); // Преобразование std::string в const char*
+	// std::cout << "roi debug: string(argv[1]) = " << filename << std::endl;  // debug
+	std::ifstream file(filename.c_str()); // Преобразование std::string в const char* and initiation of input file stream
     if (!file.is_open())
 	{
         throw NoFileError();
-		// std::cerr << "Error: Could not open file " << filename << std::endl;
-        // return;
     }
 
     std::string line;
     std::string currentLocation;
-    while (std::getline(file, line))
+    while (std::getline(file, line)) // Читаем файл построчно с помощью
 	{
-        std::istringstream iss(line);
+        std::istringstream iss(line); //4каждой строки создаем поток 4 разбора строки
         std::string key;
-        iss >> key;
+        iss >> key; //Извлекаем первое слово строки и сохраняем его в var key
 
         if (key == "location")
         {
-            iss >> currentLocation;
+			iss >> currentLocation;
+			// std::cout << RED << "Locatioin found: " << currentLocation << std::endl << RESET; //debug
             if (!currentLocation.empty() && currentLocation[currentLocation.size() - 1] == '{')
 			{
                 currentLocation.erase(currentLocation.size() - 1); // Удаление последнего символа '{'
@@ -233,6 +219,8 @@ void ServerConfig::parseConfig(const std::string &filename)
 					{
 						methods.push_back(method);
 					}
+					// std::cout << GREEN << currentLocation << std::endl << RESET; //debug
+					// std::cout << RED << methods << std::endl << RESET; //debug - is not to b working. no operatoin<< implemented jet 0225
 					setMethods(currentLocation, methods);
         		}
     }

@@ -31,6 +31,7 @@
 //Пользовательские библиотеки
 
 #include "ServerConfig.hpp"
+#include "../inc/Colors.hpp" // roi colors for debugging roi 0225
 // #include "Server.hpp"
 #include "Logger.hpp"
 // #include "HttpRequest.hpp"
