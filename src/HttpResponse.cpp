@@ -22,7 +22,8 @@ HttpResponse::HttpResponse(const HttpResponse& copy) :
     _body(copy._body),
     _chunked(copy._chunked),
     _method(copy._method),
-    _path(copy._path) {}
+    _path(copy._path),
+    _request(copy._request) {}
 
 HttpResponse& HttpResponse::operator=(const HttpResponse& copy) {
     if (this != &copy) {
@@ -35,6 +36,7 @@ HttpResponse& HttpResponse::operator=(const HttpResponse& copy) {
         _chunked = copy._chunked;
         _path = copy._path;
         _method = copy._method;
+        _request = copy._request;
     }
     return *this;
 }
@@ -146,6 +148,58 @@ void HttpResponse::handleDelete(const std::string& path) {
     }
 }
 
+std::string HttpResponse::getOriginalFilename(const std::string& body) {
+    std::string filename;
+    size_t filenameStart = body.find("filename=\"");
+    
+    if (filenameStart != std::string::npos) {
+        filenameStart += 10; // length of 'filename="'
+        size_t filenameEnd = body.find("\"", filenameStart);
+        if (filenameEnd != std::string::npos) {
+            filename = body.substr(filenameStart, filenameEnd - filenameStart);
+        }
+    }
+    return filename;
+}
+
+std::string HttpResponse::createUniqueFilename(const std::string& dir, const std::string& originalName) {
+    std::string baseName;
+    std::string extension;
+    size_t dotPos = originalName.find_last_of('.');
+    
+    if (dotPos != std::string::npos) {
+        baseName = originalName.substr(0, dotPos);
+        extension = originalName.substr(dotPos);
+    } else {
+        baseName = originalName;
+        extension = "";
+    }
+
+    std::string fullPath = dir + originalName;
+    if (access(fullPath.c_str(), F_OK) != 0) {
+        return fullPath;
+    }
+
+    size_t openParenPos = baseName.find_last_of('(');
+    size_t closeParenPos = baseName.find_last_of(')');
+    int counter = 1;
+    std::string newPath;
+    if (openParenPos != std::string::npos && closeParenPos != std::string::npos){
+        std::string counterStr = baseName.substr(openParenPos + 1, closeParenPos - openParenPos - 1);
+        counter = atoi(counterStr.c_str());
+        counter++;
+        baseName = baseName.substr(0, openParenPos);
+    }
+    do {
+        std::stringstream ss;
+        ss << dir << baseName << "(" << counter << ")" << extension;
+        newPath = ss.str();
+        counter++;
+    } while (access(newPath.c_str(), F_OK) == 0);
+
+    return newPath;
+}
+
 void HttpResponse::handlePost() {
     // 1. Check if request has Content-Type header
 
@@ -156,7 +210,7 @@ void HttpResponse::handlePost() {
     if (stat(dir.c_str(), &st) != 0) {
         // Создаем если не существует
         if (mkdir(dir.c_str(), 0777) != 0) {
-            setErrorResponse(500, "Internal Server Error: Cannot create directory");
+            setErrorResponse(500, "Cannot create directory");
             return;
         }
     }
@@ -179,9 +233,21 @@ void HttpResponse::handlePost() {
         return;
     }
     
-    std::string boundary = "--" + contentType.substr(boundaryPos + 9);
+    // std::string boundary = "--" + contentType.substr(boundaryPos + 9);
+    std::string boundary;
+    if (boundaryPos != std::string::npos) {
+        boundary.append("--");
+        boundary.append(contentType.substr(boundaryPos + 9));
+    }
+
     const std::string& body = _request.getBody();
     
+    std::string originalName = getOriginalFilename(body);
+    if (originalName.empty()) {
+        setErrorResponse(400, "Bad Request: No filename found");
+        return;
+    }
+
     // 3. Find start of file data
     size_t headerEnd = body.find("\r\n\r\n");
     if (headerEnd == std::string::npos) {
@@ -200,9 +266,12 @@ void HttpResponse::handlePost() {
     std::string fileContent = body.substr(fileStart, fileEnd - fileStart);
 
     // 5. Save file
-    std::string fileName = dir + intToString(time(NULL)) + ".png";
-    std::ofstream outFile(fileName.c_str(), std::ios::binary);
+   // std::string fileName = dir + intToString(time(NULL)) + ".png";
     
+   std::string finalPath = createUniqueFilename(dir, originalName);
+//    std::ofstream outFile(fileName.c_str(), std::ios::binary);
+    std::ofstream outFile;
+    outFile.open(finalPath.c_str(), std::ios::binary);
     if (!outFile.is_open()) {
         setErrorResponse(500, "Internal Server Error: Cannot create file");
         return;
@@ -214,7 +283,7 @@ void HttpResponse::handlePost() {
     // 6. Set success response
     setStatus(201, "Created");
     setHeader("Content-Type", "text/plain");
-    setBody("File successfully uploaded as: " + fileName);
+    setBody("File successfully uploaded as: " + finalPath);
 }
 
 bool HttpResponse::isFileAccessible() {
@@ -359,7 +428,7 @@ void HttpResponse::sendFile() {
 }
 
 std::string HttpResponse::toString() const {
-    std::ostringstream response;
+    std::stringstream response;
     
     response << _httpVersion << " " << _statusCode << " " << _statusMessage << "\r\n";
     

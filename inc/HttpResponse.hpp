@@ -4,6 +4,7 @@
 
 #include "Webserv.hpp"
 #include "HttpRequest.hpp"
+// #include "Mime.hpp"
 
 // class HttpResponse
 // {
@@ -36,6 +37,8 @@ private:
     std::string _response;
     std::string _path;
     std::string _method;
+    std::string getOriginalFilename(const std::string& body);
+    std::string createUniqueFilename(const std::string& dir, const std::string& originalName);
 
 public:
     HttpResponse();
