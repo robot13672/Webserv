@@ -1,0 +1,306 @@
+<!-- <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список загруженных файлов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .delete-btn img {
+            width: 20px;
+            height: 20px;
+        }
+        .home-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        background: #28a745;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .home-button:hover {
+        background: #218838;
+    }
+    </style>
+</head>
+<body>
+    <button class="home-button" onclick="location.href='/'">HOME</button>
+    <h2>Список загруженных файлов</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Имя файла</th>
+                <th>Размер</th>
+                <th>Удалить</th>
+            </tr>
+        </thead>
+        <tbody id="fileTableBody">
+            <tr>
+                <td colspan="3">Загрузка...</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        async function loadFiles() {
+            try {
+                let response = await fetch('/list-files');
+                if (!response.ok) throw new Error("Ошибка загрузки списка файлов");
+
+                let files = await response.json();
+                let tableBody = document.getElementById("fileTableBody");
+                tableBody.innerHTML = "";
+
+                if (files.length === 0) {
+                    tableBody.innerHTML = "<tr><td colspan='3'>Файлов нет</td></tr>";
+                    return;
+                }
+
+                files.forEach(file => {
+                    let row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${file.name}</td>
+                        <td>${formatSize(file.size)}</td>
+                        <td>
+                            <button class="delete-btn" onclick="deleteFile('${file.name}')">
+                                <img src="https://img.icons8.com/ios-filled/50/fa314a/trash.png" alt="Удалить">
+                            </button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error(error);
+                document.getElementById("fileTableBody").innerHTML = 
+                    "<tr><td colspan='3'>Ошибка загрузки списка файлов</td></tr>";
+            }
+        }
+
+        function formatSize(bytes) {
+            if (bytes < 1024) return bytes + " Б";
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " КБ";
+            return (bytes / (1024 * 1024)).toFixed(1) + " МБ";
+        }
+
+        async function deleteFile(fileName) {
+            if (!confirm(`Удалить файл ${fileName}?`)) return;
+
+            try {
+                let response = await fetch('/delete-file', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: fileName })
+                });
+
+                if (!response.ok) throw new Error("Ошибка удаления файла");
+
+                alert(`Файл ${fileName} удален`);
+                loadFiles();
+            } catch (error) {
+                console.error(error);
+                alert("Ошибка удаления файла");
+            }
+        }
+
+        window.onload = loadFiles;
+    </script>
+</body>
+</html> -->
+
+
+<!-- /html/list.html --> -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список загруженных файлов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .delete-btn img {
+            width: 20px;
+            height: 20px;
+        }
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .home-button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <button class="home-button" onclick="location.href='/'">HOME</button>
+    <h2>Список загруженных файлов</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Имя файла</th>
+                <th>Размер</th>
+                <th>Удалить</th>
+            </tr>
+        </thead>
+        <tbody id="fileTableBody">
+            <tr>
+                <td colspan="3">Загрузка...</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function formatFileSize(bytes) {
+            if (bytes < 1024) {
+                return bytes + " B";
+            } else if (bytes < 1024 * 1024) {
+                return (bytes / 1024).toFixed(2) + " KB";
+            } else if (bytes < 1024 * 1024 * 1024) {
+                return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+            }
+            return (bytes / (1024 * 1024 * 1024)).toFixed(2) + " GB";
+        }
+
+        // async function deleteFile(fileName) {
+        //     if (!confirm(`Удалить файл ${fileName}?`)) return;
+
+        //     try {
+        //         let response = await fetch('/delete-file', {
+        //             method: 'DELETE',
+        //             headers: { 'Content-Type': 'application/json' },
+        //             body: JSON.stringify({ name: fileName })
+        //         });
+
+        //         if (!response.ok) throw new Error("Ошибка удаления файла");
+
+        //         alert(`Файл ${fileName} удален`);
+        //         loadFiles();
+        //     } catch (error) {
+        //         console.error(error);
+        //         alert("Ошибка удаления файла");
+        //     }
+        // }
+        async function deleteFile(fileName) {
+        if (!confirm(`Удалить файл ${fileName}?`)) return;
+
+        try {
+            const response = await fetch('/delete-file', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: fileName  // Send just the filename
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // Reload the file list after successful deletion
+            await loadFiles();
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Ошибка при удалении файла');
+        }
+        }
+
+        async function loadFiles() {
+            try {
+                let response = await fetch('/list-files');
+                if (!response.ok) throw new Error("Ошибка загрузки списка файлов");
+
+                let files = await response.json();
+                let tableBody = document.getElementById("fileTableBody");
+                tableBody.innerHTML = "";
+
+                if (files.length === 0) {
+                    tableBody.innerHTML = "<tr><td colspan='3'>Файлов нет</td></tr>";
+                    return;
+                }
+
+                files.forEach(file => {
+                    let row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${file.name}</td>
+                        <td>${formatFileSize(parseInt(file.size))}</td>
+                        <td>
+                            <button class="delete-btn" onclick="deleteFile('${file.name}')">
+                                <img src="https://img.icons8.com/ios-filled/50/fa314a/trash.png" alt="Удалить">
+                            </button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error(error);
+                document.getElementById("fileTableBody").innerHTML = 
+                    "<tr><td colspan='3'>Ошибка загрузки списка файлов</td></tr>";
+            }
+        }
+
+        window.onload = loadFiles;
+    </script>
+</body>
+</html>

@@ -79,6 +79,7 @@ public:
     void handleResponse(const HttpRequest request) ;
     void setPath(const std::string& path) { _path = path; }
     void setMethod(const std::string& method) { _method = method; }
+    void handleListFiles();
 };
 
 #endif
