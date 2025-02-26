@@ -161,7 +161,6 @@ long ServerConfig::getMaxBodySize() const
 	return _max_body_size;
 }
 
-// made by Kirill
 // void ServerConfig::setMethods(std::vector<std::string> methods)
 // {
 //     _methods = methods;
@@ -242,6 +241,8 @@ void ServerConfig::parseConfig(const std::string &filename)
             {
 				std::string serverName;
                 iss >> serverName;
+				if (!serverName.empty() && serverName[serverName.size() - 1] == ';')
+                    serverName.erase(serverName.size() - 1); // Удаление точки с запятой в конце строки somehow the ';' if any
                 setName(serverName);
             }
             else if (key == "host")
@@ -249,21 +250,23 @@ void ServerConfig::parseConfig(const std::string &filename)
 				std::string host;
                 iss >> host;
                 if (!host.empty() && host[host.size() - 1] == ';')
-                {
-                    host.erase(host.size() - 1); // Удаление точки с запятой в конце строки somehow the ';' at the end is not critical for other server attributes from *.conf file
-                }
+                    host.erase(host.size() - 1); // Удаление в конце строки somehow the ';', if any
                 setHost(host);
             }
             else if (key == "root")
             {
                 std::string root;
                 iss >> root;
+				if (!root.empty() && root[root.size() - 1] == ';')
+					root.erase(root.size() - 1); // Удаление в конце строки somehow the ';', if any
                 setRoot(root);
             }
             else if (key == "index")
             {
                 std::string index;
                 iss >> index;
+				if (!index.empty() && index[index.size() - 1] == ';')
+					index.erase(index.size() - 1); // Удаление в конце строки somehow the ';', if any
                 setIndex(index);
             }
             else if (key == "error_page")
@@ -271,6 +274,8 @@ void ServerConfig::parseConfig(const std::string &filename)
                 short errorCode;
                 std::string errorPage;
                 iss >> errorCode >> errorPage;
+				if (!errorPage.empty() && errorPage[errorPage.size() - 1] == ';')
+					errorPage.erase(errorPage.size() - 1); // Удаление в конце строки somehow the ';', if any
                 _errorPages[errorCode] = errorPage;
             }
         }
