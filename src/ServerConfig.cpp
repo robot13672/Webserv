@@ -139,14 +139,14 @@ void ServerConfig::setLogDirection(std::string logDirection)
 	//     return _host;
 	// }
 	
-	std::string ServerConfig::getHost()
+	std::string ServerConfig::getHost() const
 	{
 		struct in_addr addr;
 		addr.s_addr = _host;
 		return std::string(inet_ntoa(addr));
 	}
 	
-u_int16_t ServerConfig::getPort()
+u_int16_t ServerConfig::getPort() const
 {
 	return _port;
 }
@@ -156,7 +156,7 @@ int ServerConfig::getListenFd()
 	return _listen_fd;
 }
 
-long ServerConfig::getMaxBodySize()
+long ServerConfig::getMaxBodySize() const
 {
 	return _max_body_size;
 }
@@ -285,6 +285,33 @@ void ServerConfig::parseConfig(const std::string &filename)
  */
 std::ostream& operator<<(std::ostream &os, const ServerConfig &config)
 {
+    os << "ServerConfig:\n";
+    os << "Host: " << config.getHost() << "\n";
+    os << "Port: " << config.getPort() << "\n";
+    os << "Max Body Size: " << config.getMaxBodySize() << "\n";
+    os << "Server Name: " << config._name << "\n";
+    os << "Root: " << config._root << "\n";
+    os << "Index: " << config._index << "\n";
+    os << "Error Pages:\n";
+    for (std::map<short, std::string>::const_iterator it = config._errorPages.begin(); it != config._errorPages.end(); ++it)
+    {
+        os << "  Error Code: " << it->first << " Page: " << it->second << "\n";
+    }
+    os << "Methods:\n";
+    for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._methods.begin(); it != config._methods.end(); ++it)
+    {
+        os << "  Location: " << it->first << " Methods: ";
+        for (std::vector<std::string>::const_iterator method_it = it->second.begin(); method_it != it->second.end(); ++method_it)
+        {
+            os << *method_it << " ";
+        }
+        os << "\n";
+    }
+    os << "Log Direction: " << config._logDirection << "\n";
+    return os;
+}
+/* std::ostream& operator<<(std::ostream &os, const ServerConfig &config)
+{
     os << "ServerConfig Methods:\n";
     for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._methods.begin(); it != config._methods.end(); ++it)
 	{
@@ -296,5 +323,5 @@ std::ostream& operator<<(std::ostream &os, const ServerConfig &config)
         os << "\n";
     }
     return os;
-}
+} */
 

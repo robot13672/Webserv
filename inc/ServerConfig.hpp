@@ -56,10 +56,10 @@ class ServerConfig
         void setLogDirection(std::string logDirection);
         //GET
         // in_addr_t getHost(void);
-        std::string getHost();
-        u_int16_t getPort(void);
+        std::string getHost() const;
+        u_int16_t getPort(void) const;
         int getListenFd(void);
-        long getMaxBodySize(void);
+        long getMaxBodySize(void) const;
 		
 		
         // void setMethods(const std::vector<std::string> &methods); // made by Kirrill b4 methods a map became - comment by roi 0224
