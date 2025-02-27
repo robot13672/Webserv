@@ -31,8 +31,15 @@ class ServerConfig
 		std::map<short, std::string> 						_errorPages; 	// пути на страницы с ошибками
 		// std::vector<LocationConfig>		_locations;     // конфигурации блоков location	 by roi
 		std::map<std::string, std::vector <std::string> > 	_methods;     	// допустимые методы	 by roi
-		// Индексация будет по location(string), а значение будет вектор, который хранит все допустимые методы, _methods["root"][1] = {"GET", "POST", "DELETE"} 
+		// Индексация по location(string), а значение будет вектор, который хранит все допустимые методы, _methods["root"][1] = {"GET", "POST", "DELETE"} 
 		
+		// Новые атрибуты для хранения директив внутри блоков location - roi 0227
+		std::map<std::string, std::string> _locationRoots; //location /cgi-bin { /n root ./;
+		std::map<std::string, std::string> _locationIndexes; // location /tours { /n 	index tours1.html;
+		std::map<std::string, std::vector<std::string> > _locationCgiPaths; // location /cgi-bin { /n cgi_path /usr/bin/python3 /bin/bash;
+		std::map<std::string, std::vector<std::string> > _locationCgiExts; // 	location /red { /n	return /tours;
+		std::map<std::string, bool> _locationAutoindex; // Для хранения значения директивы autoindex для каждой локации likeL: 'autoindex off;'
+
 		struct sockaddr_in									_adress;		// is not taken from conf file!!
 		int													_listen_fd;		// is not taken from conf file!!
 		std::string											_logDirection;  //директория для логирование
