@@ -187,9 +187,10 @@ const char *ServerConfig::NoFileError::what() const throw()
  */
 void ServerConfig::parseConfig(const std::string &filename)
 {
-	std::cout << "roi debug: string(argv[1]) = " << filename << std::endl;  // debug
+	// std::cout << "roi debug: string(argv[1]) = " << filename << std::endl;  // debug
 	std::ifstream file(filename.c_str()); // Преобразование std::string в const char* and initiation of input file stream
-    if (!file.is_open())
+    bool clientMaxBodySizeSet = false;
+	if (!file.is_open())
 	{
         throw NoFileError();
     }
@@ -280,9 +281,19 @@ void ServerConfig::parseConfig(const std::string &filename)
 					errorPage.erase(errorPage.size() - 1); // Удаление в конце строки somehow the ';', if any
                 _errorPages[errorCode] = errorPage;
             }
+			else if (key == "client_max_body_size")
+            {
+                long maxBodySize;
+                iss >> maxBodySize;
+                setMaxBodySize(maxBodySize);
+                clientMaxBodySizeSet = true;
+            }
         }
     }
-    file.close();
+    // Устанавливаем значение по умолчанию, если директива client_max_body_size отсутствует
+	if (!clientMaxBodySizeSet)
+		setMaxBodySize(200000);
+	file.close();
 }
 
 /* 
@@ -313,21 +324,7 @@ std::ostream& operator<<(std::ostream &os, const ServerConfig &config)
         }
         os << "\n";
     }
-    os << "Log Direction: " << config._logDirection << "\n";
+    // os << "Log Direction: " << config._logDirection << "\n"; // pure theoretically might be needed
     return os;
 }
-/* std::ostream& operator<<(std::ostream &os, const ServerConfig &config)
-{
-    os << "ServerConfig Methods:\n";
-    for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._methods.begin(); it != config._methods.end(); ++it)
-	{
-        os << "Location: " << it->first << " Methods: ";
-        for (std::vector<std::string>::const_iterator method_it = it->second.begin(); method_it != it->second.end(); ++method_it)
-		{
-            os << *method_it << " ";
-        }
-        os << "\n";
-    }
-    return os;
-} */
 
