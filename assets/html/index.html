@@ -253,6 +253,15 @@
             margin-bottom: 40px;
             text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
         }
+        .nav button.cgi-button {
+        background: #ff6b6b;  /* Особый цвет для CGI кнопки */
+        color: #fff;
+        }
+
+        .nav button.cgi-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -262,6 +271,24 @@
         <button onclick="location.href='/media'">MEDIA</button>
         <button onclick="location.href='/upload'">UPLOAD</button>
         <button onclick="location.href='/list'">LIST</button>
+        <button class="cgi-button" onclick="location.href='/cgi'">CGI</button>
     </div>
+    <!-- <script>
+        async function executeCgiScript() {
+            try {
+                const response = await fetch('/cgi-bin/login.py');
+                if (!response.ok) {
+                    throw new Error('CGI execution failed');
+                }
+                const result = await response.text();
+                // Open result in new tab
+                const newTab = window.open('about:blank', '_blank');
+                newTab.document.write(result);
+                newTab.document.close();
+            } catch (error) {
+                alert('Error executing CGI script: ' + error.message);
+            }
+        }
+    </script> -->
 </body>
 </html>

@@ -23,7 +23,6 @@ void HttpRequest::clear()
     headers.clear();
     path.clear();          
     queryParams.clear();   
-    maxBodySize = 0;      
     isChunked = false;    
     isDone = false;       
     isCGI = false;        

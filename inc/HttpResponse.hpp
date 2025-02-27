@@ -39,6 +39,7 @@ private:
     std::string _method;
     std::string getOriginalFilename(const std::string& body);
     std::string createUniqueFilename(const std::string& dir, const std::string& originalName);
+    void handleCgi();
 
 public:
     HttpResponse();
@@ -80,6 +81,7 @@ public:
     void setPath(const std::string& path) { _path = path; }
     void setMethod(const std::string& method) { _method = method; }
     void handleListFiles();
+
 };
 
 #endif
