@@ -17,6 +17,11 @@ by roi
 // };
 // std::map Servers<int, ServerConfig>;
 
+
+// std::vector <std::ServerConfig>;
+
+// std::vector<ServerConfig> serverConfigs;
+
 class LocationConfig;
 
 class ServerConfig

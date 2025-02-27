@@ -1,5 +1,6 @@
 #include "../inc/ServerConfig.hpp"
 
+
 ServerConfig::ServerConfig(std::string host, u_int16_t port) //для эмуляции отработанного конфиг файла
 {
     _host = inet_addr(host.c_str()); // Example IP address
@@ -205,7 +206,7 @@ long ServerConfig::getMaxBodySize() const
     return "";
 } */
 /* 
-// temporeray commentd roi 0227
+// temporery commentd roi 0227
 std::string ServerConfig::getLocationIndex(const std::string &location) const
 {
     std::map<std::string, std::string>::const_iterator it = _locationIndexes.find(location);
