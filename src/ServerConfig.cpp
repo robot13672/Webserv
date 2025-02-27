@@ -223,6 +223,8 @@ void ServerConfig::parseConfig(const std::string &filename)
 			std::string method;
 			while (iss >> method)
 			{
+				if (!method.empty() && method[method.size() - 1] == ';')
+                    method.erase(method.size() - 1); // Удаление точки с запятой в конце строки somehow the ';' if any
 				methods.push_back(method);
 			}
 			// std::cout << GREEN << currentLocation << std::endl << RESET; //debug
@@ -280,7 +282,6 @@ void ServerConfig::parseConfig(const std::string &filename)
             }
         }
     }
-
     file.close();
 }
 
