@@ -11,7 +11,7 @@ void signalHandler(int signum) {
 
 int main(int argc, char **argv)
 {
-	ServerConfig a;
+	ParsedServerConfig a;
 	std::string confLoc;
 	if(argc == 1 || argc == 2)
 	{
