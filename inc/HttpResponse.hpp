@@ -4,6 +4,7 @@
 
 #include "Webserv.hpp"
 #include "HttpRequest.hpp"
+#include "CGI.hpp"
 // #include "Mime.hpp"
 
 // class HttpResponse
@@ -24,6 +25,8 @@
 #include <string>
 #include <map>
 
+class CGI;
+
 class HttpResponse {
 private:
     ServerConfig _server;
@@ -40,6 +43,7 @@ private:
     std::string getOriginalFilename(const std::string& body);
     std::string createUniqueFilename(const std::string& dir, const std::string& originalName);
     void handleCgi();
+    CGI*  cgi;
 
 public:
     HttpResponse();

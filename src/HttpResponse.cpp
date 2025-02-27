@@ -11,7 +11,8 @@ HttpResponse::HttpResponse() :
     _statusMessage("OK"),
     _chunked(false),
     _path(""),
-    _method(""){}
+    _method(""), 
+    cgi(new CGI()){}
 
 HttpResponse::HttpResponse(const HttpResponse& copy) :
     _server(copy._server),
@@ -44,6 +45,7 @@ HttpResponse& HttpResponse::operator=(const HttpResponse& copy) {
 HttpResponse::~HttpResponse() {
     _headers.clear();
     _body.clear();
+    delete cgi;
 }
 
 void HttpResponse::setServer(ServerConfig &serv) {
@@ -124,6 +126,13 @@ void HttpResponse::handleRequest() {
     if (_path == "/list-files") {
         handleListFiles();
         return;
+    }
+    if (_path.find("/cgi-bin/") == 0) {
+        CGI cgi;
+        std::cout << "DEBUG: Handling CGI request for path: " << _path << std::endl;
+        if (cgi.handleCgiRequest(_request, *this)) {
+            return;
+        }
     }
 
     if (_method == "DELETE" && _path == "/delete-file") {
