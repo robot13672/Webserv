@@ -101,7 +101,6 @@ void ServerConfig::setHost(std::string host)
         exit(EXIT_FAILURE);
     }
 }
-
 void ServerConfig::setMaxBodySize(long max_body_size)
 {
     _max_body_size = max_body_size;
@@ -126,20 +125,54 @@ void ServerConfig::setErrorPages(std::map<short, std::string> errorPages)
 {
     _errorPages = errorPages;
 }
+/* 
+	3d verstion because every location has its own methods. - roi 0225
+*/
+void ServerConfig::setMethods(const std::string &location, const std::vector<std::string> &methods)
+{
+	_methods[location] = methods;
+}
+// setters of 5 additional attributes in locations - roi 0227
+// void ServerConfig::setLocationRoot(const std::string &location, const std::string &root)
+// {
+//     _locationRoots[location] = root;
+// }
 
+/* 
+// termorary commented - roi 0227
+void ServerConfig::setLocationIndex(const std::string &location, const std::string &index)
+{
+    _locationIndexes[location] = index;
+}
 
+void ServerConfig::setLocationCgiPath(const std::string &location, const std::vector<std::string> &cgiPaths)
+{
+    _locationCgiPaths[location] = cgiPaths;
+}
 
+void ServerConfig::setLocationCgiExt(const std::string &location, const std::vector<std::string> &cgiExts)
+{
+    _locationCgiExts[location] = cgiExts;
+}
+
+void ServerConfig::setLocationAutoindex(const std::string &location, bool autoindex)
+{
+    _locationAutoindex[location] = autoindex;
+}
+ */
+// no such directive seen by me till now - roi 0227
 void ServerConfig::setLogDirection(std::string logDirection)
 {
 	_logDirection = logDirection;
 }
-//GET
+//GETTERS
+
 // in_addr_t ServerConfig::getHost()
 // {
 	//     return _host;
 	// }
 	
-	std::string ServerConfig::getHost() const
+std::string ServerConfig::getHost() const
 	{
 		struct in_addr addr;
 		addr.s_addr = _host;
@@ -161,18 +194,57 @@ long ServerConfig::getMaxBodySize() const
 	return _max_body_size;
 }
 
-// void ServerConfig::setMethods(std::vector<std::string> methods)
-// {
-//     _methods = methods;
-// }
-
-/* 
-	3d verstion because every location has its own methods. - roi 0225
-*/
-void ServerConfig::setMethods(const std::string &location, const std::vector<std::string> &methods)
+// setters of 5 additional attributes in locations - roi 0227
+/* std::string ServerConfig::getLocationRoot(const std::string &location) const
 {
-	_methods[location] = methods;
+    std::map<std::string, std::string>::const_iterator it = _locationRoots.find(location);
+    if (it != _locationRoots.end())
+    {
+        return it->second;
+    }
+    return "";
+} */
+/* 
+// temporeray commentd roi 0227
+std::string ServerConfig::getLocationIndex(const std::string &location) const
+{
+    std::map<std::string, std::string>::const_iterator it = _locationIndexes.find(location);
+    if (it != _locationIndexes.end())
+    {
+        return it->second;
+    }
+    return "";
 }
+
+std::vector<std::string> ServerConfig::getLocationCgiPath(const std::string &location) const
+{
+    std::map<std::string, std::vector<std::string> >::const_iterator it = _locationCgiPaths.find(location);
+    if (it != _locationCgiPaths.end())
+    {
+        return it->second;
+    }
+    return std::vector<std::string>();
+}
+
+std::vector<std::string> ServerConfig::getLocationCgiExt(const std::string &location) const
+{
+    std::map<std::string, std::vector<std::string> >::const_iterator it = _locationCgiExts.find(location);
+    if (it != _locationCgiExts.end())
+    {
+        return it->second;
+    }
+    return std::vector<std::string>();
+}
+
+bool ServerConfig::getLocationAutoindex(const std::string &location) const
+{
+    std::map<std::string, bool>::const_iterator it = _locationAutoindex.find(location);
+    if (it != _locationAutoindex.end())
+    {
+        return it->second;
+    }
+    return false;
+} */
 
 // roi 0225 
 const char *ServerConfig::NoFileError::what() const throw()
@@ -191,9 +263,7 @@ void ServerConfig::parseConfig(const std::string &filename)
 	std::ifstream file(filename.c_str()); // Преобразование std::string в const char* and initiation of input file stream
     bool clientMaxBodySizeSet = false;
 	if (!file.is_open())
-	{
         throw NoFileError();
-    }
 
     std::string line;
     std::string currentLocation;
@@ -210,15 +280,11 @@ void ServerConfig::parseConfig(const std::string &filename)
 			// std::cout << RED << "Locatioin found: " << currentLocation << std::endl << RESET; //debug
             inLocationBlock = true;
 			if (!currentLocation.empty() && currentLocation[currentLocation.size() - 1] == '{')
-			{
                 currentLocation.erase(currentLocation.size() - 1); // Удаление последнего символа '{'
-            }
         }
 		else if (key == "}")
-        {
             inLocationBlock = false;
-        }
-		else if (inLocationBlock && key == "allow_methods")
+		else if (inLocationBlock && key == "allow_methods") // BLOCK 2B RECODED 2 INSERT 5 MORE ATTRBTS
 		{
 			std::vector<std::string> methods;
 			std::string method;

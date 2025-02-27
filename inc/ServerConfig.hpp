@@ -34,11 +34,13 @@ class ServerConfig
 		// Индексация по location(string), а значение будет вектор, который хранит все допустимые методы, _methods["root"][1] = {"GET", "POST", "DELETE"} 
 		
 		// Новые атрибуты для хранения директив внутри блоков location - roi 0227
-		std::map<std::string, std::string> _locationRoots; //location /cgi-bin { /n root ./;
+		// std::map<std::string, std::string> _locationRoots; //location /cgi-bin { /n root ./;
+	/* 
+		// temporally commented - roi 0227
 		std::map<std::string, std::string> _locationIndexes; // location /tours { /n 	index tours1.html;
 		std::map<std::string, std::vector<std::string> > _locationCgiPaths; // location /cgi-bin { /n cgi_path /usr/bin/python3 /bin/bash;
 		std::map<std::string, std::vector<std::string> > _locationCgiExts; // 	location /red { /n	return /tours;
-		std::map<std::string, bool> _locationAutoindex; // Для хранения значения директивы autoindex для каждой локации likeL: 'autoindex off;'
+		std::map<std::string, bool> _locationAutoindex; // Для хранения значения директивы autoindex для каждой локации likeL: 'autoindex off;' */
 
 		struct sockaddr_in									_adress;		// is not taken from conf file!!
 		int													_listen_fd;		// is not taken from conf file!!
@@ -51,7 +53,7 @@ class ServerConfig
         ServerConfig& operator=(const ServerConfig &other); // Copy assignment operator
         //settings
         void setupServer(void);
-        //SET
+        //SETTERS
         void setFd(int fd);
         void setPort(u_int16_t port);
         void setHost(std::string host);
@@ -59,20 +61,34 @@ class ServerConfig
         void setName(std::string name);
         void setRoot(std::string root);
         void setIndex(std::string index);
-        void setErrorPages(std::map<short, std::string> errorPages);//нужно передавать уже заполненую мапу
         void setLogDirection(std::string logDirection);
-        //GET
+        void setErrorPages(std::map<short, std::string> errorPages);//нужно передавать уже заполненую мапу
+		void setMethods(const std::string &location, const std::vector<std::string> &methods);
+		// setters of 5 additional attributes in locations
+		// void setLocationRoot(const std::string &location, const std::string &root);
+		/* 
+		// temporally commented - roi 0227
+		void setLocationIndex(const std::string &location, const std::string &index);
+		void setLocationCgiPath(const std::string &location, const std::vector<std::string> &cgiPaths);
+		void setLocationCgiExt(const std::string &location, const std::vector<std::string> &cgiExts);
+		void setLocationAutoindex(const std::string &location, bool autoindex); */
+        //GETTERS
         // in_addr_t getHost(void);
         std::string getHost() const;
         u_int16_t getPort(void) const;
         int getListenFd(void);
         long getMaxBodySize(void) const;
-		
-		
-        // void setMethods(const std::vector<std::string> &methods); // made by Kirrill b4 methods a map became - comment by roi 0224
-		void setMethods(const std::string &location, const std::vector<std::string> &methods);
+		// setters of 5 additional attributes in locations
+		// std::string getLocationRoot(const std::string &location) const;
+		/* 
+		// temporally commented - roi 0227
+		std::string getLocationIndex(const std::string &location) const;
+		std::vector<std::string> getLocationCgiPath(const std::string &location) const;
+		std::vector<std::string> getLocationCgiExt(const std::string &location) const;
+		bool getLocationAutoindex(const std::string &location) const; */
+
 		void parseConfig(const std::string &filename); //start with methods first - roi 0224
-        friend std::ostream& operator<<(std::ostream &os, const ServerConfig &config); // // Перегрузка оператора << rpi 0224
+        friend std::ostream& operator<<(std::ostream &os, const ServerConfig &config); // Перегрузка оператора << rpi 0224
 		class NoFileError : public std::exception
 		{
 			public:
