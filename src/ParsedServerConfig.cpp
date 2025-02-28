@@ -175,6 +175,37 @@ bool ServerConfig::getLocationAutoindex(const std::string &location) const
     return false;
 } */
 
+/* 
+	Перегрузка оператора << 
+	checks only location and methoes- roi 0225
+ */
+std::ostream& operator<<(std::ostream &os, const ParsedServerConfig &config)
+{
+    os << "ParsedServerConfig:\n";
+    os << "Host: " << config.getHost() << "\n";
+    os << "Port: " << config.getPort() << "\n";
+    os << "Max Body Size: " << config.getMaxBodySize() << "\n";
+    os << "Server Name: " << config._name << "\n";
+    os << "Root: " << config._root << "\n";
+    os << "Index: " << config._index << "\n";
+    os << "Error Pages:\n";
+    for (std::map<short, std::string>::const_iterator it = config._errorPages.begin(); it != config._errorPages.end(); ++it)
+    {
+        os << "  Error Code: " << it->first << " Page: " << it->second << "\n";
+    }
+    os << "Methods:\n";
+    for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._methods.begin(); it != config._methods.end(); ++it)
+    {
+        os << "  Location: " << it->first << " Methods: ";
+        for (std::vector<std::string>::const_iterator method_it = it->second.begin(); method_it != it->second.end(); ++method_it)
+        {
+            os << *method_it << " ";
+        }
+        os << "\n";
+    }
+    return os;
+}
+
 // roi 0225 
 const char *ParsedServerConfig::NoFileError::what() const throw()
 {
@@ -205,9 +236,12 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
         std::string key;
         iss >> key; // Извлекаем первое слово строки и сохраняем его в переменную key
 
-        if (key == "server")
+        std::cout << "Processing line: " << line << std::endl; // Debug output - roi 0228
+		
+		if (key == "server")
         {
-            if (inServerBlock)
+            std::cout << "Found server block" << std::endl; // Debug output - roi 0228
+			if (inServerBlock)
             {
                 if (!clientMaxBodySizeSet)
                     currentConfig.setMaxBodySize(200000);
@@ -216,10 +250,14 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
                 clientMaxBodySizeSet = false;
             }
             inServerBlock = true;
+			std::cout << PURPLE << currentLocation << RESET << std::endl; // debug - roi 0228
+			currentLocation.clear(); // Сброс значения currentLocation при переходе к новому блоку server
+			std::cout << PURPLE << currentLocation << RESET << std::endl; // debug after clear()  - roi 0228
         }
         else if (key == "}")
         {
-            if (inLocationBlock)
+            std::cout << "Found closing brace" << std::endl; // Debug output - roi 0228
+			if (inLocationBlock)
                 inLocationBlock = false;
             else if (inServerBlock)
             {
@@ -227,6 +265,8 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
                     currentConfig.setMaxBodySize(200000);
                 serverParsedConfigs.push_back(currentConfig);
                 inServerBlock = false;
+				currentLocation.clear(); // Сброс значения currentLocation при переходе к новому блоку server - roi 0228
+				currentConfig._methods.clear(); // Сброс методов для локаций при завершении блока server - roi 0228
             }
         }
         else if (inLocationBlock && key == "allow_methods") // Блок для обработки директивы allow_methods
@@ -315,38 +355,7 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
             currentConfig.setMaxBodySize(200000);
         serverParsedConfigs.push_back(currentConfig);
     }
-
     file.close();
-}
 
-/* 
-	Перегрузка оператора << 
-	checks only location and methoes- roi 0225
- */
-std::ostream& operator<<(std::ostream &os, const ParsedServerConfig &config)
-{
-    os << "ParsedServerConfig:\n";
-    os << "Host: " << config.getHost() << "\n";
-    os << "Port: " << config.getPort() << "\n";
-    os << "Max Body Size: " << config.getMaxBodySize() << "\n";
-    os << "Server Name: " << config._name << "\n";
-    os << "Root: " << config._root << "\n";
-    os << "Index: " << config._index << "\n";
-    os << "Error Pages:\n";
-    for (std::map<short, std::string>::const_iterator it = config._errorPages.begin(); it != config._errorPages.end(); ++it)
-    {
-        os << "  Error Code: " << it->first << " Page: " << it->second << "\n";
-    }
-    os << "Methods:\n";
-    for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._methods.begin(); it != config._methods.end(); ++it)
-    {
-        os << "  Location: " << it->first << " Methods: ";
-        for (std::vector<std::string>::const_iterator method_it = it->second.begin(); method_it != it->second.end(); ++method_it)
-        {
-            os << *method_it << " ";
-        }
-        os << "\n";
-    }
-    return os;
 }
 

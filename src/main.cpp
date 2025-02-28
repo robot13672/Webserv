@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 				a.parseConfig(confLoc); // roi 0224 Явное преобразование char* в std::string
 				// std::cout << YELLOW << "main() - After parseConfig(): " << a << std::endl << RESET; // debug - commentd
 			// Вывод всех конфигураций серверов
-			for (size_t i = 0; i < serverParsedConfigs.size(); ++i)
+			for (size_t i = 0; i < serverParsedConfigs.size(); ++i) // std::vector<ParsedServerConfig> serverParsedConfigs
 				std::cout << YELLOW << "main() - After parseConfig(): " << serverParsedConfigs[i] << std::endl << RESET; // debug - roi 0228
 			/* roi 0225 - insert end */
 
