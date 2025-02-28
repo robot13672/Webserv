@@ -17,12 +17,8 @@ by roi
 // };
 // std::map Servers<int, ServerConfig>;
 
-
-// std::vector <std::ServerConfig>;
-
-// std::vector<ServerConfig> serverConfigs;
-
-class LocationConfig;
+// std::vector<ParsedServerConfig> serverParsedConfigs; // to be created at the end
+// class LocationConfig;
 
 class ParsedServerConfig
 {
@@ -90,8 +86,7 @@ class ParsedServerConfig
 			public:
 				virtual const char *what() const throw();
 		};
-
-
-
-
 };
+
+// Определение переменной serverParsedConfigs
+extern std::vector<ParsedServerConfig> serverParsedConfigs;
