@@ -235,12 +235,8 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
         std::istringstream iss(line); // Для каждой строки создаем поток для разбора строки
         std::string key;
         iss >> key; // Извлекаем первое слово строки и сохраняем его в переменную key
-
-        std::cout << "Processing line: " << line << std::endl; // Debug output - roi 0228
-		
 		if (key == "server")
         {
-            std::cout << "Found server block" << std::endl; // Debug output - roi 0228
 			if (inServerBlock)
             {
                 if (!clientMaxBodySizeSet)
@@ -250,13 +246,10 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
                 clientMaxBodySizeSet = false;
             }
             inServerBlock = true;
-			std::cout << PURPLE << currentLocation << RESET << std::endl; // debug - roi 0228
 			currentLocation.clear(); // Сброс значения currentLocation при переходе к новому блоку server
-			std::cout << PURPLE << currentLocation << RESET << std::endl; // debug after clear()  - roi 0228
         }
         else if (key == "}")
         {
-            std::cout << "Found closing brace" << std::endl; // Debug output - roi 0228
 			if (inLocationBlock)
                 inLocationBlock = false;
             else if (inServerBlock)
