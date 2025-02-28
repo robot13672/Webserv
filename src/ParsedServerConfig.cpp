@@ -104,13 +104,7 @@ void ServerConfig::setLocationAutoindex(const std::string &location, bool autoin
     _locationAutoindex[location] = autoindex;
 }
  */
-//GETTERS
-
-// in_addr_t ServerConfig::getHost()
-// {
-	//     return _host;
-	// }
-	
+//GETTERS	
 std::string ParsedServerConfig::getHost() const
 	{
 		struct in_addr addr;
@@ -121,11 +115,6 @@ std::string ParsedServerConfig::getHost() const
 u_int16_t ParsedServerConfig::getPort() const
 {
 	return _port;
-}
-
-int ParsedServerConfig::getListenFd()
-{
-	return _listen_fd;
 }
 
 long ParsedServerConfig::getMaxBodySize() const
@@ -329,7 +318,6 @@ std::ostream& operator<<(std::ostream &os, const ParsedServerConfig &config)
         }
         os << "\n";
     }
-    // os << "Log Direction: " << config._logDirection << "\n"; // pure theoretically might be needed
     return os;
 }
 

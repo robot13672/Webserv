@@ -47,10 +47,6 @@ class ParsedServerConfig
 		std::map<std::string, std::vector<std::string> > _locationCgiExts; // 	location /red { /n	return /tours;
 		std::map<std::string, bool> _locationAutoindex; // Для хранения значения директивы autoindex для каждой локации likeL: 'autoindex off;' */
 
-		struct sockaddr_in									_adress;		// is not taken from conf file!!
-		int													_listen_fd;		// is not taken from conf file!!
-		std::string											_logDirection;  //директория для логирование
-
     public:
 		ParsedServerConfig();
         ParsedServerConfig(const ParsedServerConfig &other); // Copy constructor
