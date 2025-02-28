@@ -1,6 +1,5 @@
 #include "../inc/ParsedServerConfig.hpp"
 
-std::vector<ParsedServerConfig> serverParsedConfigs;
 
 ParsedServerConfig::ParsedServerConfig() {}
 
@@ -188,135 +187,107 @@ const char *ParsedServerConfig::NoFileError::what() const throw()
  */
 void ParsedServerConfig::parseConfig(const std::string &filename)
 {
-    std::ifstream file(filename.c_str()); // Преобразование std::string в const char* и инициализация входного файлового потока
-    if (!file.is_open())
+	// std::cout << "roi debug: string(argv[1]) = " << filename << std::endl;  // debug
+	std::ifstream file(filename.c_str()); // Преобразование std::string в const char* and initiation of input file stream
+    bool clientMaxBodySizeSet = false;
+	if (!file.is_open())
         throw NoFileError();
 
     std::string line;
     std::string currentLocation;
-    bool inLocationBlock = false; // Используется для отслеживания, находимся ли мы внутри блока location.
-    bool inServerBlock = false; // Используется для отслеживания, находимся ли мы внутри блока server.
-    bool clientMaxBodySizeSet = false;
-    ParsedServerConfig currentConfig;
-
-    while (std::getline(file, line)) // Читаем файл построчно
-    {
-        std::istringstream iss(line); // Для каждой строки создаем поток для разбора строки
+	bool inLocationBlock = false; // Используется для отслеживания, находимся ли мы внутри блока location.
+	while (std::getline(file, line)) // Читаем файл построчно с помощью
+	{
+        std::istringstream iss(line); //4каждой строки создаем поток 4 разбора строки
         std::string key;
-        iss >> key; // Извлекаем первое слово строки и сохраняем его в переменную key
+        iss >> key; //Извлекаем первое слово строки и сохраняем его в var key
 
-        if (key == "server")
+		if (key == "location")
         {
-            if (inServerBlock)
-            {
-                if (!clientMaxBodySizeSet)
-                    currentConfig.setMaxBodySize(200000);
-                serverParsedConfigs.push_back(currentConfig);
-                currentConfig = ParsedServerConfig();
-                clientMaxBodySizeSet = false;
-            }
-            inServerBlock = true;
+			iss >> currentLocation;
+			// std::cout << RED << "Locatioin found: " << currentLocation << std::endl << RESET; //debug
+            inLocationBlock = true;
+			if (!currentLocation.empty() && currentLocation[currentLocation.size() - 1] == '{')
+                currentLocation.erase(currentLocation.size() - 1); // Удаление последнего символа '{'
         }
-        else if (key == "}")
-        {
-            if (inLocationBlock)
-                inLocationBlock = false;
-            else if (inServerBlock)
-            {
-                if (!clientMaxBodySizeSet)
-                    currentConfig.setMaxBodySize(200000);
-                serverParsedConfigs.push_back(currentConfig);
-                inServerBlock = false;
-            }
+		else if (key == "}")
+            inLocationBlock = false;
+		else if (inLocationBlock && key == "allow_methods") // BLOCK 2B RECODED 2 INSERT 5 MORE ATTRBTS
+		{
+			std::vector<std::string> methods;
+			std::string method;
+			while (iss >> method)
+			{
+				if (!method.empty() && method[method.size() - 1] == ';')
+                    method.erase(method.size() - 1); // Удаление точки с запятой в конце строки somehow the ';' if any
+				methods.push_back(method);
+			}
+			// std::cout << GREEN << currentLocation << std::endl << RESET; //debug
+            // std::cout << std::endl; // debug
+			setMethods(currentLocation, methods);
         }
-        else if (inLocationBlock && key == "allow_methods") // Блок для обработки директивы allow_methods
-        {
-            std::vector<std::string> methods;
-            std::string method;
-            while (iss >> method)
-            {
-                if (!method.empty() && method[method.size() - 1] == ';')
-                    method.erase(method.size() - 1); // Удаление точки с запятой в конце строки
-                methods.push_back(method);
-            }
-            currentConfig.setMethods(currentLocation, methods);
-        }
-        else if (inServerBlock && !inLocationBlock)
+		else if (!inLocationBlock)
         {
             if (key == "listen")
             {
                 int port;
                 iss >> port;
-                currentConfig.setPort(port);
+				setPort(port);
             }
             else if (key == "server_name")
             {
-                std::string serverName;
+				std::string serverName;
                 iss >> serverName;
-                if (!serverName.empty() && serverName[serverName.size() - 1] == ';')
-                    serverName.erase(serverName.size() - 1); // Удаление точки с запятой в конце строки
-                currentConfig.setName(serverName);
+				if (!serverName.empty() && serverName[serverName.size() - 1] == ';')
+                    serverName.erase(serverName.size() - 1); // Удаление точки с запятой в конце строки somehow the ';' if any
+                setName(serverName);
             }
             else if (key == "host")
             {
-                std::string host;
+				std::string host;
                 iss >> host;
                 if (!host.empty() && host[host.size() - 1] == ';')
-                    host.erase(host.size() - 1); // Удаление точки с запятой в конце строки
-                currentConfig.setHost(host);
+                    host.erase(host.size() - 1); // Удаление в конце строки somehow the ';', if any
+                setHost(host);
             }
             else if (key == "root")
             {
                 std::string root;
                 iss >> root;
-                if (!root.empty() && root[root.size() - 1] == ';')
-                    root.erase(root.size() - 1); // Удаление точки с запятой в конце строки
-                currentConfig.setRoot(root);
+				if (!root.empty() && root[root.size() - 1] == ';')
+					root.erase(root.size() - 1); // Удаление в конце строки somehow the ';', if any
+                setRoot(root);
             }
             else if (key == "index")
             {
                 std::string index;
                 iss >> index;
-                if (!index.empty() && index[index.size() - 1] == ';')
-                    index.erase(index.size() - 1); // Удаление точки с запятой в конце строки
-                currentConfig.setIndex(index);
+				if (!index.empty() && index[index.size() - 1] == ';')
+					index.erase(index.size() - 1); // Удаление в конце строки somehow the ';', if any
+                setIndex(index);
             }
             else if (key == "error_page")
             {
                 short errorCode;
                 std::string errorPage;
                 iss >> errorCode >> errorPage;
-                if (!errorPage.empty() && errorPage[errorPage.size() - 1] == ';')
-                    errorPage.erase(errorPage.size() - 1); // Удаление точки с запятой в конце строки
-                std::map<short, std::string> errorPages;
-                errorPages.insert(std::make_pair(errorCode, errorPage));
-                currentConfig.setErrorPages(errorPages);
+				if (!errorPage.empty() && errorPage[errorPage.size() - 1] == ';')
+					errorPage.erase(errorPage.size() - 1); // Удаление в конце строки somehow the ';', if any
+                _errorPages[errorCode] = errorPage;
             }
-            else if (key == "client_max_body_size")
+			else if (key == "client_max_body_size")
             {
                 long maxBodySize;
                 iss >> maxBodySize;
-                currentConfig.setMaxBodySize(maxBodySize);
+                setMaxBodySize(maxBodySize);
                 clientMaxBodySizeSet = true;
-            }
-            else if (key == "location")
-            {
-                iss >> currentLocation;
-                inLocationBlock = true;
-                if (!currentLocation.empty() && currentLocation[currentLocation.size() - 1] == '{')
-                    currentLocation.erase(currentLocation.size() - 1); // Удаление последнего символа '{'
             }
         }
     }
-
-    if (inServerBlock)
-    {
-        if (!clientMaxBodySizeSet)
-            currentConfig.setMaxBodySize(200000);
-        serverParsedConfigs.push_back(currentConfig);
-    }
-
-    file.close();
+    // Устанавливаем значение по умолчанию, если директива client_max_body_size отсутствует
+	if (!clientMaxBodySizeSet)
+		setMaxBodySize(200000);
+	file.close();
 }
 
 /* 

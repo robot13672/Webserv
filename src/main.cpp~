@@ -11,7 +11,7 @@ void signalHandler(int signum) {
 
 int main(int argc, char **argv)
 {
-	ParsedServerConfig a; // roi 
+	ParsedServerConfig a;
 	std::string confLoc;
 	if(argc == 1 || argc == 2)
 	{
@@ -23,10 +23,7 @@ int main(int argc, char **argv)
 			else
 				confLoc = std::string(argv[1]);
 				a.parseConfig(confLoc); // roi 0224 Явное преобразование char* в std::string
-				// std::cout << YELLOW << "main() - After parseConfig(): " << a << std::endl << RESET; // debug - commentd
-			// Вывод всех конфигураций серверов
-			for (size_t i = 0; i < serverParsedConfigs.size(); ++i)
-				std::cout << YELLOW << "main() - After parseConfig(): " << serverParsedConfigs[i] << std::endl << RESET; // debug - roi 0228
+				std::cout << YELLOW << "main() - After parseConfig(): " << a << std::endl << RESET; // debug
 			/* roi 0225 - insert end */
 
 			signal(SIGINT, signalHandler);

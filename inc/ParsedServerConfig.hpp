@@ -90,3 +90,4 @@ class ParsedServerConfig
 
 // Определение переменной serverParsedConfigs
 extern std::vector<ParsedServerConfig> serverParsedConfigs;
+
