@@ -22577,3 +22577,654 @@ New session: 2025-02-27 19:59:13
 -------------------------------------------------
 Session finish: 2025-02-27 20:28:03
 -------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 12:12:16
+-------------------------------------------------
+2025-02-28 12:12:16: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 12:12:16: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:12:16: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 12:12:16: Server created with host:127.0.0.1, port:8085
+2025-02-28 12:12:16: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:12:19: New connection from: 127.0.0.1, with socket 6
+2025-02-28 12:12:19: New connection from: 127.0.0.1, with socket 7
+2025-02-28 12:12:19: New message from 7
+2025-02-28 12:12:19: New message from 7
+2025-02-28 12:12:20: New message from 7
+2025-02-28 12:12:28: New message from 7
+2025-02-28 12:12:28: New message from 7
+2025-02-28 12:12:28: New message from 7
+2025-02-28 12:12:29: New message from 7
+2025-02-28 12:12:29: New message from 7
+-------------------------------------------------
+Session finish: 2025-02-28 12:14:20
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 12:16:29
+-------------------------------------------------
+2025-02-28 12:16:29: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 12:16:29: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:16:29: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 12:16:29: Server created with host:127.0.0.1, port:8085
+2025-02-28 12:16:29: Server created with host:127.0.0.1, port:8084
+-------------------------------------------------
+Session finish: 2025-02-28 12:18:16
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 12:18:35
+-------------------------------------------------
+2025-02-28 12:18:35: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 12:18:35: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:18:35: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 12:18:35: Server created with host:127.0.0.1, port:8085
+2025-02-28 12:18:35: Server created with host:127.0.0.1, port:8084
+-------------------------------------------------
+New session: 2025-02-28 12:22:50
+-------------------------------------------------
+2025-02-28 12:22:50: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 12:22:50: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:22:50: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 12:22:50: Server created with host:127.0.0.1, port:8085
+2025-02-28 12:22:50: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:22:54: New connection from: 127.0.0.1, with socket 6
+2025-02-28 12:22:54: New connection from: 127.0.0.1, with socket 7
+2025-02-28 12:22:54: New message from 6
+2025-02-28 12:22:54: webserv: Conenction with 6fd closed!
+2025-02-28 12:22:54: webserv: Conenction with 7fd closed!
+2025-02-28 12:22:54: New connection from: 127.0.0.1, with socket 6
+2025-02-28 12:22:54: New message from 6
+2025-02-28 12:22:56: webserv: Conenction with 6fd closed!
+2025-02-28 12:22:57: New connection from: 127.0.0.1, with socket 6
+2025-02-28 12:22:57: New connection from: 127.0.0.1, with socket 7
+2025-02-28 12:22:57: New message from 6
+2025-02-28 12:23:07: New message from 6
+2025-02-28 12:23:08: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-28 12:23:44
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 12:23:55
+-------------------------------------------------
+2025-02-28 12:23:55: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 12:23:55: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:23:55: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 12:23:55: Server created with host:127.0.0.1, port:8085
+2025-02-28 12:23:55: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:23:58: New connection from: 127.0.0.1, with socket 6
+2025-02-28 12:23:58: New connection from: 127.0.0.1, with socket 7
+2025-02-28 12:23:58: New message from 6
+2025-02-28 12:23:59: New message from 6
+2025-02-28 12:24:02: New message from 6
+2025-02-28 12:24:02: New message from 6
+2025-02-28 12:24:02: New message from 6
+2025-02-28 12:24:02: New message from 6
+2025-02-28 12:24:16: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-28 12:27:03
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 12:27:19
+-------------------------------------------------
+2025-02-28 12:27:19: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 12:27:19: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:27:19: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 12:27:19: Server created with host:127.0.0.1, port:8085
+2025-02-28 12:27:19: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:27:21: New connection from: 127.0.0.1, with socket 6
+2025-02-28 12:27:21: New connection from: 127.0.0.1, with socket 7
+2025-02-28 12:27:21: New message from 6
+2025-02-28 12:27:24: New message from 6
+2025-02-28 12:27:27: New message from 6
+2025-02-28 12:27:27: New message from 6
+2025-02-28 12:27:43: New message from 6
+2025-02-28 12:27:43: New message from 6
+2025-02-28 12:27:43: New message from 6
+2025-02-28 12:27:43: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-28 12:28:20
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 12:29:50
+-------------------------------------------------
+2025-02-28 12:29:50: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 12:29:50: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:29:50: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 12:29:50: Server created with host:127.0.0.1, port:8085
+2025-02-28 12:29:50: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:29:53: New connection from: 127.0.0.1, with socket 6
+2025-02-28 12:29:53: New connection from: 127.0.0.1, with socket 7
+2025-02-28 12:29:53: New message from 6
+2025-02-28 12:29:54: New message from 6
+2025-02-28 12:30:02: New message from 6
+2025-02-28 12:30:02: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-28 12:30:31
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 12:46:51
+-------------------------------------------------
+2025-02-28 12:46:51: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 12:46:51: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:46:51: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 12:46:51: Server created with host:127.0.0.1, port:8085
+2025-02-28 12:46:51: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:46:55: New connection from: 127.0.0.1, with socket 6
+2025-02-28 12:46:55: New connection from: 127.0.0.1, with socket 7
+2025-02-28 12:46:55: New message from 6
+2025-02-28 12:46:56: New message from 6
+2025-02-28 12:47:02: New message from 6
+2025-02-28 12:47:02: New message from 6
+2025-02-28 12:47:02: New message from 6
+2025-02-28 12:47:02: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-28 12:47:34
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 12:48:25
+-------------------------------------------------
+2025-02-28 12:48:25: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 12:48:25: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:48:25: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 12:48:25: Server created with host:127.0.0.1, port:8085
+2025-02-28 12:48:25: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:48:31: New connection from: 127.0.0.1, with socket 6
+2025-02-28 12:48:31: New message from 6
+2025-02-28 12:48:31: New message from 6
+2025-02-28 12:48:31: New message from 6
+2025-02-28 12:48:38: New message from 6
+2025-02-28 12:48:38: New connection from: 127.0.0.1, with socket 7
+2025-02-28 12:48:38: New message from 6
+2025-02-28 12:48:51: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-28 12:52:35
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 12:53:04
+-------------------------------------------------
+2025-02-28 12:53:04: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 12:53:04: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:53:04: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 12:53:04: Server created with host:127.0.0.1, port:8085
+2025-02-28 12:53:04: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:53:06: New connection from: 127.0.0.1, with socket 6
+2025-02-28 12:53:06: New connection from: 127.0.0.1, with socket 7
+2025-02-28 12:53:06: New message from 6
+2025-02-28 12:53:12: New message from 6
+2025-02-28 12:53:12: New message from 6
+2025-02-28 12:53:12: New message from 6
+2025-02-28 12:53:12: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-28 12:55:41
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 12:59:46
+-------------------------------------------------
+2025-02-28 12:59:46: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 12:59:46: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:59:46: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 12:59:46: Server created with host:127.0.0.1, port:8085
+2025-02-28 12:59:46: Server created with host:127.0.0.1, port:8084
+2025-02-28 12:59:47: New connection from: 127.0.0.1, with socket 6
+2025-02-28 12:59:47: New connection from: 127.0.0.1, with socket 7
+2025-02-28 12:59:48: New message from 6
+2025-02-28 12:59:56: New message from 6
+2025-02-28 12:59:56: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-28 13:01:02
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 13:01:24
+-------------------------------------------------
+2025-02-28 13:01:24: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 13:01:24: Server created with host:127.0.0.1, port:8084
+2025-02-28 13:01:24: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 13:01:24: Server created with host:127.0.0.1, port:8085
+2025-02-28 13:01:24: Server created with host:127.0.0.1, port:8084
+2025-02-28 13:01:27: New connection from: 127.0.0.1, with socket 6
+2025-02-28 13:01:27: New connection from: 127.0.0.1, with socket 7
+2025-02-28 13:01:27: New message from 6
+2025-02-28 13:01:28: New message from 6
+2025-02-28 13:01:28: New message from 6
+2025-02-28 13:01:28: New message from 7
+2025-02-28 13:01:28: New connection from: 127.0.0.1, with socket 8
+2025-02-28 13:01:28: New message from 8
+2025-02-28 13:01:29: New message from 8
+2025-02-28 13:01:30: New message from 8
+2025-02-28 13:01:33: New message from 8
+2025-02-28 13:01:33: New message from 8
+2025-02-28 13:01:33: New message from 8
+2025-02-28 13:01:33: New message from 8
+2025-02-28 13:01:39: New message from 8
+2025-02-28 13:01:39: New message from 8
+-------------------------------------------------
+Session finish: 2025-02-28 13:02:27
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 13:09:51
+-------------------------------------------------
+2025-02-28 13:09:51: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 13:09:51: Server created with host:127.0.0.1, port:8084
+2025-02-28 13:09:51: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 13:09:51: Server created with host:127.0.0.1, port:8085
+2025-02-28 13:09:51: Server created with host:127.0.0.1, port:8084
+2025-02-28 13:09:55: New connection from: 127.0.0.1, with socket 6
+2025-02-28 13:09:55: New connection from: 127.0.0.1, with socket 7
+2025-02-28 13:09:55: New message from 6
+2025-02-28 13:09:56: New message from 6
+2025-02-28 13:10:02: New message from 6
+2025-02-28 13:10:02: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-28 13:11:00
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 13:12:05
+-------------------------------------------------
+2025-02-28 13:12:05: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 13:12:05: Server created with host:127.0.0.1, port:8084
+2025-02-28 13:12:05: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 13:12:05: Server created with host:127.0.0.1, port:8085
+2025-02-28 13:12:05: Server created with host:127.0.0.1, port:8084
+2025-02-28 13:12:07: New connection from: 127.0.0.1, with socket 6
+2025-02-28 13:12:07: New connection from: 127.0.0.1, with socket 7
+2025-02-28 13:12:07: New message from 6
+2025-02-28 13:12:08: New message from 6
+2025-02-28 13:12:16: New message from 6
+2025-02-28 13:12:16: New message from 6
+2025-02-28 13:12:21: New message from 6
+2025-02-28 13:12:21: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-28 13:13:14
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 17:10:56
+-------------------------------------------------
+2025-02-28 17:10:56: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 17:10:56: Server created with host:127.0.0.1, port:8084
+2025-02-28 17:10:56: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 17:10:56: Server created with host:127.0.0.1, port:8085
+2025-02-28 17:10:56: Server created with host:127.0.0.1, port:8084
+2025-02-28 17:10:59: New connection from: 127.0.0.1, with socket 6
+2025-02-28 17:10:59: New connection from: 127.0.0.1, with socket 7
+2025-02-28 17:10:59: New message from 6
+2025-02-28 17:10:59: New message from 6
+2025-02-28 17:11:00: New message from 6
+2025-02-28 17:11:01: New message from 6
+2025-02-28 17:11:03: New message from 6
+2025-02-28 17:11:05: New message from 6
+2025-02-28 17:11:06: New message from 6
+2025-02-28 17:11:12: New message from 6
+2025-02-28 17:11:12: New message from 6
+2025-02-28 17:11:12: New message from 6
+2025-02-28 17:11:12: New message from 6
+2025-02-28 17:11:45: New message from 6
+2025-02-28 17:11:49: New message from 6
+2025-02-28 17:11:57: New message from 6
+2025-02-28 17:11:57: New message from 6
+2025-02-28 17:13:43: webserv: Conenction with 7fd closed!
+2025-02-28 17:13:50: New message from 6
+2025-02-28 17:13:50: New message from 6
+2025-02-28 17:13:51: New message from 6
+2025-02-28 17:13:51: New message from 6
+2025-02-28 17:13:51: New connection from: 127.0.0.1, with socket 7
+2025-02-28 17:13:52: New message from 7
+2025-02-28 17:13:52: New message from 7
+2025-02-28 17:13:53: New message from 7
+2025-02-28 17:13:53: New message from 7
+2025-02-28 17:14:24: New message from 7
+2025-02-28 17:14:26: New message from 7
+2025-02-28 17:14:29: New message from 7
+2025-02-28 17:14:29: New message from 7
+2025-02-28 17:22:41: webserv: Conenction with 6fd closed!
+2025-02-28 17:22:41: webserv: Conenction with 7fd closed!
+2025-02-28 17:26:49: New connection from: 127.0.0.1, with socket 6
+2025-02-28 17:26:49: New message from 6
+2025-02-28 17:27:47: New message from 6
+2025-02-28 17:27:47: New connection from: 127.0.0.1, with socket 7
+2025-02-28 17:27:50: New message from 6
+2025-02-28 17:27:50: New message from 6
+2025-02-28 17:28:12: New message from 6
+2025-02-28 17:28:13: New message from 6
+2025-02-28 17:28:13: New message from 6
+2025-02-28 17:28:14: New message from 6
+2025-02-28 17:28:15: New message from 6
+2025-02-28 17:28:19: New message from 6
+2025-02-28 17:28:19: New message from 6
+2025-02-28 17:30:41: webserv: Conenction with 7fd closed!
+2025-02-28 17:32:36: New message from 6
+2025-02-28 17:32:36: New connection from: 127.0.0.1, with socket 7
+2025-02-28 17:32:38: New message from 6
+2025-02-28 17:32:41: New message from 6
+2025-02-28 17:32:41: New message from 6
+2025-02-28 17:32:48: New message from 6
+2025-02-28 17:32:48: New message from 6
+2025-02-28 17:32:48: webserv: Conenction with 6fd closed!
+2025-02-28 17:32:48: webserv: Conenction with 7fd closed!
+2025-02-28 17:32:49: New connection from: 127.0.0.1, with socket 6
+2025-02-28 17:32:49: New message from 6
+2025-02-28 17:32:49: New connection from: 127.0.0.1, with socket 7
+2025-02-28 17:32:50: New message from 6
+2025-02-28 17:32:57: New message from 6
+2025-02-28 17:32:57: New message from 6
+2025-02-28 17:32:59: New message from 6
+2025-02-28 17:32:59: New message from 6
+2025-02-28 17:33:03: New message from 6
+2025-02-28 17:34:41: webserv: Conenction with 7fd closed!
+2025-02-28 17:38:44: webserv: Conenction with 6fd closed!
+2025-02-28 17:38:52: New connection from: 127.0.0.1, with socket 6
+2025-02-28 17:38:52: New connection from: 127.0.0.1, with socket 7
+2025-02-28 17:38:52: New message from 6
+2025-02-28 17:39:00: New message from 6
+2025-02-28 17:39:00: New message from 6
+2025-02-28 17:39:00: New message from 6
+2025-02-28 17:39:01: New message from 6
+2025-02-28 17:39:01: New message from 6
+2025-02-28 17:39:17: New message from 6
+2025-02-28 17:39:18: New message from 6
+2025-02-28 17:39:18: New message from 6
+2025-02-28 17:41:32: webserv: Conenction with 7fd closed!
+2025-02-28 17:41:32: New connection from: 127.0.0.1, with socket 7
+2025-02-28 17:41:32: New message from 6
+2025-02-28 17:41:33: New message from 6
+2025-02-28 17:41:33: New message from 6
+2025-02-28 17:42:49: webserv: Conenction with 7fd closed!
+2025-02-28 17:45:08: New message from 6
+2025-02-28 17:45:08: New connection from: 127.0.0.1, with socket 7
+2025-02-28 17:45:09: New message from 6
+2025-02-28 17:45:17: New message from 6
+2025-02-28 17:45:18: New message from 6
+2025-02-28 17:45:19: New message from 6
+2025-02-28 17:45:19: New message from 6
+2025-02-28 17:45:20: New message from 6
+2025-02-28 17:45:21: New message from 6
+2025-02-28 17:45:22: New message from 6
+2025-02-28 17:45:23: New message from 6
+2025-02-28 17:45:23: New message from 6
+2025-02-28 17:45:24: New message from 6
+2025-02-28 17:45:25: New message from 6
+2025-02-28 17:45:26: New message from 6
+2025-02-28 17:45:26: New message from 6
+2025-02-28 17:45:27: New message from 6
+2025-02-28 17:45:28: New message from 6
+2025-02-28 17:45:29: New message from 6
+2025-02-28 17:45:30: New message from 6
+2025-02-28 17:45:30: New message from 6
+2025-02-28 17:45:31: New message from 6
+2025-02-28 17:45:32: New message from 6
+2025-02-28 17:45:33: New message from 6
+2025-02-28 17:45:33: New message from 6
+2025-02-28 17:45:34: New message from 6
+2025-02-28 17:45:35: New message from 6
+2025-02-28 17:45:36: New message from 6
+2025-02-28 17:45:37: New message from 6
+2025-02-28 17:45:37: New message from 6
+2025-02-28 17:45:38: New message from 6
+2025-02-28 17:45:39: New message from 6
+2025-02-28 17:45:40: New message from 6
+2025-02-28 17:45:41: New message from 6
+2025-02-28 17:45:41: New message from 6
+2025-02-28 17:45:42: New message from 6
+2025-02-28 17:45:43: New message from 6
+2025-02-28 17:45:44: New message from 6
+2025-02-28 17:45:45: New message from 6
+2025-02-28 17:45:45: New message from 6
+2025-02-28 17:45:46: New message from 6
+2025-02-28 17:45:49: New message from 6
+2025-02-28 17:45:49: New message from 6
+2025-02-28 17:46:15: webserv: Conenction with 7fd closed!
+2025-02-28 17:46:15: New connection from: 127.0.0.1, with socket 7
+2025-02-28 17:46:15: New message from 6
+2025-02-28 17:46:16: New message from 6
+2025-02-28 17:46:27: New message from 6
+2025-02-28 17:46:27: New message from 6
+2025-02-28 17:46:27: New message from 6
+2025-02-28 17:46:28: New message from 6
+2025-02-28 17:46:29: New message from 6
+2025-02-28 17:46:29: New message from 6
+2025-02-28 17:46:30: New message from 6
+2025-02-28 17:46:31: New message from 6
+2025-02-28 17:46:32: New message from 6
+2025-02-28 17:46:33: New message from 6
+2025-02-28 17:46:33: New message from 6
+2025-02-28 17:46:34: New message from 6
+2025-02-28 17:46:35: New message from 6
+2025-02-28 17:46:36: New message from 6
+2025-02-28 17:46:37: New message from 6
+2025-02-28 17:46:37: New message from 6
+2025-02-28 17:46:38: New message from 6
+2025-02-28 17:46:39: New message from 6
+2025-02-28 17:46:40: New message from 6
+2025-02-28 17:46:41: New message from 6
+2025-02-28 17:46:42: New message from 6
+2025-02-28 17:46:42: New message from 6
+2025-02-28 17:46:43: New message from 6
+2025-02-28 17:46:44: New message from 6
+2025-02-28 17:46:45: New message from 6
+2025-02-28 17:46:46: New message from 6
+2025-02-28 17:46:47: New message from 6
+2025-02-28 17:46:48: New message from 6
+2025-02-28 17:46:49: New message from 6
+2025-02-28 17:46:49: New message from 6
+2025-02-28 17:46:50: New message from 6
+2025-02-28 17:46:51: New message from 6
+2025-02-28 17:46:52: New message from 6
+2025-02-28 17:46:53: New message from 6
+2025-02-28 17:46:54: New message from 6
+2025-02-28 17:46:55: New message from 6
+2025-02-28 17:46:55: New message from 6
+2025-02-28 17:46:56: New message from 6
+2025-02-28 17:46:56: New message from 6
+2025-02-28 17:47:02: New message from 6
+2025-02-28 17:47:02: New message from 6
+2025-02-28 17:47:16: webserv: Conenction with 7fd closed!
+2025-02-28 17:47:16: New connection from: 127.0.0.1, with socket 7
+2025-02-28 17:47:16: New message from 6
+2025-02-28 17:47:16: New message from 6
+2025-02-28 17:47:21: New message from 6
+2025-02-28 17:47:22: New message from 6
+2025-02-28 17:47:22: New message from 6
+2025-02-28 17:47:23: New message from 6
+2025-02-28 17:47:24: New message from 6
+2025-02-28 17:47:25: New message from 6
+2025-02-28 17:47:25: New message from 7
+2025-02-28 17:47:26: New message from 6
+2025-02-28 17:47:27: New message from 6
+2025-02-28 17:47:28: New message from 6
+2025-02-28 17:47:28: New message from 6
+2025-02-28 17:47:29: New message from 6
+2025-02-28 17:47:30: New message from 6
+2025-02-28 17:47:31: New message from 6
+2025-02-28 17:47:32: New message from 6
+2025-02-28 17:47:32: New message from 7
+2025-02-28 17:47:33: New message from 6
+2025-02-28 17:47:34: New message from 6
+2025-02-28 17:47:35: New message from 6
+2025-02-28 17:47:35: New message from 6
+2025-02-28 17:47:36: New message from 6
+2025-02-28 17:47:37: New message from 6
+2025-02-28 17:47:38: New message from 6
+2025-02-28 17:47:39: New message from 6
+2025-02-28 17:47:40: New message from 6
+2025-02-28 17:47:41: New message from 6
+2025-02-28 17:47:41: New message from 6
+2025-02-28 17:47:42: New message from 6
+2025-02-28 17:47:43: New message from 6
+2025-02-28 17:47:44: New message from 6
+2025-02-28 17:47:45: New message from 6
+2025-02-28 17:47:46: New message from 6
+2025-02-28 17:47:47: New message from 6
+2025-02-28 17:47:47: New message from 6
+2025-02-28 17:47:48: New message from 6
+2025-02-28 17:47:49: New message from 6
+2025-02-28 17:47:50: New message from 6
+2025-02-28 17:47:51: New message from 6
+2025-02-28 17:47:52: New message from 6
+2025-02-28 17:48:29: New message from 6
+2025-02-28 17:48:30: New message from 6
+2025-02-28 17:48:31: New message from 6
+2025-02-28 17:48:32: New message from 6
+2025-02-28 17:48:33: New message from 6
+2025-02-28 17:48:34: New message from 6
+2025-02-28 17:48:34: New message from 6
+2025-02-28 17:48:35: New message from 6
+2025-02-28 17:48:36: New message from 6
+2025-02-28 17:48:37: New message from 6
+2025-02-28 17:48:38: New message from 6
+2025-02-28 17:48:39: New message from 6
+2025-02-28 17:48:39: New message from 7
+2025-02-28 17:48:40: New message from 6
+2025-02-28 17:48:41: New message from 6
+2025-02-28 17:48:41: New message from 6
+2025-02-28 17:48:42: New message from 6
+2025-02-28 17:48:43: New message from 6
+2025-02-28 17:48:44: New message from 6
+2025-02-28 17:48:45: New message from 6
+2025-02-28 17:48:46: New message from 6
+2025-02-28 17:48:47: New message from 6
+2025-02-28 17:48:48: New message from 6
+2025-02-28 17:48:48: New message from 7
+2025-02-28 17:48:48: New message from 6
+2025-02-28 17:48:49: New message from 7
+2025-02-28 17:48:50: New message from 6
+2025-02-28 17:48:51: New message from 7
+2025-02-28 17:48:52: New message from 6
+2025-02-28 17:48:53: New message from 7
+2025-02-28 17:48:54: New message from 6
+2025-02-28 17:48:54: New message from 7
+2025-02-28 17:48:55: New message from 6
+2025-02-28 17:48:56: New message from 7
+2025-02-28 17:48:57: New message from 6
+2025-02-28 17:48:58: New message from 7
+2025-02-28 17:48:59: New message from 6
+2025-02-28 17:49:00: New message from 7
+2025-02-28 17:49:00: New message from 6
+2025-02-28 17:49:01: New message from 7
+2025-02-28 17:49:02: New message from 6
+2025-02-28 17:49:03: New message from 7
+2025-02-28 17:49:04: New message from 6
+2025-02-28 17:49:05: New message from 7
+2025-02-28 17:49:05: New connection from: 127.0.0.1, with socket 8
+2025-02-28 17:49:06: New message from 6
+2025-02-28 17:49:07: New message from 7
+2025-02-28 17:49:07: New message from 6
+2025-02-28 17:49:08: New message from 7
+2025-02-28 17:49:08: New message from 8
+2025-02-28 17:49:09: New message from 6
+2025-02-28 17:49:10: New message from 7
+2025-02-28 17:49:10: New message from 8
+2025-02-28 17:49:11: New message from 6
+2025-02-28 17:49:12: New message from 7
+2025-02-28 17:49:13: New message from 8
+2025-02-28 17:49:14: New message from 6
+2025-02-28 17:49:15: New message from 7
+2025-02-28 17:49:15: New message from 8
+2025-02-28 17:49:17: New message from 7
+2025-02-28 17:49:18: New message from 8
+2025-02-28 17:49:19: New message from 7
+2025-02-28 17:49:20: New message from 8
+2025-02-28 17:49:21: New message from 7
+2025-02-28 17:49:22: New message from 8
+2025-02-28 17:49:22: New message from 7
+2025-02-28 17:49:23: New message from 8
+2025-02-28 17:49:24: New message from 7
+2025-02-28 17:49:25: New message from 8
+2025-02-28 17:49:26: New message from 7
+2025-02-28 17:49:27: New message from 8
+2025-02-28 17:49:28: New message from 7
+2025-02-28 17:49:28: New message from 8
+2025-02-28 17:49:29: New message from 7
+2025-02-28 17:49:30: New message from 8
+2025-02-28 17:49:31: New message from 7
+2025-02-28 17:49:32: New message from 8
+2025-02-28 17:49:33: New message from 6
+2025-02-28 17:49:34: New message from 7
+2025-02-28 17:49:35: New message from 8
+2025-02-28 17:49:35: New message from 6
+2025-02-28 17:49:36: New message from 7
+2025-02-28 17:49:37: New message from 8
+2025-02-28 17:49:38: New message from 6
+2025-02-28 17:49:39: New message from 7
+2025-02-28 17:49:40: New message from 8
+2025-02-28 17:49:41: New message from 6
+2025-02-28 17:49:42: New message from 7
+2025-02-28 17:49:42: New message from 8
+2025-02-28 17:49:42: New connection from: 127.0.0.1, with socket 9
+2025-02-28 17:49:43: New message from 6
+2025-02-28 17:49:44: New message from 7
+2025-02-28 17:49:45: New message from 8
+2025-02-28 17:49:46: New message from 6
+2025-02-28 17:49:47: New message from 7
+2025-02-28 17:49:48: New message from 8
+2025-02-28 17:49:48: New message from 9
+2025-02-28 17:49:48: New message from 6
+2025-02-28 17:49:49: New message from 7
+2025-02-28 17:49:50: New message from 8
+2025-02-28 17:49:51: New message from 6
+2025-02-28 17:49:52: New message from 7
+2025-02-28 17:49:53: New message from 8
+2025-02-28 17:49:54: New message from 6
+2025-02-28 17:49:55: New message from 7
+2025-02-28 17:49:55: New message from 8
+2025-02-28 17:49:55: New message from 9
+2025-02-28 17:49:56: New message from 6
+2025-02-28 17:49:57: New message from 7
+2025-02-28 17:49:58: New message from 8
+2025-02-28 17:49:59: New message from 6
+2025-02-28 17:50:00: New message from 7
+2025-02-28 17:50:00: webserv: Conenction with 8fd closed!
+2025-02-28 17:50:00: New message from 6
+2025-02-28 17:50:01: New message from 7
+2025-02-28 17:50:02: New message from 6
+2025-02-28 17:50:02: New message from 7
+2025-02-28 17:50:03: New message from 6
+2025-02-28 17:50:06: New message from 6
+2025-02-28 17:50:06: webserv: Conenction with 9fd closed!
+2025-02-28 17:50:07: New message from 6
+2025-02-28 17:50:08: New message from 6
+2025-02-28 17:50:08: New message from 6
+2025-02-28 17:50:09: New message from 6
+2025-02-28 17:50:10: New message from 6
+2025-02-28 17:50:11: New message from 6
+2025-02-28 17:50:12: New message from 6
+2025-02-28 17:50:13: New message from 6
+2025-02-28 17:50:14: New message from 6
+2025-02-28 17:50:15: New message from 6
+2025-02-28 17:50:15: New message from 6
+2025-02-28 17:50:16: New message from 6
+2025-02-28 17:50:17: New message from 6
+2025-02-28 17:50:18: New message from 6
+2025-02-28 17:50:19: New message from 6
+2025-02-28 17:50:20: New message from 6
+2025-02-28 17:50:21: New message from 6
+2025-02-28 17:50:22: New message from 6
+2025-02-28 17:50:23: New message from 6
+2025-02-28 17:50:23: New message from 6
+2025-02-28 17:50:24: New message from 6
+2025-02-28 17:51:07: New message from 6
+-------------------------------------------------
+Session finish: 2025-02-28 17:51:56
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-02-28 17:54:46
+-------------------------------------------------
+2025-02-28 17:54:46: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-02-28 17:54:46: Server created with host:127.0.0.1, port:8084
+2025-02-28 17:54:46: Successfully bound to host:127.0.0.1, port:8085 socket:5
+2025-02-28 17:54:46: Server created with host:127.0.0.1, port:8085
+2025-02-28 17:54:46: Server created with host:127.0.0.1, port:8084
+2025-02-28 17:54:49: New connection from: 127.0.0.1, with socket 6
+2025-02-28 17:54:49: New connection from: 127.0.0.1, with socket 7
+2025-02-28 17:54:49: New message from 6
+2025-02-28 17:54:50: New message from 6
+2025-02-28 17:54:51: New message from 6
+2025-02-28 17:54:52: New message from 6
+2025-02-28 17:54:57: New message from 6
+2025-02-28 17:54:57: New message from 6
+2025-02-28 17:54:58: New message from 6
+2025-02-28 17:54:58: New message from 6
+2025-02-28 17:55:01: New message from 6
+2025-02-28 17:55:01: New message from 6
+2025-02-28 17:55:02: New message from 6
+2025-02-28 17:55:06: webserv: Conenction with 6fd closed!
+2025-02-28 17:55:06: webserv: Conenction with 7fd closed!
+-------------------------------------------------
+Session finish: 2025-02-28 17:55:07
+-------------------------------------------------

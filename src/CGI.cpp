@@ -4,29 +4,29 @@
 #include <iostream>
 #include <algorithm>
 
-void CGI::SetEnv(HttpRequest &request)
-{
-    // Clear any existing _cgiEnvironment variables
-    _cgiEnv.clear();
+// void CGI::SetEnv(HttpRequest &request)
+// {
+//     // Clear any existing _cgiEnvironment variables
+//     _cgiEnv.clear();
 
-    // Standard CGI _cgiEnvironment variables
-    _cgiEnv["SERVER_SOFTWARE"]    = "Webserv/1.0";
-    _cgiEnv["SERVER_NAME"]        = request.getHeader("IP");
-    _cgiEnv["SERVER_PORT"]        = request.getHeader("PORT");
-    _cgiEnv["SERVER_PROTOCOL"]    = request.getHttpVersion();
-    _cgiEnv["GATEWAY_INTERFACE"]  = "CGI/1.1";
+//     // Standard CGI _cgiEnvironment variables
+//     _cgiEnv["SERVER_SOFTWARE"]    = "Webserv/1.0";
+//     _cgiEnv["SERVER_NAME"]        = request.getHeader("IP");
+//     _cgiEnv["SERVER_PORT"]        = request.getHeader("PORT");
+//     _cgiEnv["SERVER_PROTOCOL"]    = request.getHttpVersion();
+//     _cgiEnv["GATEWAY_INTERFACE"]  = "CGI/1.1";
 
-    // Request-specific variables
-    _cgiEnv["REQUEST_METHOD"]     = request.getMethod();
-    _cgiEnv["REQUEST_URI"]        = request.getUri();
-    _cgiEnv["SCRIPT_NAME"]        = request.getPath();
-    _cgiEnv["QUERY_STRING"]       = request.getQuery();
-    _cgiEnv["PATH_INFO"]          = request.getPath();
-    _cgiEnv["PATH_TRANSLATED"]    = std::string(getcwd(NULL, 0)) + request.getPath();
+//     // Request-specific variables
+//     _cgiEnv["REQUEST_METHOD"]     = request.getMethod();
+//     _cgiEnv["REQUEST_URI"]        = request.getUri();
+//     _cgiEnv["SCRIPT_NAME"]        = request.getPath();
+//     _cgiEnv["QUERY_STRING"]       = request.getQuery();
+//     _cgiEnv["PATH_INFO"]          = request.getPath();
+//     _cgiEnv["PATH_TRANSLATED"]    = std::string(getcwd(NULL, 0)) + request.getPath();
 
-    // Headers
-    _cgiEnv["CONTENT_TYPE"]       = request.getHeader("Content-Type");
-    _cgiEnv["CONTENT_LENGTH"]     = request.getHeader("Content-Length");
+//     // Headers
+//     _cgiEnv["CONTENT_TYPE"]       = request.getHeader("Content-Type");
+//     _cgiEnv["CONTENT_LENGTH"]     = request.getHeader("Content-Length");
     
     // Convert HTTP headers to CGI variables
     // std::map<std::string, std::string> headers = request.getHeaders();
@@ -68,10 +68,10 @@ void CGI::SetEnv(HttpRequest &request)
     //         ++map_it;
     // }
 
-    for (std::map<std::string, std::string>::const_iterator it = _cgiEnv.begin(); it != _cgiEnv.end(); ++it) {
-        setenv(it->first.c_str(), it->second.c_str(), 1);
-    }
-}
+//     for (std::map<std::string, std::string>::const_iterator it = _cgiEnv.begin(); it != _cgiEnv.end(); ++it) {
+//         setenv(it->first.c_str(), it->second.c_str(), 1);
+//     }
+// }
 
 // void CGI::executeScript() {
 //     // Устанавливаем все переменные окружения
@@ -141,19 +141,94 @@ void CGI::setScriptPath(const std::string& path) {
     _scriptPath = path;
 }
 
-std::string CGI::executeCgiScript() {
-    // std::cout << "DEBUG: Starting CGI execution with script: " << _scriptPath << std::endl;
+// std::string CGI::executeCgiScript() {
+//     // std::cout << "DEBUG: Starting CGI execution with script: " << _scriptPath << std::endl;
     
+//     int input[2], output[2];
+//     if (pipe(input) < 0 || pipe(output) < 0) {
+//         // std::cerr << "ERROR: Failed to create pipes" << std::endl;
+//         return "";
+//     }
+
+//     pid_t pid = fork();
+//     if (pid < 0) {
+//         // std::cerr << "ERROR: Fork failed" << std::endl;
+//         return "";
+//     }
+
+//     if (pid == 0) {
+//         // Child process
+//         close(input[1]);
+//         close(output[0]);
+//         dup2(input[0], STDIN_FILENO);
+//         dup2(output[1], STDOUT_FILENO);
+
+//         // Use python3 interpreter explicitly
+//         char *args[] = {(char*)"/usr/bin/python3", (char*)_scriptPath.c_str(), NULL};
+//         // std::cout << "DEBUG: Executing python script: " << _scriptPath << std::endl;
+//         execv("/usr/bin/python3", args);
+//         std::cerr << "ERROR: execv failed: " << strerror(errno) << std::endl;
+//         exit(1);
+//     }
+
+//     // Rest of the code remains the same...
+//     close(input[0]);
+//     close(output[1]);
+
+//     std::string response;
+//     char buffer[4096];
+//     ssize_t bytes;
+    
+//     while ((bytes = read(output[0], buffer, sizeof(buffer))) > 0) {
+//         response.append(buffer, bytes);
+//     }
+    
+//     close(output[0]);
+//     close(input[1]);
+
+//     int status;
+//     waitpid(pid, &status, 0);
+//     _exitStatus = WEXITSTATUS(status);
+    
+//     // std::cout << "DEBUG: CGI script exit status: " << _exitStatus << std::endl;
+//     // std::cout << "DEBUG: Response length: " << response.length() << std::endl;
+
+//     return response;
+// }
+
+void CGI::SetEnv(HttpRequest &request) {
+    _cgiEnv["REQUEST_METHOD"] = request.getMethod();
+    _cgiEnv["CONTENT_TYPE"] = request.getHeader("Content-Type");
+    _cgiEnv["CONTENT_LENGTH"] = request.getHeader("Content-Length");
+    _cgiEnv["SCRIPT_NAME"] = _scriptPath;
+    _cgiEnv["PATH_INFO"] = request.getPath();
+    _cgiEnv["QUERY_STRING"] = request.getQuery();
+    _cgiEnv["SERVER_PROTOCOL"] = request.getHttpVersion();
+    _cgiEnv["REDIRECT_STATUS"] = "200";
+    _cgiEnv["SERVER_SOFTWARE"] = "Webserv/1.0";
+    
+    // Add additional environment variables
+    std::map<std::string, std::string> headers = request.getHeaders();
+    for (std::map<std::string, std::string>::iterator it = headers.begin(); 
+         it != headers.end(); ++it) {
+        std::string name = "HTTP_" + it->first;
+        std::transform(name.begin(), name.end(), name.begin(), ::toupper);
+        std::replace(name.begin(), name.end(), '-', '_');
+        _cgiEnv[name] = it->second;
+    }
+}
+
+std::string CGI::executeCgiScript() {
     int input[2], output[2];
+    std::string response;
+
     if (pipe(input) < 0 || pipe(output) < 0) {
-        // std::cerr << "ERROR: Failed to create pipes" << std::endl;
-        return "";
+        return "Status: 500\r\nContent-Type: text/plain\r\n\r\nInternal Server Error";
     }
 
     pid_t pid = fork();
     if (pid < 0) {
-        // std::cerr << "ERROR: Fork failed" << std::endl;
-        return "";
+        return "Status: 500\r\nContent-Type: text/plain\r\n\r\nFork Failed";
     }
 
     if (pid == 0) {
@@ -162,40 +237,46 @@ std::string CGI::executeCgiScript() {
         close(output[0]);
         dup2(input[0], STDIN_FILENO);
         dup2(output[1], STDOUT_FILENO);
+        close(input[0]);
+        close(output[1]);
 
-        // Use python3 interpreter explicitly
+        // Set environment variables
+        for (std::map<std::string, std::string>::const_iterator it = _cgiEnv.begin();
+             it != _cgiEnv.end(); ++it) {
+            setenv(it->first.c_str(), it->second.c_str(), 1);
+        }
+
+        // Execute script
         char *args[] = {(char*)"/usr/bin/python3", (char*)_scriptPath.c_str(), NULL};
-        // std::cout << "DEBUG: Executing python script: " << _scriptPath << std::endl;
         execv("/usr/bin/python3", args);
-        std::cerr << "ERROR: execv failed: " << strerror(errno) << std::endl;
         exit(1);
     }
 
-    // Rest of the code remains the same...
+    // Parent process
     close(input[0]);
     close(output[1]);
 
-    std::string response;
+    // Send POST data to script if exists
+    if (!_requestBody.empty()) {
+        write(input[1], _requestBody.c_str(), _requestBody.length());
+    }
+    close(input[1]);
+
+    // Read response
     char buffer[4096];
     ssize_t bytes;
-    
     while ((bytes = read(output[0], buffer, sizeof(buffer))) > 0) {
         response.append(buffer, bytes);
     }
-    
-    close(output[0]);
-    close(input[1]);
 
+    close(output[0]);
+
+    // Wait for child process
     int status;
     waitpid(pid, &status, 0);
-    _exitStatus = WEXITSTATUS(status);
-    
-    // std::cout << "DEBUG: CGI script exit status: " << _exitStatus << std::endl;
-    // std::cout << "DEBUG: Response length: " << response.length() << std::endl;
 
     return response;
 }
-
 void CGI::parseResponse(const std::string& cgiOutput, HttpResponse& response) {
     // std::cout << "DEBUG: Raw CGI output length: " << cgiOutput.length() << std::endl;
     // std::cout << "DEBUG: Raw CGI output: \n" << cgiOutput << std::endl;
