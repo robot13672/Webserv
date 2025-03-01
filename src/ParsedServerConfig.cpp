@@ -15,6 +15,7 @@ ParsedServerConfig::ParsedServerConfig(const ParsedServerConfig &other)
     _errorPages = other._errorPages;
     _methods = other._methods;
 	_locationRoots = other._locationRoots; // added roi 0301 
+	_locationIndexes = other._locationIndexes;
 }
 
 ParsedServerConfig& ParsedServerConfig::operator=(const ParsedServerConfig &other)
@@ -30,6 +31,7 @@ ParsedServerConfig& ParsedServerConfig::operator=(const ParsedServerConfig &othe
 		_errorPages = other._errorPages;
 		_methods = other._methods;
 		_locationRoots = other._locationRoots;  // added roi 0301 
+		_locationIndexes = other._locationIndexes;
     }
     return *this;
 }
@@ -85,12 +87,13 @@ void ParsedServerConfig::setLocationRoot(const std::string &location, const std:
     _locationRoots[location] = root;
 }
 
-/* 
 // termorary commented - roi 0227
-void ServerConfig::setLocationIndex(const std::string &location, const std::string &index)
+void ParsedServerConfig::setLocationIndex(const std::string &location, const std::string &index)
 {
     _locationIndexes[location] = index;
 }
+
+/* 
 
 void ServerConfig::setLocationCgiPath(const std::string &location, const std::vector<std::string> &cgiPaths)
 {
@@ -135,9 +138,8 @@ std::string ParsedServerConfig::getLocationRoot(const std::string &location) con
     }
     return "";
 }
-/* 
-// temporery commentd roi 0227
-std::string ServerConfig::getLocationIndex(const std::string &location) const
+
+std::string ParsedServerConfig::getLocationIndex(const std::string &location) const
 {
     std::map<std::string, std::string>::const_iterator it = _locationIndexes.find(location);
     if (it != _locationIndexes.end())
@@ -146,6 +148,8 @@ std::string ServerConfig::getLocationIndex(const std::string &location) const
     }
     return "";
 }
+/* 
+// temporery commentd roi 0227
 
 std::vector<std::string> ServerConfig::getLocationCgiPath(const std::string &location) const
 {
@@ -210,6 +214,11 @@ std::ostream& operator<<(std::ostream &os, const ParsedServerConfig &config)
     {
         os << "  Location: " << it->first << " Root: " << it->second << "\n";
     }
+	os << "Location Indexes:\n";
+    for (std::map<std::string, std::string>::const_iterator it = config._locationIndexes.begin(); it != config._locationIndexes.end(); ++it)
+    {
+        os << "  Location: " << it->first << " Index: " << it->second << "\n";
+    }
     return os;
 }
 
@@ -268,6 +277,7 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
 				currentLocation.clear(); // Сброс значения currentLocation при переходе к новому блоку server - roi 0228
 				currentConfig._methods.clear(); // Сброс методов для локаций при завершении блока server - roi 0228
 				currentConfig._locationRoots.clear(); // Сброс корневых директорий для локаций при завершении блока server - 0301
+				currentConfig._locationIndexes.clear();
             }
         }
         else if (inLocationBlock && key == "allow_methods") // Блок для обработки директивы allow_methods
@@ -289,8 +299,15 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
             if (!root.empty() && root[root.size() - 1] == ';')
                 root.erase(root.size() - 1); // Удаление точки с запятой в конце строки
             currentConfig.setLocationRoot(currentLocation, root);
-			std::cout << "Set location root for " << currentLocation << " to " << root << std::endl; // Debug output - roi 0301 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+			// std::cout << "Set location root for " << currentLocation << " to " << root << std::endl; // Debug output - roi 0301 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        }
+		else if (inLocationBlock && key == "index") // Блок для обработки директивы index внутри location
+        {
+            std::string index;
+            iss >> index;
+            if (!index.empty() && index[index.size() - 1] == ';')
+                index.erase(index.size() - 1); // Удаление точки с запятой в конце строки
+            currentConfig.setLocationIndex(currentLocation, index);
         }
         else if (inServerBlock && !inLocationBlock)
         {

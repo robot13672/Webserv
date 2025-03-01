@@ -36,9 +36,9 @@ class ParsedServerConfig
 		
 		// Новые атрибуты для хранения директив внутри блоков location - roi 0227
 		std::map<std::string, std::string> _locationRoots; //location /cgi-bin { /n root ./;
+		std::map<std::string, std::string> _locationIndexes; // location /tours { /n 	index tours1.html;
 	/* 
 		// temporally commented - roi 0227
-		std::map<std::string, std::string> _locationIndexes; // location /tours { /n 	index tours1.html;
 		std::map<std::string, std::vector<std::string> > _locationCgiPaths; // location /cgi-bin { /n cgi_path /usr/bin/python3 /bin/bash;
 		std::map<std::string, std::vector<std::string> > _locationCgiExts; // 	location /red { /n	return /tours;
 		std::map<std::string, bool> _locationAutoindex; // Для хранения значения директивы autoindex для каждой локации likeL: 'autoindex off;' */
@@ -58,9 +58,9 @@ class ParsedServerConfig
 		void setMethods(const std::string &location, const std::vector<std::string> &methods);
 		// setters of 5 additional attributes in locations
 		void setLocationRoot(const std::string &location, const std::string &root);
+		void setLocationIndex(const std::string &location, const std::string &index);
 		/* 
 		// temporally commented - roi 0227
-		void setLocationIndex(const std::string &location, const std::string &index);
 		void setLocationCgiPath(const std::string &location, const std::vector<std::string> &cgiPaths);
 		void setLocationCgiExt(const std::string &location, const std::vector<std::string> &cgiExts);
 		void setLocationAutoindex(const std::string &location, bool autoindex); */
@@ -72,9 +72,9 @@ class ParsedServerConfig
         long getMaxBodySize(void) const;
 		// setters of 5 additional attributes in locations
 		std::string getLocationRoot(const std::string &location) const;
+		std::string getLocationIndex(const std::string &location) const;
 		/* 
 		// temporally commented - roi 0227
-		std::string getLocationIndex(const std::string &location) const;
 		std::vector<std::string> getLocationCgiPath(const std::string &location) const;
 		std::vector<std::string> getLocationCgiExt(const std::string &location) const;
 		bool getLocationAutoindex(const std::string &location) const; */
