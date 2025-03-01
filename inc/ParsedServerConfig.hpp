@@ -35,7 +35,7 @@ class ParsedServerConfig
 		// Индексация по location(string), а значение будет вектор, который хранит все допустимые методы, _methods["root"][1] = {"GET", "POST", "DELETE"} 
 		
 		// Новые атрибуты для хранения директив внутри блоков location - roi 0227
-		// std::map<std::string, std::string> _locationRoots; //location /cgi-bin { /n root ./;
+		std::map<std::string, std::string> _locationRoots; //location /cgi-bin { /n root ./;
 	/* 
 		// temporally commented - roi 0227
 		std::map<std::string, std::string> _locationIndexes; // location /tours { /n 	index tours1.html;
@@ -57,7 +57,7 @@ class ParsedServerConfig
         void setErrorPages(std::map<short, std::string> errorPages);//нужно передавать уже заполненую мапу
 		void setMethods(const std::string &location, const std::vector<std::string> &methods);
 		// setters of 5 additional attributes in locations
-		// void setLocationRoot(const std::string &location, const std::string &root);
+		void setLocationRoot(const std::string &location, const std::string &root);
 		/* 
 		// temporally commented - roi 0227
 		void setLocationIndex(const std::string &location, const std::string &index);
@@ -71,7 +71,7 @@ class ParsedServerConfig
         int getListenFd(void);
         long getMaxBodySize(void) const;
 		// setters of 5 additional attributes in locations
-		// std::string getLocationRoot(const std::string &location) const;
+		std::string getLocationRoot(const std::string &location) const;
 		/* 
 		// temporally commented - roi 0227
 		std::string getLocationIndex(const std::string &location) const;

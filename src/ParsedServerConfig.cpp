@@ -14,6 +14,7 @@ ParsedServerConfig::ParsedServerConfig(const ParsedServerConfig &other)
     _index = other._index;
     _errorPages = other._errorPages;
     _methods = other._methods;
+	_locationRoots = other._locationRoots; // added roi 0301 
 }
 
 ParsedServerConfig& ParsedServerConfig::operator=(const ParsedServerConfig &other)
@@ -28,6 +29,7 @@ ParsedServerConfig& ParsedServerConfig::operator=(const ParsedServerConfig &othe
 		_index = other._index;
 		_errorPages = other._errorPages;
 		_methods = other._methods;
+		_locationRoots = other._locationRoots;  // added roi 0301 
     }
     return *this;
 }
@@ -78,10 +80,10 @@ void ParsedServerConfig::setMethods(const std::string &location, const std::vect
 	_methods[location] = methods;
 }
 // setters of 5 additional attributes in locations - roi 0227
-// void ServerConfig::setLocationRoot(const std::string &location, const std::string &root)
-// {
-//     _locationRoots[location] = root;
-// }
+void ParsedServerConfig::setLocationRoot(const std::string &location, const std::string &root)
+{
+    _locationRoots[location] = root;
+}
 
 /* 
 // termorary commented - roi 0227
@@ -124,7 +126,7 @@ long ParsedServerConfig::getMaxBodySize() const
 }
 
 // setters of 5 additional attributes in locations - roi 0227
-/* std::string ServerConfig::getLocationRoot(const std::string &location) const
+std::string ParsedServerConfig::getLocationRoot(const std::string &location) const
 {
     std::map<std::string, std::string>::const_iterator it = _locationRoots.find(location);
     if (it != _locationRoots.end())
@@ -132,7 +134,7 @@ long ParsedServerConfig::getMaxBodySize() const
         return it->second;
     }
     return "";
-} */
+}
 /* 
 // temporery commentd roi 0227
 std::string ServerConfig::getLocationIndex(const std::string &location) const
@@ -203,6 +205,11 @@ std::ostream& operator<<(std::ostream &os, const ParsedServerConfig &config)
         }
         os << "\n";
     }
+	os << "Location Roots:\n";
+    for (std::map<std::string, std::string>::const_iterator it = config._locationRoots.begin(); it != config._locationRoots.end(); ++it)
+    {
+        os << "  Location: " << it->first << " Root: " << it->second << "\n";
+    }
     return os;
 }
 
@@ -260,6 +267,7 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
                 inServerBlock = false;
 				currentLocation.clear(); // Сброс значения currentLocation при переходе к новому блоку server - roi 0228
 				currentConfig._methods.clear(); // Сброс методов для локаций при завершении блока server - roi 0228
+				currentConfig._locationRoots.clear(); // Сброс корневых директорий для локаций при завершении блока server - 0301
             }
         }
         else if (inLocationBlock && key == "allow_methods") // Блок для обработки директивы allow_methods
@@ -273,6 +281,16 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
                 methods.push_back(method);
             }
             currentConfig.setMethods(currentLocation, methods);
+        }
+		else if (inLocationBlock && key == "root") // Блок для обработки директивы root внутри location
+        {
+            std::string root;
+            iss >> root;
+            if (!root.empty() && root[root.size() - 1] == ';')
+                root.erase(root.size() - 1); // Удаление точки с запятой в конце строки
+            currentConfig.setLocationRoot(currentLocation, root);
+			std::cout << "Set location root for " << currentLocation << " to " << root << std::endl; // Debug output - roi 0301 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         }
         else if (inServerBlock && !inLocationBlock)
         {
