@@ -16,6 +16,9 @@ ParsedServerConfig::ParsedServerConfig(const ParsedServerConfig &other)
     _methods = other._methods;
 	_locationRoots = other._locationRoots; // added roi 0301 
 	_locationIndexes = other._locationIndexes;
+	_locationCgiPaths = other._locationCgiPaths; // roi 0302
+	_locationCgiExts = other._locationCgiExts;
+	_locationAutoindex = other._locationAutoindex;
 }
 
 ParsedServerConfig& ParsedServerConfig::operator=(const ParsedServerConfig &other)
@@ -32,6 +35,9 @@ ParsedServerConfig& ParsedServerConfig::operator=(const ParsedServerConfig &othe
 		_methods = other._methods;
 		_locationRoots = other._locationRoots;  // added roi 0301 
 		_locationIndexes = other._locationIndexes;
+		_locationCgiPaths = other._locationCgiPaths; // roi 0302
+		_locationCgiExts = other._locationCgiExts;
+		_locationAutoindex = other._locationAutoindex;
     }
     return *this;
 }
@@ -93,23 +99,22 @@ void ParsedServerConfig::setLocationIndex(const std::string &location, const std
     _locationIndexes[location] = index;
 }
 
-/* 
-
-void ServerConfig::setLocationCgiPath(const std::string &location, const std::vector<std::string> &cgiPaths)
+// roi 0302
+void ParsedServerConfig::setLocationCgiPath(const std::string &location, const std::vector<std::string> &cgiPaths)
 {
     _locationCgiPaths[location] = cgiPaths;
 }
 
-void ServerConfig::setLocationCgiExt(const std::string &location, const std::vector<std::string> &cgiExts)
+void ParsedServerConfig::setLocationCgiExt(const std::string &location, const std::vector<std::string> &cgiExts)
 {
     _locationCgiExts[location] = cgiExts;
 }
 
-void ServerConfig::setLocationAutoindex(const std::string &location, bool autoindex)
+void ParsedServerConfig::setLocationAutoindex(const std::string &location, bool autoindex)
 {
     _locationAutoindex[location] = autoindex;
 }
- */
+
 //GETTERS	
 std::string ParsedServerConfig::getHost() const
 	{
@@ -148,10 +153,10 @@ std::string ParsedServerConfig::getLocationIndex(const std::string &location) co
     }
     return "";
 }
-/* 
-// temporery commentd roi 0227
 
-std::vector<std::string> ServerConfig::getLocationCgiPath(const std::string &location) const
+// temporery commentd roi 0227 - 0302
+
+std::vector<std::string> ParsedServerConfig::getLocationCgiPath(const std::string &location) const
 {
     std::map<std::string, std::vector<std::string> >::const_iterator it = _locationCgiPaths.find(location);
     if (it != _locationCgiPaths.end())
@@ -161,7 +166,7 @@ std::vector<std::string> ServerConfig::getLocationCgiPath(const std::string &loc
     return std::vector<std::string>();
 }
 
-std::vector<std::string> ServerConfig::getLocationCgiExt(const std::string &location) const
+std::vector<std::string> ParsedServerConfig::getLocationCgiExt(const std::string &location) const
 {
     std::map<std::string, std::vector<std::string> >::const_iterator it = _locationCgiExts.find(location);
     if (it != _locationCgiExts.end())
@@ -171,7 +176,7 @@ std::vector<std::string> ServerConfig::getLocationCgiExt(const std::string &loca
     return std::vector<std::string>();
 }
 
-bool ServerConfig::getLocationAutoindex(const std::string &location) const
+bool ParsedServerConfig::getLocationAutoindex(const std::string &location) const
 {
     std::map<std::string, bool>::const_iterator it = _locationAutoindex.find(location);
     if (it != _locationAutoindex.end())
@@ -179,7 +184,7 @@ bool ServerConfig::getLocationAutoindex(const std::string &location) const
         return it->second;
     }
     return false;
-} */
+}
 
 /* 
 	Перегрузка оператора << 
@@ -218,6 +223,26 @@ std::ostream& operator<<(std::ostream &os, const ParsedServerConfig &config)
     for (std::map<std::string, std::string>::const_iterator it = config._locationIndexes.begin(); it != config._locationIndexes.end(); ++it)
     {
         os << "  Location: " << it->first << " Index: " << it->second << "\n";
+    }
+	os << "Location Cgi Paths:\n";
+    for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._locationCgiPaths.begin(); it != config._locationCgiPaths.end(); ++it)
+    {
+        os << "  Location: " << it->first << " Cgi Path: ";
+        for (std::vector<std::string>::const_iterator cgipath_it = it->second.begin(); cgipath_it != it->second.end(); ++cgipath_it)
+        {
+            os << *cgipath_it << " ";
+        }
+        os << "\n";
+    }
+	os << "Locatoin Cgi Extantions:\n";
+    for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._locationCgiExts.begin(); it != config._locationCgiExts.end(); ++it)
+    {
+        os << "  Location: " << it->first << " Cgi Extantion: ";
+        for (std::vector<std::string>::const_iterator cgiext_it = it->second.begin(); cgiext_it != it->second.end(); ++cgiext_it)
+        {
+            os << *cgiext_it << " ";
+        }
+        os << "\n";
     }
     return os;
 }
@@ -277,7 +302,10 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
 				currentLocation.clear(); // Сброс значения currentLocation при переходе к новому блоку server - roi 0228
 				currentConfig._methods.clear(); // Сброс методов для локаций при завершении блока server - roi 0228
 				currentConfig._locationRoots.clear(); // Сброс корневых директорий для локаций при завершении блока server - 0301
-				currentConfig._locationIndexes.clear();
+				currentConfig._locationIndexes.clear(); // roi 0302
+				currentConfig._locationCgiPaths.clear();
+				currentConfig._locationCgiExts.clear();
+				currentConfig._locationAutoindex.clear();
             }
         }
         else if (inLocationBlock && key == "allow_methods") // Блок для обработки директивы allow_methods
@@ -299,7 +327,7 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
             if (!root.empty() && root[root.size() - 1] == ';')
                 root.erase(root.size() - 1); // Удаление точки с запятой в конце строки
             currentConfig.setLocationRoot(currentLocation, root);
-			// std::cout << "Set location root for " << currentLocation << " to " << root << std::endl; // Debug output - roi 0301 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			// std::cout << "Set location root for " << currentLocation << " to " << root << std::endl; // Debug output - roi 0301
         }
 		else if (inLocationBlock && key == "index") // Блок для обработки директивы index внутри location
         {
@@ -308,6 +336,30 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
             if (!index.empty() && index[index.size() - 1] == ';')
                 index.erase(index.size() - 1); // Удаление точки с запятой в конце строки
             currentConfig.setLocationIndex(currentLocation, index);
+        }
+		else if (inLocationBlock && key == "cgi_path") // Блок для обработки директивы cgi_path внутри location
+        {
+			std::vector<std::string> cgi_paths; // 
+			std::string cgi_path;
+            while (iss >> cgi_path)
+			{
+            	if (!cgi_path.empty() && cgi_path[cgi_path.size() - 1] == ';')
+                cgi_path.erase(cgi_path.size() - 1); // Удаление точки с запятой в конце строки
+				cgi_paths.push_back(cgi_path);
+			}
+            currentConfig.setLocationCgiPath(currentLocation, cgi_paths);
+        }
+		else if (inLocationBlock && key == "cgi_ext") // Блок для обработки директивы cgi_ext внутри location
+        {
+			std::vector<std::string> cgi_exts; // 
+			std::string cgi_ext;
+            while (iss >> cgi_ext)
+			{
+            	if (!cgi_ext.empty() && cgi_ext[cgi_ext.size() - 1] == ';')
+                cgi_ext.erase(cgi_ext.size() - 1); // Удаление точки с запятой в конце строки
+				cgi_exts.push_back(cgi_ext);
+			}
+            currentConfig.setLocationCgiExt(currentLocation, cgi_exts);
         }
         else if (inServerBlock && !inLocationBlock)
         {
