@@ -244,8 +244,13 @@ std::ostream& operator<<(std::ostream &os, const ParsedServerConfig &config)
         }
         os << "\n";
     }
-    return os;
-}
+	os << "Location Autoindex:\n";
+	for (std::map<std::string, bool>::const_iterator it = config._locationAutoindex.begin(); it != config._locationAutoindex.end(); ++it)
+	{
+	    os << "  Location: " << it->first << " Autoindex: " << (it->second ? "on" : "off") << "\n";
+	}
+	    return os;
+	}
 
 // roi 0225 
 const char *ParsedServerConfig::NoFileError::what() const throw()
@@ -361,6 +366,15 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
 			}
             currentConfig.setLocationCgiExt(currentLocation, cgi_exts);
         }
+		else if (inLocationBlock && key == "autoindex") // Блок для обработки директивы autoindex внутри location
+		{
+		    std::string autoindex;
+		    iss >> autoindex;
+		    if (!autoindex.empty() && autoindex[autoindex.size() - 1] == ';')
+		        autoindex.erase(autoindex.size() - 1); // Удаление точки с запятой в конце строки
+		    bool autoindexValue = (autoindex == "on");
+		    currentConfig.setLocationAutoindex(currentLocation, autoindexValue);
+		}
         else if (inServerBlock && !inLocationBlock)
         {
             if (key == "listen")
