@@ -4,111 +4,10 @@
 #include <iostream>
 #include <algorithm>
 
-// void CGI::SetEnv(HttpRequest &request)
-// {
-//     // Clear any existing _cgiEnvironment variables
-//     _cgiEnv.clear();
-
-//     // Standard CGI _cgiEnvironment variables
-//     _cgiEnv["SERVER_SOFTWARE"]    = "Webserv/1.0";
-//     _cgiEnv["SERVER_NAME"]        = request.getHeader("IP");
-//     _cgiEnv["SERVER_PORT"]        = request.getHeader("PORT");
-//     _cgiEnv["SERVER_PROTOCOL"]    = request.getHttpVersion();
-//     _cgiEnv["GATEWAY_INTERFACE"]  = "CGI/1.1";
-
-//     // Request-specific variables
-//     _cgiEnv["REQUEST_METHOD"]     = request.getMethod();
-//     _cgiEnv["REQUEST_URI"]        = request.getUri();
-//     _cgiEnv["SCRIPT_NAME"]        = request.getPath();
-//     _cgiEnv["QUERY_STRING"]       = request.getQuery();
-//     _cgiEnv["PATH_INFO"]          = request.getPath();
-//     _cgiEnv["PATH_TRANSLATED"]    = std::string(getcwd(NULL, 0)) + request.getPath();
-
-//     // Headers
-//     _cgiEnv["CONTENT_TYPE"]       = request.getHeader("Content-Type");
-//     _cgiEnv["CONTENT_LENGTH"]     = request.getHeader("Content-Length");
-    
-    // Convert HTTP headers to CGI variables
-    // std::map<std::string, std::string> headers = request.getHeaders();
-    // std::map<std::string, std::string>::const_iterator it;
-    // for (it = headers.begin(); it != headers.end(); ++it) 
-    // {
-    //     std::string header_name = it->first;
-        
-    //     // Convert header name to CGI format (HTTP_*)
-    //     for (std::string::iterator str_it = header_name.begin(); 
-    //          str_it != header_name.end(); ++str_it)
-    //     {
-    //         *str_it = toupper(*str_it);
-    //     }
-    //     header_name = "HTTP_" + header_name;
-        
-    //     // Replace '-' with '_' in header name
-    //     for (std::string::iterator str_it = header_name.begin(); 
-    //          str_it != header_name.end(); ++str_it)
-    //     {
-    //         if (*str_it == '-')
-    //             *str_it = '_';
-    //     }
-        
-    //     _cgiEnv[header_name] = it->second;
-    // }
-
-    // // Remote information
-    // _cgiEnv["REMOTE_ADDR"] = request.getHeader("IP");
-    // _cgiEnv["REMOTE_HOST"] = request.getHeader("Host");
-
-    // // Remove any empty variables
-    // std::map<std::string, std::string>::iterator map_it = _cgiEnv.begin();
-    // while (map_it != _cgiEnv.end()) 
-    // {
-    //     if (map_it->second.empty())
-    //         _cgiEnv.erase(map_it++);
-    //     else
-    //         ++map_it;
-    // }
-
-//     for (std::map<std::string, std::string>::const_iterator it = _cgiEnv.begin(); it != _cgiEnv.end(); ++it) {
-//         setenv(it->first.c_str(), it->second.c_str(), 1);
-//     }
-// }
-
-// void CGI::executeScript() {
-//     // Устанавливаем все переменные окружения
-//     for (std::map<std::string, std::string>::const_iterator it = _cgiEnv.begin();
-//          it != _cgiEnv.end(); ++it) {
-//         setenv(it->first.c_str(), it->second.c_str(), 1);
-//     }
-
-//     // Создаем дочерний процесс для выполнения скрипта
-//     pid_t pid = fork();
-//     if (pid == 0) {
-//         // Дочерний процесс
-//         char *args[] = {(char*)_scriptPath.c_str(), NULL};
-//         execve(_scriptPath.c_str(), args, environ);
-//         exit(1);
-//     }
-//     // Родительский процесс ждет завершения дочернего
-//     int status;
-//     waitpid(pid, &status, 0);
-// }
-
 CGI::CGI() : _isRunning(false), _exitStatus(0) {}
 
 CGI::~CGI() {}
 
-// bool CGI::handleCgiRequest(HttpRequest& request, HttpResponse& response) {
-//     if (!isCgiRequest(request.getPath()))
-//         return false;
-
-//     setScriptPath(request.getPath());
-//     setRequestBody(request.getBody());
-//     SetEnv(request);
-
-//     std::string cgiOutput = executeCgiScript();
-//     parseResponse(cgiOutput, response);
-//     return true;
-// }
 bool CGI::handleCgiRequest(HttpRequest& request, HttpResponse& response) {
     if (!isCgiRequest(request.getPath()))
         return false;
@@ -140,61 +39,6 @@ bool CGI::isCgiRequest(const std::string& path) {
 void CGI::setScriptPath(const std::string& path) {
     _scriptPath = path;
 }
-
-// std::string CGI::executeCgiScript() {
-//     // std::cout << "DEBUG: Starting CGI execution with script: " << _scriptPath << std::endl;
-    
-//     int input[2], output[2];
-//     if (pipe(input) < 0 || pipe(output) < 0) {
-//         // std::cerr << "ERROR: Failed to create pipes" << std::endl;
-//         return "";
-//     }
-
-//     pid_t pid = fork();
-//     if (pid < 0) {
-//         // std::cerr << "ERROR: Fork failed" << std::endl;
-//         return "";
-//     }
-
-//     if (pid == 0) {
-//         // Child process
-//         close(input[1]);
-//         close(output[0]);
-//         dup2(input[0], STDIN_FILENO);
-//         dup2(output[1], STDOUT_FILENO);
-
-//         // Use python3 interpreter explicitly
-//         char *args[] = {(char*)"/usr/bin/python3", (char*)_scriptPath.c_str(), NULL};
-//         // std::cout << "DEBUG: Executing python script: " << _scriptPath << std::endl;
-//         execv("/usr/bin/python3", args);
-//         std::cerr << "ERROR: execv failed: " << strerror(errno) << std::endl;
-//         exit(1);
-//     }
-
-//     // Rest of the code remains the same...
-//     close(input[0]);
-//     close(output[1]);
-
-//     std::string response;
-//     char buffer[4096];
-//     ssize_t bytes;
-    
-//     while ((bytes = read(output[0], buffer, sizeof(buffer))) > 0) {
-//         response.append(buffer, bytes);
-//     }
-    
-//     close(output[0]);
-//     close(input[1]);
-
-//     int status;
-//     waitpid(pid, &status, 0);
-//     _exitStatus = WEXITSTATUS(status);
-    
-//     // std::cout << "DEBUG: CGI script exit status: " << _exitStatus << std::endl;
-//     // std::cout << "DEBUG: Response length: " << response.length() << std::endl;
-
-//     return response;
-// }
 
 void CGI::SetEnv(HttpRequest &request) {
     _cgiEnv["REQUEST_METHOD"] = request.getMethod();
