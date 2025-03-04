@@ -42,8 +42,9 @@ private:
     std::string _method;
     std::string getOriginalFilename(const std::string& body);
     std::string createUniqueFilename(const std::string& dir, const std::string& originalName);
-    void handleCgi();
+    // void handleCgi();
     CGI*  cgi;
+    std::vector<std::string> _cookies;
 
 public:
     HttpResponse();
@@ -86,6 +87,10 @@ public:
     void setMethod(const std::string& method) { _method = method; }
     void handleListFiles();
 
+
+
+    void addCookie(const std::string& cookie) { _cookies.push_back(cookie); }
+    const std::vector<std::string>& getCookies() const { return _cookies; }
 };
 
 #endif

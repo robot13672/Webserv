@@ -4,29 +4,50 @@
 #include <iostream>
 #include <algorithm>
 
-CGI::CGI() : _isRunning(false), _exitStatus(0) {}
+CGI::CGI() :  _exitStatus(0) {}
 
 CGI::~CGI() {}
+
+// bool CGI::handleCgiRequest(HttpRequest& request, HttpResponse& response) {
+//     if (!isCgiRequest(request.getPath()))
+//         return false;
+
+//     // Fix the path - remove one /cgi-bin/ since it's already in the path
+//     std::string path = request.getPath();
+//     if (path[0] == '/') {
+//         path = path.substr(1); // Remove leading slash if present
+//     }
+//     setScriptPath(path);  // Add . to make it relative to current directory
+    
+//     // std::cout << "DEBUG: Script path: " << _scriptPath << std::endl;
+    
+//     setRequestBody(request.getBody());
+//     SetEnv(request);
+
+//     std::string cgiOutput = executeCgiScript();
+//     // std::cout << "DEBUG: CGI output length: " << cgiOutput.length() << std::endl;
+    
+//     parseResponse(cgiOutput, response);
+//     return true;
+// }
 
 bool CGI::handleCgiRequest(HttpRequest& request, HttpResponse& response) {
     if (!isCgiRequest(request.getPath()))
         return false;
-
-    // Fix the path - remove one /cgi-bin/ since it's already in the path
     std::string path = request.getPath();
     if (path[0] == '/') {
         path = path.substr(1); // Remove leading slash if present
     }
-    setScriptPath(path);  // Add . to make it relative to current directory
-    
-    // std::cout << "DEBUG: Script path: " << _scriptPath << std::endl;
-    
-    setRequestBody(request.getBody());
+    setScriptPath(path);
     SetEnv(request);
+    setRequestBody(request.getBody());
 
     std::string cgiOutput = executeCgiScript();
-    // std::cout << "DEBUG: CGI output length: " << cgiOutput.length() << std::endl;
-    
+    if (cgiOutput.empty()) {
+        response.setErrorResponse(500, "CGI Script Error");
+        return true;
+    }
+
     parseResponse(cgiOutput, response);
     return true;
 }
@@ -121,41 +142,141 @@ std::string CGI::executeCgiScript() {
 
     return response;
 }
-void CGI::parseResponse(const std::string& cgiOutput, HttpResponse& response) {
-    // std::cout << "DEBUG: Raw CGI output length: " << cgiOutput.length() << std::endl;
-    // std::cout << "DEBUG: Raw CGI output: \n" << cgiOutput << std::endl;
 
-    // Set default headers first
-    response.setStatus(200, "OK");
-    response.setHeader("Content-Type", "text/html");
-    
-    // Find the header-body separator
-    size_t headerEnd = cgiOutput.find("\r\n\r\n");
-    if (headerEnd == std::string::npos) {
-        // No header separator found, treat everything as body
-        // std::cout << "DEBUG: No headers found, using entire output as body" << std::endl;
-        response.setBody(cgiOutput);
+// void CGI::parseResponse(const std::string& cgiOutput, HttpResponse& response) {
+//     size_t headerEnd = cgiOutput.find("\r\n\r\n");
+//     if (headerEnd == std::string::npos) {
+//         response.setHeader("Content-Type", "text/html");
+//         response.setBody(cgiOutput);
+//         response.setStatus(200, "OK");
+//         return;
+//     }
+
+//     std::string headers = cgiOutput.substr(0, headerEnd);
+//     std::string body = cgiOutput.substr(headerEnd + 4);
+
+//     std::istringstream headerStream(headers);
+//     std::string line;
+//     bool hasContentType = false;
+//     bool hasCookie = false;
+
+//     while (std::getline(headerStream, line)) {
+//         if (!line.empty() && line[line.length()-1] == '\r') {
+//             line = line.substr(0, line.length()-1);
+//         }
+        
+//         if (line.empty()) continue;
+
+//         // // Handle Set-Cookie headers
+//         // if (line.find("Set-Cookie:") == 0) {
+//         //     std::string cookieValue = line.substr(11);
+//         //     cookieValue.erase(0, cookieValue.find_first_not_of(" "));
+//         //     response.addCookie(cookieValue);
+//         //     continue;
+//         // }
+
+//         // if (line.find("Set-Cookie:") == 0) {
+//         //     std::string cookieValue = line.substr(11);
+//         //     // Remove leading whitespace
+//         //     while (!cookieValue.empty() && cookieValue[0] == ' ') {
+//         //         cookieValue = cookieValue.substr(1);
+//         //     }
+//         //     response.setHeader("Set-Cookie", cookieValue);
+//         //     continue;
+//         // }
+
+//         // size_t colonPos = line.find(": ");
+//         // if (colonPos != std::string::npos) {
+//         //     std::string key = line.substr(0, colonPos);
+//         //     std::string value = line.substr(colonPos + 2);
+//         //     response.setHeader(key, value);
+//         //     if (key == "Content-Type") hasContentType = true;
+//         // }
+
+//         if (line.find("Set-Cookie:") == 0) {
+//             if (!hasCookie) { // Only process the first Set-Cookie header
+//                 std::string cookieValue = line.substr(11);
+//                 while (!cookieValue.empty() && cookieValue[0] == ' ') {
+//                     cookieValue = cookieValue.substr(1);
+//                 }
+//                 response.setHeader("Set-Cookie", cookieValue);
+//                 hasCookie = true;
+//             }
+//             continue;
+//         }
+
+//         // Only process Content-Type if we haven't seen it yet
+//         size_t colonPos = line.find(": ");
+//         if (colonPos != std::string::npos) {
+//             std::string key = line.substr(0, colonPos);
+//             std::string value = line.substr(colonPos + 2);
+//             if (key == "Content-Type" && !hasContentType) {
+//                 response.setHeader(key, value);
+//                 hasContentType = true;
+//             } else if (key != "Content-Type") {
+//                 response.setHeader(key, value);
+//             }
+//         }
+//     }
+
+//     if (!hasContentType) {
+//         response.setHeader("Content-Type", "text/html");
+//     }
+
+//     response.setBody(body);
+//     response.setStatus(200, "OK");
+// }
+
+void CGI::parseResponse(const std::string& cgiOutput, HttpResponse& response) {
+    // Check if the output starts with headers
+    if (cgiOutput.empty()) {
+        response.setErrorResponse(500, "Empty CGI response");
         return;
     }
 
-    // Parse headers
+    // For plain text responses without headers, just set content type and body
+    if (cgiOutput.find(": ") == std::string::npos) {
+        response.setHeader("Content-Type", "text/plain");
+        response.setBody(cgiOutput);
+        response.setStatus(200, "OK");
+        return;
+    }
+
+    size_t headerEnd = cgiOutput.find("\r\n\r\n");
+    if (headerEnd == std::string::npos) {
+        headerEnd = cgiOutput.find("\n\n");
+    }
+
+    // If no header separator found, treat as plain text
+    if (headerEnd == std::string::npos) {
+        response.setHeader("Content-Type", "text/plain");
+        response.setBody(cgiOutput);
+        response.setStatus(200, "OK");
+        return;
+    }
+
+    // Parse headers and body
     std::string headers = cgiOutput.substr(0, headerEnd);
-    std::string body = cgiOutput.substr(headerEnd + 4); // Skip \r\n\r\n
+    std::string body = cgiOutput.substr(headerEnd + (cgiOutput[headerEnd + 1] == '\n' ? 2 : 4));
 
-    // std::cout << "DEBUG: Found headers:\n" << headers << std::endl;
-    // std::cout << "DEBUG: Found body:\n" << body << std::endl;
-
-    // Parse individual headers
     std::istringstream headerStream(headers);
     std::string line;
+    bool hasContentType = false;
+
     while (std::getline(headerStream, line)) {
-        // Remove carriage return if present
         if (!line.empty() && line[line.length()-1] == '\r') {
             line = line.substr(0, line.length()-1);
         }
         
-        // Skip empty lines
-        if (line.empty()) {
+        if (line.empty()) continue;
+
+        // Handle Set-Cookie headers
+        if (line.find("Set-Cookie:") == 0) {
+            std::string cookieValue = line.substr(11);
+            while (!cookieValue.empty() && (cookieValue[0] == ' ' || cookieValue[0] == '\t')) {
+                cookieValue = cookieValue.substr(1);
+            }
+            response.setHeader("Set-Cookie", cookieValue);
             continue;
         }
 
@@ -163,14 +284,218 @@ void CGI::parseResponse(const std::string& cgiOutput, HttpResponse& response) {
         if (colonPos != std::string::npos) {
             std::string key = line.substr(0, colonPos);
             std::string value = line.substr(colonPos + 2);
-            // std::cout << "DEBUG: Setting header: " << key << " = " << value << std::endl;
             response.setHeader(key, value);
+            if (key == "Content-Type") hasContentType = true;
         }
     }
 
-    // Set body
+    if (!hasContentType) {
+        response.setHeader("Content-Type", "text/plain");
+    }
+
     response.setBody(body);
+    response.setStatus(200, "OK");
 }
+
+
+// void CGI::parseResponse(const std::string& cgiOutput, HttpResponse& response) {
+//     size_t headerEnd = cgiOutput.find("\r\n\r\n");
+//     if (headerEnd == std::string::npos) {
+//         headerEnd = cgiOutput.find("\n\n");
+//         if (headerEnd == std::string::npos) {
+//             response.setErrorResponse(500, "Invalid CGI response format");
+//             return;
+//         }
+//     }
+
+//     std::string headers = cgiOutput.substr(0, headerEnd);
+//     std::string body = cgiOutput.substr(headerEnd + 4);
+
+//     std::istringstream headerStream(headers);
+//     std::string line;
+//     bool hasContentType = false;
+
+//     while (std::getline(headerStream, line)) {
+//         if (!line.empty() && line[line.length()-1] == '\r') {
+//             line = line.substr(0, line.length()-1);
+//         }
+        
+//         if (line.empty()) continue;
+
+//         // if (line.find("Set-Cookie:") == 0) {
+//         //     response.setHeader("Set-Cookie", line.substr(11));
+//         //     continue;
+//         // }
+
+//         if (line.find("Set-Cookie:") == 0) {
+//             std::string cookieValue = line.substr(11);
+//             while (!cookieValue.empty() && (cookieValue[0] == ' ' || cookieValue[0] == '\t')) {
+//                 cookieValue = cookieValue.substr(1);
+//             }
+//             response.setHeader("Set-Cookie", cookieValue);
+//             continue;
+//         }
+
+//         size_t colonPos = line.find(": ");
+//         if (colonPos != std::string::npos) {
+//             std::string key = line.substr(0, colonPos);
+//             std::string value = line.substr(colonPos + 2);
+//             response.setHeader(key, value);
+//             if (key == "Content-Type") hasContentType = true;
+//         }
+//     }
+
+//     if (!hasContentType) {
+//         response.setHeader("Content-Type", "text/html");
+//     }
+
+//     response.setBody(body);
+//     response.setStatus(200, "OK");
+// }
+
+// void CGI::parseResponse(const std::string& cgiOutput, HttpResponse& response) {
+//     size_t headerEnd = cgiOutput.find("\r\n\r\n");
+//     if (headerEnd == std::string::npos) {
+//         response.setHeader("Content-Type", "text/html");
+//         response.setBody(cgiOutput);
+//         response.setStatus(200, "OK");
+//         return;
+//     }
+
+//     std::string headers = cgiOutput.substr(0, headerEnd);
+//     std::string body = cgiOutput.substr(headerEnd + 4);
+
+//     std::istringstream headerStream(headers);
+//     std::string line;
+//     bool hasContentType = false;
+
+//     while (std::getline(headerStream, line)) {
+//         if (!line.empty() && line[line.length()-1] == '\r') {
+//             line = line.substr(0, line.length()-1);
+//         }
+        
+//         if (line.empty()) continue;
+
+//         // Handle Set-Cookie headers specially
+//         if (line.find("Set-Cookie:") == 0) {
+//             std::string cookieValue = line.substr(12);
+//             // Trim leading whitespace
+//             cookieValue.erase(0, cookieValue.find_first_not_of(" "));
+//             response.addCookie(cookieValue);
+//             continue;
+//         }
+
+//         size_t colonPos = line.find(": ");
+//         if (colonPos != std::string::npos) {
+//             std::string key = line.substr(0, colonPos);
+//             std::string value = line.substr(colonPos + 2);
+//             response.setHeader(key, value);
+//             if (key == "Content-Type") hasContentType = true;
+//         }
+//     }
+
+//     if (!hasContentType) {
+//         response.setHeader("Content-Type", "text/html");
+//     }
+
+//     response.setBody(body);
+//     response.setStatus(200, "OK");
+// }
+
+
+//2 version
+// void CGI::parseResponse(const std::string& cgiOutput, HttpResponse& response) {
+//     // std::cout << "DEBUG: Raw CGI output length: " << cgiOutput.length() << std::endl;
+//     // std::cout << "DEBUG: Raw CGI output: \n" << cgiOutput << std::endl;
+
+//     // Set default headers first
+//     response.setStatus(200, "OK");
+//     response.setHeader("Content-Type", "text/html");
+    
+//     // Find the header-body separator
+//     size_t headerEnd = cgiOutput.find("\r\n\r\n");
+//     if (headerEnd == std::string::npos) {
+//         // No header separator found, treat everything as body
+//         // std::cout << "DEBUG: No headers found, using entire output as body" << std::endl;
+//         response.setBody(cgiOutput);
+//         return;
+//     }
+
+//     // Parse headers
+//     std::string headers = cgiOutput.substr(0, headerEnd);
+//     std::string body = cgiOutput.substr(headerEnd + 4); // Skip \r\n\r\n
+
+//     // std::cout << "DEBUG: Found headers:\n" << headers << std::endl;
+//     // std::cout << "DEBUG: Found body:\n" << body << std::endl;
+
+//     // Parse individual headers
+//     std::istringstream headerStream(headers);
+//     std::string line;
+//     while (std::getline(headerStream, line)) {
+//         // Remove carriage return if present
+//         if (!line.empty() && line[line.length()-1] == '\r') {
+//             line = line.substr(0, line.length()-1);
+//         }
+        
+//         // Skip empty lines
+//         if (line.empty()) {
+//             continue;
+//         }
+
+//         size_t colonPos = line.find(": ");
+//         if (colonPos != std::string::npos) {
+//             std::string key = line.substr(0, colonPos);
+//             std::string value = line.substr(colonPos + 2);
+//             // std::cout << "DEBUG: Setting header: " << key << " = " << value << std::endl;
+//             response.setHeader(key, value);
+//         }
+//     }
+
+//     // Set body
+//     response.setBody(body);
+// }
+//3 version
+// void CGI::parseResponse(const std::string& cgiOutput, HttpResponse& response) {
+//     size_t headerEnd = cgiOutput.find("\r\n\r\n");
+//     if (headerEnd == std::string::npos) {
+//         response.setHeader("Content-Type", "text/html");
+//         response.setBody(cgiOutput);
+//         response.setStatus(200, "OK");
+//         return;
+//     }
+
+//     std::string headers = cgiOutput.substr(0, headerEnd);
+//     std::string body = cgiOutput.substr(headerEnd + 4);
+
+//     // Process headers
+//     std::istringstream headerStream(headers);
+//     std::string line;
+//     while (std::getline(headerStream, line)) {
+//         // Remove carriage return if present
+//         if (!line.empty() && line[line.length()-1] == '\r') {
+//             line = line.substr(0, line.length()-1);
+//         }
+        
+//         // Skip empty lines
+//         if (line.empty()) continue;
+
+//         // Special handling for Set-Cookie headers
+//         if (line.find("Set-Cookie:") == 0) {
+//             response.setHeader("Set-Cookie", line.substr(11));
+//             continue;
+//         }
+
+//         size_t colonPos = line.find(": ");
+//         if (colonPos != std::string::npos) {
+//             std::string key = line.substr(0, colonPos);
+//             std::string value = line.substr(colonPos + 2);
+//             response.setHeader(key, value);
+//         }
+//     }
+
+//     response.setBody(body);
+// }
+
 
 // void CGI::parseResponse(const std::string& cgiOutput, HttpResponse& response) {
 //     size_t headerEnd = cgiOutput.find("\r\n\r\n");

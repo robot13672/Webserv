@@ -539,17 +539,71 @@ void HttpResponse::sendFile() {
     }
 }
 
+// std::string HttpResponse::toString() const {
+//     std::stringstream response;
+    
+//     response << _httpVersion << " " << _statusCode << " " << _statusMessage << "\r\n";
+    
+//     std::map<std::string, std::string>::const_iterator it;
+//     for (it = _headers.begin(); it != _headers.end(); ++it) {
+//         response << it->first << ": " << it->second << "\r\n";
+//     }
+    
+//     response << "\r\n" << _body;
+//     return response.str();
+// }
+
+// std::string HttpResponse::toString() const {
+//     std::stringstream response;
+    
+//     // Status line
+//     response << _httpVersion << " " << _statusCode << " " << _statusMessage << "\r\n";
+    
+//     // Headers
+//     for (std::map<std::string, std::string>::const_iterator it = _headers.begin();
+//          it != _headers.end(); ++it) {
+//         response << it->first << ": " << it->second << "\r\n";
+//     }
+    
+//     // Cookies
+//     for (std::vector<std::string>::const_iterator it = _cookies.begin();
+//          it != _cookies.end(); ++it) {
+//         response << "Set-Cookie: " << *it << "\r\n";
+//     }
+    
+//     // Empty line separating headers from body
+//     response << "\r\n";
+    
+//     // Body
+//     response << _body;
+    
+//     return response.str();
+// }
+
 std::string HttpResponse::toString() const {
     std::stringstream response;
     
+    // Status line
     response << _httpVersion << " " << _statusCode << " " << _statusMessage << "\r\n";
     
+    // Headers
     std::map<std::string, std::string>::const_iterator it;
     for (it = _headers.begin(); it != _headers.end(); ++it) {
         response << it->first << ": " << it->second << "\r\n";
     }
     
-    response << "\r\n" << _body;
+    // Cookies - each cookie gets its own Set-Cookie header
+    std::vector<std::string>::const_iterator cookieIt;
+    for (cookieIt = _cookies.begin(); cookieIt != _cookies.end(); ++cookieIt) {
+        response << "Set-Cookie: " << *cookieIt << "\r\n";
+    }
+    
+    // Empty line separating headers from body
+    response << "\r\n";
+    
+    // Body
+    response << _body;
+    
     return response.str();
 }
 
