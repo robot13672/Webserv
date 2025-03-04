@@ -16,17 +16,20 @@ ServerConfig::ServerConfig() {}
 ServerConfig::ServerConfig(const ServerConfig &other)
 {
     _adress = other._adress;
-    _port = other._port;
-    _host = other._host;
     _listen_fd = other._listen_fd;
-    _max_body_size = other._max_body_size;
-    _name = other._name;
-    _root = other._root;
-    _index = other._index;
-    _errorPages = other._errorPages;
-    _autoindex = other._autoindex;
-    _methods = other._methods;
-    _logDirection = other._logDirection;
+    _port = other._port;
+	_host = other._host;
+	_max_body_size = other._max_body_size;
+	_name = other._name;
+	_root = other._root;
+	_index = other._index;
+	_errorPages = other._errorPages;
+	_methods = other._methods;
+	_locationRoots = other._locationRoots;  // added roi 0301 
+	_locationIndexes = other._locationIndexes;
+	_locationCgiPaths = other._locationCgiPaths; // roi 0302
+	_locationCgiExts = other._locationCgiExts;
+	_locationAutoindex = other._locationAutoindex;
 }
 
 ServerConfig& ServerConfig::operator=(const ServerConfig &other)
@@ -34,17 +37,20 @@ ServerConfig& ServerConfig::operator=(const ServerConfig &other)
     if (this != &other)
     {
         _adress = other._adress;
-        _port = other._port;
-        _host = other._host;
         _listen_fd = other._listen_fd;
-        _max_body_size = other._max_body_size;
-        _name = other._name;
-        _root = other._root;
-        _index = other._index;
-        _errorPages = other._errorPages;
-        _autoindex = other._autoindex;
-        _methods = other._methods;
-        _logDirection = other._logDirection;
+        _port = other._port;
+		_host = other._host;
+		_max_body_size = other._max_body_size;
+		_name = other._name;
+		_root = other._root;
+		_index = other._index;
+		_errorPages = other._errorPages;
+		_methods = other._methods;
+		_locationRoots = other._locationRoots;  // added roi 0301 
+		_locationIndexes = other._locationIndexes;
+		_locationCgiPaths = other._locationCgiPaths; // roi 0302
+		_locationCgiExts = other._locationCgiExts;
+		_locationAutoindex = other._locationAutoindex;
     }
     return *this;
 }
@@ -127,15 +133,66 @@ void ServerConfig::setErrorPages(std::map<short, std::string> errorPages)
     _errorPages = errorPages;
 }
 
-void ServerConfig::setMethods(std::vector<std::string> methods)
+void ServerConfig::setMethods(const std::string &location, const std::vector<std::string> &methods)
+{
+	_methods[location] = methods;
+}
+
+void ServerConfig::setLocationRoot(const std::string &location, const std::string &root)
+{
+    _locationRoots[location] = root;
+}
+
+void ServerConfig::setLocationIndex(const std::string &location, const std::string &index)
+{
+    _locationIndexes[location] = index;
+}
+
+void ServerConfig::setLocationCgiPath(const std::string &location, const std::vector<std::string> &cgiPaths)
+{
+    _locationCgiPaths[location] = cgiPaths;
+}
+
+void ServerConfig::setLocationCgiExt(const std::string &location, const std::vector<std::string> &cgiExts)
+{
+    _locationCgiExts[location] = cgiExts;
+}
+
+void ServerConfig::setLocationAutoindex(const std::string &location, bool autoindex)
+{
+    _locationAutoindex[location] = autoindex;
+}
+
+void ServerConfig::setLocationRoots(const std::map<std::string, std::string> &locationRoots)
+{
+    _locationRoots = locationRoots;
+}
+
+void ServerConfig::setLocationIndexes(const std::map<std::string, std::string> &locationIndexes)
+{
+    _locationIndexes = locationIndexes;
+}
+
+void ServerConfig::setLocationCgiPaths(const std::map<std::string, std::vector<std::string> > &locationCgiPaths)
+{
+    _locationCgiPaths = locationCgiPaths;
+}
+
+void ServerConfig::setLocationCgiExts(const std::map<std::string, std::vector<std::string> > &locationCgiExts)
+{
+    _locationCgiExts = locationCgiExts;
+}
+
+void ServerConfig::setLocationAutoindexes(const std::map<std::string, bool> &locationAutoindex)
+{
+    _locationAutoindex = locationAutoindex;
+}
+
+void ServerConfig::setMethods(const std::map<std::string, std::vector<std::string> > &methods)
 {
     _methods = methods;
 }
 
-void ServerConfig::setLogDirection(std::string logDirection)
-{
-    _logDirection = logDirection;
-}
 //GET
 // in_addr_t ServerConfig::getHost()
 // {
@@ -162,4 +219,54 @@ int ServerConfig::getListenFd()
 long ServerConfig::getMaxBodySize()
 {
     return _max_body_size;
+}
+
+std::string ServerConfig::getLocationRoot(const std::string &location) const
+{
+    std::map<std::string, std::string>::const_iterator it = _locationRoots.find(location);
+    if (it != _locationRoots.end())
+    {
+        return it->second;
+    }
+    return "";
+}
+
+std::string ServerConfig::getLocationIndex(const std::string &location) const
+{
+    std::map<std::string, std::string>::const_iterator it = _locationIndexes.find(location);
+    if (it != _locationIndexes.end())
+    {
+        return it->second;
+    }
+    return "";
+}
+
+std::vector<std::string> ServerConfig::getLocationCgiPath(const std::string &location) const
+{
+    std::map<std::string, std::vector<std::string> >::const_iterator it = _locationCgiPaths.find(location);
+    if (it != _locationCgiPaths.end())
+    {
+        return it->second;
+    }
+    return std::vector<std::string>();
+}
+
+std::vector<std::string> ServerConfig::getLocationCgiExt(const std::string &location) const
+{
+    std::map<std::string, std::vector<std::string> >::const_iterator it = _locationCgiExts.find(location);
+    if (it != _locationCgiExts.end())
+    {
+        return it->second;
+    }
+    return std::vector<std::string>();
+}
+
+bool ServerConfig::getLocationAutoindex(const std::string &location) const
+{
+    std::map<std::string, bool>::const_iterator it = _locationAutoindex.find(location);
+    if (it != _locationAutoindex.end())
+    {
+        return it->second;
+    }
+    return false;
 }

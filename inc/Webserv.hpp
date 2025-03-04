@@ -29,7 +29,7 @@
 
 
 //Пользовательские библиотеки
-
+#include "ParsedServerConfig.hpp"
 #include "ServerConfig.hpp"
 // #include "Server.hpp"
 #include "Logger.hpp"

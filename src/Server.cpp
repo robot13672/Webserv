@@ -119,7 +119,7 @@ void Server::setupListeningSocket(int fd)
 
 void Server::readRequest(int &fd, Client &client)
 {
-    const long BUFFER_SIZE = 1048576000; 
+    const long BUFFER_SIZE = 10485760; 
     std::vector<char> buffer(BUFFER_SIZE);
     int readedBytes = read(fd, buffer.data(), BUFFER_SIZE);
     
