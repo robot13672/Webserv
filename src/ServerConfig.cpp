@@ -1,4 +1,5 @@
 #include "../inc/ServerConfig.hpp"
+#include <algorithm>
 
 ServerConfig::ServerConfig(std::string host, u_int16_t port) //для эмуляции отработанного конфиг файла
 {
@@ -269,4 +270,18 @@ bool ServerConfig::getLocationAutoindex(const std::string &location) const
         return it->second;
     }
     return false;
+}
+
+bool ServerConfig::isAvailibleMethod(std::string path, std::string method)
+{
+    // Find if there are any methods defined for this path
+    std::map<std::string, std::vector<std::string> >::const_iterator it = _methods.find(path);
+    
+    // If no methods are defined for this path, all methods are allowed (nginx default behavior)
+    if (it == _methods.end())
+        return true;
+        
+    // Check if the requested method is in the allowed methods vector
+    const std::vector<std::string>& allowedMethods = it->second;
+    return std::find(allowedMethods.begin(), allowedMethods.end(), method) != allowedMethods.end();
 }
