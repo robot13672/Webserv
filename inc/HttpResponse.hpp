@@ -29,22 +29,21 @@ class CGI;
 
 class HttpResponse {
 private:
-    ServerConfig _server;
-    std::string _httpVersion;
-    int _statusCode;
-    std::string _statusMessage;
-    std::map<std::string, std::string> _headers;
-    std::string _body;
-    bool _chunked;
-    HttpRequest _request;
-    std::string _response;
-    std::string _path;
-    std::string _method;
+    ServerConfig                        _server;
+    std::string                         _httpVersion;
+    int                                 _statusCode;
+    std::string                         _statusMessage;
+    std::map<std::string, std::string>  _headers;
+    std::string                         _body;
+    bool                                _chunked;
+    HttpRequest                         _request;
+    std::string                         _response;
+    std::string                         _path;
+    std::string                         _method;
+    CGI*                                cgi;
+    std::vector<std::string>            _cookies;
     std::string getOriginalFilename(const std::string& body);
     std::string createUniqueFilename(const std::string& dir, const std::string& originalName);
-    // void handleCgi();
-    CGI*  cgi;
-    std::vector<std::string> _cookies;
 
 public:
     HttpResponse();

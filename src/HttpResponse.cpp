@@ -112,11 +112,14 @@ void HttpResponse::handleRequest() {
     setHeader("Server", "text/plain");
     setHeader("Date", getCurrentTime());
     setHeader("Connection", "keep-alive");
-    
-    
 
     std::cout << "Method: " << _method << std::endl;
     // Проверяем метод до проверки файла
+    if (_server.isAvailibleMethod(_path, _method) == false) {
+        setErrorResponse(405, "Method Not Allowed");
+        setHeader("Allow", "GET, POST, DELETE");
+        return;
+    }
     if (_method != "GET" && _method != "POST" && _method != "DELETE") {
         setErrorResponse(405, "Method Not Allowed");
         setHeader("Allow", "GET, POST, DELETE");
@@ -438,11 +441,52 @@ std::string HttpResponse::getCurrentTime() {
 
 void HttpResponse::setErrorResponse(int code, const std::string& message) {
     setStatus(code, message);
-    std::stringstream ss;
-    ss << "<html><body><h1>" << message << "</h1>";
-    ss << "<p>Error " << code << ": " << message << "</p></body></html>";
-    setHeader("Content-Type", "text/html");
-    setBody(ss.str());
+    
+    // Определяем путь к файлу ошибки
+    std::string localPath;
+    switch (code) {
+        case 400:
+            localPath = "assets/error_pages/400.html";
+            break;
+        case 403:
+            localPath = "assets/error_pages/403.html";
+            break;
+        case 404:
+            localPath = "assets/error_pages/404.html";
+            break;
+        case 405:
+            localPath = "assets/error_pages/405.html";
+            break;
+        case 413:
+            localPath = "assets/error_pages/413.html";
+            break;
+        case 500:
+        default:
+            localPath = "assets/error_pages/500.html";
+    }
+
+    // Читаем файл напрямую
+    std::ifstream file(localPath.c_str(), std::ios::binary);
+    if (file) {
+        std::stringstream buffer;
+        buffer << file.rdbuf();
+        setHeader("Content-Type", "text/html");
+        setBody(buffer.str());
+    } else {
+        // Если файл не найден, создаем базовую HTML-страницу
+        std::stringstream ss;
+        ss << "<!DOCTYPE html>\n<html>\n<head>\n";
+        ss << "<title>Error " << code << "</title>\n";
+        ss << "<style>body{font-family:Arial,sans-serif;background:#1a1a1a;color:#fff;";
+        ss << "display:flex;justify-content:center;align-items:center;height:100vh;margin:0;}</style>\n";
+        ss << "</head>\n<body>\n";
+        ss << "<div><h1>Error " << code << "</h1>\n";
+        ss << "<p>" << message << "</p></div>\n";
+        ss << "</body>\n</html>";
+
+        setHeader("Content-Type", "text/html");
+        setBody(ss.str());
+    }
 }
 
 void HttpResponse::setRedirectResponse(const std::string& newLocation) {
@@ -538,47 +582,6 @@ void HttpResponse::sendFile() {
         setErrorResponse(500, "Internal Server Error");
     }
 }
-
-// std::string HttpResponse::toString() const {
-//     std::stringstream response;
-    
-//     response << _httpVersion << " " << _statusCode << " " << _statusMessage << "\r\n";
-    
-//     std::map<std::string, std::string>::const_iterator it;
-//     for (it = _headers.begin(); it != _headers.end(); ++it) {
-//         response << it->first << ": " << it->second << "\r\n";
-//     }
-    
-//     response << "\r\n" << _body;
-//     return response.str();
-// }
-
-// std::string HttpResponse::toString() const {
-//     std::stringstream response;
-    
-//     // Status line
-//     response << _httpVersion << " " << _statusCode << " " << _statusMessage << "\r\n";
-    
-//     // Headers
-//     for (std::map<std::string, std::string>::const_iterator it = _headers.begin();
-//          it != _headers.end(); ++it) {
-//         response << it->first << ": " << it->second << "\r\n";
-//     }
-    
-//     // Cookies
-//     for (std::vector<std::string>::const_iterator it = _cookies.begin();
-//          it != _cookies.end(); ++it) {
-//         response << "Set-Cookie: " << *it << "\r\n";
-//     }
-    
-//     // Empty line separating headers from body
-//     response << "\r\n";
-    
-//     // Body
-//     response << _body;
-    
-//     return response.str();
-// }
 
 std::string HttpResponse::toString() const {
     std::stringstream response;

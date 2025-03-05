@@ -1,42 +1,3 @@
-# import os
-# import sys
-# from urllib.parse import parse_qs
-
-# # Headers must be printed first
-# # print("Content-Type: text/html")
-# print()  # Empty line is crucial
-# # Debug output to stderr
-# # sys.stderr.write("CGI Script Starting\n")
-# # sys.stderr.write(f"QUERY_STRING: {os.environ.get('QUERY_STRING', 'None')}\n")
-
-
-# try:
-#     # Get and parse query parameters
-#     query_string = os.environ.get('QUERY_STRING', '')
-#     params = parse_qs(query_string)
-    
-#     sys.stderr.write(f"Parsed params: {params}\n")
-    
-#     # Extract values
-#     num1 = int(params.get('num1', [0])[0])
-#     num2 = int(params.get('num2', [0])[0])
-#     operation = params.get('operation', ['+'])[0]
-    
-#     sys.stderr.write(f"Values: num1={num1}, num2={num2}, operation={operation}\n")
-    
-#     # Calculate
-#     result = None
-#     if operation == '+':
-#         result = num1 + num2
-#     elif operation == '-':
-#         result = num1 - num2
-#     elif operation == '*':
-#         result = num1 * num2
-#     elif operation == '/':
-#         if num2 == 0:
-#             raise ValueError("Cannot divide by zero")
-#         result = num1 / num2
-
 import os
 import sys
 from urllib.parse import parse_qs
@@ -146,16 +107,6 @@ try:
     </div>
 </body>
 </html>"""
-    
-#     sys.stderr.write("Sending response\n")
-#     print(response)
-#     sys.stderr.write("Response sent\n")
-
-# except Exception as e:
-#     sys.stderr.write(f"Error occurred: {str(e)}\n")
-#     print(f"""<!DOCTYPE html>
-# <html>
-# <head>
 
     print(response)
 
