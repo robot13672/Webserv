@@ -21,6 +21,7 @@ class ServerConfig
         std::map<std::string, std::vector<std::string> >    _locationCgiPaths;
         std::map<std::string, std::vector<std::string> >    _locationCgiExts;
         std::map<std::string, bool>                         _locationAutoindex;
+        // std::map<int, std::string>                          _errorPages;
     public:
         ServerConfig();
         ServerConfig(std::string host, u_int16_t port);//для эмуляции отработанного конфиг файла
@@ -36,7 +37,7 @@ class ServerConfig
         void setName(std::string name);
         void setRoot(std::string root);
         void setIndex(std::string index);
-        void setErrorPages(std::map<short, std::string> errorPages);//нужно передавать уже заполненую мапу
+        void setErrorPages(short errorCode, std::string errorPage);//нужно передавать уже заполненую мапу
         void setMethods(const std::string &location, const std::vector<std::string> &methods);
         void setLocationRoot(const std::string &location, const std::string &root);
         void setLocationIndex(const std::string &location, const std::string &index);
@@ -62,4 +63,8 @@ class ServerConfig
         std::vector<std::string> getLocationCgiPath(const std::string &location) const;
 		std::vector<std::string> getLocationCgiExt(const std::string &location) const;
         bool getLocationAutoindex(const std::string &location) const;
+
+        bool isAvailibleMethod(std::string path, std::string method);
+        std::string getErrorPage(int errorCode) const;
+        void parseErrorPage(const std::string& line);
 };

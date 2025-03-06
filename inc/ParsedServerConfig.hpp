@@ -37,14 +37,14 @@ class ParsedServerConfig
 		// Индексация по location(string), а значение будет вектор, который хранит все допустимые методы, _methods["root"][1] = {"GET", "POST", "DELETE"} 
 		
 		// Новые атрибуты для хранения директив внутри блоков location - roi 0227
-		std::map<std::string, std::string> _locationRoots; //location /cgi-bin { /n root ./;
-		std::map<std::string, std::string> _locationIndexes; // location /tours { /n 	index tours1.html;
+		std::map<std::string, std::string> 					_locationRoots; //location /cgi-bin { /n root ./;
+		std::map<std::string, std::string> 					_locationIndexes; // location /tours { /n 	index tours1.html;
 	
 		// temporally commented - roi 0227 - 0302
-		std::map<std::string, std::vector<std::string> > _locationCgiPaths; // location /cgi-bin { /n cgi_path /usr/bin/python3 /bin/bash;
-		std::map<std::string, std::vector<std::string> > _locationCgiExts; // 	location /red { /n	return /tours;
-		std::map<std::string, bool> _locationAutoindex; // Для хранения значения директивы autoindex для каждой локации likeL: 'autoindex off;'
-		std::vector<ParsedServerConfig> serverParsedConfigs;
+		std::map<std::string, std::vector<std::string> > 	_locationCgiPaths; // location /cgi-bin { /n cgi_path /usr/bin/python3 /bin/bash;
+		std::map<std::string, std::vector<std::string> > 	_locationCgiExts; // 	location /red { /n	return /tours;
+		std::map<std::string, bool> 						_locationAutoindex; // Для хранения значения директивы autoindex для каждой локации likeL: 'autoindex off;'
+		std::vector<ParsedServerConfig> 					serverParsedConfigs;
 		public:
 		ParsedServerConfig();
         ParsedServerConfig(const ParsedServerConfig &other); // Copy constructor
@@ -56,7 +56,7 @@ class ParsedServerConfig
         void setName(std::string name);
         void setRoot(std::string root);
         void setIndex(std::string index);
-        void setErrorPages(std::map<short, std::string> errorPages);//нужно передавать уже заполненую мапу
+        void setErrorPages(short errorCode, std::string errorPage);//нужно передавать уже заполненую мапу
 		void setMethods(const std::string &location, const std::vector<std::string> &methods);
 		// setters of 5 additional attributes in locations
 		void setLocationRoot(const std::string &location, const std::string &root);

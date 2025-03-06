@@ -1,5 +1,6 @@
 #include "../inc/ServerConfig.hpp"
 
+
 ServerConfig::ServerConfig(std::string host, u_int16_t port) //для эмуляции отработанного конфиг файла
 {
     _host = inet_addr(host.c_str()); // Example IP address
@@ -128,9 +129,9 @@ void ServerConfig::setIndex(std::string index)
     _index = index;
 }
 
-void ServerConfig::setErrorPages(std::map<short, std::string> errorPages)
+void ServerConfig::setErrorPages(short errorCode, std::string errorPage)
 {
-    _errorPages = errorPages;
+    _errorPages[errorCode] = errorPage;
 }
 
 void ServerConfig::setMethods(const std::string &location, const std::vector<std::string> &methods)
@@ -269,4 +270,27 @@ bool ServerConfig::getLocationAutoindex(const std::string &location) const
         return it->second;
     }
     return false;
+}
+
+bool ServerConfig::isAvailibleMethod(std::string path, std::string method)
+{
+    // Find if there are any methods defined for this path
+    std::map<std::string, std::vector<std::string> >::const_iterator it = _methods.find(path);
+    
+    // If no methods are defined for this path, all methods are allowed (nginx default behavior)
+    if (it == _methods.end())
+        return true;
+        
+    // Check if the requested method is in the allowed methods vector
+    const std::vector<std::string>& allowedMethods = it->second;
+    return std::find(allowedMethods.begin(), allowedMethods.end(), method) != allowedMethods.end();
+}
+
+std::string ServerConfig::getErrorPage(int errorCode) const {
+    std::map<short, std::string>::const_iterator it = _errorPages.find(errorCode);
+
+    if (it != _errorPages.end()) {
+        return it->second;
+    }
+    return "";
 }

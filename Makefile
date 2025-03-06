@@ -5,11 +5,10 @@ CFLAGS 	= -std=c++98 -g
 # CFLAGS	+= -Wall -Wextra -Werror 
 # CFLAGS += -Wpedantic
 # garantees no memory leaks:
-CFLAGS += -fsanitize=address
+# CFLAGS += -fsanitize=address
 LDFLAGS	=
 LDFLAGS += -Wpedantic
 # garantees no memory leaks:
-LDFLAGS += -fsanitize=address
 
 SRCS 	= $(shell find . -not -path './training/*' -not -name 'main1.cpp' -name '*.cpp')
 OBJS 	= $(SRCS:.cpp=.o)

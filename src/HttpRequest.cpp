@@ -23,7 +23,6 @@ void HttpRequest::clear()
     headers.clear();
     path.clear();          
     queryParams.clear();   
-    maxBodySize = 0;      
     isChunked = false;    
     isDone = false;       
     isCGI = false;        
@@ -348,7 +347,7 @@ bool HttpRequest::getStatus()
 {
     if (method == "POST" && getHeader("Content-Length").empty() && !isChunked)
         return false;
-    if(body.size() == contentLength && !getHeader("Content-Length").empty())
+    if(!getHeader("Content-Length").empty() && static_cast<long>(body.size()) == contentLength)
         return true;
     return isDone;
 }

@@ -29,22 +29,21 @@ class CGI;
 
 class HttpResponse {
 private:
-    ServerConfig _server;
-    std::string _httpVersion;
-    int _statusCode;
-    std::string _statusMessage;
-    std::map<std::string, std::string> _headers;
-    std::string _body;
-    bool _chunked;
-    HttpRequest _request;
-    std::string _response;
-    std::string _path;
-    std::string _method;
+    ServerConfig                        _server;
+    std::string                         _httpVersion;
+    int                                 _statusCode;
+    std::string                         _statusMessage;
+    std::map<std::string, std::string>  _headers;
+    std::string                         _body;
+    bool                                _chunked;
+    HttpRequest                         _request;
+    std::string                         _response;
+    std::string                         _path;
+    std::string                         _method;
+    CGI*                                cgi;
+    std::vector<std::string>            _cookies;
     std::string getOriginalFilename(const std::string& body);
     std::string createUniqueFilename(const std::string& dir, const std::string& originalName);
-    // void handleCgi();
-    CGI*  cgi;
-    std::vector<std::string> _cookies;
 
 public:
     HttpResponse();
@@ -69,28 +68,22 @@ public:
     //ERORR
     void handleRequest();
     void setErrorResponse(int code, const std::string& message);
-    void setRedirectResponse(const std::string& newLocation);
+    // void setRedirectResponse(const std::string& newLocation);
 
     bool isFileAccessible() ;
     std::string getCurrentTime();
     void handleDelete(const std::string& path);
     void handlePost();
-
-    // Main methods
     std::string toString() const;
     void clear();
     void sendFile();
-    //old
     void setServer(ServerConfig &serv);
     void handleResponse(const HttpRequest request) ;
-    void setPath(const std::string& path) { _path = path; }
-    void setMethod(const std::string& method) { _method = method; }
+    void setPath(const std::string& path);
+    void setMethod(const std::string& method);
     void handleListFiles();
-
-
-
-    void addCookie(const std::string& cookie) { _cookies.push_back(cookie); }
-    const std::vector<std::string>& getCookies() const { return _cookies; }
+    void addCookie(const std::string& cookie);
+    const std::vector<std::string>& getCookies() const;
 };
 
 #endif

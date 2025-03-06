@@ -11,7 +11,8 @@ HttpResponse::HttpResponse() :
     _statusMessage("OK"),
     _chunked(false),
     _path(""),
-    _method(""){}
+    _method(""), 
+    cgi(new CGI()){}
 
 HttpResponse::HttpResponse(const HttpResponse& copy) :
     _server(copy._server),
@@ -22,7 +23,8 @@ HttpResponse::HttpResponse(const HttpResponse& copy) :
     _body(copy._body),
     _chunked(copy._chunked),
     _method(copy._method),
-    _path(copy._path) {}
+    _path(copy._path),
+    _request(copy._request) {}
 
 HttpResponse& HttpResponse::operator=(const HttpResponse& copy) {
     if (this != &copy) {
@@ -35,6 +37,7 @@ HttpResponse& HttpResponse::operator=(const HttpResponse& copy) {
         _chunked = copy._chunked;
         _path = copy._path;
         _method = copy._method;
+        _request = copy._request;
     }
     return *this;
 }
@@ -42,6 +45,7 @@ HttpResponse& HttpResponse::operator=(const HttpResponse& copy) {
 HttpResponse::~HttpResponse() {
     _headers.clear();
     _body.clear();
+    delete cgi;
 }
 
 void HttpResponse::setServer(ServerConfig &serv) {
@@ -96,58 +100,6 @@ bool HttpResponse::isChunked() const {
     return _chunked;
 }
 
-// void HttpResponse::handleRequest(const std::string& path, const std::string& method) {
-//     // Check if method is allowed
-//     if (method != "GET" && method != "POST" && method != "DELETE") {
-//         setErrorResponse(405, "Method Not Allowed");
-//         setHeader("Allow", "GET, POST, DELETE");
-//         return;
-//     }
-//     // Check if path exists
-//     std::ifstream file(path.c_str());
-//     if (!file) {
-//         setErrorResponse(404, "Not Found");
-//         return;
-//     }
-//     // Check permissions
-//     if (access(path.c_str(), R_OK) != 0) {
-//         setErrorResponse(403, "Forbidden");
-//         return;
-//     }
-//     // Handle different status codes
-//     switch (_statusCode) {
-//         case 200:
-//             sendFile(path);
-//             break;
-//         case 301:
-//             setRedirectResponse(path);
-//             break;
-//         case 400:
-//             setErrorResponse(400, "Bad Request");
-//             break;
-//         case 403:
-//             setErrorResponse(403, "Forbidden");
-//             break;
-//         case 404:
-//             setErrorResponse(404, "Not Found");
-//             break;
-//         case 405:
-//             setErrorResponse(405, "Method Not Allowed");
-//             break;
-//         case 413:
-//             setErrorResponse(413, "Content Too Large");
-//             break;
-//         case 500:
-//             setErrorResponse(500, "Internal Server Error");
-//             break;
-//         case 501:
-//             setErrorResponse(501, "Not Implemented");
-//             break;
-//         default:
-//             setErrorResponse(500, "Internal Server Error");
-//     }
-// }
-
 void HttpResponse::handleResponse(const HttpRequest request) {
     this->_path = request.getPath();
     this->_method = request.getMethod();
@@ -156,27 +108,41 @@ void HttpResponse::handleResponse(const HttpRequest request) {
 }
 
 void HttpResponse::handleRequest() {
-    // Добавляем базовые заголовки
+    clear();
     setHeader("Server", "text/plain");
     setHeader("Date", getCurrentTime());
     setHeader("Connection", "keep-alive");
-    
-    // Проверяем метод до проверки файла
+
+    if (_server.isAvailibleMethod(_path, _method) == false) {
+        setErrorResponse(405, "Method Not Allowed");
+        setHeader("Allow", "GET, POST, DELETE");
+        return;
+    }
     if (_method != "GET" && _method != "POST" && _method != "DELETE") {
         setErrorResponse(405, "Method Not Allowed");
         setHeader("Allow", "GET, POST, DELETE");
         return;
     }
-    // Для DELETE метода
-    if (_method == "DELETE") {
-        handleDelete(_path);
+    if (_path == "/list-files") {
+        handleListFiles();
         return;
     }
-    // Проверяем существование и доступность файла
-    if (!isFileAccessible()) {
-        return; // isFileAccessible устанавливает соответствующий код ошибки
+    if (_path.find("/cgi-bin/") == 0) {
+        CGI cgi;
+        if (cgi.handleCgiRequest(_request, *this)) {
+            return;
+        }
     }
-    // Для GET и POST
+
+    if (_method == "DELETE" && _path == "/delete-file") {
+        std::string filename = _request.getBody();
+        handleDelete(filename);
+        return;
+    }
+
+    if (!isFileAccessible()) {
+        return;
+    }
     if (_method == "GET") {
         sendFile();
     } else if (_method == "POST") {
@@ -184,10 +150,84 @@ void HttpResponse::handleRequest() {
     }
 }
 
-void HttpResponse::handleDelete(const std::string& path) {
-    if (unlink(path.c_str()) == 0) {
+void HttpResponse::handleListFiles() {
+    DIR *dir;
+    struct dirent *ent;
+    std::vector<std::map<std::string, std::string> > files;
+    
+    setHeader("Access-Control-Allow-Origin", "*");
+    setHeader("Access-Control-Allow-Methods", "GET, DELETE, OPTIONS");
+    setHeader("Content-Type", "application/json");
+    
+    if ((dir = opendir("upload/")) == NULL) {
+        if (mkdir("upload/", 0777) != 0) {
+            setErrorResponse(500, "Cannot create directory");
+            return;
+        }
+        dir = opendir("upload/");
+        if (dir == NULL) {
+            setErrorResponse(500, "Cannot open directory");
+            return;
+        }
+    }
+
+    while ((ent = readdir(dir)) != NULL) {
+        if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0) {
+            continue;
+        }
+
+        if (ent->d_type == DT_REG) {
+            struct stat st;
+            std::string fullPath;
+            fullPath.append("upload/");
+            fullPath.append(ent->d_name);
+            
+            if (stat(fullPath.c_str(), &st) == 0) {
+                std::map<std::string, std::string> file;
+                file["name"] = ent->d_name;
+                std::stringstream ss;
+                ss << st.st_size;
+                file["size"] = ss.str();
+                files.push_back(file);
+            }
+        }
+    }
+    closedir(dir);
+
+    std::stringstream jsonResponse;
+    jsonResponse << "[";
+    for (size_t i = 0; i < files.size(); ++i) {
+        if (i > 0) {
+            jsonResponse << ",";
+        }
+        jsonResponse << "{\"name\":\"";
+        jsonResponse << files[i]["name"];
+        jsonResponse << "\",\"size\":\"";
+        jsonResponse << files[i]["size"];
+        jsonResponse << "\"}";
+    }
+    jsonResponse << "]";
+
+    setStatus(200, "OK");
+    setBody(jsonResponse.str());
+}
+
+void HttpResponse::handleDelete(const std::string& filename) {
+
+    std::string fullPath;
+    fullPath.append("upload/");
+    fullPath.append(filename);
+    
+    if (access(fullPath.c_str(), F_OK) != 0) {
+        setErrorResponse(404, "File not found");
+        return;
+    }
+
+    if (unlink(fullPath.c_str()) == 0) {
         setStatus(200, "OK");
         setHeader("Content-Type", "text/plain");
+        setHeader("Access-Control-Allow-Origin", "*");
+        setHeader("Access-Control-Allow-Methods", "DELETE");
         setBody("File successfully deleted");
     } else {
         if (errno == EACCES) {
@@ -196,79 +236,135 @@ void HttpResponse::handleDelete(const std::string& path) {
             setErrorResponse(500, "Internal Server Error");
         }
     }
+
+}
+
+std::string HttpResponse::getOriginalFilename(const std::string& body) {
+    std::string filename;
+    size_t filenameStart = body.find("filename=\"");
+    
+    if (filenameStart != std::string::npos) {
+        filenameStart += 10;
+        size_t filenameEnd = body.find("\"", filenameStart);
+        if (filenameEnd != std::string::npos) {
+            filename = body.substr(filenameStart, filenameEnd - filenameStart);
+        }
+    }
+    return filename;
+}
+
+std::string HttpResponse::createUniqueFilename(const std::string& dir, const std::string& originalName) {
+    std::string baseName;
+    std::string extension;
+    size_t dotPos = originalName.find_last_of('.');
+    
+    if (dotPos != std::string::npos) {
+        baseName = originalName.substr(0, dotPos);
+        extension = originalName.substr(dotPos);
+    } else {
+        baseName = originalName;
+        extension = "";
+    }
+
+    std::string fullPath;
+    fullPath.append(dir);
+    fullPath.append(originalName);
+    if (access(fullPath.c_str(), F_OK) != 0) {
+        return fullPath;
+    }
+
+    size_t openParenPos = baseName.find_last_of('(');
+    size_t closeParenPos = baseName.find_last_of(')');
+    int counter = 1;
+    std::string newPath;
+    if (openParenPos != std::string::npos && closeParenPos != std::string::npos){
+        std::string counterStr = baseName.substr(openParenPos + 1, closeParenPos - openParenPos - 1);
+        counter = atoi(counterStr.c_str());
+        counter++;
+        baseName = baseName.substr(0, openParenPos);
+    }
+    do {
+        std::stringstream ss;
+        ss << dir << baseName << "(" << counter << ")" << extension;
+        newPath = ss.str();
+        counter++;
+    } while (access(newPath.c_str(), F_OK) == 0);
+
+    return newPath;
 }
 
 void HttpResponse::handlePost() {
-    // Проверяем существование директории
-    if (_request.getBody().empty()) {
-        setErrorResponse(500, "Internal Server Error: No request set");
-        _response = toString();
-        return;
-    }
-    
-    std::string dir = "upload/"; // Добавляем слеш, чтобы проверить директорию
+
     struct stat st;
-    std::cout << "Dir: " << dir << std::endl;
-    if (stat(dir.c_str(), &st) != 0 || !S_ISDIR(st.st_mode)) {
-        setErrorResponse(404, "Directory Not Found");
-        _response = toString();
-        return;
+    std::string dir = "upload/";
+    
+    if (stat(dir.c_str(), &st) != 0) {
+        if (mkdir(dir.c_str(), 0777) != 0) {
+            setErrorResponse(500, "Cannot create directory");
+            return;
+        }
     }
-    // Проверяем права на запись
+
     if (access(dir.c_str(), W_OK) != 0) {
-        setErrorResponse(403, "Forbidden");
-        _response = toString();
+        setErrorResponse(403, "Forbidden: Cannot write to directory");
+        return ;
+    }
+    std::string contentType = _request.getHeader("Content-Type");
+    if (contentType.empty()) {
+        setErrorResponse(400, "Bad Request: Missing Content-Type");
         return;
     }
-    //Ilya version
-    // std::string filename = "upload/" + intToString(time(NULL)) + ".png";
-    // Copilot version
 
-    // if (_request.getBody().empty()) 
-    // {
-    std::string fileName ="upload/" + intToString(time(NULL)) + "_body.pdf";
-    
-        std::cout << "File name: " << fileName << std::endl;
-
-    std::ofstream outFile(fileName.c_str(), std::ios::binary);
-    
-    if (outFile.is_open()) 
-    {
-        const std::string& body = _request.getBody();
-        outFile.write(body.c_str() + 4, body.length() - 4);
-        outFile.close();
-        logger.writeMessage("Created body file: " + fileName);
-    } 
-    else 
-    {
-        logger.writeMessage("Error: Unable to create file " + fileName);
-        _response = toString();
+    size_t boundaryPos = contentType.find("boundary=");
+    if (boundaryPos == std::string::npos) {
+        setErrorResponse(400, "Bad Request: No boundary in multipart/form-data");
+        return;
     }
-    // }
-    // Save file
-    // std::ofstream outFile(filename.c_str(), std::ios::binary);
-    // if (!outFile) {
-    //     setErrorResponse(500, "Failed to create file");
-    //     _response = toString();
-    //     return;
-    // }
+    
+    std::string boundary;
+    if (boundaryPos != std::string::npos) {
+        boundary.append("--");
+        boundary.append(contentType.substr(boundaryPos + 9));
+    }
 
-    // // Write file content
-    // const std::string& fileContent = _request.getBody();
-    // outFile.write(fileContent.c_str(), fileContent.length());
-    // outFile.close();
+    const std::string& body = _request.getBody();
+    
+    std::string originalName = getOriginalFilename(body);
+    if (originalName.empty()) {
+        setErrorResponse(400, "Bad Request: No filename found");
+        return;
+    }
 
-    // if (outFile.fail()) {
-    //     setErrorResponse(500, "Failed to write file");
-    //     _response = toString();
-    //     return;
-    // }
+    size_t headerEnd = body.find("\r\n\r\n");
+    if (headerEnd == std::string::npos) {
+        setErrorResponse(400, "Bad Request: Invalid multipart format");
+        return;
+    }
+    
+    size_t fileStart = headerEnd + 4;
+    size_t fileEnd = body.find(boundary, fileStart) - 4;
+    if (fileEnd == std::string::npos) {
+        setErrorResponse(400, "Bad Request: Invalid file format");
+        return;
+    }
+    
+    std::string fileContent = body.substr(fileStart, fileEnd - fileStart);
+
+    
+    std::string finalPath = createUniqueFilename(dir, originalName);
+    std::ofstream outFile;
+    outFile.open(finalPath.c_str(), std::ios::binary);
+    if (!outFile.is_open()) {
+        setErrorResponse(500, "Internal Server Error: Cannot create file");
+        return;
+    }
+
+    outFile.write(fileContent.c_str(), fileContent.length());
+    outFile.close();
 
     setStatus(201, "Created");
     setHeader("Content-Type", "text/plain");
-    setBody("File successfully uploaded as: ");
-    _response = toString();
-
+    setBody("File successfully uploaded as: " + finalPath);
 }
 
 bool HttpResponse::isFileAccessible() {
@@ -280,35 +376,30 @@ bool HttpResponse::isFileAccessible() {
     else {
         size_t dotPos = _path.find_last_of('.');
         if (dotPos != std::string::npos) {
-            // If path has an extension (e.g. /about.html)
+
             std::string extension = _path.substr(dotPos);
             if (extension == ".png" || extension == ".jpg" || extension == ".jpeg") {
-                localPath = "assets/html" + _path;
+                localPath = "assets/html";
+                localPath.append(_path);
             } else {
-                localPath = "assets/html" + _path + ".html";
+                localPath = "assets/html";
+                localPath.append(_path);
+                localPath.append(".html");
             }
         } else {
-            // No extension found, add .html
-            localPath = "assets/html" + _path + ".html";
+            localPath = "assets/html";
+            localPath.append(_path);
+            localPath.append(".html");
         }
-    }
-    // else if (path.find_last_of('.'))
-    //     localPath = "assets/html/" + path;
-    // else 
-    //     localPath = "assets/html" + path + ".html";
-
-    std::cout << "Path: " << _path << std::endl;           
+    }          
     if (stat(localPath.c_str(), &st) != 0) {
         setErrorResponse(404, "Not Found");
         return false;
     }
-    
     if (access(localPath.c_str(), R_OK) != 0) {
         setErrorResponse(403, "Forbidden");
         return false;
     }
-    std::cout << "local Path " << localPath << std::endl;
-    std::cout << "File is accessible" << std::endl;
     return true;
 }
 
@@ -321,53 +412,115 @@ std::string HttpResponse::getCurrentTime() {
 }
 
 void HttpResponse::setErrorResponse(int code, const std::string& message) {
+    std::string configPath = _server.getErrorPage(code);
+    if (!configPath.empty()) {
+        size_t start = configPath.find_last_of("/") + 1;
+        size_t end = configPath.find_last_of(".");
+        std::string newErrorCode = configPath.substr(start, end - start);
+        int newCode = atoi(newErrorCode.c_str());
+        
+        setStatus(newCode, message);
+        std::string fullPath = "assets/" + configPath;
+        std::ifstream file(fullPath.c_str(), std::ios::binary);
+        if (file) {
+            std::stringstream buffer;
+            buffer << file.rdbuf();
+            setHeader("Content-Type", "text/html");
+            setBody(buffer.str());
+            return;
+        }
+    }
     setStatus(code, message);
-    std::stringstream ss;
-    ss << "<html><body><h1>" << message << "</h1>";
-    ss << "<p>Error " << code << ": " << message << "</p></body></html>";
-    setHeader("Content-Type", "text/html");
-    setBody(ss.str());
+    std::string localPath;
+    switch (code) {
+        case 400:
+            localPath = "assets/error_pages/400.html";
+            break;
+        case 403:
+            localPath = "assets/error_pages/403.html";
+            break;
+        case 404:
+            localPath = "assets/error_pages/404.html";
+            break;
+        case 405:
+            localPath = "assets/error_pages/405.html";
+            break;
+        case 413:
+            localPath = "assets/error_pages/413.html";
+            break;
+        case 500:
+            localPath = "assets/error_pages/500.html";
+            break;
+        case 505:
+            localPath = "assets/error_pages/505.html";
+            break;
+        default:
+            localPath = "assets/error_pages/500.html";
+    }
+
+    std::ifstream file(localPath.c_str(), std::ios::binary);
+    if (file) {
+        std::stringstream buffer;
+        buffer << file.rdbuf();
+        setHeader("Content-Type", "text/html");
+        setBody(buffer.str());
+    } 
+    else {
+        std::stringstream ss;
+        ss << "<!DOCTYPE html>\n<html>\n<head>\n";
+        ss << "<title>Error " << code << "</title>\n";
+        ss << "<style>body{font-family:Arial,sans-serif;background:#1a1a1a;color:#fff;";
+        ss << "display:flex;justify-content:center;align-items:center;height:100vh;margin:0;}</style>\n";
+        ss << "</head>\n<body>\n";
+        ss << "<div><h1>Error " << code << "</h1>\n";
+        ss << "<p>" << message << "</p></div>\n";
+        ss << "</body>\n</html>";
+        setHeader("Content-Type", "text/html");
+        setBody(ss.str());
+    }
 }
 
-void HttpResponse::setRedirectResponse(const std::string& newLocation) {
-    setStatus(301, "Moved Permanently");
-    setHeader("Location", newLocation);
-    std::string redirectPage = "<html><body><h1>301 Moved Permanently</h1>";
-    redirectPage += "<p>The document has moved <a href=\"" + newLocation + "\">here</a>.</p></body></html>";
-    setHeader("Content-Type", "text/html");
-    setBody(redirectPage);
-}
+// void HttpResponse::setRedirectResponse(const std::string& newLocation) {
+//     setStatus(301, "Moved Permanently");
+//     setHeader("Location", newLocation);
+//     std::string redirectPage = "<html><body><h1>301 Moved Permanently</h1>";
+//     redirectPage += "<p>The document has moved <a href=\"" + newLocation + "\">here</a>.</p></body></html>";
+//     setHeader("Content-Type", "text/html");
+//     setBody(redirectPage);
+// }
 
 void HttpResponse::sendFile() {
-    // std::ifstream file(filePath.c_str(), std::ios::binary);
     std::string localPath;
     if (_path == "/")
         localPath = "assets/html/index.html";
     else {
         size_t dotPos = _path.find_last_of('.');
         if (dotPos != std::string::npos) {
-            // If path has an extension (e.g. /about.html)
             std::string extension = _path.substr(dotPos);
             if (extension == ".png" || extension == ".jpg" || extension == ".jpeg") {
-                localPath = "assets/html" + _path;
-            } else {
-                localPath = "assets/html" + _path + ".html";
+                localPath = "assets/html";
+                localPath.append(_path);
+            }
+            else if(extension == ".py") {
+                localPath = "assets/html";
+                localPath.append(_path);}
+              else {
+                localPath = "assets/html";
+                localPath.append(_path);
+                localPath.append(".html");
             }
         } else {
-            // No extension found, add .html
-            localPath = "assets/html" + _path + ".html";
+            localPath = "assets/html";
+            localPath.append(_path);
+            localPath.append(".html");
         }
+    
     }
-    // else if (filePath.find_last_of('.'))
-    //     localPath = "assets/html/" + filePath;
-    // else 
-    //     localPath = "assets/html" + filePath + ".html";
     std::ifstream file(localPath.c_str(), std::ios::binary);
     if (!file) {
         setErrorResponse(404, "Not Found");
         return;
     }
-    // Check file size
     file.seekg(0, std::ios::end);
     std::streampos fileSize = file.tellg();
     file.seekg(0, std::ios::beg);
@@ -375,13 +528,11 @@ void HttpResponse::sendFile() {
         setErrorResponse(413, "Content Too Large");
         return;
     }
-    // Read and set file content
     try {
         std::stringstream buffer;
         buffer << file.rdbuf();
         setBody(buffer.str());
 
-        // Set content type based on file extension
         size_t dot = _path.find_last_of('.');
         if (dot != std::string::npos) {
             std::string ext = _path.substr(dot + 1);
@@ -389,6 +540,10 @@ void HttpResponse::sendFile() {
                 setHeader("Content-Type", "text/html");
             else if (ext == "css") 
                 setHeader("Content-Type", "text/css");
+            else if (ext == "txt") 
+                setHeader("Content-Type", "text/plain");
+            else if (ext == "jpeg")
+                setHeader("Content-Type", "image/jpeg");
             else if (ext == "js") 
                 setHeader("Content-Type", "application/javascript");
             else if (ext == "png") 
@@ -413,7 +568,7 @@ void HttpResponse::sendFile() {
 }
 
 std::string HttpResponse::toString() const {
-    std::ostringstream response;
+    std::stringstream response;
     
     response << _httpVersion << " " << _statusCode << " " << _statusMessage << "\r\n";
     
@@ -422,7 +577,15 @@ std::string HttpResponse::toString() const {
         response << it->first << ": " << it->second << "\r\n";
     }
     
-    response << "\r\n" << _body;
+    std::vector<std::string>::const_iterator cookieIt;
+    for (cookieIt = _cookies.begin(); cookieIt != _cookies.end(); ++cookieIt) {
+        response << "Set-Cookie: " << *cookieIt << "\r\n";
+    }
+    
+    response << "\r\n";
+    
+    response << _body;
+    
     return response.str();
 }
 
@@ -432,4 +595,17 @@ void HttpResponse::clear() {
     _headers.clear();
     _body.clear();
     _chunked = false;
+}
+
+void HttpResponse::setPath(const std::string& path) { 
+    _path = path;
+}
+void HttpResponse::setMethod(const std::string& method) { 
+    _method = method; 
+}
+void HttpResponse::addCookie(const std::string& cookie) { 
+    _cookies.push_back(cookie); 
+}
+const std::vector<std::string>& HttpResponse::getCookies() const { 
+    return _cookies; 
 }

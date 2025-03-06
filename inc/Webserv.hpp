@@ -16,6 +16,7 @@
 #include <fstream> // для работы с файлами
 #include <sstream> // для рработы с потоками строк
 #include <ctime> 
+#include <algorithm>
 
 //Системные библиотеки POSIX
 #include <sys/socket.h> // для работы с сокетами
@@ -26,7 +27,9 @@
 #include <signal.h> // для обработки сигналов
 #include <cstring> // для работы с С-строками
 #include <errno.h> // для обработки ошибок, связанных с системными вызовами
-
+#include <dirent.h> // для работы с директориями
+#include <sys/stat.h> // для работы с файловой системой
+#include <sys/wait.h> // для работы с процессами
 
 //Пользовательские библиотеки
 #include "ParsedServerConfig.hpp"
@@ -42,5 +45,4 @@
 //Библиотеки для CGI
 
 #endif
-
 

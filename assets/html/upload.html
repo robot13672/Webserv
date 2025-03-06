@@ -198,10 +198,12 @@
                     newFileName.value = '';
                     selectedFile.style.display = 'none';
                 } else {
-                    showError('Upload failed: ' + text);
+                    // showError('Upload failed: ' + text);
+                    document.documentElement.innerHTML = text;
                 }
             } catch (error) {
-                showError('Upload failed: ' + error.message);
+                // showError('Upload failed: ' + error.message);
+                window.location.href = '/error';
             }
         });
             </script>
