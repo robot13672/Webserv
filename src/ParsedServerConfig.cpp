@@ -76,6 +76,7 @@ void ParsedServerConfig::setIndex(std::string index)
     _index = index;
 }
 
+// somehow guys expierences difficulties with the work of this setter - roi 250306
 void ParsedServerConfig::setErrorPages(std::map<short, std::string> errorPages)
 {
     _errorPages = errorPages;
