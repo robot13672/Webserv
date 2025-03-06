@@ -1,314 +1,208 @@
-<!-- <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload File</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-            font-family: Arial, sans-serif;
-            position: relative;
-        }
-
-        .home-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            background: #28a745;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .home-button:hover {
-            background: #218838;
-        }
-
-        .upload-area {
-            width: 60%;
-            padding: 40px;
-            border: 2px dashed #333;
-            text-align: center;
-            background: white;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-
-        .upload-area.dragover {
-            background: #d3ffd3;
-        }
-
-        input[type="file"] {
-            display: none;
-        }
-
-        .upload-button {
-            padding: 12px 24px;
-            font-size: 18px;
-            border: none;
-            background: #007bff;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .upload-button:hover {
-            background: #0056b3;
-        }
-    </style>
-</head>
-<body>
-
-    <button class="home-button" onclick="location.href='/'">HOME</button>
-
-    <div class="upload-area" id="uploadArea">
-        <p>Перетащите файл сюда или</p>
-        <input type="file" id="fileInput">
-        <button class="upload-button" onclick="document.getElementById('fileInput').click()">Выбрать файл</button>
-    </div>
-
-    <script>
-        const uploadArea = document.getElementById('uploadArea');
-        const fileInput = document.getElementById('fileInput');
-
-        uploadArea.addEventListener('dragover', (event) => {
-            event.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-
-        uploadArea.addEventListener('drop', (event) => {
-            event.preventDefault();
-            uploadArea.classList.remove('dragover');
-            const file = event.dataTransfer.files[0];
-            alert(`Вы выбрали файл: ${file.name}`);
-        });
-
-        fileInput.addEventListener('change', () => {
-            const file = fileInput.files[0];
-            alert(`Вы выбрали файл: ${file.name}`);
-        });
-    </script>
-
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload File</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-            font-family: Arial, sans-serif;
-            position: relative;
-        }
-
-        .home-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            background: #28a745;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .home-button:hover {
-            background: #218838;
-        }
-
+    <title>File Upload</title> 
+    <style> 
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        } 
+        body { 
+            background-color: #1a1a1a; 
+            color: #fff; 
+            font-family: Arial, sans-serif; 
+            min-height: 100vh; 
+            padding: 40px 20px;
+            position: relative; 
+        } 
+        .home-button { 
+            position: fixed; 
+            top: 20px; 
+            left: 20px; 
+            padding: 12px 24px; 
+            font-size: 18px; 
+            border: none; 
+            background: #00ff9d; 
+            color: #1a1a1a; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            transition: all 0.3s ease; 
+        } 
+        .home-button:hover { 
+            background: #00cc7d; 
+            transform: translateY(-2px); 
+        } 
+        form { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            max-width: 800px; 
+            margin: 60px auto 0; 
+        } 
         .upload-area {
-            width: 60%;
+            width: 100%; 
+            min-height: 200px; 
             padding: 40px;
-            border: 2px dashed #333;
-            text-align: center;
-            background: white;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-
-        .upload-area.dragover {
-            background: #d3ffd3;
-        }
-
-        input[type="file"] {
+            border: 2px dashed #00ff9d; 
+            text-align: center; 
+            background: rgba(255, 255, 255, 0.05); 
+            cursor: pointer; 
+            margin: 20px 0; 
+            border-radius: 10px; 
+        } 
+        .rename-input { 
+            width: 100%; 
+            padding: 12px; 
+            margin: 10px 0; 
+            background: rgba(255, 255, 255, 0.1); 
+            border: 2px solid #00ff9d; 
+            border-radius: 5px; 
+            color: #fff; 
+            font-size: 16px; 
+        } 
+        .upload-button { 
+            padding: 12px 24px; 
+            font-size: 18px; 
+            border: none; 
+            background: #00ff9d; 
+            color: #1a1a1a; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            transition: all 0.3s ease; 
+            margin: 10px 0; width: 100%; 
+        } 
+        .selected-file { 
+            color: #00ff9d; 
+            margin: 10px 0; 
+            display: none; 
+        } 
+        .error-message { 
+            color: #ff6b6b; 
+            margin: 10px 0; 
+            display: none; 
+        } 
+        .success-message { 
+            color: #00ff9d; 
+            margin: 10px 0; 
             display: none;
-        }
+        } 
+    </style> 
+</head> 
+<body> 
+    <button class="home-button" onclick="location.href='/'">HOME</button> 
 
-        .upload-button {
-            padding: 12px 24px;
-            font-size: 18px;
-            border: none;
-            background: #007bff;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .upload-button:hover {
-            background: #0056b3;
-        }.selected-file {
-            margin-top: 10px;
-            padding: 10px;
-            background: #e9ecef;
-            border-radius: 5px;
-            display: none;  /* Скрыто по умолчанию */
-        }
-
-        .error-message {
-            color: #dc3545;
-            margin-top: 10px;
-            display: none;
-        }
-
-        .success-message {
-            color: #28a745;
-            margin-top: 10px;
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <button class="home-button" onclick="location.href='/'">HOME</button>
-
-    <form id="uploadForm" enctype="multipart/form-data">
-        <div class="upload-area" id="uploadArea">
-            <p>Перетащите файл сюда или</p>
-            <input type="file" id="fileInput" name="file">
-            <button type="button" class="upload-button" onclick="document.getElementById('fileInput').click()">
-                Выбрать файл
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div class="upload-area" id="uploadArea"> 
+                <p>Drag & drop files here or</p> 
+                <input type="file" id="fileInput" name="file" style="display: none;"> 
+                <button type="button" class="upload-button" onclick="document.getElementById('fileInput').click()">
+                    Choose File 
+                </button>
+                <div id="selectedFile" class="selected-file"></div> 
+            </div>
+            <input type="text" id="newFileName" name="newName" class="rename-input" 
+                   placeholder="Enter new filename (optional)"> 
+            <button type="submit" class="upload-button">Upload File</button> 
+            <div id="errorMessage" class="error-message"></div> 
+            <div id="successMessage" class="success-message"></div>
+            <button type="button" class="upload-button" id="listButton" onclick="location.href='/list'" style="display: none;">
+                View Files List
             </button>
-            <div id="selectedFile" class="selected-file"></div>
-        </div>
-        <button type="submit" class="upload-button">Загрузить файл</button>
-        <div id="errorMessage" class="error-message"></div>
-        <div id="successMessage" class="success-message"></div>
-    </form>
-
+        </form>
     <script>
-        const uploadArea = document.getElementById('uploadArea');
+        const form = document.getElementById('uploadForm');
         const fileInput = document.getElementById('fileInput');
-        const uploadForm = document.getElementById('uploadForm');
+        const uploadArea = document.getElementById('uploadArea');
         const selectedFile = document.getElementById('selectedFile');
         const errorMessage = document.getElementById('errorMessage');
         const successMessage = document.getElementById('successMessage');
-
-        function showSelectedFile(file) {
-            selectedFile.textContent = `Выбранный файл: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
-            selectedFile.style.display = 'block';
-            errorMessage.style.display = 'none';
-            successMessage.style.display = 'none';
+        const newFileName = document.getElementById('newFileName');
+    
+        function showSuccess(message) {
+        successMessage.textContent = message;
+        successMessage.style.display = 'block';
+        errorMessage.style.display = 'none';
+        document.getElementById('listButton').style.display = 'block'; // Show list button
         }
 
         function showError(message) {
             errorMessage.textContent = message;
             errorMessage.style.display = 'block';
             successMessage.style.display = 'none';
+            document.getElementById('listButton').style.display = 'none'; // Hide list button
         }
-
-        function showSuccess(message) {
-            successMessage.textContent = message;
-            successMessage.style.display = 'block';
-            errorMessage.style.display = 'none';
-        }
-
-        uploadArea.addEventListener('dragover', (event) => {
-            event.preventDefault();
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
             uploadArea.classList.add('dragover');
         });
-
+    
         uploadArea.addEventListener('dragleave', () => {
             uploadArea.classList.remove('dragover');
         });
-
-        uploadArea.addEventListener('drop', (event) => {
-            event.preventDefault();
+    
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
             uploadArea.classList.remove('dragover');
-            const file = event.dataTransfer.files[0];
-            fileInput.files = event.dataTransfer.files;
-            showSelectedFile(file);
-            console.log("Файл выбран через drag & drop:", file);
+            fileInput.files = e.dataTransfer.files;
+            if (e.dataTransfer.files.length > 0) {
+                selectedFile.textContent = `Selected: ${e.dataTransfer.files[0].name}`;
+                selectedFile.style.display = 'block';
+            }
         });
-
+    
         fileInput.addEventListener('change', () => {
             if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
-                showSelectedFile(file);
-                console.log("Файл выбран через кнопку:", file.name);
+                selectedFile.textContent = `Selected: ${fileInput.files[0].name}`;
+                selectedFile.style.display = 'block';
             }
         });
-
-        uploadForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
             const file = fileInput.files[0];
             if (!file) {
-                showError("Выберите файл перед загрузкой.");
+                showError('Please select a file first');
                 return;
             }
-            
-            console.log("Отправляем файл:", file.name);
-            
+
             const formData = new FormData();
-            formData.append("file", file);
+            formData.append('file', file);
 
             try {
-                const response = await fetch('/upload', {
-                    method: "POST",
-                    body: formData
-                });
+                let response;
+                const newName = newFileName.value.trim();
                 
+                if (newName) {
+                    // Use CGI script for renaming
+                    formData.append('newName', newName);
+                    response = await fetch('/cgi-bin/upload.py', {
+                        method: 'POST',
+                        body: formData
+                    });
+                } else {
+                    // Regular upload
+                    response = await fetch('/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+                }
+
                 const text = await response.text();
-                console.log("Ответ сервера:", text);
-                
                 if (response.ok) {
-                    showSuccess("Файл успешно загружен!");
-                    fileInput.value = ''; // Очищаем input
+                    showSuccess(newName ? text : "File uploaded successfully!");
+                    fileInput.value = '';
+                    newFileName.value = '';
                     selectedFile.style.display = 'none';
                 } else {
-                    showError("Ошибка при загрузке файла: " + text);
+                    showError('Upload failed: ' + text);
                 }
             } catch (error) {
-                showError("Ошибка сети: " + error.message);
-                console.error(error);
+                showError('Upload failed: ' + error.message);
             }
         });
-    </script>
-</body>
-</html>
+            </script>
+</body> </html> 
