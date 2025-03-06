@@ -76,9 +76,9 @@ void ParsedServerConfig::setIndex(std::string index)
     _index = index;
 }
 
-void ParsedServerConfig::setErrorPages(std::map<short, std::string> errorPages)
+void ParsedServerConfig::setErrorPages(short errorCode, std::string errorPage)
 {
-    _errorPages = errorPages;
+    _errorPages[errorCode] = errorPage;
 }
 /* 
 	3d verstion because every location has its own methods. - roi 0225
@@ -303,10 +303,12 @@ std::vector<ServerConfig> ParsedServerConfig::getVector()
              autoindexIt != it->_locationAutoindex.end(); ++autoindexIt) {
             server.setLocationAutoindex(autoindexIt->first, autoindexIt->second);
         }
-        
+        for(std::map<short, std::string>::const_iterator errorIt = it->_errorPages.begin(); errorIt != it->_errorPages.end(); ++errorIt)
+        {
+            server.setErrorPages(errorIt->first, errorIt->second);
+        }
         servers.push_back(server);
     }
-    
     return servers;
 }
 
@@ -476,8 +478,8 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
                 if (!errorPage.empty() && errorPage[errorPage.size() - 1] == ';')
                     errorPage.erase(errorPage.size() - 1); // Удаление точки с запятой в конце строки
                 std::map<short, std::string> errorPages;
-                errorPages.insert(std::make_pair(errorCode, errorPage));
-                currentConfig.setErrorPages(errorPages);
+                // errorPages.insert(std::make_pair(errorCode, errorPage));
+                currentConfig.setErrorPages(errorCode, errorPage);
             }
             else if (key == "client_max_body_size")
             {

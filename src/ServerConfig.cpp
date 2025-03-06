@@ -129,9 +129,9 @@ void ServerConfig::setIndex(std::string index)
     _index = index;
 }
 
-void ServerConfig::setErrorPages(std::map<short, std::string> errorPages)
+void ServerConfig::setErrorPages(short errorCode, std::string errorPage)
 {
-    _errorPages = errorPages;
+    _errorPages[errorCode] = errorPage;
 }
 
 void ServerConfig::setMethods(const std::string &location, const std::vector<std::string> &methods)
@@ -286,20 +286,11 @@ bool ServerConfig::isAvailibleMethod(std::string path, std::string method)
     return std::find(allowedMethods.begin(), allowedMethods.end(), method) != allowedMethods.end();
 }
 
-// In your configuration parsing code
-void ServerConfig::parseErrorPage(const std::string& line) {
-    std::istringstream iss(line);
-    std::string directive;
-    int errorCode;
-    std::string path;
-    
-    iss >> directive >> errorCode >> path;
-    if (directive == "error_page" && errorCode > 0 && !path.empty()) {
-        _errorPages[errorCode] = path;
-    }
-}
-
 std::string ServerConfig::getErrorPage(int errorCode) const {
     std::map<short, std::string>::const_iterator it = _errorPages.find(errorCode);
-    return (it != _errorPages.end()) ? it->second : "";
+
+    if (it != _errorPages.end()) {
+        return it->second;
+    }
+    return "";
 }

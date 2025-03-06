@@ -56,7 +56,7 @@ class ParsedServerConfig
         void setName(std::string name);
         void setRoot(std::string root);
         void setIndex(std::string index);
-        void setErrorPages(std::map<short, std::string> errorPages);//нужно передавать уже заполненую мапу
+        void setErrorPages(short errorCode, std::string errorPage);//нужно передавать уже заполненую мапу
 		void setMethods(const std::string &location, const std::vector<std::string> &methods);
 		// setters of 5 additional attributes in locations
 		void setLocationRoot(const std::string &location, const std::string &root);

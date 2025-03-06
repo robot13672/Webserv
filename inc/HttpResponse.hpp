@@ -68,18 +68,15 @@ public:
     //ERORR
     void handleRequest();
     void setErrorResponse(int code, const std::string& message);
-    void setRedirectResponse(const std::string& newLocation);
+    // void setRedirectResponse(const std::string& newLocation);
 
     bool isFileAccessible() ;
     std::string getCurrentTime();
     void handleDelete(const std::string& path);
     void handlePost();
-
-    // Main methods
     std::string toString() const;
     void clear();
     void sendFile();
-    //old
     void setServer(ServerConfig &serv);
     void handleResponse(const HttpRequest request) ;
     void setPath(const std::string& path);
