@@ -109,6 +109,7 @@ void HttpResponse::handleResponse(const HttpRequest request) {
 
 void HttpResponse::handleRequest() {
     // Добавляем базовые заголовки
+    clear();
     setHeader("Server", "text/plain");
     setHeader("Date", getCurrentTime());
     setHeader("Connection", "keep-alive");
@@ -441,8 +442,7 @@ std::string HttpResponse::getCurrentTime() {
 
 void HttpResponse::setErrorResponse(int code, const std::string& message) {
     setStatus(code, message);
-    
-    // Определяем путь к файлу ошибки
+
     std::string localPath;
     switch (code) {
         case 400:
@@ -461,19 +461,23 @@ void HttpResponse::setErrorResponse(int code, const std::string& message) {
             localPath = "assets/error_pages/413.html";
             break;
         case 500:
+            localPath = "assets/error_pages/500.html";
+            break;
+        case 505:
+            localPath = "assets/error_pages/505.html";
+            break;
         default:
             localPath = "assets/error_pages/500.html";
     }
 
-    // Читаем файл напрямую
     std::ifstream file(localPath.c_str(), std::ios::binary);
     if (file) {
         std::stringstream buffer;
         buffer << file.rdbuf();
         setHeader("Content-Type", "text/html");
         setBody(buffer.str());
-    } else {
-        // Если файл не найден, создаем базовую HTML-страницу
+    } 
+    else {
         std::stringstream ss;
         ss << "<!DOCTYPE html>\n<html>\n<head>\n";
         ss << "<title>Error " << code << "</title>\n";
@@ -483,20 +487,19 @@ void HttpResponse::setErrorResponse(int code, const std::string& message) {
         ss << "<div><h1>Error " << code << "</h1>\n";
         ss << "<p>" << message << "</p></div>\n";
         ss << "</body>\n</html>";
-
         setHeader("Content-Type", "text/html");
         setBody(ss.str());
     }
 }
 
-void HttpResponse::setRedirectResponse(const std::string& newLocation) {
-    setStatus(301, "Moved Permanently");
-    setHeader("Location", newLocation);
-    std::string redirectPage = "<html><body><h1>301 Moved Permanently</h1>";
-    redirectPage += "<p>The document has moved <a href=\"" + newLocation + "\">here</a>.</p></body></html>";
-    setHeader("Content-Type", "text/html");
-    setBody(redirectPage);
-}
+// void HttpResponse::setRedirectResponse(const std::string& newLocation) {
+//     setStatus(301, "Moved Permanently");
+//     setHeader("Location", newLocation);
+//     std::string redirectPage = "<html><body><h1>301 Moved Permanently</h1>";
+//     redirectPage += "<p>The document has moved <a href=\"" + newLocation + "\">here</a>.</p></body></html>";
+//     setHeader("Content-Type", "text/html");
+//     setBody(redirectPage);
+// }
 
 void HttpResponse::sendFile() {
     // std::ifstream file(filePath.c_str(), std::ios::binary);
@@ -618,3 +621,15 @@ void HttpResponse::clear() {
     _chunked = false;
 }
 
+void HttpResponse::setPath(const std::string& path) { 
+    _path = path;
+}
+void HttpResponse::setMethod(const std::string& method) { 
+    _method = method; 
+}
+void HttpResponse::addCookie(const std::string& cookie) { 
+    _cookies.push_back(cookie); 
+}
+const std::vector<std::string>& HttpResponse::getCookies() const { 
+    return _cookies; 
+}

@@ -37,14 +37,14 @@ class ParsedServerConfig
 		// Индексация по location(string), а значение будет вектор, который хранит все допустимые методы, _methods["root"][1] = {"GET", "POST", "DELETE"} 
 		
 		// Новые атрибуты для хранения директив внутри блоков location - roi 0227
-		std::map<std::string, std::string> _locationRoots; //location /cgi-bin { /n root ./;
-		std::map<std::string, std::string> _locationIndexes; // location /tours { /n 	index tours1.html;
+		std::map<std::string, std::string> 					_locationRoots; //location /cgi-bin { /n root ./;
+		std::map<std::string, std::string> 					_locationIndexes; // location /tours { /n 	index tours1.html;
 	
 		// temporally commented - roi 0227 - 0302
-		std::map<std::string, std::vector<std::string> > _locationCgiPaths; // location /cgi-bin { /n cgi_path /usr/bin/python3 /bin/bash;
-		std::map<std::string, std::vector<std::string> > _locationCgiExts; // 	location /red { /n	return /tours;
-		std::map<std::string, bool> _locationAutoindex; // Для хранения значения директивы autoindex для каждой локации likeL: 'autoindex off;'
-		std::vector<ParsedServerConfig> serverParsedConfigs;
+		std::map<std::string, std::vector<std::string> > 	_locationCgiPaths; // location /cgi-bin { /n cgi_path /usr/bin/python3 /bin/bash;
+		std::map<std::string, std::vector<std::string> > 	_locationCgiExts; // 	location /red { /n	return /tours;
+		std::map<std::string, bool> 						_locationAutoindex; // Для хранения значения директивы autoindex для каждой локации likeL: 'autoindex off;'
+		std::vector<ParsedServerConfig> 					serverParsedConfigs;
 		public:
 		ParsedServerConfig();
         ParsedServerConfig(const ParsedServerConfig &other); // Copy constructor

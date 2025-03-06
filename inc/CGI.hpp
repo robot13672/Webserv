@@ -29,7 +29,7 @@ class CGI {
         
         void SetEnv(HttpRequest &request);
         void setScriptPath(const std::string& path) ;
-        void setRequestBody(const std::string& body) { _requestBody = body; }
+        void setRequestBody(const std::string& body);
         bool handleCgiRequest(HttpRequest& request, HttpResponse& response);
         // void addCookie(const std::string& cookie) { _cookies.push_back(cookie); }
         // const std::vector<std::string>& getCookies() const { return _cookies; }

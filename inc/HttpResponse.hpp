@@ -82,14 +82,11 @@ public:
     //old
     void setServer(ServerConfig &serv);
     void handleResponse(const HttpRequest request) ;
-    void setPath(const std::string& path) { _path = path; }
-    void setMethod(const std::string& method) { _method = method; }
+    void setPath(const std::string& path);
+    void setMethod(const std::string& method);
     void handleListFiles();
-
-
-
-    void addCookie(const std::string& cookie) { _cookies.push_back(cookie); }
-    const std::vector<std::string>& getCookies() const { return _cookies; }
+    void addCookie(const std::string& cookie);
+    const std::vector<std::string>& getCookies() const;
 };
 
 #endif
