@@ -24918,3 +24918,49 @@ New session: 2025-03-07 11:19:07
 -------------------------------------------------
 Session finish: 2025-03-07 11:19:36
 -------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-07 11:31:19
+-------------------------------------------------
+2025-03-07 11:31:19: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-03-07 11:31:19: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+Session finish: 2025-03-07 11:32:19
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-07 11:36:56
+-------------------------------------------------
+2025-03-07 11:36:56: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-03-07 11:36:56: Server created with host:127.0.0.1, port:8082
+2025-03-07 11:37:01: New connection from: 127.0.0.1, with socket 5
+2025-03-07 11:37:01: New connection from: 127.0.0.1, with socket 6
+2025-03-07 11:37:01: New message from 5
+2025-03-07 11:37:01: New message from 5
+2025-03-07 11:37:01: New message from 6
+2025-03-07 11:37:01: New connection from: 127.0.0.1, with socket 7
+2025-03-07 11:37:01: New message from 7
+2025-03-07 11:37:02: New message from 7
+2025-03-07 11:37:03: New message from 7
+2025-03-07 11:37:04: New message from 7
+2025-03-07 11:37:05: New message from 7
+2025-03-07 11:37:05: New message from 7
+2025-03-07 11:37:06: New message from 7
+2025-03-07 11:37:17: New message from 7
+2025-03-07 11:37:18: New message from 7
+2025-03-07 11:40:26: webserv: Conenction with 5fd closed!
+2025-03-07 11:40:26: webserv: Conenction with 6fd closed!
+2025-03-07 11:40:26: webserv: Conenction with 7fd closed!
+2025-03-07 11:41:49: New connection from: 127.0.0.1, with socket 5
+2025-03-07 11:41:49: New message from 5
+2025-03-07 11:41:49: New message from 5
+2025-03-07 11:41:50: New message from 5
+2025-03-07 11:41:50: New connection from: 127.0.0.1, with socket 6
+2025-03-07 11:41:52: New message from 5
+2025-03-07 11:41:52: New message from 5
+2025-03-07 11:41:53: New message from 5
+2025-03-07 11:41:57: New message from 5
+2025-03-07 11:41:57: New message from 5
+2025-03-07 11:41:58: New message from 5
+2025-03-07 11:42:59: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-03-07 11:44:01
+-------------------------------------------------

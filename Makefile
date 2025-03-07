@@ -6,8 +6,8 @@ CFLAGS	+= -Wall -Wextra -Werror
 # CFLAGS += -Wpedantic
 # garantees no memory leaks:
 CFLAGS += -fsanitize=address
-LDFLAGS	=
-LDFLAGS += -Wpedantic
+# LDFLAGS	=
+# LDFLAGS += -Wpedantic
 # garantees no memory leaks:
 LDFLAGS += -fsanitize=address
 

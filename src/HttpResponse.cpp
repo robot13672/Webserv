@@ -46,6 +46,10 @@ HttpResponse& HttpResponse::operator=(const HttpResponse& copy) {
         _path = copy._path;
         _method = copy._method;
         _request = copy._request;
+        _response = copy._response;
+        delete cgi;  // Delete old CGI before assigning new one
+        cgi = new CGI(*copy.cgi);
+        _cookies = copy._cookies;
     }
     return *this;
 }
@@ -550,24 +554,40 @@ void HttpResponse::sendFile() {
                 setHeader("Content-Type", "text/css");
             else if (ext == "txt") 
                 setHeader("Content-Type", "text/plain");
-            else if (ext == "jpeg")
-                setHeader("Content-Type", "image/jpeg");
             else if (ext == "js") 
                 setHeader("Content-Type", "application/javascript");
-            else if (ext == "png") 
-                setHeader("Content-Type", "image/png");
-            else if (ext == "jpg" || ext == "jpeg") 
-                setHeader("Content-Type", "image/jpeg");
-            else if (ext == "gif") 
-                setHeader("Content-Type", "image/gif");
-            else if (ext == "pdf") 
-                setHeader("Content-Type", "application/pdf");
-            else if (ext == "xml") 
-                setHeader("Content-Type", "application/xml");
             else if (ext == "json") 
                 setHeader("Content-Type", "application/json");
-            else 
+            else if (ext == "xml") 
+                setHeader("Content-Type", "application/xml");
+            else if (ext == "jpg") 
+                setHeader("Content-Type", "image/jpg");
+            else if (ext == "jpeg") 
+                setHeader("Content-Type", "image/jpeg");
+            else if (ext == "png") 
+                setHeader("Content-Type", "image/png");
+            else if (ext == "gif") 
+                setHeader("Content-Type", "image/gif");
+            else if (ext == "mp3") 
+                setHeader("Content-Type", "audio/mpeg");
+            else if (ext == "mp4") 
+                setHeader("Content-Type", "video/mp4");
+            else if (ext == "pdf") 
+                setHeader("Content-Type", "application/pdf");
+            else if (ext == "zip") 
+                setHeader("Content-Type", "application/zip");
+            else if (ext == "doc") 
+                setHeader("Content-Type", "application/msword");
+            else if (ext == "docx") 
+                setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+            else if (ext == "xls") 
+                setHeader("Content-Type", "application/vnd.ms-excel");
+            else if (ext == "xlsx") 
+                setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            else if (ext == "bin") 
                 setHeader("Content-Type", "application/octet-stream");
+            else 
+                setHeader("Content-Type", "application/txt");
         }
         setStatus(200, "OK");
     } catch (const std::exception& e) {
