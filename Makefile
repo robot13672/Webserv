@@ -2,7 +2,7 @@
 NAME	= webserv
 CC		= c++
 CFLAGS 	= -std=c++98 -g
-# CFLAGS	+= -Wall -Wextra -Werror 
+CFLAGS	+= -Wall -Wextra -Werror 
 # CFLAGS += -Wpedantic
 # garantees no memory leaks:
 CFLAGS += -fsanitize=address

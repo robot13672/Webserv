@@ -9,10 +9,15 @@ HttpResponse::HttpResponse() :
     _httpVersion("HTTP/1.1"),
     _statusCode(200),
     _statusMessage("OK"),
+    _headers(),
+    _body(),
     _chunked(false),
+    _method(""),
     _path(""),
-    _method(""), 
-    cgi(new CGI()){}
+    _request(),
+    _response(),
+    cgi(new CGI()),
+    _cookies() {}
 
 HttpResponse::HttpResponse(const HttpResponse& copy) :
     _server(copy._server),
@@ -24,7 +29,10 @@ HttpResponse::HttpResponse(const HttpResponse& copy) :
     _chunked(copy._chunked),
     _method(copy._method),
     _path(copy._path),
-    _request(copy._request) {}
+    _request(copy._request),
+    _response(copy._response),
+    cgi(new CGI(*copy.cgi)),
+    _cookies(copy._cookies) {}
 
 HttpResponse& HttpResponse::operator=(const HttpResponse& copy) {
     if (this != &copy) {

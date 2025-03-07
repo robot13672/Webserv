@@ -36,10 +36,10 @@ private:
     std::map<std::string, std::string>  _headers;
     std::string                         _body;
     bool                                _chunked;
+    std::string                         _method;
+    std::string                         _path;
     HttpRequest                         _request;
     std::string                         _response;
-    std::string                         _path;
-    std::string                         _method;
     CGI*                                cgi;
     std::vector<std::string>            _cookies;
     std::string getOriginalFilename(const std::string& body);

@@ -45,7 +45,7 @@ void Server::startServers()// функция основного цикла се�
     
     while(true)//основной цикл сервера
     {
-        (void*)this;
+        // (void*)this;
         timer.tv_sec = 1;
         timer.tv_usec = 0;
         request_fd_cpy = _request_fd_pool;
@@ -180,32 +180,17 @@ void Server::readRequest(int &fd, Client &client)
 void Server::sendResponse(int &fd, Client &client)
 {
     int sendedBytes = 0;
-    //TODO поменять на реальный ответ
-    // std::string response = "HTTP/1.1 200 OK\r\n"
-    //        "Content-Type: text/plain\r\n"
-    //        "Content-Length: 13\r\n"
-    //        "\r\n"
-    //        "Hello, World!";
-    // //TODO: дописать все конструкторы копирования, что бы можно было обратиться к макс боти сайз
-    // // if(response.length() >= client._server.getMaxBodySize())
-    // //     std::cout << "Error 413";
-    // sendedBytes = write(fd, response.c_str(), response.length());
 
     HttpResponse response;
     response.setServer(client._server);
     response.setHttpVersion("HTTP/1.1");
-    
-    // Get the path and method from client's request
-    // response.setPath(client._request.getPath());    // Use setter instead of direct access
-    // response.setMethod(client._request.getMethod()); 
-
 
     // Handle the request based on method and path
     response.handleResponse(client._request);
     client._request.clear();//очистка запроса
     
     // Check max body size
-    if (response.getBody().length() >= client._server.getMaxBodySize())
+    if (static_cast<long>(response.getBody().length()) >= client._server.getMaxBodySize())
     {
         response.setErrorResponse(413, "Payload Too Large");
     }
@@ -262,7 +247,7 @@ void Server::addNewConnect(ServerConfig &serv)
     struct sockaddr_in client_address;
     socklen_t client_address_len = sizeof(client_address);
     Client client(serv);
-    char buff[INET_ADDRSTRLEN];//INET_ADDRSTRLEN - Это константа, она задает максимальную длину строки, необходимую для хранения IP-адреса в текстовом виде
+    // char buff[INET_ADDRSTRLEN];//INET_ADDRSTRLEN - Это константа, она задает максимальную длину строки, необходимую для хранения IP-адреса в текстовом виде
     int client_sock = accept(serv.getListenFd(), (struct sockaddr *)&client_address, &client_address_len);
     client.setSocket(client_sock);
     if(client_sock == -1)
