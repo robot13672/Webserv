@@ -76,6 +76,10 @@ void ParsedServerConfig::setIndex(std::string index)
     _index = index;
 }
 
+// void ParsedServerConfig::setErrorPages(std::map<short, std::string> errorPages)
+// {
+//     _errorPages = errorPages;
+// }
 void ParsedServerConfig::setErrorPages(short errorCode, std::string errorPage)
 {
     _errorPages[errorCode] = errorPage;

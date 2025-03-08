@@ -3,22 +3,6 @@
 /* 
 by roi
  */
-// class LocationConfig
-// {
-//     private:
-//         std::string                     _path;
-//         std::string                     _root;			//корневая директория
-//         std::string                     _index;			// начальная страница
-//         bool                            _autoindex;
-//         std::vector<std::string>        _methods;		//все допустимые методы
-//         std::string                     _return;
-//         std::vector<std::string>        _cgi_path;
-//         std::vector<std::string>        _cgi_ext;
-// };
-// std::map Servers<int, ServerConfig>;
-
-// std::vector<ParsedServerConfig> serverParsedConfigs; // to be created at the end
-// class LocationConfig;
 
 class ServerConfig;
 
@@ -56,7 +40,9 @@ class ParsedServerConfig
         void setName(std::string name);
         void setRoot(std::string root);
         void setIndex(std::string index);
-        void setErrorPages(short errorCode, std::string errorPage);//нужно передавать уже заполненую мапу
+        void setErrorPages(short errorCode, 
+		// void setErrorPages(std::map<short, std::string> errorPages);//нужно передавать уже заполненую мапу
+		std::string errorPage);// edited by main && ros
 		void setMethods(const std::string &location, const std::vector<std::string> &methods);
 		// setters of 5 additional attributes in locations
 		void setLocationRoot(const std::string &location, const std::string &root);
@@ -91,3 +77,6 @@ class ParsedServerConfig
 				virtual const char *what() const throw();
 		};
 };
+
+// Определение переменной serverParsedConfigs. Deleted by Illiya
+// extern std::vector<ParsedServerConfig> serverParsedConfigs;
