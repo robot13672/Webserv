@@ -1,0 +1,248 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies Test</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a1a1a;
+            font-family: Arial, sans-serif;
+            padding: 40px 20px;
+            color: #fff;
+        }
+        .nav-buttons {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            z-index: 1000;
+        }
+        .button {
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .home-button {
+            background: #00ff9d;
+            color: #1a1a1a;
+        }
+        .home-button:hover {
+            background: #00cc7d;
+            transform: translateY(-2px);
+        }
+        .cgi-button, .cookie-button {
+            background: #ff6b6b;
+            color: white;
+        }
+        .cgi-button:hover, .cookie-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+        h1 {
+            color: #ff6b6b;
+            margin-top: 100px;
+            font-size: 48px;
+            font-family: 'Source Code Pro', monospace;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+        }
+        .cookie-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 50px;
+        }
+        .form-group { margin-bottom: 20px; }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+        }
+        .submit-button {
+            width: 100%;
+            padding: 12px;
+            background: #ff6b6b;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        .submit-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button class="button home-button" onclick="location.href='/'">HOME</button>
+        <button class="button cgi-button" onclick="location.href='/cgi'">CGI</button>
+    </div>
+    <h1>Cookies Test</h1>
+    <form id="cookieForm" class="cookie-form">
+        <div class="form-group">
+            <label for="username">Enter Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <button type="submit" class="submit-button">Set Cookie</button>
+    </form>
+    <script>
+        document.getElementById('cookieForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const queryString = `username=${encodeURIComponent(username)}`;
+            window.location.href = `/cgi-bin/cookie.py?${queryString}`;
+        });
+    </script>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cookie Test</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a1a1a;
+            font-family: Arial, sans-serif;
+            padding: 40px 20px;
+            color: #fff;
+        }
+        .nav-buttons {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .button {
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .home-button {
+            background: #00ff9d;
+            color: #1a1a1a;
+        }
+        .cgi-button {
+            background: #ff6b6b;
+            color: white;
+        }
+        h1 {
+            color: #ff6b6b;
+            margin-top: 100px;
+            font-size: 48px;
+            margin-bottom: 30px;
+        }
+        .cookie-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+        }
+        .submit-button {
+            width: 100%;
+            padding: 12px;
+            background: #ff6b6b;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        .submit-button:hover {
+            background: #ff5252;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button class="button home-button" onclick="location.href='/'">HOME</button>
+        <button class="button cgi-button" onclick="location.href='/cgi'">CGI</button>
+    </div>
+    <h1>Cookies Test</h1>
+    <form id="cookieForm" class="cookie-form">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="value">Value:</label>
+            <input type="text" id="value" name="value" required>
+        </div>
+        <button type="submit" class="submit-button">Set Cookie</button>
+    </form>
+
+    <script>
+        document.getElementById('cookieForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const value = document.getElementById('value').value;
+            const queryString = `username=${encodeURIComponent(username)}&value=${encodeURIComponent(value)}`;
+            window.location.href = `/cgi-bin/cookie.py?${queryString}`;
+        });
+    </script>
+</body>
+</html>

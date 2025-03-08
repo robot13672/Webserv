@@ -11,11 +11,14 @@ private:
     std::string method;
     std::string uri;
     std::string httpVersion;
+    std::string query;
     std::map<std::string, std::string> headers;
     std::string body;
     long maxBodySize;  // Новый член класса
+    long contentLength;
     bool isChunked;  // Флаг для chunked передачи
     bool isDone;
+    bool isCGI;
     std::string path;  // Часть URI до знака ?
     std::map<std::string, std::string> queryParams;  // Параметры после ?
     
@@ -32,6 +35,7 @@ public:
     HttpRequest();
     explicit HttpRequest(const std::string& rawRequest);
     ~HttpRequest();
+    void clear();
     
     // Parse methods
     bool parseRequest(const std::vector<char>& buffer, size_t contentLength);  // Исправляем сигнатуру
@@ -47,8 +51,10 @@ public:
     const std::string& getHttpVersion() const;
     const std::map<std::string, std::string>& getHeaders() const;
     const std::string& getBody() const;
+    const std::string& getQuery() const;
     std::string getHeader(const std::string& key) const;
     bool getStatus();
+    long getContentLength();
     
     // Новые геттеры для query параметров
     const std::string& getPath() const;
@@ -60,10 +66,9 @@ public:
     bool isValidMethod() const;
     bool isValidUri() const;
     bool isValidHttpVersion() const;
+    void isCgiRequest();
 
     // New method
     void setMaxBodySize(size_t size);
-    
-    // New method
     bool isChunkedTransfer() const;
 };

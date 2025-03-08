@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title> 
+    <style> 
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        } 
+        body { 
+            background-color: #1a1a1a; 
+            color: #fff; 
+            font-family: Arial, sans-serif; 
+            min-height: 100vh; 
+            padding: 40px 20px;
+            position: relative; 
+        } 
+        .home-button { 
+            position: fixed; 
+            top: 20px; 
+            left: 20px; 
+            padding: 12px 24px; 
+            font-size: 18px; 
+            border: none; 
+            background: #00ff9d; 
+            color: #1a1a1a; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            transition: all 0.3s ease; 
+        } 
+        .home-button:hover { 
+            background: #00cc7d; 
+            transform: translateY(-2px); 
+        } 
+        form { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            max-width: 800px; 
+            margin: 60px auto 0; 
+        } 
+        .upload-area {
+            width: 100%; 
+            min-height: 200px; 
+            padding: 40px;
+            border: 2px dashed #00ff9d; 
+            text-align: center; 
+            background: rgba(255, 255, 255, 0.05); 
+            cursor: pointer; 
+            margin: 20px 0; 
+            border-radius: 10px; 
+        } 
+        .rename-input { 
+            width: 100%; 
+            padding: 12px; 
+            margin: 10px 0; 
+            background: rgba(255, 255, 255, 0.1); 
+            border: 2px solid #00ff9d; 
+            border-radius: 5px; 
+            color: #fff; 
+            font-size: 16px; 
+        } 
+        .upload-button { 
+            padding: 12px 24px; 
+            font-size: 18px; 
+            border: none; 
+            background: #00ff9d; 
+            color: #1a1a1a; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            transition: all 0.3s ease; 
+            margin: 10px 0; width: 100%; 
+        } 
+        .selected-file { 
+            color: #00ff9d; 
+            margin: 10px 0; 
+            display: none; 
+        } 
+        .error-message { 
+            color: #ff6b6b; 
+            margin: 10px 0; 
+            display: none; 
+        } 
+        .success-message { 
+            color: #00ff9d; 
+            margin: 10px 0; 
+            display: none;
+        } 
+    </style> 
+</head> 
+<body> 
+    <button class="home-button" onclick="location.href='/'">HOME</button> 
+
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div class="upload-area" id="uploadArea"> 
+                <p>Drag & drop files here or</p> 
+                <input type="file" id="fileInput" name="file" style="display: none;"> 
+                <button type="button" class="upload-button" onclick="document.getElementById('fileInput').click()">
+                    Choose File 
+                </button>
+                <div id="selectedFile" class="selected-file"></div> 
+            </div>
+            <input type="text" id="newFileName" name="newName" class="rename-input" 
+                   placeholder="Enter new filename (optional)"> 
+            <button type="submit" class="upload-button">Upload File</button> 
+            <div id="errorMessage" class="error-message"></div> 
+            <div id="successMessage" class="success-message"></div>
+            <button type="button" class="upload-button" id="listButton" onclick="location.href='/list'" style="display: none;">
+                View Files List
+            </button>
+        </form>
+    <script>
+        const form = document.getElementById('uploadForm');
+        const fileInput = document.getElementById('fileInput');
+        const uploadArea = document.getElementById('uploadArea');
+        const selectedFile = document.getElementById('selectedFile');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const newFileName = document.getElementById('newFileName');
+    
+        function showSuccess(message) {
+        successMessage.textContent = message;
+        successMessage.style.display = 'block';
+        errorMessage.style.display = 'none';
+        document.getElementById('listButton').style.display = 'block'; // Show list button
+        }
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+            document.getElementById('listButton').style.display = 'none'; // Hide list button
+        }
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+    
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+    
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            fileInput.files = e.dataTransfer.files;
+            if (e.dataTransfer.files.length > 0) {
+                selectedFile.textContent = `Selected: ${e.dataTransfer.files[0].name}`;
+                selectedFile.style.display = 'block';
+            }
+        });
+    
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                selectedFile.textContent = `Selected: ${fileInput.files[0].name}`;
+                selectedFile.style.display = 'block';
+            }
+        });
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const file = fileInput.files[0];
+            if (!file) {
+                showError('Please select a file first');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                let response;
+                const newName = newFileName.value.trim();
+                
+                if (newName) {
+                    // Use CGI script for renaming
+                    formData.append('newName', newName);
+                    response = await fetch('/cgi-bin/upload.py', {
+                        method: 'POST',
+                        body: formData
+                    });
+                } else {
+                    // Regular upload
+                    response = await fetch('/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+                }
+
+                const text = await response.text();
+                if (response.ok) {
+                    showSuccess(newName ? text : "File uploaded successfully!");
+                    fileInput.value = '';
+                    newFileName.value = '';
+                    selectedFile.style.display = 'none';
+                } else {
+                    // showError('Upload failed: ' + text);
+                    document.documentElement.innerHTML = text;
+                }
+            } catch (error) {
+                // showError('Upload failed: ' + error.message);
+                window.location.href = '/error';
+            }
+        });
+            </script>
+</body> </html> 

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Code+Pro:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a1a1a;
+            font-family: 'Roboto', sans-serif;
+            padding: 40px 20px;
+            color: #fff;
+        }
+
+        .calculator-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00ff9d;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #00ff9d;
+            background: rgba(0, 255, 157, 0.1);
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #00ff9d;
+            background: rgba(0, 255, 157, 0.1);
+            border-radius: 5px;
+            color: #00ff9d;  /* Changed from white to #00ff9d */
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        select option {
+            background: #1a1a1a;  /* Dark background for dropdown */
+            color: #00ff9d;      /* Green text for options */
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #00ff9d;
+            border: none;
+            border-radius: 5px;
+            color: #1a1a1a;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #00cc7d;
+            transform: translateY(-2px);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 255, 157, 0.1);
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+        .nav-buttons {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 1000;
+            width: calc(100% - 40px);
+            max-width: 100%;
+        }
+
+        .home-button {
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            background: #00ff9d;
+            color: #1a1a1a;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: auto;  /* Override the 100% width */
+        }
+
+        .cgi-button {
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            background: #ff6b6b;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: auto;  /* Override the 100% width */
+        }
+
+        .home-button:hover {
+            background: #00cc7d;
+            transform: translateY(-2px);
+        }
+    
+        .cgi-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+        h1 {
+            color: #00ff9d;
+            margin-bottom: 30px;
+            font-family: 'Source Code Pro', monospace;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <button class="home-button" onclick="location.href='/'">HOME</button>
+        <button class="cgi-button" onclick="location.href='/cgi'">CGI</button>
+    </div>
+    <!-- <button class="home-button" onclick="location.href='/'">HOME</button> -->
+    <h1>Calculator</h1>
+    <form class="calculator-form" id="calcForm">
+        <div class="form-group">
+            <label for="num1">First Number:</label>
+            <input type="number" id="num1" name="num1" required>
+        </div>
+        <div class="form-group">
+            <label for="operation">Operation:</label>
+            <select id="operation" name="operation" required>
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">×</option>
+                <option value="/">÷</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="num2">Second Number:</label>
+            <input type="number" id="num2" name="num2" required>
+        </div>
+        <button type="submit">Calculate</button>
+    </form>
+    <div id="result" class="result"></div>
+
+    <script>
+        document.getElementById('calcForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const num1 = document.getElementById('num1').value;
+        const num2 = document.getElementById('num2').value;
+        const operation = document.getElementById('operation').value;
+        
+        console.log("Sending calculation request"); // Add debug output
+        
+        // Create query string and redirect
+        const queryString = `num1=${encodeURIComponent(num1)}&operation=${encodeURIComponent(operation)}&num2=${encodeURIComponent(num2)}`;
+        const url = `/cgi-bin/calculator.py?${queryString}`;
+        console.log("Redirecting to:", url); // Add debug output
+        window.location.href = url;
+    });
+    </script>
+</body>
+</html>

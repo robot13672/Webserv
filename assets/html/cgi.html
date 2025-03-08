@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGI Features</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Code+Pro:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a1a1a;
+            font-family: 'Roboto', sans-serif;
+            padding: 40px 20px;
+            color: #fff;
+        }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            background: #00ff9d;
+            color: #1a1a1a;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .home-button:hover {
+            background: #00cc7d;
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 48px;
+            color: #00ff9d;
+            margin-bottom: 50px;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .cgi-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .cgi-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ff9d;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .calculator-card {
+            border-color: rgba(0, 255, 157, 0.3);
+        }
+
+        .cookie-card {
+            border-color: rgba(255, 107, 107, 0.3);
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #00ff9d;
+        }
+
+        .cookie-card .card-title {
+            color: #ff6b6b;
+        }
+
+        .card-description {
+            color: #888;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .card-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .calculator-button {
+            background: #00ff9d;
+            color: #1a1a1a;
+        }
+
+        .calculator-button:hover {
+            background: #00cc7d;
+        }
+
+        .cookie-button {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .cookie-button:hover {
+            background: #ff5252;
+        }
+    </style>
+</head>
+<body>
+    <button class="home-button" onclick="location.href='/'">HOME</button>
+    <h1>CGI Features</h1>
+    <div class="container">
+        <div class="cgi-card calculator-card" onclick="location.href='/calculator'">
+            <div class="card-title">Calculator</div>
+            <p class="card-description">Simple calculator with basic arithmetic operations</p>
+            <button class="card-button calculator-button">Try Calculator</button>
+        </div>
+        <div class="cgi-card cookie-card" onclick="location.href='/cookie'">
+            <div class="card-title">Cookie Test</div>
+            <p class="card-description">Test cookie handling and session management</p>
+            <button class="card-button cookie-button">Try Cookies</button>
+        </div>
+    </div>
+</body>
+</html>

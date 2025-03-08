@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <vector>  // Добавляем include для vector
 #include <iostream>
+#include <cstdlib>
 
 HttpRequest::HttpRequest() : method(""), uri(""), httpVersion(""), maxBodySize(0), isChunked(false) {}
 
@@ -11,6 +12,21 @@ HttpRequest::HttpRequest(const std::string& rawRequest) {
 }
 
 HttpRequest::~HttpRequest() {}
+
+void HttpRequest::clear()
+{
+    method.clear();
+    uri.clear();
+    httpVersion.clear();
+    query.clear();
+    body.clear();
+    headers.clear();
+    path.clear();          
+    queryParams.clear();   
+    isChunked = false;    
+    isDone = false;       
+    isCGI = false;        
+}
 
 bool HttpRequest::parseRequest(const std::string& rawRequest) 
 {
@@ -25,6 +41,8 @@ bool HttpRequest::parseRequest(const std::string& rawRequest)
         
     if (!parseHeaders(requestStream))
         return false;
+    
+    
     return parseBody(requestStream);
 }
 
@@ -39,6 +57,9 @@ bool HttpRequest::parseRequest(const std::vector<char>& buffer, size_t contentLe
     // Используем stringstream для парсинга
     std::istringstream requestStream(rawRequest);
     std::string firstLine;
+
+    if(!this->method.empty())
+        isChunked = true;
     if(!isChunked)
     {
         if (!std::getline(requestStream, firstLine))
@@ -49,8 +70,9 @@ bool HttpRequest::parseRequest(const std::vector<char>& buffer, size_t contentLe
         
         if (!parseHeaders(requestStream))
             return false;
+        isCgiRequest();// check for CGI
     }
-        
+    
     return parseBody(requestStream);
 }
 
@@ -59,6 +81,16 @@ bool HttpRequest::parseRequestLine(const std::string& line) {
     lineStream >> method;
     std::string fullUri;
     lineStream >> fullUri;
+    
+    size_t queryPos = fullUri.find('?');
+    if (queryPos != std::string::npos) 
+    {
+        query = fullUri.substr(queryPos + 1);  // Get everything after '?'
+    } 
+    else 
+    {
+        query = "";  // No query string present
+    }
     lineStream >> httpVersion;
     
     if (lineStream.fail())
@@ -72,7 +104,8 @@ bool HttpRequest::parseRequestLine(const std::string& line) {
 
 bool HttpRequest::parseHeaders(std::istringstream& requestStream) {
     std::string line;
-    while (std::getline(requestStream, line) && line != "\r" && !line.empty()) {
+    while (std::getline(requestStream, line) && line != "\r" && !line.empty()) 
+    {
         size_t colonPos = line.find(':');
         if (colonPos == std::string::npos)
             return false;
@@ -86,10 +119,27 @@ bool HttpRequest::parseHeaders(std::istringstream& requestStream) {
         
         headers[key] = value;
     }
-    
+
+    std::string hostHeader = headers["Host"];
+    if (!hostHeader.empty()) 
+    {
+        size_t colonPos = hostHeader.find(':');
+        if (colonPos != std::string::npos) 
+        {
+            headers["IP"] = hostHeader.substr(0, colonPos);
+            headers["PORT"] = hostHeader.substr(colonPos + 1);
+        } 
+        else 
+        {
+            headers["IP"] = hostHeader;
+            headers["PORT"] = "80";
+        }
+    }
+
     // Check for chunked transfer encoding after parsing headers
     std::string transferEncoding = getHeader("Transfer-Encoding");
     isChunked = (transferEncoding == "chunked");
+    contentLength = getHeader("Content-Length").empty() ? 0 : std::atol(getHeader("Content-Length").c_str());
     
     return true;
 }
@@ -101,14 +151,21 @@ bool HttpRequest::parseBody(std::istringstream& requestStream) {
     }
     body.assign(std::istreambuf_iterator<char>(requestStream),
                 std::istreambuf_iterator<char>());
-    isDone = true;
-    return isDone;
+    if(method == "POST")
+        isDone = (body.find("\r\n0\r\n\r\n") != std::string::npos);
+    else
+        isDone = true;
+    return isDone; 
 }
 
-bool HttpRequest::parseChunkedBody(std::istringstream& buffer) {
-    body.append(std::string(std::istreambuf_iterator<char>(buffer), 
-                           std::istreambuf_iterator<char>()));
-
+bool HttpRequest::parseChunkedBody(std::istringstream& buffer) 
+{
+    if(!body.empty())
+        body.append(std::string(std::istreambuf_iterator<char>(buffer), 
+            std::istreambuf_iterator<char>()));
+    else
+        body.assign(std::istreambuf_iterator<char>(buffer),
+            std::istreambuf_iterator<char>());
     // Check if body ends with "\r\n0\r\n\r\n" which indicates end of chunked transfer
     isDone = (body.find("\r\n0\r\n\r\n") != std::string::npos);
     return isDone; 
@@ -186,6 +243,16 @@ std::string HttpRequest::getHeader(const std::string& key) const {
     return (iter != headers.end()) ? iter->second : "";
 }
 
+const std::string &HttpRequest::getQuery() const
+{
+    return query;
+}
+
+long HttpRequest::getContentLength()
+{
+    return contentLength;
+}
+
 bool HttpRequest::isValidMethod() const {
     static const std::string validMethods[] = {"GET", "POST", "DELETE"};
     const size_t methodCount = sizeof(validMethods) / sizeof(validMethods[0]);
@@ -196,6 +263,19 @@ bool HttpRequest::isValidMethod() const {
         }
     }
     return false;
+}
+
+void HttpRequest::isCgiRequest()
+{
+    // Check if path ends with .py or .cgi
+    size_t dot = path.find_last_of('.');
+    if (dot != std::string::npos) 
+    {
+        std::string extension = path.substr(dot);
+        isCGI = (extension == ".py" || extension == ".cgi");
+        return;
+    }
+    isCGI = false;
 }
 
 bool HttpRequest::isValidUri() const {
@@ -265,5 +345,9 @@ bool HttpRequest::hasQueryParam(const std::string& key) const {
 
 bool HttpRequest::getStatus()
 {
+    if (method == "POST" && getHeader("Content-Length").empty() && !isChunked)
+        return false;
+    if(!getHeader("Content-Length").empty() && static_cast<long>(body.size()) == contentLength)
+        return true;
     return isDone;
 }
