@@ -3,8 +3,22 @@
 /* 
 by roi
  */
+// class LocationConfig
+// {
+//     private:
+//         std::string                     _path;
+//         std::string                     _root;			//корневая директория
+//         std::string                     _index;			// начальная страница
+//         bool                            _autoindex;
+//         std::vector<std::string>        _methods;		//все допустимые методы
+//         std::string                     _return;
+//         std::vector<std::string>        _cgi_path;
+//         std::vector<std::string>        _cgi_ext;
+// };
+// std::map Servers<int, ServerConfig>;
 
-class ServerConfig;
+// std::vector<ParsedServerConfig> serverParsedConfigs; // to be created at the end
+// class LocationConfig;
 
 class ParsedServerConfig
 {
@@ -21,15 +35,15 @@ class ParsedServerConfig
 		// Индексация по location(string), а значение будет вектор, который хранит все допустимые методы, _methods["root"][1] = {"GET", "POST", "DELETE"} 
 		
 		// Новые атрибуты для хранения директив внутри блоков location - roi 0227
-		std::map<std::string, std::string> 					_locationRoots; //location /cgi-bin { /n root ./;
-		std::map<std::string, std::string> 					_locationIndexes; // location /tours { /n 	index tours1.html;
+		std::map<std::string, std::string> _locationRoots; //location /cgi-bin { /n root ./;
+		std::map<std::string, std::string> _locationIndexes; // location /tours { /n 	index tours1.html;
 	
 		// temporally commented - roi 0227 - 0302
-		std::map<std::string, std::vector<std::string> > 	_locationCgiPaths; // location /cgi-bin { /n cgi_path /usr/bin/python3 /bin/bash;
-		std::map<std::string, std::vector<std::string> > 	_locationCgiExts; // 	location /red { /n	return /tours;
-		std::map<std::string, bool> 						_locationAutoindex; // Для хранения значения директивы autoindex для каждой локации likeL: 'autoindex off;'
-		std::vector<ParsedServerConfig> 					serverParsedConfigs; // implemented by Illia instead of extern std::vector<ParsedServerConfig> serverParsedConfigs; - commented by oleh 0309
-		public:
+		std::map<std::string, std::vector<std::string> > _locationCgiPaths; // location /cgi-bin { /n cgi_path /usr/bin/python3 /bin/bash;
+		std::map<std::string, std::vector<std::string> > _locationCgiExts; // 	location /red { /n	return /tours;
+		std::map<std::string, bool> _locationAutoindex; // Для хранения значения директивы autoindex для каждой локации likeL: 'autoindex off;'
+
+    public:
 		ParsedServerConfig();
         ParsedServerConfig(const ParsedServerConfig &other); // Copy constructor
         ParsedServerConfig& operator=(const ParsedServerConfig &other); // Copy assignment operator
@@ -40,9 +54,7 @@ class ParsedServerConfig
         void setName(std::string name);
         void setRoot(std::string root);
         void setIndex(std::string index);
-        void setErrorPages(short errorCode, 
-		// void setErrorPages(std::map<short, std::string> errorPages);//нужно передавать уже заполненую мапу
-		std::string errorPage);// edited by main && ros
+        void setErrorPages(std::map<short, std::string> errorPages);//нужно передавать уже заполненую мапу
 		void setMethods(const std::string &location, const std::vector<std::string> &methods);
 		// setters of 5 additional attributes in locations
 		void setLocationRoot(const std::string &location, const std::string &root);
@@ -67,12 +79,8 @@ class ParsedServerConfig
 		std::vector<std::string> getLocationCgiExt(const std::string &location) const;
 		bool getLocationAutoindex(const std::string &location) const;
 
-		std::vector<ServerConfig> getVector(); // implemented by main because std::vector<ParsedServerConfig> serverParsedConfigs is not extern anymore - commented by oleh 0309
-
 		void parseConfig(const std::string &filename); //start with methods first - roi 0224
         friend std::ostream& operator<<(std::ostream &os, const ParsedServerConfig &config); // Перегрузка оператора << rpi 0224
-		
-		const std::vector<ParsedServerConfig>& getServerParsedConfigs() const; // To allow operator<<  after std::vector<ParsedServerConfig> serverParsedConfigs; is not extern anymore but became an attribute of the class ParsedServerConfig - commented by oleh 0309
 		class NoFileError : public std::exception
 		{
 			public:
@@ -80,5 +88,6 @@ class ParsedServerConfig
 		};
 };
 
-// Определение переменной serverParsedConfigs. Deleted by Illiya
-// extern std::vector<ParsedServerConfig> serverParsedConfigs;
+// Определение переменной serverParsedConfigs
+extern std::vector<ParsedServerConfig> serverParsedConfigs;
+

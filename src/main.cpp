@@ -23,7 +23,37 @@ int main(int argc, char **argv)
 				confLoc = std::string(argv[1]);
 
 			a.parseConfig(confLoc);
-			
+
+/* 
+			// oleh 0309 - debug insert start
+			{
+				// Вывод всех конфигураций серверов
+				for (size_t i = 0; i < serverParsedConfigs.size(); ++i) //vbstd::vector<ParsedServerConfig> serverParsedConfigs
+				std::cout << YELLOW << "main() - After parseConfig(): " << serverParsedConfigs[i] << std::endl << RESET; // debug - roi 0228
+			}			
+			// oleh 0309 - debug insert end 
+ */
+
+			{
+			// Вывод конфигураций через объект ParsedServerConfig
+			ParsedServerConfig a;
+			a.parseConfig("congifs/default.conf");
+			std::cout << YELLOW << "Number of servers: " << a.getServerParsedConfigs().size() << std::endl;
+			for(size_t i = 0; i < a.getServerParsedConfigs().size(); ++i) {
+				std::cout << "Server " << i << ":\n" << a.getServerParsedConfigs()[i] << std::endl;
+			}
+			std::cout << RESET;
+			}
+
+/* 
+ 			// Вывод конфигураций через getVector() - debug by oleh 0309
+			std::vector<ServerConfig> configs = a.getVector();
+			for (size_t i = 0; i < configs.size(); ++i)
+			{
+			std::cout << YELLOW << "main() - After parseConfig(): Server " << i << ", Port: " << configs[i].getPort() << ", Host: " << configs[i].getHost() << std::endl << RESET;
+			} 
+ */
+
             signal(SIGINT, signalHandler);
             logger.setFile("logger.txt");//нужно будет ставить реальный с конфига
             Server Webservers;
@@ -40,7 +70,6 @@ int main(int argc, char **argv)
             logger.writeMessage(e.what());
             return 1;
         }
-       
     }
     else
     {
