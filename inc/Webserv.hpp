@@ -43,5 +43,6 @@
 
 //Библиотеки для CGI
 
+#include "Colors.hpp" // colorfull output by oleh
 #endif
 

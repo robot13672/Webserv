@@ -23,6 +23,7 @@ int main(int argc, char **argv)
 				confLoc = std::string(argv[1]);
 
 			a.parseConfig(confLoc);
+			
             signal(SIGINT, signalHandler);
             logger.setFile("logger.txt");//нужно будет ставить реальный с конфига
             Server Webservers;
