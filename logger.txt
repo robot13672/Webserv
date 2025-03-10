@@ -24964,3 +24964,145 @@ New session: 2025-03-07 11:36:56
 -------------------------------------------------
 Session finish: 2025-03-07 11:44:01
 -------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-07 12:47:53
+-------------------------------------------------
+2025-03-07 12:47:53: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-03-07 12:47:53: Server created with host:127.0.0.1, port:8082
+2025-03-07 12:47:56: New connection from: 127.0.0.1, with socket 5
+2025-03-07 12:47:56: New connection from: 127.0.0.1, with socket 6
+2025-03-07 12:47:56: New message from 5
+2025-03-07 12:47:57: New message from 5
+2025-03-07 12:48:01: New message from 5
+2025-03-07 12:48:01: New message from 5
+2025-03-07 12:48:06: New message from 5
+2025-03-07 12:48:06: New message from 5
+2025-03-07 12:48:08: New message from 5
+2025-03-07 12:48:08: New message from 5
+2025-03-07 12:48:14: New message from 5
+2025-03-07 12:48:14: New message from 5
+2025-03-07 12:48:15: New message from 5
+2025-03-07 12:48:15: New message from 5
+2025-03-07 12:48:16: New message from 5
+2025-03-07 12:48:16: New message from 5
+2025-03-07 12:48:16: New message from 5
+2025-03-07 12:48:16: New message from 5
+2025-03-07 12:48:17: New message from 5
+2025-03-07 12:48:17: New message from 5
+2025-03-07 12:48:17: New message from 5
+2025-03-07 12:48:17: New message from 5
+2025-03-07 12:48:18: New message from 5
+2025-03-07 12:48:18: New message from 5
+2025-03-07 12:48:20: New message from 5
+2025-03-07 12:57:01: webserv: Conenction with 6fd closed!
+2025-03-07 12:57:01: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-07 13:28:24
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-10 11:46:10
+-------------------------------------------------
+2025-03-10 11:46:10: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-03-10 11:46:10: Server created with host:127.0.0.1, port:8082
+2025-03-10 11:45:57: New connection from: 127.0.0.1, with socket 5
+2025-03-10 11:45:57: New connection from: 127.0.0.1, with socket 6
+2025-03-10 11:45:57: New message from 6
+2025-03-10 11:45:57: webserv: Conenction with 5fd closed!
+2025-03-10 11:45:57: webserv: Conenction with 6fd closed!
+2025-03-10 11:45:58: New connection from: 127.0.0.1, with socket 5
+2025-03-10 11:45:58: New message from 5
+2025-03-10 11:45:59: New message from 5
+2025-03-10 11:45:59: New connection from: 127.0.0.1, with socket 6
+2025-03-10 11:46:00: webserv: Conenction with 5fd closed!
+2025-03-10 11:46:00: webserv: Conenction with 6fd closed!
+2025-03-10 11:46:08: New connection from: 127.0.0.1, with socket 5
+2025-03-10 11:46:08: New message from 5
+2025-03-10 11:46:08: New message from 5
+2025-03-10 11:46:08: New message from 5
+2025-03-10 11:46:08: New message from 5
+2025-03-10 11:46:08: New message from 5
+2025-03-10 11:46:09: New message from 5
+2025-03-10 11:46:09: New message from 5
+2025-03-10 11:46:15: New connection from: 127.0.0.1, with socket 6
+2025-03-10 11:46:15: New message from 5
+2025-03-10 11:46:15: New message from 5
+2025-03-10 11:46:29: New message from 5
+2025-03-10 11:46:30: New message from 5
+2025-03-10 11:46:34: webserv: Conenction with 5fd closed!
+2025-03-10 11:46:34: webserv: Conenction with 6fd closed!
+2025-03-10 11:49:38: New connection from: 127.0.0.1, with socket 5
+2025-03-10 11:49:38: New message from 5
+2025-03-10 11:49:39: New message from 5
+2025-03-10 11:49:39: New message from 5
+2025-03-10 11:49:39: New connection from: 127.0.0.1, with socket 6
+2025-03-10 11:49:40: New message from 5
+2025-03-10 11:49:41: New message from 5
+2025-03-10 11:49:41: New message from 6
+2025-03-10 11:49:42: New message from 5
+2025-03-10 11:49:42: New message from 6
+2025-03-10 11:49:43: New message from 5
+2025-03-10 11:49:44: New message from 6
+2025-03-10 11:49:45: New message from 5
+2025-03-10 11:49:46: New message from 6
+2025-03-10 11:49:47: New message from 5
+2025-03-10 11:49:47: New message from 6
+2025-03-10 11:49:48: New message from 5
+2025-03-10 11:49:49: New message from 6
+2025-03-10 11:49:50: New message from 5
+2025-03-10 11:49:51: New message from 6
+2025-03-10 11:49:52: New message from 5
+2025-03-10 11:49:52: New message from 6
+2025-03-10 11:49:53: New message from 5
+2025-03-10 11:49:54: New message from 6
+2025-03-10 11:49:55: New message from 5
+2025-03-10 11:49:56: New message from 6
+2025-03-10 11:49:57: New message from 5
+2025-03-10 11:49:57: New message from 6
+2025-03-10 11:49:58: New message from 5
+2025-03-10 11:49:59: New message from 6
+2025-03-10 11:50:00: New message from 5
+2025-03-10 11:50:01: New message from 6
+2025-03-10 11:50:02: New message from 5
+2025-03-10 11:50:03: New message from 6
+2025-03-10 11:50:03: New message from 5
+2025-03-10 11:50:04: New message from 6
+2025-03-10 11:50:04: New message from 5
+2025-03-10 11:50:05: New message from 6
+2025-03-10 11:50:07: New message from 6
+2025-03-10 11:50:08: New message from 6
+2025-03-10 11:50:08: New message from 6
+2025-03-10 11:50:09: New message from 6
+2025-03-10 11:50:22: New message from 6
+2025-03-10 11:50:22: New message from 6
+2025-03-10 11:56:17: webserv: Conenction with 5fd closed!
+2025-03-10 11:56:17: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-03-10 12:14:19
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-10 12:36:26
+-------------------------------------------------
+2025-03-10 12:36:26: Successfully bound to host:127.0.0.1, port:8802 socket:4
+2025-03-10 12:36:26: Server created with host:127.0.0.1, port:8802
+2025-03-10 12:37:34: New connection from: 127.0.0.1, with socket 5
+2025-03-10 12:37:34: New connection from: 127.0.0.1, with socket 6
+2025-03-10 12:37:34: New message from 5
+2025-03-10 12:37:34: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-10 12:42:42
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-10 12:42:45
+-------------------------------------------------
+2025-03-10 12:42:45: Successfully bound to host:127.0.0.1, port:0 socket:4
+2025-03-10 12:42:45: Server created with host:127.0.0.1, port:0
+-------------------------------------------------
+Session finish: 2025-03-10 12:43:12
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-10 12:43:26
+-------------------------------------------------
+2025-03-10 12:43:26: Error: Error bind host
+-------------------------------------------------
+Session finish: 2025-03-10 12:43:26
+-------------------------------------------------
