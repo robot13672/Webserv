@@ -191,72 +191,6 @@ bool ParsedServerConfig::getLocationAutoindex(const std::string &location) const
 	return false;
 }
 
-/*
-	Перегрузка оператора <<
-	checks only location and methoes- roi 0225
- */
-std::ostream &operator<<(std::ostream &os, const ParsedServerConfig &config)
-{
-	os << "ParsedServerConfig:\n";
-	os << "Host: " << config.getHost() << "\n";
-	os << "Port: " << config.getPort() << "\n";
-	os << "Max Body Size: " << config.getMaxBodySize() << "\n";
-	os << "Server Name: " << config._name << "\n";
-	os << "Root: " << config._root << "\n";
-	os << "Index: " << config._index << "\n";
-	os << "Error Pages:\n";
-	for (std::map<short, std::string>::const_iterator it = config._errorPages.begin(); it != config._errorPages.end(); ++it)
-	{
-		os << "  Error Code: " << it->first << " Page: " << it->second << "\n";
-	}
-	os << "Methods:\n";
-	for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._methods.begin(); it != config._methods.end(); ++it)
-	{
-		os << "  Location: " << it->first << " Methods: ";
-		for (std::vector<std::string>::const_iterator method_it = it->second.begin(); method_it != it->second.end(); ++method_it)
-		{
-			os << *method_it << " ";
-		}
-		os << "\n";
-	}
-	os << "Location Roots:\n";
-	for (std::map<std::string, std::string>::const_iterator it = config._locationRoots.begin(); it != config._locationRoots.end(); ++it)
-	{
-		os << "  Location: " << it->first << " Root: " << it->second << "\n";
-	}
-	os << "Location Indexes:\n";
-	for (std::map<std::string, std::string>::const_iterator it = config._locationIndexes.begin(); it != config._locationIndexes.end(); ++it)
-	{
-		os << "  Location: " << it->first << " Index: " << it->second << "\n";
-	}
-	os << "Location Cgi Paths:\n";
-	for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._locationCgiPaths.begin(); it != config._locationCgiPaths.end(); ++it)
-	{
-		os << "  Location: " << it->first << " Cgi Path: ";
-		for (std::vector<std::string>::const_iterator cgipath_it = it->second.begin(); cgipath_it != it->second.end(); ++cgipath_it)
-		{
-			os << *cgipath_it << " ";
-		}
-		os << "\n";
-	}
-	os << "Locatoin Cgi Extantions:\n";
-	for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._locationCgiExts.begin(); it != config._locationCgiExts.end(); ++it)
-	{
-		os << "  Location: " << it->first << " Cgi Extantion: ";
-		for (std::vector<std::string>::const_iterator cgiext_it = it->second.begin(); cgiext_it != it->second.end(); ++cgiext_it)
-		{
-			os << *cgiext_it << " ";
-		}
-		os << "\n";
-	}
-	os << "Location Autoindex:\n";
-	for (std::map<std::string, bool>::const_iterator it = config._locationAutoindex.begin(); it != config._locationAutoindex.end(); ++it)
-	{
-		os << "  Location: " << it->first << " Autoindex: " << (it->second ? "on" : "off") << "\n";
-	}
-	return os;
-}
-
 // To allow operator<<  after std::vector<ParsedServerConfig> serverParsedConfigs; is not extern anymore but became an attribute of the class ParsedServerConfig - commented by oleh 0309
 const std::vector<ParsedServerConfig>& ParsedServerConfig::getServerParsedConfigs() const {
     return serverParsedConfigs;
@@ -362,6 +296,7 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
 			}
 			inServerBlock = true;
 			currentLocation.clear(); // Сброс значения currentLocation при переходе к новому блоку server
+			currentConfig._errorPages.clear(); // Сброс страниц ошибок при начале нового блока server - olh 0310
 		}
 		else if (key == "}")
 		{
@@ -486,14 +421,39 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
 			}
 			else if (key == "error_page")
 			{
-				short errorCode;
+				std::string errorCodes;
 				std::string errorPage;
-				iss >> errorCode >> errorPage;
+				std::string token;
+				std::vector<std::string> tokens;
+			
+				// Считываем все токены в вектор
+				while (iss >> token)
+				{
+					tokens.push_back(token);
+				}
+			
+				// Последний токен - это errorPage
+				if (!tokens.empty())
+				{
+					errorPage = tokens.back();
+					tokens.pop_back(); // Удаляем последний элемент из вектора
+				}
+			
+				// Удаляем точку с запятой в конце errorPage
 				if (!errorPage.empty() && errorPage[errorPage.size() - 1] == ';')
-					errorPage.erase(errorPage.size() - 1); // Удаление точки с запятой в конце строки
-				std::map<short, std::string> errorPages;
-				// errorPages.insert(std::make_pair(errorCode, errorPage));
-				currentConfig.setErrorPages(errorCode, errorPage);
+				{
+					errorPage.erase(errorPage.size() - 1);
+				}
+			
+				// Остальные токены - это errorCodes
+				for (size_t i = 0; i < tokens.size(); ++i)
+				{
+					std::istringstream errorCodeStream(tokens[i]);
+					short errorCodeInt;
+					errorCodeStream >> errorCodeInt;
+					currentConfig.setErrorPages(errorCodeInt, errorPage);
+					// std::cout << RED << "Parsed error code: " << errorCodeInt << " with page: " << errorPage << RESET << std::endl; // Отладочный вывод
+				}
 			}
 			else if (key == "client_max_body_size")
 			{
@@ -519,4 +479,70 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
 		serverParsedConfigs.push_back(currentConfig);
 	}
 	file.close();
+}
+
+/*
+	Перегрузка оператора <<
+	checks only location and methoes- roi 0225
+ */
+std::ostream &operator<<(std::ostream &os, const ParsedServerConfig &config)
+{
+	os << "ParsedServerConfig:\n";
+	os << "Host: " << config.getHost() << "\n";
+	os << "Port: " << config.getPort() << "\n";
+	os << "Max Body Size: " << config.getMaxBodySize() << "\n";
+	os << "Server Name: " << config._name << "\n";
+	os << "Root: " << config._root << "\n";
+	os << "Index: " << config._index << "\n";
+	os << "Error Pages:\n";
+	for (std::map<short, std::string>::const_iterator it = config._errorPages.begin(); it != config._errorPages.end(); ++it)
+	{
+		os << "  Error Code: " << it->first << " Page: " << it->second << "\n";
+	}
+	os << "Methods:\n";
+	for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._methods.begin(); it != config._methods.end(); ++it)
+	{
+		os << "  Location: " << it->first << " Methods: ";
+		for (std::vector<std::string>::const_iterator method_it = it->second.begin(); method_it != it->second.end(); ++method_it)
+		{
+			os << *method_it << " ";
+		}
+		os << "\n";
+	}
+	os << "Location Roots:\n";
+	for (std::map<std::string, std::string>::const_iterator it = config._locationRoots.begin(); it != config._locationRoots.end(); ++it)
+	{
+		os << "  Location: " << it->first << " Root: " << it->second << "\n";
+	}
+	os << "Location Indexes:\n";
+	for (std::map<std::string, std::string>::const_iterator it = config._locationIndexes.begin(); it != config._locationIndexes.end(); ++it)
+	{
+		os << "  Location: " << it->first << " Index: " << it->second << "\n";
+	}
+	os << "Location Cgi Paths:\n";
+	for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._locationCgiPaths.begin(); it != config._locationCgiPaths.end(); ++it)
+	{
+		os << "  Location: " << it->first << " Cgi Path: ";
+		for (std::vector<std::string>::const_iterator cgipath_it = it->second.begin(); cgipath_it != it->second.end(); ++cgipath_it)
+		{
+			os << *cgipath_it << " ";
+		}
+		os << "\n";
+	}
+	os << "Locatoin Cgi Extantions:\n";
+	for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._locationCgiExts.begin(); it != config._locationCgiExts.end(); ++it)
+	{
+		os << "  Location: " << it->first << " Cgi Extantion: ";
+		for (std::vector<std::string>::const_iterator cgiext_it = it->second.begin(); cgiext_it != it->second.end(); ++cgiext_it)
+		{
+			os << *cgiext_it << " ";
+		}
+		os << "\n";
+	}
+	os << "Location Autoindex:\n";
+	for (std::map<std::string, bool>::const_iterator it = config._locationAutoindex.begin(); it != config._locationAutoindex.end(); ++it)
+	{
+		os << "  Location: " << it->first << " Autoindex: " << (it->second ? "on" : "off") << "\n";
+	}
+	return os;
 }
