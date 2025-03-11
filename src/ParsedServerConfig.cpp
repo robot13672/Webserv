@@ -272,6 +272,9 @@ std::vector<ServerConfig> ParsedServerConfig::getVector()
         server.setHost(it->getHost());
         server.setPort(it->getPort());
         server.setMaxBodySize(it->getMaxBodySize());
+        server.setName(it->_name);
+        server.setRoot(it->_root);
+        server.setIndex(it->_index);
         
         // Copy location-specific configurations
         for (std::map<std::string, std::vector<std::string> >::const_iterator methodIt = it->_methods.begin(); 
