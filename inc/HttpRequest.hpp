@@ -19,8 +19,10 @@ private:
     bool isChunked;  // Флаг для chunked передачи
     bool isDone;
     bool isCGI;
+    bool ignorTillNext;
     std::string path;  // Часть URI до знака ?
     std::map<std::string, std::string> queryParams;  // Параметры после ?
+    long curBodySize;
     
     // Private helper method for chunked parsing
     bool parseChunkedBody(std::istringstream& requestStream);
@@ -33,13 +35,11 @@ private:
 public:
     // Constructors and destructor
     HttpRequest();
-    explicit HttpRequest(const std::string& rawRequest);
     ~HttpRequest();
     void clear();
     
     // Parse methods
     bool parseRequest(const std::vector<char>& buffer, size_t contentLength);  // Исправляем сигнатуру
-    bool parseRequest(const std::string& rawRequest);  // Добавляем обратно эту версию
     bool parseRequestLine(const std::string& line);
     bool parseHeaders(std::istringstream& requestStream);
     bool parseBody(std::istringstream& requestStream);

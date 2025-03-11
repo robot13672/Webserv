@@ -7,9 +7,6 @@
 
 HttpRequest::HttpRequest() : method(""), uri(""), httpVersion(""), maxBodySize(0), isChunked(false) {}
 
-HttpRequest::HttpRequest(const std::string& rawRequest) {
-    parseRequest(rawRequest);
-}
 
 HttpRequest::~HttpRequest() {}
 
@@ -25,25 +22,8 @@ void HttpRequest::clear()
     queryParams.clear();   
     isChunked = false;    
     isDone = false;       
-    isCGI = false;        
-}
-
-bool HttpRequest::parseRequest(const std::string& rawRequest) 
-{
-    std::istringstream requestStream(rawRequest);
-    std::string firstLine;
-    
-    if (!std::getline(requestStream, firstLine))
-        return false;
-        
-    if (!parseRequestLine(firstLine))
-        return false;
-        
-    if (!parseHeaders(requestStream))
-        return false;
-    
-    
-    return parseBody(requestStream);
+    isCGI = false;
+    ignorTillNext = false;
 }
 
 bool HttpRequest::parseRequest(const std::vector<char>& buffer, size_t contentLength) 
@@ -60,6 +40,8 @@ bool HttpRequest::parseRequest(const std::vector<char>& buffer, size_t contentLe
 
     if(!this->method.empty())
         isChunked = true;
+    if(ignorTillNext)
+        body.clear();
     if(!isChunked)
     {
         if (!std::getline(requestStream, firstLine))
@@ -140,7 +122,8 @@ bool HttpRequest::parseHeaders(std::istringstream& requestStream) {
     std::string transferEncoding = getHeader("Transfer-Encoding");
     isChunked = (transferEncoding == "chunked");
     contentLength = getHeader("Content-Length").empty() ? 0 : std::atol(getHeader("Content-Length").c_str());
-    
+    if(contentLength > maxBodySize)
+        ignorTillNext = true;
     return true;
 }
 
@@ -155,6 +138,7 @@ bool HttpRequest::parseBody(std::istringstream& requestStream) {
         isDone = (body.find("\r\n0\r\n\r\n") != std::string::npos);
     else
         isDone = true;
+    curBodySize = body.size();
     return isDone; 
 }
 
@@ -168,6 +152,9 @@ bool HttpRequest::parseChunkedBody(std::istringstream& buffer)
             std::istreambuf_iterator<char>());
     // Check if body ends with "\r\n0\r\n\r\n" which indicates end of chunked transfer
     isDone = (body.find("\r\n0\r\n\r\n") != std::string::npos);
+    curBodySize += body.size();
+    if(curBodySize == contentLength)
+        isDone = true;
     return isDone; 
 }
 
