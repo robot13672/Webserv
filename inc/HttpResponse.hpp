@@ -85,6 +85,8 @@ public:
     void handleListFiles();
     void addCookie(const std::string& cookie);
     const std::vector<std::string>& getCookies() const;
+
+    
 };
 
 #endif

@@ -168,6 +168,55 @@ bool HttpRequest::parseChunkedBody(std::istringstream& buffer)
             std::istreambuf_iterator<char>());
     // Check if body ends with "\r\n0\r\n\r\n" which indicates end of chunked transfer
     isDone = (body.find("\r\n0\r\n\r\n") != std::string::npos);
+    
+    
+     // Track the total size of processed chunks
+     static size_t totalBodySize = 0;
+    // If the request is complete, parse all chunks to calculate total size
+    if (isDone) {
+        size_t pos = 0;
+        
+        while (pos < body.length()) {
+            // Find the end of chunk size line
+            size_t lineEnd = body.find("\r\n", pos);
+            if (lineEnd == std::string::npos)
+                break;
+                
+            // Extract chunk size in hex format
+            std::string chunkSizeHex = body.substr(pos, lineEnd - pos);
+            size_t chunkSize;
+            std::istringstream ss(chunkSizeHex);
+            ss >> std::hex >> chunkSize;
+            
+            // Move past the chunk size line
+            pos = lineEnd + 2;
+            
+            // If chunk size is 0, we've reached the terminator
+            if (chunkSize == 0)
+                break;
+                
+            // Add this chunk's size to our running total
+            totalBodySize += chunkSize;
+            
+            // Check if the total size exceeds the limit
+            if (maxBodySize > 0 && totalBodySize > static_cast<size_t>(maxBodySize)) {
+                // Set flags to indicate oversized request
+                isTooLarge = true;
+                return true; // Stop processing
+            }
+            
+            // Skip to next chunk (current chunk plus trailing CRLF)
+            pos += chunkSize + 2;
+        }
+    }
+    
+    // For ongoing requests, do a rough estimate check
+    if (!isDone && maxBodySize > 0 && body.size() > static_cast<std::string::size_type>(maxBodySize)) {
+        // If the raw data is already larger than max, it's likely too large
+        isTooLarge = true;
+        isDone = true;
+        return true;
+    }
     return isDone; 
 }
 

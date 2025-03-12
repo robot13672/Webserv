@@ -125,6 +125,11 @@ void HttpResponse::handleRequest() {
     setHeader("Date", getCurrentTime());
     setHeader("Connection", "keep-alive");
 
+    if (_request.isRequestTooLarge()) {
+        sendErrorPage(413, "Content Too Large");
+        return;
+    }
+
     if (_server.isAvailibleMethod(_path, _method) == false) {
         sendErrorPage(405, "Method Not Allowed");
         setHeader("Allow", "GET, POST, DELETE");
@@ -321,7 +326,7 @@ void HttpResponse::handlePost() {
         sendErrorPage(403, "Forbidden: Cannot write to directory");
         return ;
     }
-    
+
     // Check Content-Length early to avoid processing large files
     std::string contentLengthStr = _request.getHeader("Content-Length");
     if (!contentLengthStr.empty()) {

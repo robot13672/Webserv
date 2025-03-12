@@ -19,6 +19,7 @@ private:
     bool isChunked;  // Флаг для chunked передачи
     bool isDone;
     bool isCGI;
+    bool isTooLarge;
     std::string path;  // Часть URI до знака ?
     std::map<std::string, std::string> queryParams;  // Параметры после ?
     
@@ -71,4 +72,8 @@ public:
     // New method
     void setMaxBodySize(size_t size);
     bool isChunkedTransfer() const;
+
+    bool isRequestTooLarge() const {
+        return isTooLarge;
+    }
 };

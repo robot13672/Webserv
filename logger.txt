@@ -25667,3 +25667,73 @@ New session: 2025-03-12 12:24:40
 -------------------------------------------------
 Session finish: 2025-03-12 12:32:35
 -------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-12 13:00:19
+-------------------------------------------------
+2025-03-12 13:00:19: Successfully bound to host:127.0.0.1, port:8801 socket:4
+2025-03-12 13:00:19: Server created with host:127.0.0.1, port:8801
+2025-03-12 13:00:22: New connection from: 127.0.0.1, with socket 5
+2025-03-12 13:00:22: New message from 5
+2025-03-12 13:00:22: New connection from: 127.0.0.1, with socket 6
+-------------------------------------------------
+Session finish: 2025-03-12 13:00:27
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-12 13:01:11
+-------------------------------------------------
+2025-03-12 13:01:11: Successfully bound to host:127.0.0.1, port:8801 socket:4
+2025-03-12 13:01:11: Server created with host:127.0.0.1, port:8801
+2025-03-12 13:01:14: New connection from: 127.0.0.1, with socket 5
+2025-03-12 13:01:14: New connection from: 127.0.0.1, with socket 6
+2025-03-12 13:01:14: New message from 5
+2025-03-12 13:01:21: New message from 5
+2025-03-12 13:01:21: New message from 5
+2025-03-12 13:01:21: New message from 5
+2025-03-12 13:01:22: New message from 5
+2025-03-12 13:01:22: New message from 5
+2025-03-12 13:01:23: New message from 5
+2025-03-12 13:01:23: New message from 5
+2025-03-12 13:01:23: New message from 5
+2025-03-12 13:01:24: New message from 5
+2025-03-12 13:01:24: New message from 5
+2025-03-12 13:01:24: New message from 5
+2025-03-12 13:01:25: New message from 5
+2025-03-12 13:01:25: New message from 5
+2025-03-12 13:01:26: New message from 5
+2025-03-12 13:01:26: New message from 5
+2025-03-12 13:01:26: New message from 5
+2025-03-12 13:01:26: New message from 5
+2025-03-12 13:01:27: New message from 5
+2025-03-12 13:01:27: New message from 5
+2025-03-12 13:01:28: New message from 5
+2025-03-12 13:01:28: New message from 5
+2025-03-12 13:01:28: New message from 5
+2025-03-12 13:01:28: New message from 5
+2025-03-12 13:01:29: New message from 5
+2025-03-12 13:01:29: New message from 5
+2025-03-12 13:01:30: New message from 5
+2025-03-12 13:01:30: New message from 5
+2025-03-12 13:01:30: New message from 5
+2025-03-12 13:01:30: New message from 5
+2025-03-12 13:01:31: New message from 5
+2025-03-12 13:01:31: New message from 5
+2025-03-12 13:01:32: New message from 5
+2025-03-12 13:01:32: New message from 5
+2025-03-12 13:01:33: New message from 5
+2025-03-12 13:01:33: New message from 5
+2025-03-12 13:01:33: New message from 5
+2025-03-12 13:01:33: New message from 5
+2025-03-12 13:01:34: New message from 5
+2025-03-12 13:01:34: New message from 5
+2025-03-12 13:01:35: New message from 5
+2025-03-12 13:01:35: New message from 5
+2025-03-12 13:01:35: New message from 5
+2025-03-12 13:01:35: New message from 5
+2025-03-12 13:01:35: Error: error with read message from: 5
+2025-03-12 13:01:42: New message from 6
+2025-03-12 13:01:42: New connection from: 127.0.0.1, with socket 5
+2025-03-12 13:01:51: webserv: Conenction with 5fd closed!
+2025-03-12 13:01:51: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-03-12 13:02:31
+-------------------------------------------------
