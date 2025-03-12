@@ -185,15 +185,15 @@ void Server::sendResponse(int &fd, Client &client)
     response.setServer(client._server);
     response.setHttpVersion("HTTP/1.1");
 
+    // Check max body size
+    if (static_cast<long>(response.getBody().length()) >= client._server.getMaxBodySize())
+    {
+        response.sendErrorPage(413, "Payload Too Large");
+    }
     // Handle the request based on method and path
     response.handleResponse(client._request);
     client._request.clear();//очистка запроса
     
-    // Check max body size
-    if (static_cast<long>(response.getBody().length()) >= client._server.getMaxBodySize())
-    {
-        response.setErrorResponse(413, "Payload Too Large");
-    }
 
     // Convert response to string
     std::string responseStr = response.toString();

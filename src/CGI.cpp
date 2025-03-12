@@ -21,7 +21,7 @@ bool CGI::handleCgiRequest(HttpRequest& request, HttpResponse& response) {
 
     std::string cgiOutput = executeCgiScript();
     if (cgiOutput.empty()) {
-        response.setErrorResponse(500, "CGI Script Error");
+        response.sendErrorPage(500, "CGI Script Error");
         return true;
     }
 
@@ -123,7 +123,7 @@ std::string CGI::executeCgiScript() {
 void CGI::parseResponse(const std::string& cgiOutput, HttpResponse& response) {
     // Check if the output starts with headers
     if (cgiOutput.empty()) {
-        response.setErrorResponse(500, "Empty CGI response");
+        response.sendErrorPage(500, "Empty CGI response");
         return;
     }
 

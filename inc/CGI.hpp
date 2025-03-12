@@ -32,12 +32,12 @@ class CGI {
         void setRequestBody(const std::string& body);
         bool handleCgiRequest(HttpRequest& request, HttpResponse& response);
         // void addCookie(const std::string& cookie) { _cookies.push_back(cookie); }
+        std::string executeCgiScript();
         // const std::vector<std::string>& getCookies() const { return _cookies; }
+        void parseResponse(const std::string& cgiOutput, HttpResponse& _response);
     private:
         // void SetEnv(HttpRequest& _request);
-        std::string executeCgiScript();
         bool isCgiRequest(const std::string& path);
-        void parseResponse(const std::string& cgiOutput, HttpResponse& _response);
 
 
 };
