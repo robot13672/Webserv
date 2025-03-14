@@ -144,7 +144,7 @@ bool HttpRequest::parseBody(std::istringstream& requestStream) {
 
 bool HttpRequest::parseChunkedBody(std::istringstream& buffer) 
 {
-    if(!body.empty())
+    if(!body.empty())  
         body.append(std::string(std::istreambuf_iterator<char>(buffer), 
             std::istreambuf_iterator<char>()));
     else
