@@ -20,6 +20,7 @@ private:
     bool isDone;
     bool isCGI;
     bool ignorTillNext;
+    bool bodyTooBig;
     std::string path;  // Часть URI до знака ?
     std::map<std::string, std::string> queryParams;  // Параметры после ?
     long curBodySize;
@@ -71,4 +72,6 @@ public:
     // New method
     void setMaxBodySize(size_t size);
     bool isChunkedTransfer() const;
+    bool IsBodyTooBig();
+    void setBodyTooBig(bool value);
 };

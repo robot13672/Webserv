@@ -4,11 +4,31 @@
 #include <vector>  // Добавляем include для vector
 #include <iostream>
 #include <cstdlib>
+#include <string>
+#include "../inc/Webserv.hpp"
 
 HttpRequest::HttpRequest() : method(""), uri(""), httpVersion(""), maxBodySize(0), isChunked(false) {}
 
 
-HttpRequest::~HttpRequest() {}
+HttpRequest::~HttpRequest()
+{
+    method.clear();
+    uri.clear();
+    httpVersion.clear();
+    query.clear();
+    body.clear();
+    headers.clear();
+    path.clear();          
+    queryParams.clear();   
+    
+    isChunked = false;    
+    isDone = false;       
+    isCGI = false;
+    ignorTillNext = false;
+    contentLength = 0;
+    maxBodySize = 0;
+    curBodySize = 0;
+}
 
 void HttpRequest::clear()
 {
@@ -25,7 +45,6 @@ void HttpRequest::clear()
     isCGI = false;
     ignorTillNext = false;
 }
-
 bool HttpRequest::parseRequest(const std::vector<char>& buffer, size_t contentLength) 
 {
     if (buffer.empty() || contentLength == 0)
@@ -123,7 +142,10 @@ bool HttpRequest::parseHeaders(std::istringstream& requestStream) {
     isChunked = (transferEncoding == "chunked");
     contentLength = getHeader("Content-Length").empty() ? 0 : std::atol(getHeader("Content-Length").c_str());
     if(contentLength > maxBodySize)
+    {
         ignorTillNext = true;
+        bodyTooBig = true;
+    }
     return true;
 }
 
@@ -337,4 +359,14 @@ bool HttpRequest::getStatus()
     if(!getHeader("Content-Length").empty() && static_cast<long>(body.size()) == contentLength)
         return true;
     return isDone;
+}
+
+bool HttpRequest::IsBodyTooBig()
+{
+    return bodyTooBig;
+}
+
+void HttpRequest::setBodyTooBig(bool value)
+{
+    bodyTooBig = value;
 }

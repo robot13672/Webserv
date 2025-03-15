@@ -1,11 +1,17 @@
 #include "../inc/Webserv.hpp"
 #include "../inc/Server.hpp"
 
+Server* globalServer = NULL;
 
-void signalHandler(int signum) {
-
+void signalHandler(int signum) 
+{
+    if (globalServer) 
+    {
+        delete globalServer;  // Вызов деструктора
+        globalServer = NULL;
+    }
     logger.closeFile();
-
+    
     exit(signum);  // Завершаем программу
 }
 
@@ -25,14 +31,17 @@ int main(int argc, char **argv)
 			a.parseConfig(confLoc);
             signal(SIGINT, signalHandler);
             logger.setFile("logger.txt");//нужно будет ставить реальный с конфига
-            Server Webservers;
+            globalServer = new Server();
             // std::vector<ServerConfig> servers;
             // servers.push_back(ServerConfig("127.0.0.1", 8084));
             // servers.push_back(ServerConfig("127.0.0.1", 8085));
             // servers.push_back(ServerConfig("127.0.0.1", 8084));
-            Webservers.setupServer(a.getVector());
-            Webservers.startServers();
+            globalServer->setupServer(a.getVector());
+            globalServer->startServers();
+
             
+            delete globalServer;  // Освобождаем память при нормальном завершении
+            globalServer = NULL;
         }
         catch(const std::exception& e)
         {
