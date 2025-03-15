@@ -27255,3 +27255,152 @@ New session: 2025-03-15 15:03:33
 -------------------------------------------------
 Session finish: 2025-03-15 15:04:20
 -------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-15 15:39:38
+-------------------------------------------------
+2025-03-15 15:39:38: Successfully bound to host:127.0.0.1, port:8002 socket:4
+2025-03-15 15:39:38: Server created with host:127.0.0.1, port:8002
+2025-03-15 15:39:38: Successfully bound to host:127.0.0.1, port:8005 socket:5
+2025-03-15 15:39:38: Server created with host:127.0.0.1, port:8005
+2025-03-15 15:39:38: Successfully bound to host:127.0.0.1, port:8003 socket:6
+2025-03-15 15:39:38: Server created with host:127.0.0.1, port:8003
+2025-03-15 15:39:38: Successfully bound to host:127.0.0.1, port:3001 socket:7
+2025-03-15 15:39:38: Server created with host:127.0.0.1, port:3001
+2025-03-15 15:39:38: Successfully bound to host:127.0.0.1, port:3002 socket:8
+2025-03-15 15:39:38: Server created with host:127.0.0.1, port:3002
+2025-03-15 15:39:38: Error: Error bind host
+-------------------------------------------------
+Session finish: 2025-03-15 15:39:38
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-15 15:40:14
+-------------------------------------------------
+2025-03-15 15:40:14: Successfully bound to host:127.0.0.1, port:8002 socket:4
+2025-03-15 15:40:14: Server created with host:127.0.0.1, port:8002
+2025-03-15 15:40:14: Successfully bound to host:127.0.0.1, port:8005 socket:5
+2025-03-15 15:40:14: Server created with host:127.0.0.1, port:8005
+2025-03-15 15:40:14: Successfully bound to host:127.0.0.1, port:8003 socket:6
+2025-03-15 15:40:14: Server created with host:127.0.0.1, port:8003
+2025-03-15 15:40:14: Successfully bound to host:127.0.0.1, port:3001 socket:7
+2025-03-15 15:40:14: Server created with host:127.0.0.1, port:3001
+2025-03-15 15:40:14: Successfully bound to host:127.0.0.1, port:3002 socket:8
+2025-03-15 15:40:14: Server created with host:127.0.0.1, port:3002
+2025-03-15 15:40:14: Successfully bound to host:127.0.0.1, port:8080 socket:9
+2025-03-15 15:40:14: Server created with host:127.0.0.1, port:8080
+2025-03-15 15:40:25: New connection from: 127.0.0.1, with socket 10
+2025-03-15 15:40:25: New connection from: 127.0.0.1, with socket 11
+2025-03-15 15:40:25: New message from 10
+2025-03-15 15:40:25: New connection from: 127.0.0.1, with socket 12
+2025-03-15 15:40:26: New message from 10
+2025-03-15 15:40:38: New connection from: 127.0.0.1, with socket 13
+2025-03-15 15:40:38: New message from 13
+2025-03-15 15:40:38: New connection from: 127.0.0.1, with socket 14
+2025-03-15 15:40:38: New message from 13
+2025-03-15 15:41:09: New message from 12
+2025-03-15 15:41:11: New message from 12
+2025-03-15 15:41:17: New connection from: 127.0.0.1, with socket 15
+2025-03-15 15:41:17: New message from 12
+2025-03-15 15:41:23: New message from 12
+2025-03-15 15:41:26: webserv: Conenction with 11fd closed!
+2025-03-15 15:41:26: New message from 12
+2025-03-15 15:41:28: New message from 12
+2025-03-15 15:41:36: New message from 12
+2025-03-15 15:41:36: New message from 12
+2025-03-15 15:41:36: New message from 15
+2025-03-15 15:41:36: New message from 15
+2025-03-15 15:41:37: New message from 15
+2025-03-15 15:41:38: New message from 15
+-------------------------------------------------
+Session finish: 2025-03-15 15:41:42
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-15 15:42:14
+-------------------------------------------------
+2025-03-15 15:42:14: Successfully bound to host:127.0.0.1, port:8002 socket:4
+2025-03-15 15:42:14: Server created with host:127.0.0.1, port:8002
+2025-03-15 15:42:14: Successfully bound to host:127.0.0.1, port:8005 socket:5
+2025-03-15 15:42:14: Server created with host:127.0.0.1, port:8005
+2025-03-15 15:42:14: Successfully bound to host:127.0.0.1, port:8003 socket:6
+2025-03-15 15:42:14: Server created with host:127.0.0.1, port:8003
+2025-03-15 15:42:14: Successfully bound to host:127.0.0.1, port:8080 socket:7
+2025-03-15 15:42:14: Server created with host:127.0.0.1, port:8080
+2025-03-15 15:42:21: New connection from: 127.0.0.1, with socket 8
+2025-03-15 15:42:21: New message from 8
+2025-03-15 15:42:39: New connection from: 127.0.0.1, with socket 9
+2025-03-15 15:42:39: New message from 8
+2025-03-15 15:42:45: New message from 8
+2025-03-15 15:42:46: New message from 8
+2025-03-15 15:42:46: New message from 8
+2025-03-15 15:42:46: New message from 9
+2025-03-15 15:42:47: New message from 9
+2025-03-15 15:42:47: New message from 9
+2025-03-15 15:42:48: New message from 9
+2025-03-15 15:42:49: New message from 9
+2025-03-15 15:42:52: New message from 9
+2025-03-15 15:42:52: New message from 9
+2025-03-15 15:42:52: New message from 8
+2025-03-15 15:42:52: New message from 8
+2025-03-15 15:42:53: New message from 8
+2025-03-15 15:42:54: New message from 8
+2025-03-15 15:42:56: New message from 8
+2025-03-15 15:42:56: New message from 8
+2025-03-15 15:42:57: New message from 8
+2025-03-15 15:42:57: New message from 8
+2025-03-15 15:43:00: New message from 8
+2025-03-15 15:43:19: New connection from: 127.0.0.1, with socket 10
+2025-03-15 15:43:19: New message from 10
+2025-03-15 15:43:19: New connection from: 127.0.0.1, with socket 11
+2025-03-15 15:43:20: New message from 10
+2025-03-15 15:43:31: New message from 8
+2025-03-15 15:43:41: New message from 10
+2025-03-15 15:43:46: New message from 8
+2025-03-15 15:43:54: New message from 8
+2025-03-15 15:43:54: New message from 8
+2025-03-15 15:43:54: New message from 8
+2025-03-15 15:43:54: New message from 8
+2025-03-15 15:43:54: New message from 8
+2025-03-15 15:44:00: New message from 10
+2025-03-15 15:44:00: New message from 10
+2025-03-15 15:44:19: New message from 10
+2025-03-15 15:44:19: New message from 10
+2025-03-15 15:44:19: New message from 10
+2025-03-15 15:44:20: New message from 10
+2025-03-15 15:44:20: New message from 10
+2025-03-15 15:44:33: webserv: Conenction with 8fd closed!
+2025-03-15 15:44:33: New connection from: 127.0.0.1, with socket 8
+2025-03-15 15:44:33: New message from 9
+2025-03-15 15:44:34: webserv: Conenction with 10fd closed!
+2025-03-15 15:44:34: webserv: Conenction with 11fd closed!
+2025-03-15 15:44:34: New connection from: 127.0.0.1, with socket 10
+2025-03-15 15:44:34: New connection from: 127.0.0.1, with socket 11
+2025-03-15 15:44:34: New message from 10
+2025-03-15 15:44:44: New message from 10
+2025-03-15 15:44:44: New message from 10
+2025-03-15 15:44:44: New message from 10
+2025-03-15 15:44:44: New message from 10
+2025-03-15 15:44:45: New message from 10
+2025-03-15 15:44:45: New message from 10
+2025-03-15 15:44:45: New message from 9
+2025-03-15 15:44:45: New message from 10
+2025-03-15 15:44:46: New message from 10
+2025-03-15 15:44:46: New message from 9
+2025-03-15 15:44:46: New message from 10
+2025-03-15 15:44:46: New message from 9
+2025-03-15 15:44:46: New message from 10
+2025-03-15 15:44:47: New message from 9
+2025-03-15 15:44:47: New message from 10
+2025-03-15 15:44:47: New message from 9
+2025-03-15 15:44:48: New message from 10
+2025-03-15 15:44:48: New message from 9
+2025-03-15 15:44:48: New message from 10
+2025-03-15 15:44:48: New message from 9
+2025-03-15 15:44:52: New message from 9
+2025-03-15 15:44:52: New message from 9
+2025-03-15 15:44:52: New message from 9
+2025-03-15 15:44:52: New message from 9
+2025-03-15 15:44:52: New message from 9
+2025-03-15 15:46:03: webserv: Conenction with 10fd closed!
+2025-03-15 15:46:03: webserv: Conenction with 11fd closed!
+-------------------------------------------------
+Session finish: 2025-03-15 15:46:45
+-------------------------------------------------
