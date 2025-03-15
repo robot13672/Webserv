@@ -6,7 +6,7 @@ ParsedServerConfig::ParsedServerConfig() {}
 
 ParsedServerConfig::ParsedServerConfig(const ParsedServerConfig &other)
 {
-	_port = other._port;
+	_ports = other._ports; // because of _ports vector
 	_host = other._host;
 	_max_body_size = other._max_body_size;
 	_name = other._name;
@@ -25,7 +25,7 @@ ParsedServerConfig &ParsedServerConfig::operator=(const ParsedServerConfig &othe
 {
 	if (this != &other)
 	{
-		_port = other._port;
+		_ports = other._ports; // because of _ports vector
 		_host = other._host;
 		_max_body_size = other._max_body_size;
 		_name = other._name;
@@ -43,11 +43,26 @@ ParsedServerConfig &ParsedServerConfig::operator=(const ParsedServerConfig &othe
 }
 
 // SET
-void ParsedServerConfig::setPort(u_int16_t port)
+// void ParsedServerConfig::setPort(u_int16_t port)
+// {
+// 	_port = port;
+// }
+
+// u_int16_t ParsedServerConfig::getPort() const
+// {
+// 	return _port;
+// }
+// because of _ports vector start
+void ParsedServerConfig::addPort(u_int16_t port)
 {
-	_port = port;
+    _ports.push_back(port);
 }
 
+const std::vector<u_int16_t>& ParsedServerConfig::getPorts() const
+{
+    return _ports;
+}
+// because of _ports vector end
 void ParsedServerConfig::setHost(std::string host)
 {
 	_host = inet_addr(host.c_str());
@@ -128,11 +143,6 @@ std::string ParsedServerConfig::getHost() const
 	return std::string(inet_ntoa(addr));
 }
 
-u_int16_t ParsedServerConfig::getPort() const
-{
-	return _port;
-}
-
 long ParsedServerConfig::getMaxBodySize() const
 {
 	return _max_body_size;
@@ -202,63 +212,74 @@ const char *ParsedServerConfig::NoFileError::what() const throw()
 	return "Shit, an Error in roi's part: Could not open the file";
 }
 
+
+// Метод getVector используется для преобразования вектора объектов ParsedServerConfig в вектор объектов ServerConfig. 
+// corrected by olh 0315
 std::vector<ServerConfig> ParsedServerConfig::getVector()
 {
-	std::vector<ServerConfig> servers;
+    std::vector<ServerConfig> servers;
 
-	for (std::vector<ParsedServerConfig>::const_iterator it = serverParsedConfigs.begin();
-		 it != serverParsedConfigs.end(); ++it)
-	{
-		ServerConfig server;
+    for (std::vector<ParsedServerConfig>::const_iterator it = serverParsedConfigs.begin();
+         it != serverParsedConfigs.end(); ++it)
+    {
+        ServerConfig server;
 
-		// Copy basic server configuration
-		server.setHost(it->getHost());
-		server.setPort(it->getPort());
-		server.setMaxBodySize(it->getMaxBodySize());
+        // Copy basic server configuration
+        server.setHost(it->getHost());
+        const std::vector<u_int16_t>& ports = it->getPorts();
+        for (std::vector<u_int16_t>::const_iterator portIt = ports.begin(); portIt != ports.end(); ++portIt)
+        {
+            server.setPort(*portIt);
+        }
+        server.setMaxBodySize(it->getMaxBodySize());
 
-		// Copy location-specific configurations
-		for (std::map<std::string, std::vector<std::string> >::const_iterator methodIt = it->_methods.begin();
-			 methodIt != it->_methods.end(); ++methodIt)
-		{
-			server.setMethods(methodIt->first, methodIt->second);
-		}
+        // Copy location-specific configurations
+        for (std::map<std::string, std::vector<std::string> >::const_iterator methodIt = it->_methods.begin();
+             methodIt != it->_methods.end(); ++methodIt)
+        {
+            server.setMethods(methodIt->first, methodIt->second);
+        }
 
-		for (std::map<std::string, std::string>::const_iterator rootIt = it->_locationRoots.begin();
-			 rootIt != it->_locationRoots.end(); ++rootIt)
-		{
-			server.setLocationRoot(rootIt->first, rootIt->second);
-		}
+        for (std::map<std::string, std::string>::const_iterator rootIt = it->_locationRoots.begin();
+             rootIt != it->_locationRoots.end(); ++rootIt)
+        {
+            server.setLocationRoot(rootIt->first, rootIt->second);
+        }
 
-		for (std::map<std::string, std::string>::const_iterator indexIt = it->_locationIndexes.begin();
-			 indexIt != it->_locationIndexes.end(); ++indexIt)
-		{
-			server.setLocationIndex(indexIt->first, indexIt->second);
-		}
+        for (std::map<std::string, std::string>::const_iterator indexIt = it->_locationIndexes.begin();
+             indexIt != it->_locationIndexes.end(); ++indexIt)
+        {
+            server.setLocationIndex(indexIt->first, indexIt->second);
+        }
 
-		for (std::map<std::string, std::vector<std::string> >::const_iterator cgiPathIt = it->_locationCgiPaths.begin();
-			 cgiPathIt != it->_locationCgiPaths.end(); ++cgiPathIt)
-		{
-			server.setLocationCgiPath(cgiPathIt->first, cgiPathIt->second);
-		}
+        for (std::map<std::string, std::vector<std::string> >::const_iterator cgiPathIt = it->_locationCgiPaths.begin();
+             cgiPathIt != it->_locationCgiPaths.end(); ++cgiPathIt)
+        {
+            server.setLocationCgiPath(cgiPathIt->first, cgiPathIt->second);
+        }
 
-		for (std::map<std::string, std::vector<std::string> >::const_iterator cgiExtIt = it->_locationCgiExts.begin();
-			 cgiExtIt != it->_locationCgiExts.end(); ++cgiExtIt)
-		{
-			server.setLocationCgiExt(cgiExtIt->first, cgiExtIt->second);
-		}
+        for (std::map<std::string, std::vector<std::string> >::const_iterator cgiExtIt = it->_locationCgiExts.begin();
+             cgiExtIt != it->_locationCgiExts.end(); ++cgiExtIt)
+        {
+            server.setLocationCgiExt(cgiExtIt->first, cgiExtIt->second);
+        }
 
-		for (std::map<std::string, bool>::const_iterator autoindexIt = it->_locationAutoindex.begin();
-			 autoindexIt != it->_locationAutoindex.end(); ++autoindexIt)
-		{
-			server.setLocationAutoindex(autoindexIt->first, autoindexIt->second);
-		}
-		for (std::map<short, std::string>::const_iterator errorIt = it->_errorPages.begin(); errorIt != it->_errorPages.end(); ++errorIt)
-		{
-			server.setErrorPages(errorIt->first, errorIt->second);
-		}
-		servers.push_back(server);
-	}
-	return servers;
+        for (std::map<std::string, bool>::const_iterator autoindexIt = it->_locationAutoindex.begin();
+             autoindexIt != it->_locationAutoindex.end(); ++autoindexIt)
+        {
+            server.setLocationAutoindex(autoindexIt->first, autoindexIt->second);
+        }
+
+        for (std::map<short, std::string>::const_iterator errorIt = it->_errorPages.begin();
+             errorIt != it->_errorPages.end(); ++errorIt)
+        {
+            server.setErrorPages(errorIt->first, errorIt->second);
+        }
+
+        servers.push_back(server);
+    }
+
+    return servers;
 }
 
 /*
@@ -268,281 +289,313 @@ std::vector<ServerConfig> ParsedServerConfig::getVector()
  */
 void ParsedServerConfig::parseConfig(const std::string &filename)
 {
-	std::ifstream file(filename.c_str()); // Преобразование std::string в const char* и инициализация входного файлового потока
-	if (!file.is_open())
-		throw NoFileError();
+    std::ifstream file(filename.c_str());
+    if (!file.is_open())
+        throw NoFileError();
 
-	std::string line;
-	std::string currentLocation;
-	bool inLocationBlock = false; // Используется для отслеживания, находимся ли мы внутри блока location.
-	bool inServerBlock = false;	  // Используется для отслеживания, находимся ли мы внутри блока server.
-	bool clientMaxBodySizeSet = false;
-	ParsedServerConfig currentConfig;
+    std::string line;
+    std::string currentLocation;
+    bool inLocationBlock = false;
+    bool inServerBlock = false;
+    bool clientMaxBodySizeSet = false;
+    ParsedServerConfig currentConfig;
 
-	while (std::getline(file, line)) // Читаем файл построчно
-	{
-		std::istringstream iss(line); // Для каждой строки создаем поток для разбора строки
-		std::string key;
-		iss >> key; // Извлекаем первое слово строки и сохраняем его в переменную key
-		if (key == "server")
-		{
-			if (inServerBlock)
-			{
-				if (!clientMaxBodySizeSet)
-					currentConfig.setMaxBodySize(2000000);
-				serverParsedConfigs.push_back(currentConfig);
-				currentConfig = ParsedServerConfig();
-				clientMaxBodySizeSet = false;
-			}
-			inServerBlock = true;
-			currentLocation.clear(); // Сброс значения currentLocation при переходе к новому блоку server
-			currentConfig._errorPages.clear(); // Сброс страниц ошибок при начале нового блока server - olh 0310
-		}
-		else if (key == "}")
-		{
-			if (inLocationBlock)
-				inLocationBlock = false;
-			else if (inServerBlock)
-			{
-				if (!clientMaxBodySizeSet)
-					currentConfig.setMaxBodySize(2000000);
-				serverParsedConfigs.push_back(currentConfig);
-				inServerBlock = false;
-				currentLocation.clear();				// Сброс значения currentLocation при переходе к новому блоку server - roi 0228
-				currentConfig._methods.clear();			// Сброс методов для локаций при завершении блока server - roi 0228
-				currentConfig._locationRoots.clear();	// Сброс корневых директорий для локаций при завершении блока server - 0301
-				currentConfig._locationIndexes.clear(); // roi 0302
-				currentConfig._locationCgiPaths.clear();
-				currentConfig._locationCgiExts.clear();
-				currentConfig._locationAutoindex.clear();
-			}
-		}
-		else if (inLocationBlock && key == "allow_methods") // Блок для обработки директивы allow_methods
-		{
-			std::vector<std::string> methods;
-			std::string method;
-			while (iss >> method)
-			{
-				if (!method.empty() && method[method.size() - 1] == ';')
-					method.erase(method.size() - 1); // Удаление точки с запятой в конце строки
-				methods.push_back(method);
-			}
-			currentConfig.setMethods(currentLocation, methods);
-		}
-		else if (inLocationBlock && key == "root") // Блок для обработки директивы root внутри location
-		{
-			std::string root;
-			iss >> root;
-			if (!root.empty() && root[root.size() - 1] == ';')
-				root.erase(root.size() - 1); // Удаление точки с запятой в конце строки
-			currentConfig.setLocationRoot(currentLocation, root);
-			// std::cout << "Set location root for " << currentLocation << " to " << root << std::endl; // Debug output - roi 0301
-		}
-		else if (inLocationBlock && key == "index") // Блок для обработки директивы index внутри location
-		{
-			std::string index;
-			iss >> index;
-			if (!index.empty() && index[index.size() - 1] == ';')
-				index.erase(index.size() - 1); // Удаление точки с запятой в конце строки
-			currentConfig.setLocationIndex(currentLocation, index);
-		}
-		else if (inLocationBlock && key == "cgi_path") // Блок для обработки директивы cgi_path внутри location
-		{
-			std::vector<std::string> cgi_paths; //
-			std::string cgi_path;
-			while (iss >> cgi_path)
-			{
-				if (!cgi_path.empty() && cgi_path[cgi_path.size() - 1] == ';')
-					cgi_path.erase(cgi_path.size() - 1); // Удаление точки с запятой в конце строки
-				cgi_paths.push_back(cgi_path);
-			}
-			currentConfig.setLocationCgiPath(currentLocation, cgi_paths);
-		}
-		else if (inLocationBlock && key == "cgi_ext") // Блок для обработки директивы cgi_ext внутри location
-		{
-			std::vector<std::string> cgi_exts; //
-			std::string cgi_ext;
-			while (iss >> cgi_ext)
-			{
-				if (!cgi_ext.empty() && cgi_ext[cgi_ext.size() - 1] == ';')
-					cgi_ext.erase(cgi_ext.size() - 1); // Удаление точки с запятой в конце строки
-				cgi_exts.push_back(cgi_ext);
-			}
-			currentConfig.setLocationCgiExt(currentLocation, cgi_exts);
-		}
-		else if (inLocationBlock && key == "autoindex") // Блок для обработки директивы autoindex внутри location
-		{
-			std::string autoindex;
-			iss >> autoindex;
-			if (!autoindex.empty() && autoindex[autoindex.size() - 1] == ';')
-				autoindex.erase(autoindex.size() - 1); // Удаление точки с запятой в конце строки
-			bool autoindexValue = (autoindex == "on");
-			currentConfig.setLocationAutoindex(currentLocation, autoindexValue);
-		}
-		else if (inServerBlock && !inLocationBlock)
-		{
-			if (key == "listen")
-			{
-				int port;
-				iss >> port;
-				currentConfig.setPort(port);
-			}
-			else if (key == "server_name")
-			{
-				std::string serverName;
-				iss >> serverName;
-				if (!serverName.empty() && serverName[serverName.size() - 1] == ';')
-					serverName.erase(serverName.size() - 1); // Удаление точки с запятой в конце строки
-				currentConfig.setName(serverName);
-			}
-			else if (key == "host")
-			{
-				std::string host;
-				iss >> host;
-				if (!host.empty() && host[host.size() - 1] == ';')
-					host.erase(host.size() - 1); // Удаление точки с запятой в конце строки
-				currentConfig.setHost(host);
-			}
-			else if (key == "root")
-			{
-				std::string root;
-				iss >> root;
-				if (!root.empty() && root[root.size() - 1] == ';')
-					root.erase(root.size() - 1); // Удаление точки с запятой в конце строки
-				currentConfig.setRoot(root);
-			}
-			else if (key == "index")
-			{
-				std::string index;
-				iss >> index;
-				if (!index.empty() && index[index.size() - 1] == ';')
-					index.erase(index.size() - 1); // Удаление точки с запятой в конце строки
-				currentConfig.setIndex(index);
-			}
-			else if (key == "error_page")
-			{
-				std::string errorCodes;
-				std::string errorPage;
-				std::string token;
-				std::vector<std::string> tokens;
-			
-				// Считываем все токены в вектор
-				while (iss >> token)
-				{
-					tokens.push_back(token);
-				}
-			
-				// Последний токен - это errorPage
-				if (!tokens.empty())
-				{
-					errorPage = tokens.back();
-					tokens.pop_back(); // Удаляем последний элемент из вектора
-				}
-			
-				// Удаляем точку с запятой в конце errorPage
-				if (!errorPage.empty() && errorPage[errorPage.size() - 1] == ';')
-				{
-					errorPage.erase(errorPage.size() - 1);
-				}
-			
-				// Остальные токены - это errorCodes
-				for (size_t i = 0; i < tokens.size(); ++i)
-				{
-					std::istringstream errorCodeStream(tokens[i]);
-					short errorCodeInt;
-					errorCodeStream >> errorCodeInt;
-					currentConfig.setErrorPages(errorCodeInt, errorPage);
-					// std::cout << RED << "Parsed error code: " << errorCodeInt << " with page: " << errorPage << RESET << std::endl; // Отладочный вывод
-				}
-			}
-			else if (key == "client_max_body_size")
-			{
-				long maxBodySize;
-				iss >> maxBodySize;
-				currentConfig.setMaxBodySize(maxBodySize);
-				clientMaxBodySizeSet = true;
-			}
-			else if (key == "location")
-			{
-				iss >> currentLocation;
-				inLocationBlock = true;
-				if (!currentLocation.empty() && currentLocation[currentLocation.size() - 1] == '{')
-					currentLocation.erase(currentLocation.size() - 1); // Удаление последнего символа '{'
-			}
-		}
-	}
+    while (std::getline(file, line))
+    {
+        std::istringstream iss(line);
+        std::string key;
+        iss >> key;
+        if (key == "server")
+        {
+            if (inServerBlock)
+            {
+                if (!clientMaxBodySizeSet)
+                    currentConfig.setMaxBodySize(2000000);
 
-	if (inServerBlock)
-	{
-		if (!clientMaxBodySizeSet)
-			currentConfig.setMaxBodySize(2000000);
-		serverParsedConfigs.push_back(currentConfig);
-	}
-	file.close();
+                const std::vector<u_int16_t>& ports = currentConfig.getPorts();
+                for (size_t i = 0; i < ports.size(); ++i)
+                {
+                    ParsedServerConfig newConfig = currentConfig;
+                    newConfig._ports.clear();
+                    newConfig.addPort(ports[i]);
+                    serverParsedConfigs.push_back(newConfig);
+                }
+
+                currentConfig = ParsedServerConfig();
+                clientMaxBodySizeSet = false;
+            }
+            inServerBlock = true;
+            currentLocation.clear();
+            currentConfig._errorPages.clear();
+        }
+        else if (key == "}")
+        {
+            if (inLocationBlock)
+                inLocationBlock = false;
+            else if (inServerBlock)
+            {
+                if (!clientMaxBodySizeSet)
+                    currentConfig.setMaxBodySize(2000000);
+
+                const std::vector<u_int16_t>& ports = currentConfig.getPorts();
+                for (size_t i = 0; i < ports.size(); ++i)
+                {
+                    ParsedServerConfig newConfig = currentConfig;
+                    newConfig._ports.clear();
+                    newConfig.addPort(ports[i]);
+                    serverParsedConfigs.push_back(newConfig);
+                }
+
+                inServerBlock = false;
+                currentLocation.clear();
+                currentConfig._methods.clear();
+                currentConfig._locationRoots.clear();
+                currentConfig._locationIndexes.clear();
+                currentConfig._locationCgiPaths.clear();
+                currentConfig._locationCgiExts.clear();
+                currentConfig._locationAutoindex.clear();
+            }
+        }
+        else if (inLocationBlock && key == "allow_methods")
+        {
+            std::vector<std::string> methods;
+            std::string method;
+            while (iss >> method)
+            {
+                if (!method.empty() && method[method.size() - 1] == ';')
+                    method.erase(method.size() - 1);
+                methods.push_back(method);
+            }
+            currentConfig.setMethods(currentLocation, methods);
+        }
+        else if (inLocationBlock && key == "root")
+        {
+            std::string root;
+            iss >> root;
+            if (!root.empty() && root[root.size() - 1] == ';')
+                root.erase(root.size() - 1);
+            currentConfig.setLocationRoot(currentLocation, root);
+        }
+        else if (inLocationBlock && key == "index")
+        {
+            std::string index;
+            iss >> index;
+            if (!index.empty() && index[index.size() - 1] == ';')
+                index.erase(index.size() - 1);
+            currentConfig.setLocationIndex(currentLocation, index);
+        }
+        else if (inLocationBlock && key == "cgi_path")
+        {
+            std::vector<std::string> cgi_paths;
+            std::string cgi_path;
+            while (iss >> cgi_path)
+            {
+                if (!cgi_path.empty() && cgi_path[cgi_path.size() - 1] == ';')
+                    cgi_path.erase(cgi_path.size() - 1);
+                cgi_paths.push_back(cgi_path);
+            }
+            currentConfig.setLocationCgiPath(currentLocation, cgi_paths);
+        }
+        else if (inLocationBlock && key == "cgi_ext")
+        {
+            std::vector<std::string> cgi_exts;
+            std::string cgi_ext;
+            while (iss >> cgi_ext)
+            {
+                if (!cgi_ext.empty() && cgi_ext[cgi_ext.size() - 1] == ';')
+                    cgi_ext.erase(cgi_ext.size() - 1);
+                cgi_exts.push_back(cgi_ext);
+            }
+            currentConfig.setLocationCgiExt(currentLocation, cgi_exts);
+        }
+        else if (inLocationBlock && key == "autoindex")
+        {
+            std::string autoindex;
+            iss >> autoindex;
+            if (!autoindex.empty() && autoindex[autoindex.size() - 1] == ';')
+                autoindex.erase(autoindex.size() - 1);
+            bool autoindexValue = (autoindex == "on");
+            currentConfig.setLocationAutoindex(currentLocation, autoindexValue);
+        }
+        else if (inServerBlock && !inLocationBlock)
+        {
+            if (key == "listen")
+            {
+                std::string portStr;
+                while (iss >> portStr)
+                {
+                    if (!portStr.empty() && portStr[portStr.size() - 1] == ';')
+                        portStr.erase(portStr.size() - 1);
+                    u_int16_t port = static_cast<u_int16_t>(atoi(portStr.c_str()));
+                    currentConfig.addPort(port);
+                }
+            }
+            else if (key == "server_name")
+            {
+                std::string serverName;
+                iss >> serverName;
+                if (!serverName.empty() && serverName[serverName.size() - 1] == ';')
+                    serverName.erase(serverName.size() - 1);
+                currentConfig.setName(serverName);
+            }
+            else if (key == "host")
+            {
+                std::string host;
+                iss >> host;
+                if (!host.empty() && host[host.size() - 1] == ';')
+                    host.erase(host.size() - 1);
+                currentConfig.setHost(host);
+            }
+            else if (key == "root")
+            {
+                std::string root;
+                iss >> root;
+                if (!root.empty() && root[root.size() - 1] == ';')
+                    root.erase(root.size() - 1);
+                currentConfig.setRoot(root);
+            }
+            else if (key == "index")
+            {
+                std::string index;
+                iss >> index;
+                if (!index.empty() && index[index.size() - 1] == ';')
+                    index.erase(index.size() - 1);
+                currentConfig.setIndex(index);
+            }
+            else if (key == "error_page")
+            {
+                std::string errorCodes;
+                std::string errorPage;
+                std::string token;
+                std::vector<std::string> tokens;
+
+                while (iss >> token)
+                {
+                    tokens.push_back(token);
+                }
+
+                if (!tokens.empty())
+                {
+                    errorPage = tokens.back();
+                    tokens.pop_back();
+                }
+
+                if (!errorPage.empty() && errorPage[errorPage.size() - 1] == ';')
+                {
+                    errorPage.erase(errorPage.size() - 1);
+                }
+
+                for (size_t i = 0; i < tokens.size(); ++i)
+                {
+                    std::istringstream errorCodeStream(tokens[i]);
+                    short errorCodeInt;
+                    errorCodeStream >> errorCodeInt;
+                    currentConfig.setErrorPages(errorCodeInt, errorPage);
+                }
+            }
+            else if (key == "client_max_body_size")
+            {
+                long maxBodySize;
+                iss >> maxBodySize;
+                currentConfig.setMaxBodySize(maxBodySize);
+                clientMaxBodySizeSet = true;
+            }
+            else if (key == "location")
+            {
+                iss >> currentLocation;
+                inLocationBlock = true;
+                if (!currentLocation.empty() && currentLocation[currentLocation.size() - 1] == '{')
+                    currentLocation.erase(currentLocation.size() - 1);
+            }
+        }
+    }
+
+    if (inServerBlock)
+    {
+        if (!clientMaxBodySizeSet)
+            currentConfig.setMaxBodySize(2000000);
+
+        const std::vector<u_int16_t>& ports = currentConfig.getPorts();
+        for (size_t i = 0; i < ports.size(); ++i)
+        {
+            ParsedServerConfig newConfig = currentConfig;
+            newConfig._ports.clear();
+            newConfig.addPort(ports[i]);
+            serverParsedConfigs.push_back(newConfig);
+        }
+    }
+    file.close();
 }
 
 /*
 	Перегрузка оператора <<
-	checks only location and methoes- roi 0225
+	checks only location and methoes olh 0225
+	checks port olh 0315
  */
 std::ostream &operator<<(std::ostream &os, const ParsedServerConfig &config)
 {
-	os << "ParsedServerConfig:\n";
-	os << "Host: " << config.getHost() << "\n";
-	os << "Port: " << config.getPort() << "\n";
-	os << "Max Body Size: " << config.getMaxBodySize() << "\n";
-	os << "Server Name: " << config._name << "\n";
-	os << "Root: " << config._root << "\n";
-	os << "Index: " << config._index << "\n";
-	os << "Error Pages:\n";
-	for (std::map<short, std::string>::const_iterator it = config._errorPages.begin(); it != config._errorPages.end(); ++it)
-	{
-		os << "  Error Code: " << it->first << " Page: " << it->second << "\n";
-	}
-	os << "Methods:\n";
-	for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._methods.begin(); it != config._methods.end(); ++it)
-	{
-		os << "  Location: " << it->first << " Methods: ";
-		for (std::vector<std::string>::const_iterator method_it = it->second.begin(); method_it != it->second.end(); ++method_it)
-		{
-			os << *method_it << " ";
-		}
-		os << "\n";
-	}
-	os << "Location Roots:\n";
-	for (std::map<std::string, std::string>::const_iterator it = config._locationRoots.begin(); it != config._locationRoots.end(); ++it)
-	{
-		os << "  Location: " << it->first << " Root: " << it->second << "\n";
-	}
-	os << "Location Indexes:\n";
-	for (std::map<std::string, std::string>::const_iterator it = config._locationIndexes.begin(); it != config._locationIndexes.end(); ++it)
-	{
-		os << "  Location: " << it->first << " Index: " << it->second << "\n";
-	}
-	os << "Location Cgi Paths:\n";
-	for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._locationCgiPaths.begin(); it != config._locationCgiPaths.end(); ++it)
-	{
-		os << "  Location: " << it->first << " Cgi Path: ";
-		for (std::vector<std::string>::const_iterator cgipath_it = it->second.begin(); cgipath_it != it->second.end(); ++cgipath_it)
-		{
-			os << *cgipath_it << " ";
-		}
-		os << "\n";
-	}
-	os << "Locatoin Cgi Extantions:\n";
-	for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._locationCgiExts.begin(); it != config._locationCgiExts.end(); ++it)
-	{
-		os << "  Location: " << it->first << " Cgi Extantion: ";
-		for (std::vector<std::string>::const_iterator cgiext_it = it->second.begin(); cgiext_it != it->second.end(); ++cgiext_it)
-		{
-			os << *cgiext_it << " ";
-		}
-		os << "\n";
-	}
-	os << "Location Autoindex:\n";
-	for (std::map<std::string, bool>::const_iterator it = config._locationAutoindex.begin(); it != config._locationAutoindex.end(); ++it)
-	{
-		os << "  Location: " << it->first << " Autoindex: " << (it->second ? "on" : "off") << "\n";
-	}
-	return os;
+    os << "ParsedServerConfig:\n";
+    os << "Host: " << config.getHost() << "\n";
+    os << "Ports: ";
+    const std::vector<u_int16_t>& ports = config.getPorts();
+    for (std::vector<u_int16_t>::const_iterator portIt = ports.begin(); portIt != ports.end(); ++portIt)
+    {
+        os << *portIt << " ";
+    }
+    os << "\n";
+    os << "Max Body Size: " << config.getMaxBodySize() << "\n";
+    os << "Server Name: " << config._name << "\n";
+    os << "Root: " << config._root << "\n";
+    os << "Index: " << config._index << "\n";
+    os << "Error Pages:\n";
+    for (std::map<short, std::string>::const_iterator it = config._errorPages.begin(); it != config._errorPages.end(); ++it)
+    {
+        os << "  Error Code: " << it->first << " Page: " << it->second << "\n";
+    }
+    os << "Methods:\n";
+    for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._methods.begin(); it != config._methods.end(); ++it)
+    {
+        os << "  Location: " << it->first << " Methods: ";
+        for (std::vector<std::string>::const_iterator method_it = it->second.begin(); method_it != it->second.end(); ++method_it)
+        {
+            os << *method_it << " ";
+        }
+        os << "\n";
+    }
+    os << "Location Roots:\n";
+    for (std::map<std::string, std::string>::const_iterator it = config._locationRoots.begin(); it != config._locationRoots.end(); ++it)
+    {
+        os << "  Location: " << it->first << " Root: " << it->second << "\n";
+    }
+    os << "Location Indexes:\n";
+    for (std::map<std::string, std::string>::const_iterator it = config._locationIndexes.begin(); it != config._locationIndexes.end(); ++it)
+    {
+        os << "  Location: " << it->first << " Index: " << it->second << "\n";
+    }
+    os << "Location Cgi Paths:\n";
+    for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._locationCgiPaths.begin(); it != config._locationCgiPaths.end(); ++it)
+    {
+        os << "  Location: " << it->first << " Cgi Path: ";
+        for (std::vector<std::string>::const_iterator cgipath_it = it->second.begin(); cgipath_it != it->second.end(); ++cgipath_it)
+        {
+            os << *cgipath_it << " ";
+        }
+        os << "\n";
+    }
+    os << "Location Cgi Extensions:\n";
+    for (std::map<std::string, std::vector<std::string> >::const_iterator it = config._locationCgiExts.begin(); it != config._locationCgiExts.end(); ++it)
+    {
+        os << "  Location: " << it->first << " Cgi Extension: ";
+        for (std::vector<std::string>::const_iterator cgiext_it = it->second.begin(); cgiext_it != it->second.end(); ++cgiext_it)
+        {
+            os << *cgiext_it << " ";
+        }
+        os << "\n";
+    }
+    os << "Location Autoindex:\n";
+    for (std::map<std::string, bool>::const_iterator it = config._locationAutoindex.begin(); it != config._locationAutoindex.end(); ++it)
+    {
+        os << "  Location: " << it->first << " Autoindex: " << (it->second ? "on" : "off") << "\n";
+    }
+    return os;
 }
