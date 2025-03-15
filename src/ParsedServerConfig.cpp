@@ -327,6 +327,7 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
             inServerBlock = true;
             currentLocation.clear();
             currentConfig._errorPages.clear();
+			currentConfig._ports.clear(); // Очистка вектора портов перед началом новой конфигурации сервера
         }
         else if (key == "}")
         {
