@@ -212,12 +212,11 @@ void HttpResponse::handleListFiles() {
     setBody(jsonResponse.str());
 }
 
-void HttpResponse::handleDelete(const std::string& filename) {
-
+void HttpResponse::handleDelete(const std::string& filename) 
+{
     std::string fullPath;
     fullPath.append("upload/");
     fullPath.append(filename);
-    
     if (access(fullPath.c_str(), F_OK) != 0) {
         setErrorResponse(404, "File not found");
         return;

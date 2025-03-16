@@ -27404,3 +27404,855 @@ New session: 2025-03-15 15:42:14
 -------------------------------------------------
 Session finish: 2025-03-15 15:46:45
 -------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:06:47
+-------------------------------------------------
+2025-03-16 10:06:47: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:06:47: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:06:52: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:06:52: New message from 5
+2025-03-16 10:06:52: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:06:53: New message from 5
+2025-03-16 10:06:55: New message from 5
+2025-03-16 10:06:56: New message from 5
+2025-03-16 10:07:06: New message from 5
+2025-03-16 10:07:07: New message from 5
+2025-03-16 10:07:17: New message from 5
+2025-03-16 10:07:21: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:07:28
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:07:34
+-------------------------------------------------
+2025-03-16 10:07:34: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:07:34: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:07:36: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:07:36: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:07:36: New message from 5
+2025-03-16 10:07:40: New message from 5
+2025-03-16 10:07:47: New message from 5
+2025-03-16 10:07:47: New message from 5
+2025-03-16 10:07:47: New message from 5
+2025-03-16 10:08:03: New message from 5
+2025-03-16 10:08:05: New message from 5
+2025-03-16 10:08:06: New message from 5
+2025-03-16 10:08:09: New message from 5
+2025-03-16 10:08:09: New message from 5
+2025-03-16 10:08:16: New message from 5
+2025-03-16 10:08:20: New message from 6
+2025-03-16 10:08:20: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-16 10:08:34
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:08:38
+-------------------------------------------------
+2025-03-16 10:08:38: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:08:38: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:08:40: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:08:40: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:08:40: New message from 5
+2025-03-16 10:08:41: New message from 5
+2025-03-16 10:08:42: New message from 5
+2025-03-16 10:08:46: New message from 5
+2025-03-16 10:08:46: New message from 5
+2025-03-16 10:08:46: New message from 5
+2025-03-16 10:08:47: New message from 5
+2025-03-16 10:08:47: New message from 5
+2025-03-16 10:08:50: New message from 5
+2025-03-16 10:08:52: New message from 5
+2025-03-16 10:08:53: New message from 5
+2025-03-16 10:09:02: New message from 5
+2025-03-16 10:09:02: New message from 5
+2025-03-16 10:09:21: New message from 5
+2025-03-16 10:09:24: New message from 6
+2025-03-16 10:09:24: New message from 6
+2025-03-16 10:09:28: New message from 6
+2025-03-16 10:09:28: New message from 6
+2025-03-16 10:09:47: New message from 6
+2025-03-16 10:09:52: webserv: Conenction with 6fd closed!
+2025-03-16 10:09:52: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:09:52: New message from 6
+2025-03-16 10:09:52: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-16 10:09:58
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:10:34
+-------------------------------------------------
+2025-03-16 10:10:34: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:10:34: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:10:34: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:10:34: New message from 5
+2025-03-16 10:10:34: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:10:34: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:10:48
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:10:52
+-------------------------------------------------
+2025-03-16 10:10:52: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:10:52: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:10:56: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:10:56: New message from 5
+-------------------------------------------------
+New session: 2025-03-16 10:11:44
+-------------------------------------------------
+2025-03-16 10:11:44: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:11:44: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:11:47: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:11:47: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:11:47: New message from 5
+2025-03-16 10:11:48: New message from 5
+2025-03-16 10:11:53: New message from 5
+2025-03-16 10:11:53: New message from 5
+2025-03-16 10:11:53: New message from 5
+2025-03-16 10:11:53: New message from 5
+2025-03-16 10:11:53: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:11:59
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:12:13
+-------------------------------------------------
+2025-03-16 10:12:13: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:12:13: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:12:15: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:12:15: New message from 5
+2025-03-16 10:12:16: New message from 5
+2025-03-16 10:12:16: New message from 5
+2025-03-16 10:12:16: New message from 5
+2025-03-16 10:12:25: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-16 10:28:52
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:28:57
+-------------------------------------------------
+2025-03-16 10:28:57: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:28:57: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:28:58: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:28:58: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:29:00: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:29:05
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:29:07
+-------------------------------------------------
+2025-03-16 10:29:07: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:29:07: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:29:10: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:29:10: New message from 5
+2025-03-16 10:29:10: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:29:10: New message from 5
+2025-03-16 10:29:18: New message from 5
+2025-03-16 10:29:18: New message from 5
+2025-03-16 10:29:40: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:29:58
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:30:10
+-------------------------------------------------
+2025-03-16 10:30:10: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:30:10: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:30:12: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:30:12: New message from 5
+2025-03-16 10:30:12: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:30:13: New message from 5
+2025-03-16 10:30:13: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:30:15
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:30:17
+-------------------------------------------------
+2025-03-16 10:30:17: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:30:17: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:30:21: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:30:21: New message from 5
+2025-03-16 10:32:03: New message from 5
+-------------------------------------------------
+New session: 2025-03-16 10:32:32
+-------------------------------------------------
+2025-03-16 10:32:32: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:32:32: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:32:33: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:32:33: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:32:33: New message from 5
+2025-03-16 10:32:34: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:32:51
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:32:54
+-------------------------------------------------
+2025-03-16 10:32:54: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:32:54: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:32:56: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:32:56: New message from 5
+-------------------------------------------------
+New session: 2025-03-16 10:34:15
+-------------------------------------------------
+2025-03-16 10:34:15: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:34:15: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:34:17: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:34:17: New message from 5
+2025-03-16 10:34:17: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:34:18: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:34:26
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:34:28
+-------------------------------------------------
+2025-03-16 10:34:28: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:34:28: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:34:29: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:34:29: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:34:29: New message from 5
+2025-03-16 10:34:33: New message from 5
+2025-03-16 10:34:35: New message from 5
+2025-03-16 10:34:35: New message from 5
+2025-03-16 10:34:35: New message from 5
+2025-03-16 10:34:36: New message from 5
+2025-03-16 10:34:36: New message from 5
+2025-03-16 10:34:41: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-16 10:34:44
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:34:46
+-------------------------------------------------
+2025-03-16 10:34:46: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:34:46: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:34:52: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:34:52: New message from 5
+2025-03-16 10:35:00: New message from 5
+2025-03-16 10:35:00: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:35:01: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:35:11
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:35:12
+-------------------------------------------------
+2025-03-16 10:35:12: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:35:12: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:35:13: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:35:13: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:35:13: New message from 5
+2025-03-16 10:35:14: New message from 5
+2025-03-16 10:35:15: New message from 5
+2025-03-16 10:35:15: New message from 5
+2025-03-16 10:35:16: New message from 5
+2025-03-16 10:35:16: New message from 5
+2025-03-16 10:35:16: New message from 5
+2025-03-16 10:35:17: New message from 5
+2025-03-16 10:35:19: New message from 5
+2025-03-16 10:35:19: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:35:21
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:35:47
+-------------------------------------------------
+2025-03-16 10:35:47: Successfully bound to host:127.0.0.1, port:8080 socket:4
+2025-03-16 10:35:47: Server created with host:127.0.0.1, port:8080
+2025-03-16 10:35:53: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:35:53: New message from 5
+-------------------------------------------------
+New session: 2025-03-16 10:38:05
+-------------------------------------------------
+2025-03-16 10:38:05: Error: Error bind host
+-------------------------------------------------
+Session finish: 2025-03-16 10:38:05
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:38:19
+-------------------------------------------------
+2025-03-16 10:38:19: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 10:38:19: Server created with host:127.0.0.1, port:8081
+2025-03-16 10:38:40: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:38:40: New message from 5
+2025-03-16 10:38:40: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:38:41: New message from 5
+2025-03-16 10:38:41: New message from 5
+2025-03-16 10:38:53: New message from 5
+2025-03-16 10:38:53: New message from 5
+2025-03-16 10:38:54: New message from 5
+2025-03-16 10:39:00: New message from 5
+2025-03-16 10:39:00: New message from 5
+2025-03-16 10:39:06: New message from 5
+2025-03-16 10:39:21: webserv: Conenction with 5fd closed!
+2025-03-16 10:39:21: New message from 6
+2025-03-16 10:39:21: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:39:21: New message from 6
+-------------------------------------------------
+Session finish: 2025-03-16 10:39:31
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:46:11
+-------------------------------------------------
+2025-03-16 10:46:11: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 10:46:11: Server created with host:127.0.0.1, port:8081
+2025-03-16 10:46:12: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:46:12: New message from 5
+2025-03-16 10:46:12: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:46:16: New message from 5
+2025-03-16 10:46:17: New message from 5
+2025-03-16 10:46:18: New message from 5
+2025-03-16 10:46:18: New message from 5
+2025-03-16 10:46:20: New message from 5
+2025-03-16 10:46:20: New message from 5
+2025-03-16 10:46:22: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:46:39
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:49:23
+-------------------------------------------------
+2025-03-16 10:49:23: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 10:49:23: Server created with host:127.0.0.1, port:8081
+2025-03-16 10:49:25: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:49:25: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:49:25: New message from 5
+2025-03-16 10:49:26: New message from 5
+2025-03-16 10:49:26: New message from 5
+2025-03-16 10:49:28: New message from 5
+2025-03-16 10:49:28: 
+
+2025-03-16 10:49:28: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:49:50
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:50:01
+-------------------------------------------------
+2025-03-16 10:50:01: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 10:50:01: Server created with host:127.0.0.1, port:8081
+2025-03-16 10:50:06: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:50:06: New message from 5
+2025-03-16 10:50:19: 10MB-TESTFILE.ORG(1).pdf
+
+-------------------------------------------------
+New session: 2025-03-16 10:50:45
+-------------------------------------------------
+2025-03-16 10:50:45: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 10:50:45: Server created with host:127.0.0.1, port:8081
+2025-03-16 10:50:48: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:50:48: New message from 5
+2025-03-16 10:50:59: 10MB-TESTFILE.ORG(1).pdf
+
+-------------------------------------------------
+New session: 2025-03-16 10:52:18
+-------------------------------------------------
+2025-03-16 10:52:18: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 10:52:18: Server created with host:127.0.0.1, port:8081
+2025-03-16 10:52:19: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:52:19: New message from 5
+2025-03-16 10:52:19: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:52:19: New connection from: 127.0.0.1, with socket 7
+2025-03-16 10:52:20: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:52:23
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:52:25
+-------------------------------------------------
+2025-03-16 10:52:25: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 10:52:25: Server created with host:127.0.0.1, port:8081
+2025-03-16 10:52:28: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:52:28: New message from 5
+-------------------------------------------------
+New session: 2025-03-16 10:52:33
+-------------------------------------------------
+2025-03-16 10:52:33: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 10:52:33: Server created with host:127.0.0.1, port:8081
+-------------------------------------------------
+Session finish: 2025-03-16 10:52:36
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:52:38
+-------------------------------------------------
+2025-03-16 10:52:38: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 10:52:38: Server created with host:127.0.0.1, port:8081
+2025-03-16 10:52:43: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:52:43: New message from 5
+2025-03-16 10:52:43: 10MB-TESTFILE.ORG.pdf
+
+2025-03-16 10:52:43: New message from 5
+-------------------------------------------------
+New session: 2025-03-16 10:52:54
+-------------------------------------------------
+2025-03-16 10:52:54: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 10:52:54: Server created with host:127.0.0.1, port:8081
+2025-03-16 10:52:55: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:52:55: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:52:55: New message from 5
+2025-03-16 10:52:56: New message from 5
+2025-03-16 10:52:58: New message from 5
+2025-03-16 10:52:58: New message from 5
+2025-03-16 10:52:58: New message from 5
+2025-03-16 10:52:58: New message from 5
+2025-03-16 10:52:59: New message from 5
+2025-03-16 10:53:01: New message from 5
+2025-03-16 10:53:01: New message from 5
+2025-03-16 10:53:01: New message from 5
+2025-03-16 10:53:02: New message from 5
+2025-03-16 10:53:05: New message from 5
+2025-03-16 10:53:05: New message from 5
+2025-03-16 10:53:05: New message from 5
+2025-03-16 10:53:05: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:53:10
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:53:12
+-------------------------------------------------
+2025-03-16 10:53:12: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 10:53:12: Server created with host:127.0.0.1, port:8081
+2025-03-16 10:53:13: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:53:13: New message from 5
+2025-03-16 10:53:13: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:53:14: New message from 5
+2025-03-16 10:53:14: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:53:20
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:53:56
+-------------------------------------------------
+2025-03-16 10:53:56: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 10:53:56: Server created with host:127.0.0.1, port:8081
+2025-03-16 10:53:59: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:53:59: New message from 5
+2025-03-16 10:53:59: 10MB-TESTFILE.ORG(1).pdf
+
+2025-03-16 10:53:59: New message from 5
+2025-03-16 10:54:05: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:54:05: New message from 5
+2025-03-16 10:54:06: New message from 5
+2025-03-16 10:54:07: New message from 5
+2025-03-16 10:54:08: New message from 5
+2025-03-16 10:54:08: New message from 5
+2025-03-16 10:54:09: New message from 5
+2025-03-16 10:54:09: 
+
+2025-03-16 10:54:09: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 10:54:15
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 10:55:20
+-------------------------------------------------
+2025-03-16 10:55:20: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 10:55:20: Server created with host:127.0.0.1, port:8081
+2025-03-16 10:55:22: New connection from: 127.0.0.1, with socket 5
+2025-03-16 10:55:22: New connection from: 127.0.0.1, with socket 6
+2025-03-16 10:55:22: New message from 5
+2025-03-16 10:55:25: New message from 5
+2025-03-16 10:55:26: New message from 5
+2025-03-16 10:55:26: New message from 5
+2025-03-16 10:55:26: New message from 5
+2025-03-16 10:55:26: New message from 6
+2025-03-16 10:55:26: New message from 6
+2025-03-16 10:55:27: New message from 6
+2025-03-16 10:55:29: New message from 6
+2025-03-16 10:55:32: New message from 6
+2025-03-16 10:55:34: New message from 6
+2025-03-16 10:55:35: New message from 6
+2025-03-16 10:55:40: New message from 6
+2025-03-16 10:55:40: 
+
+2025-03-16 10:55:40: New message from 6
+-------------------------------------------------
+Session finish: 2025-03-16 10:56:07
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 11:00:01
+-------------------------------------------------
+2025-03-16 11:00:01: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 11:00:01: Server created with host:127.0.0.1, port:8081
+2025-03-16 11:00:06: New connection from: 127.0.0.1, with socket 5
+2025-03-16 11:00:06: New message from 5
+-------------------------------------------------
+New session: 2025-03-16 11:00:09
+-------------------------------------------------
+2025-03-16 11:00:09: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 11:00:09: Server created with host:127.0.0.1, port:8081
+2025-03-16 11:00:10: New connection from: 127.0.0.1, with socket 5
+2025-03-16 11:00:10: New message from 5
+2025-03-16 11:00:10: New connection from: 127.0.0.1, with socket 6
+2025-03-16 11:00:10: New connection from: 127.0.0.1, with socket 7
+2025-03-16 11:00:11: New message from 5
+2025-03-16 11:00:12: New message from 5
+2025-03-16 11:00:13: New message from 5
+2025-03-16 11:00:13: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 11:00:15
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 11:00:17
+-------------------------------------------------
+2025-03-16 11:00:17: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 11:00:17: Server created with host:127.0.0.1, port:8081
+2025-03-16 11:00:22: New connection from: 127.0.0.1, with socket 5
+2025-03-16 11:00:22: New message from 5
+-------------------------------------------------
+New session: 2025-03-16 11:01:35
+-------------------------------------------------
+2025-03-16 11:01:35: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 11:01:35: Server created with host:127.0.0.1, port:8081
+2025-03-16 11:01:39: New connection from: 127.0.0.1, with socket 5
+-------------------------------------------------
+New session: 2025-03-16 11:07:08
+-------------------------------------------------
+2025-03-16 11:07:08: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 11:07:08: Server created with host:127.0.0.1, port:8081
+-------------------------------------------------
+Session finish: 2025-03-16 11:07:10
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 11:07:18
+-------------------------------------------------
+2025-03-16 11:07:18: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 11:07:18: Server created with host:127.0.0.1, port:8081
+2025-03-16 11:07:24: New connection from: 127.0.0.1, with socket 5
+2025-03-16 11:07:24: New message from 5
+2025-03-16 11:07:24: New connection from: 127.0.0.1, with socket 6
+2025-03-16 11:07:27: New message from 5
+2025-03-16 11:07:27: New message from 5
+2025-03-16 11:07:29: New message from 5
+2025-03-16 11:07:29: New message from 5
+2025-03-16 11:07:29: 10MB-TESTFILE.ORG.pdf
+2025-03-16 11:07:29: New message from 5
+2025-03-16 11:07:33: New message from 5
+2025-03-16 11:07:33: New message from 5
+2025-03-16 11:07:33: 10MB-TESTFILE.ORG(2).pdf
+2025-03-16 11:07:33: New message from 5
+2025-03-16 11:07:34: New message from 5
+2025-03-16 11:07:35: New message from 5
+2025-03-16 11:07:35: New message from 5
+2025-03-16 11:07:36: New message from 5
+2025-03-16 11:07:37: New message from 5
+2025-03-16 11:07:39: New message from 5
+2025-03-16 11:07:39: New message from 5
+2025-03-16 11:07:39: New message from 5
+2025-03-16 11:07:39: New message from 5
+2025-03-16 11:07:39: New message from 5
+2025-03-16 11:07:40: New message from 5
+2025-03-16 11:07:41: webserv: Conenction with 5fd closed!
+2025-03-16 11:07:41: New message from 6
+2025-03-16 11:07:41: New connection from: 127.0.0.1, with socket 5
+2025-03-16 11:07:42: New message from 6
+2025-03-16 11:07:42: New message from 6
+2025-03-16 11:07:52: New message from 6
+2025-03-16 11:07:52: New message from 6
+2025-03-16 11:07:52: 10MB-TESTFILE.ORG.pdf
+2025-03-16 11:07:52: New message from 6
+2025-03-16 11:07:53: New message from 6
+2025-03-16 11:07:54: New message from 6
+2025-03-16 11:08:01: New message from 6
+2025-03-16 11:08:01: New message from 6
+2025-03-16 11:08:01: New message from 6
+2025-03-16 11:08:01: New message from 6
+2025-03-16 11:08:01: New message from 6
+2025-03-16 11:08:02: New message from 6
+2025-03-16 11:08:05: New message from 6
+2025-03-16 11:08:06: webserv: Conenction with 6fd closed!
+2025-03-16 11:08:06: New message from 5
+2025-03-16 11:08:06: New connection from: 127.0.0.1, with socket 6
+2025-03-16 11:08:07: New message from 5
+2025-03-16 11:08:07: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 11:08:21
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 11:08:38
+-------------------------------------------------
+2025-03-16 11:08:38: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 11:08:38: Server created with host:127.0.0.1, port:8081
+2025-03-16 11:08:39: New connection from: 127.0.0.1, with socket 5
+2025-03-16 11:08:39: New connection from: 127.0.0.1, with socket 6
+2025-03-16 11:08:39: New message from 5
+2025-03-16 11:08:40: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 11:08:41
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 11:08:59
+-------------------------------------------------
+2025-03-16 11:08:59: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 11:08:59: Server created with host:127.0.0.1, port:8081
+2025-03-16 11:09:01: New connection from: 127.0.0.1, with socket 5
+-------------------------------------------------
+New session: 2025-03-16 11:10:09
+-------------------------------------------------
+2025-03-16 11:10:09: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 11:10:09: Server created with host:127.0.0.1, port:8081
+-------------------------------------------------
+New session: 2025-03-16 11:13:24
+-------------------------------------------------
+2025-03-16 11:13:24: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 11:13:24: Server created with host:127.0.0.1, port:8081
+-------------------------------------------------
+New session: 2025-03-16 11:13:54
+-------------------------------------------------
+2025-03-16 11:13:54: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 11:13:54: Server created with host:127.0.0.1, port:8081
+-------------------------------------------------
+New session: 2025-03-16 11:13:59
+-------------------------------------------------
+2025-03-16 11:13:59: Successfully bound to host:127.0.0.1, port:8081 socket:4
+2025-03-16 11:13:59: Server created with host:127.0.0.1, port:8081
+-------------------------------------------------
+Session finish: 2025-03-16 11:14:51
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 11:15:09
+-------------------------------------------------
+2025-03-16 11:15:09: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-03-16 11:15:09: Server created with host:127.0.0.1, port:8082
+2025-03-16 11:15:12: New connection from: 127.0.0.1, with socket 5
+2025-03-16 11:15:12: New connection from: 127.0.0.1, with socket 6
+2025-03-16 11:15:12: New message from 5
+2025-03-16 11:15:13: New message from 5
+2025-03-16 11:15:14: New message from 5
+2025-03-16 11:15:17: New message from 5
+2025-03-16 11:15:17: New message from 5
+2025-03-16 11:15:17: New message from 5
+2025-03-16 11:15:17: New message from 5
+2025-03-16 11:15:17: New message from 5
+2025-03-16 11:15:18: New message from 5
+2025-03-16 11:15:19: webserv: Conenction with 5fd closed!
+2025-03-16 11:15:19: New message from 6
+2025-03-16 11:15:19: New connection from: 127.0.0.1, with socket 5
+2025-03-16 11:15:20: New message from 6
+2025-03-16 11:15:21: New message from 6
+-------------------------------------------------
+Session finish: 2025-03-16 11:15:28
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 11:15:45
+-------------------------------------------------
+2025-03-16 11:15:45: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-03-16 11:15:45: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+New session: 2025-03-16 11:15:52
+-------------------------------------------------
+2025-03-16 11:15:52: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-03-16 11:15:52: Server created with host:127.0.0.1, port:8082
+2025-03-16 11:15:53: New connection from: 127.0.0.1, with socket 5
+2025-03-16 11:15:53: New message from 5
+2025-03-16 11:15:53: New connection from: 127.0.0.1, with socket 6
+2025-03-16 11:15:54: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 11:15:56
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 11:15:57
+-------------------------------------------------
+2025-03-16 11:15:57: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-03-16 11:15:57: Server created with host:127.0.0.1, port:8082
+2025-03-16 11:15:59: New connection from: 127.0.0.1, with socket 5
+-------------------------------------------------
+New session: 2025-03-16 11:17:09
+-------------------------------------------------
+2025-03-16 11:17:09: Successfully bound to host:127.0.0.1, port:8082 socket:4
+2025-03-16 11:17:09: Server created with host:127.0.0.1, port:8082
+-------------------------------------------------
+Session finish: 2025-03-16 11:17:22
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 11:17:25
+-------------------------------------------------
+2025-03-16 11:17:25: Successfully bound to host:127.0.0.1, port:8083 socket:4
+2025-03-16 11:17:25: Server created with host:127.0.0.1, port:8083
+2025-03-16 11:17:28: New connection from: 127.0.0.1, with socket 5
+2025-03-16 11:17:28: New message from 5
+2025-03-16 11:17:28: New connection from: 127.0.0.1, with socket 6
+2025-03-16 11:17:28: New message from 5
+2025-03-16 11:17:29: New message from 5
+2025-03-16 11:17:31: New message from 5
+2025-03-16 11:17:31: New message from 5
+2025-03-16 11:17:31: New message from 5
+2025-03-16 11:17:31: New message from 5
+2025-03-16 11:17:32: New message from 5
+2025-03-16 11:17:32: New message from 5
+2025-03-16 11:17:33: New message from 5
+2025-03-16 11:17:33: New message from 5
+2025-03-16 11:17:34: New message from 5
+2025-03-16 11:17:36: New message from 5
+2025-03-16 11:17:36: New message from 5
+2025-03-16 11:17:36: 10MB-TESTFILE.ORG.pdf
+2025-03-16 11:17:36: New message from 5
+2025-03-16 11:17:37: New message from 5
+2025-03-16 11:17:37: New message from 5
+2025-03-16 11:17:37: 10MB-TESTFILE.ORG(1).pdf
+2025-03-16 11:17:37: New message from 5
+2025-03-16 11:17:38: New message from 5
+2025-03-16 11:17:39: New message from 5
+2025-03-16 11:17:40: New message from 5
+2025-03-16 11:17:41: New message from 5
+2025-03-16 11:17:41: New message from 5
+2025-03-16 11:17:41: 10MB-TESTFILE.ORG(2).pdf
+2025-03-16 11:17:41: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 11:18:10
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 11:18:11
+-------------------------------------------------
+2025-03-16 11:18:11: Successfully bound to host:127.0.0.1, port:8083 socket:4
+2025-03-16 11:18:11: Server created with host:127.0.0.1, port:8083
+2025-03-16 11:18:12: New connection from: 127.0.0.1, with socket 5
+2025-03-16 11:18:12: New connection from: 127.0.0.1, with socket 6
+2025-03-16 11:18:12: New message from 5
+2025-03-16 11:18:13: New message from 5
+2025-03-16 11:18:15: New message from 5
+2025-03-16 11:18:15: New message from 5
+2025-03-16 11:18:15: New message from 5
+2025-03-16 11:18:16: New message from 5
+2025-03-16 11:18:16: New message from 5
+2025-03-16 11:18:18: New message from 5
+2025-03-16 11:18:19: New message from 5
+2025-03-16 11:18:20: New message from 5
+2025-03-16 11:18:20: New message from 5
+2025-03-16 11:18:33: New message from 5
+2025-03-16 11:18:33: New message from 5
+2025-03-16 11:18:33: ikhristi (1).jpg
+2025-03-16 11:18:33: New message from 5
+2025-03-16 11:18:35: New message from 5
+2025-03-16 11:18:35: New message from 5
+2025-03-16 11:18:35: 10MB-TESTFILE.ORG.pdf
+2025-03-16 11:18:35: New message from 5
+2025-03-16 11:18:36: New message from 5
+2025-03-16 11:18:36: New message from 5
+2025-03-16 11:18:42: New message from 5
+2025-03-16 11:18:42: New message from 5
+2025-03-16 11:18:42: New message from 5
+2025-03-16 11:18:43: New message from 5
+2025-03-16 11:18:43: New message from 5
+2025-03-16 11:18:43: New message from 5
+2025-03-16 11:18:44: New message from 5
+2025-03-16 11:18:44: New message from 6
+2025-03-16 11:18:44: New message from 5
+2025-03-16 11:18:44: New message from 5
+2025-03-16 11:18:45: New message from 5
+2025-03-16 11:18:45: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-16 11:18:52
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 11:18:55
+-------------------------------------------------
+2025-03-16 11:18:55: Successfully bound to host:127.0.0.1, port:8083 socket:4
+2025-03-16 11:18:55: Server created with host:127.0.0.1, port:8083
+2025-03-16 11:18:57: New connection from: 127.0.0.1, with socket 5
+2025-03-16 11:18:57: New connection from: 127.0.0.1, with socket 6
+2025-03-16 11:18:57: New message from 5
+2025-03-16 11:18:57: New message from 5
+2025-03-16 11:18:58: New message from 5
+2025-03-16 11:19:13: New message from 5
+2025-03-16 11:19:14: New message from 5
+2025-03-16 11:19:14: New message from 5
+2025-03-16 11:19:15: New message from 5
+2025-03-16 11:19:16: New message from 5
+2025-03-16 11:19:18: New message from 5
+2025-03-16 11:19:18: New message from 5
+2025-03-16 11:19:18: New message from 5
+2025-03-16 11:19:19: New message from 5
+2025-03-16 11:19:19: New message from 5
+2025-03-16 11:19:19: New message from 5
+2025-03-16 11:19:19: New message from 5
+2025-03-16 11:19:20: New message from 5
+2025-03-16 11:19:20: New message from 6
+2025-03-16 11:19:20: New message from 5
+2025-03-16 11:19:20: New message from 5
+2025-03-16 11:19:21: New message from 5
+2025-03-16 11:19:21: webserv: Conenction with 5fd closed!
+2025-03-16 11:19:30: New connection from: 127.0.0.1, with socket 5
+2025-03-16 11:19:30: New message from 6
+2025-03-16 11:19:30: New message from 6
+2025-03-16 11:19:44: New message from 6
+2025-03-16 11:19:45: New message from 6
+2025-03-16 11:19:46: New message from 6
+2025-03-16 11:19:46: New message from 6
+2025-03-16 11:19:47: New message from 6
+2025-03-16 11:19:48: New message from 6
+2025-03-16 11:19:54: New message from 6
+2025-03-16 11:19:54: New message from 6
+2025-03-16 11:19:55: New message from 6
+2025-03-16 11:19:56: New message from 6
+2025-03-16 11:19:57: New message from 6
+2025-03-16 11:19:58: New message from 6
+2025-03-16 11:20:06: New message from 6
+2025-03-16 11:20:06: New message from 6
+2025-03-16 11:20:07: New message from 6
+2025-03-16 11:20:07: New message from 6
+2025-03-16 11:20:07: New message from 6
+2025-03-16 11:20:07: New message from 6
+2025-03-16 11:20:17: New message from 6
+2025-03-16 11:20:17: New message from 6
+2025-03-16 11:20:17: New message from 6
+2025-03-16 11:20:18: New message from 6
+2025-03-16 11:20:18: New message from 6
+2025-03-16 11:20:18: New message from 6
+2025-03-16 11:20:19: New message from 6
+2025-03-16 11:20:19: New message from 6
+2025-03-16 11:20:19: New message from 6
+2025-03-16 11:20:19: New message from 6
+2025-03-16 11:20:20: New message from 6
+2025-03-16 11:20:20: New message from 6
+2025-03-16 11:20:26: New message from 6
+2025-03-16 11:20:26: New message from 6
+2025-03-16 11:20:26: New message from 6
+2025-03-16 11:20:27: New message from 6
+2025-03-16 11:20:27: New message from 6
+2025-03-16 11:20:27: New message from 6
+2025-03-16 11:20:28: New message from 6
+2025-03-16 11:20:28: New message from 5
+2025-03-16 11:20:28: New message from 6
+2025-03-16 11:20:28: New message from 6
+2025-03-16 11:20:28: New message from 6
+2025-03-16 11:20:28: webserv: Conenction with 6fd closed!
+2025-03-16 11:20:42: New message from 5
+2025-03-16 11:20:42: New connection from: 127.0.0.1, with socket 6
+2025-03-16 11:20:43: New message from 5
+-------------------------------------------------
+Session finish: 2025-03-16 11:21:37
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-16 11:21:55
+-------------------------------------------------
+2025-03-16 11:21:55: Successfully bound to host:127.0.0.1, port:8083 socket:4
+2025-03-16 11:21:55: Server created with host:127.0.0.1, port:8083
+2025-03-16 11:21:57: New connection from: 127.0.0.1, with socket 5
+2025-03-16 11:21:57: New connection from: 127.0.0.1, with socket 6
+2025-03-16 11:21:57: New message from 5
+2025-03-16 11:22:03: New message from 5
+2025-03-16 11:22:08: New message from 5
+2025-03-16 11:22:18: New message from 5
+2025-03-16 11:22:27: New message from 5
+2025-03-16 11:22:39: New message from 5
+2025-03-16 11:22:48: New message from 5
+2025-03-16 11:22:58: New message from 5
+2025-03-16 11:23:07: New message from 5
+2025-03-16 11:23:20: New message from 5
+2025-03-16 11:23:20: webserv: Conenction with 6fd closed!
+2025-03-16 11:23:29: New message from 5
+2025-03-16 11:23:34: New message from 5
+2025-03-16 11:25:15: New connection from: 127.0.0.1, with socket 6
+2025-03-16 11:25:15: New message from 5
+2025-03-16 11:25:18: New message from 5
+2025-03-16 11:25:20: New message from 5
+2025-03-16 11:25:22: New message from 5
+2025-03-16 11:26:21: webserv: Conenction with 6fd closed!
+2025-03-16 11:30:31: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-16 12:40:43
+-------------------------------------------------

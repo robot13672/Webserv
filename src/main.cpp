@@ -24,7 +24,7 @@ int main(int argc, char **argv)
         try
         {
 			if (argc == 1)
-				confLoc = "congifs/default.conf";
+				confLoc = "configs/default.conf";
 			else
 				confLoc = std::string(argv[1]);
 
