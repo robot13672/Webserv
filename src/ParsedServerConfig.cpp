@@ -2,7 +2,9 @@
 
 // Remove global variable definition
 
-ParsedServerConfig::ParsedServerConfig() {}
+ParsedServerConfig::ParsedServerConfig() {
+    // serverParsedConfigs.clear();
+}
 
 //destructors
 

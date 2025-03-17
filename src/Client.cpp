@@ -13,16 +13,6 @@ Client::Client(ServerConfig &serv)
     _request.setMaxBodySize(serv.getMaxBodySize());
 }
 
-Client::~Client()
-{
-    // if (_sockfd > 0) 
-    // {
-    //     close(_sockfd);
-    //     _sockfd = -1;
-    // }
-    _request.clear();
-    _response.clear();
-}
 Client::Client(const Client &cop)
 {
     this->_sockfd = cop._sockfd;

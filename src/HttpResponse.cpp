@@ -120,7 +120,7 @@ void HttpResponse::handleResponse(const HttpRequest request) {
 }
 
 void HttpResponse::handleRequest() {
-    clear();
+    // clear();
     setHeader("Server", "text/plain");
     setHeader("Date", getCurrentTime());
     setHeader("Connection", "keep-alive");

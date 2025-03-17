@@ -12,7 +12,7 @@ class Client
         sockaddr_in _adress; // для хранения адреса(IP, порт)
         time_t      _lst_msg;// время последнего сообщения
     public:
-        ~Client();
+        // ~Client();
         ServerConfig _server;// сервер к конфигурации которого подключен
         HttpRequest  _request;// запрос
         HttpResponse _response;// ответ

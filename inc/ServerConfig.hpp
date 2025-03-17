@@ -27,7 +27,7 @@ class ServerConfig
         ServerConfig(std::string host, u_int16_t port);//для эмуляции отработанного конфиг файла
         ServerConfig(const ServerConfig &other); // Copy constructor
         ServerConfig& operator=(const ServerConfig &other); // Copy assignment operator
-        ~ServerConfig();
+        // ~ServerConfig();
         //settings
         void setupServer(void);
         //SET
