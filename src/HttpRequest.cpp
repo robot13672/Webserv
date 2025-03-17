@@ -159,7 +159,7 @@ bool HttpRequest::parseBody(std::istringstream& requestStream) {
     if(method == "POST")
         isDone = (body.find("\r\n0\r\n\r\n") != std::string::npos);
     else if(method == "DELETE")
-        isDone = (body.size() == contentLength);
+        isDone = (static_cast<long>(body.size()) == contentLength);
     else
         isDone = true;
     curBodySize = body.size();

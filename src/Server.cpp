@@ -67,7 +67,6 @@ void Server::startServers()// функция основного цикла се�
     
     while(true)//основной цикл сервера
     {
-        (void*)this;
         timer.tv_sec = 1;
         timer.tv_usec = 0;
         request_fd_cpy = _request_fd_pool;
@@ -227,9 +226,9 @@ void Server::sendResponse(int &fd, Client &client)
     // Handle the request based on method and path
     response.handleResponse(client._request);
     if(client._request.IsBodyTooBig())
-    client._request.setBodyTooBig(false);
+        client._request.setBodyTooBig(false);
     else
-    client._request.clear(); //очистка запроса
+        client._request.clear(); //очистка запроса
     
     // Check max body size
     if (client._request.getContentLength() >= client._server.getMaxBodySize())
@@ -289,7 +288,7 @@ void Server::addNewConnect(ServerConfig &serv)
     struct sockaddr_in client_address;
     socklen_t client_address_len = sizeof(client_address);
     Client client(serv);
-    char buff[INET_ADDRSTRLEN];//INET_ADDRSTRLEN - Это константа, она задает максимальную длину строки, необходимую для хранения IP-адреса в текстовом виде
+    // char buff[INET_ADDRSTRLEN];//INET_ADDRSTRLEN - Это константа, она задает максимальную длину строки, необходимую для хранения IP-адреса в текстовом виде
     int client_sock = accept(serv.getListenFd(), (struct sockaddr *)&client_address, &client_address_len);
     client.setSocket(client_sock);
     if(client_sock == -1)
