@@ -21,6 +21,7 @@ Client::~Client()
     //     _sockfd = -1;
     // }
     _request.clear();
+    _response.clear();
 }
 Client::Client(const Client &cop)
 {

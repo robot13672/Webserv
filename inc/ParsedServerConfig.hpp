@@ -25,6 +25,7 @@ class ParsedServerConfig
         ParsedServerConfig();
         ParsedServerConfig(const ParsedServerConfig &other); // Copy constructor
         ParsedServerConfig& operator=(const ParsedServerConfig &other); // Copy assignment operator
+        ~ParsedServerConfig();
 
         // SETTERS
         void addPort(u_int16_t port); // because of _ports vectors

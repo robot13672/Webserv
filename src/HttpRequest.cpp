@@ -7,8 +7,10 @@
 #include <string>
 #include "../inc/Webserv.hpp"
 
-HttpRequest::HttpRequest() : method(""), uri(""), httpVersion(""), maxBodySize(0), isChunked(false) {}
-
+// HttpRequest::HttpRequest() : method(""), uri(""), httpVersion(""), maxBodySize(0), isChunked(false) {}
+HttpRequest::HttpRequest() : method(""), uri(""), httpVersion(""), 
+    maxBodySize(0), isChunked(false), isDone(false), isCGI(false), 
+     bodyTooBig(false) {}
 
 HttpRequest::~HttpRequest()
 {
@@ -47,6 +49,7 @@ void HttpRequest::clear()
 }
 bool HttpRequest::parseRequest(const std::vector<char>& buffer, size_t contentLength) 
 {
+    clear();
     if (buffer.empty() || contentLength == 0)
         return false;
 

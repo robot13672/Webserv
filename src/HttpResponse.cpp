@@ -619,6 +619,10 @@ void HttpResponse::clear() {
     _headers.clear();
     _body.clear();
     _chunked = false;
+    _path = "";
+    _method = "";
+    _response = "";
+    _cookies.clear();
 }
 
 void HttpResponse::setPath(const std::string& path) { 

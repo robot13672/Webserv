@@ -14,6 +14,7 @@ ServerConfig::ServerConfig(std::string host, u_int16_t port) //для эмуля
 }
 ServerConfig::ServerConfig() {}
 
+
 ServerConfig::ServerConfig(const ServerConfig &other)
 {
     _adress = other._adress;

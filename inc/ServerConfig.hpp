@@ -27,6 +27,7 @@ class ServerConfig
         ServerConfig(std::string host, u_int16_t port);//для эмуляции отработанного конфиг файла
         ServerConfig(const ServerConfig &other); // Copy constructor
         ServerConfig& operator=(const ServerConfig &other); // Copy assignment operator
+        ~ServerConfig();
         //settings
         void setupServer(void);
         //SET
@@ -66,5 +67,5 @@ class ServerConfig
 
         bool isAvailibleMethod(std::string path, std::string method);
         std::string getErrorPage(int errorCode) const;
-        void parseErrorPage(const std::string& line);
+        // void parseErrorPage(const std::string& line);
 };

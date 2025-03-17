@@ -4,6 +4,8 @@
 
 ParsedServerConfig::ParsedServerConfig() {}
 
+//destructors
+
 ParsedServerConfig::ParsedServerConfig(const ParsedServerConfig &other)
 {
 	_ports = other._ports; // because of _ports vector
