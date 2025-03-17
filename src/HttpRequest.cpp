@@ -7,7 +7,7 @@
 #include <string>
 #include "../inc/Webserv.hpp"
 
-HttpRequest::HttpRequest() : method(""), uri(""), httpVersion(""), maxBodySize(0), isChunked(false) {}
+HttpRequest::HttpRequest() : method(""), uri(""), httpVersion(""), maxBodySize(0), isChunked(false), ignorTillNext(false), bodyTooBig(false){}
 
 
 HttpRequest::~HttpRequest()

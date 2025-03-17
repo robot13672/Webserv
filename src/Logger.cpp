@@ -35,6 +35,7 @@ Logger::~Logger()
         _fileStream << "-------------------------------------------------" << std::endl;
         _fileStream.close();
     }
+    _file.clear();
 }
 
 void Logger::setFile(std::string _file)

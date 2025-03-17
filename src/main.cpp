@@ -17,7 +17,7 @@ void signalHandler(int signum)
 
 int main(int argc, char **argv)
 {
-	ParsedServerConfig a; // roi 
+	ParsedServerConfig *a = new ParsedServerConfig(); // roi 
 	std::string confLoc;
     if(argc == 1 || argc == 2)
     {
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 			else
 				confLoc = std::string(argv[1]);
 
-			a.parseConfig(confLoc);
+			a->parseConfig(confLoc);
             signal(SIGINT, signalHandler);
             logger.setFile("logger.txt");//нужно будет ставить реальный с конфига
             globalServer = new Server();
@@ -36,10 +36,10 @@ int main(int argc, char **argv)
             // servers.push_back(ServerConfig("127.0.0.1", 8084));
             // servers.push_back(ServerConfig("127.0.0.1", 8085));
             // servers.push_back(ServerConfig("127.0.0.1", 8084));
-            globalServer->setupServer(a.getVector());
+            globalServer->setupServer(a->getVector());
+            delete a;
+            a = NULL;
             globalServer->startServers();
-
-            
             delete globalServer;  // Освобождаем память при нормальном завершении
             globalServer = NULL;
         }

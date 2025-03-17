@@ -214,9 +214,9 @@ void Server::sendResponse(int &fd, Client &client)
     // //     std::cout << "Error 413";
     // sendedBytes = write(fd, response.c_str(), response.length());
 
-    HttpResponse response;
-    response.setServer(client._server);
-    response.setHttpVersion("HTTP/1.1");
+    
+    client._response.setServer(client._server);
+    client._response.setHttpVersion("HTTP/1.1");
     
     // Get the path and method from client's request
     // response.setPath(client._request.getPath());    // Use setter instead of direct access
@@ -224,20 +224,20 @@ void Server::sendResponse(int &fd, Client &client)
 
 
     // Handle the request based on method and path
-    response.handleResponse(client._request);
+    client._response.handleResponse(client._request);
     if(client._request.IsBodyTooBig())
         client._request.setBodyTooBig(false);
     else
         client._request.clear(); //очистка запроса
     
     // Check max body size
-    if (client._request.getContentLength() >= client._server.getMaxBodySize())
-    {
-        response.setErrorResponse(413, "Payload Too Large");
-    }
+    // if (client._request.getContentLength() >= client._server.getMaxBodySize())
+    // {
+    //     response.setErrorResponse(413, "Payload Too Large");
+    // }
     
     // Convert response to string
-    std::string responseStr = response.toString();
+    std::string responseStr = client._response.toString();
     sendedBytes = write(fd, responseStr.c_str(), responseStr.length());
     
     if (sendedBytes < 0)

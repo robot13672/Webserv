@@ -112,19 +112,27 @@ bool HttpResponse::isChunked() const {
     return _chunked;
 }
 
-void HttpResponse::handleResponse(const HttpRequest request) {
+void HttpResponse::handleResponse(const HttpRequest request) 
+{
+    clear();
     this->_path = request.getPath();
     this->_method = request.getMethod();
     _request = request;
     handleRequest();
 }
 
-void HttpResponse::handleRequest() {
-    clear();
+void HttpResponse::handleRequest() 
+{
     setHeader("Server", "text/plain");
     setHeader("Date", getCurrentTime());
     setHeader("Connection", "keep-alive");
 
+
+    if (_request.getContentLength() >= _server.getMaxBodySize())
+    {
+        setErrorResponse(413, "Payload Too Large");
+        return;
+    }
     if (_server.isAvailibleMethod(_path, _method) == false) {
         setErrorResponse(405, "Method Not Allowed");
         setHeader("Allow", "GET, POST, DELETE");
