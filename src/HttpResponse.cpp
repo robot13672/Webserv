@@ -125,8 +125,13 @@ void HttpResponse::handleRequest() {
     setHeader("Date", getCurrentTime());
     setHeader("Connection", "keep-alive");
 
-    if (_request.isRequestTooLarge()) {
-        sendErrorPage(413, "Content Too Large");
+    // if (_request.isRequestTooLarge()) {
+    //     sendErrorPage(413, "Content Too Large");
+    //     return;
+    // }
+    if (_request.getContentLength() >= _server.getMaxBodySize())
+    {
+        sendErrorPage(413, "Payload Too Large");
         return;
     }
 
@@ -145,6 +150,7 @@ void HttpResponse::handleRequest() {
         return;
     }
     if (_path.find("/cgi-bin/") == 0) {
+        
         CGI cgi;
         if (cgi.handleCgiRequest(_request, *this)) {
             return;
@@ -449,7 +455,7 @@ void HttpResponse::sendErrorPage(int code, const std::string& message) {
     bool errorPageFound = false;
     
     if (!configPath.empty()) {
-        localPath = "assets/" + configPath;
+        localPath = "assets/error_pages" + configPath;
         std::ifstream file(localPath.c_str(), std::ios::binary);
         if (file) {
             // Нашли страницу ошибки в конфиге

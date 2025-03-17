@@ -15,6 +15,7 @@ class Server
 
 
     public:
+        ~Server();
         void setupServer(std::vector<ServerConfig> servers);
         bool isDublicateFd(std::vector<ServerConfig>::iterator cur);
         int  findDublicateFr(std::vector<ServerConfig>::iterator cur);
@@ -37,4 +38,3 @@ class Server
         void checkTimeout(void);
         std::string createNewTxt(char *buff, int size);// функция для создания файла для буффера
 };
-

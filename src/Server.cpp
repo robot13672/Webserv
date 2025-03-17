@@ -1,5 +1,27 @@
 #include "../inc/Server.hpp"
 
+Server::~Server()
+{
+    std::map<int, Client>::iterator it = _allClients.begin();
+    while (it != _allClients.end())
+    {
+        _allClients.erase(it++);
+    }
+
+    // // Close all server sockets
+    // for (std::map<int, ServerConfig>::iterator it = _allServers.begin(); it != _allServers.end(); ++it) {
+    //     close(it->first);
+    // }
+
+    // _servers.clear();
+    // _allServers.clear();
+    // _allClients.clear();
+    
+    // // Clear fd sets
+    // FD_ZERO(&_request_fd_pool);
+    // FD_ZERO(&_response_fd_pool);
+}
+
 void Server::setupServer(std::vector<ServerConfig> servers) 
 {
     _servers = servers;
@@ -71,6 +93,7 @@ void Server::startServers()// функция основного цикла се�
             else if(FD_ISSET(i, &response_fd_cpy) && _allClients.count(i))//Если нужно отправить респонс
             {
                 sendResponse(i, _allClients[i]);
+                // return;
             }
 
         }
@@ -123,6 +146,7 @@ void Server::readRequest(int &fd, Client &client)
     std::vector<char> buffer(BUFFER_SIZE);
     int readedBytes = read(fd, buffer.data(), BUFFER_SIZE);
     
+
     if(readedBytes == 0)
     {
         handleClientDisconnection(fd);
@@ -138,7 +162,7 @@ void Server::readRequest(int &fd, Client &client)
     processClientData(client,buffer, readedBytes);
     buffer.clear();
     logger.writeMessage("New message from " + intToString(fd));
-    if(client._request.getStatus())//Проверка на полное чтение запроса
+    if(client._request.getStatus() || client._request.IsBodyTooBig())//Проверка на полное чтение запроса
     {
         if(client._request.isChunkedTransfer() && client._request.getContentLength() == 0)
         {
@@ -180,23 +204,41 @@ void Server::readRequest(int &fd, Client &client)
 void Server::sendResponse(int &fd, Client &client)
 {
     int sendedBytes = 0;
+    //TODO поменять на реальный ответ
+    // std::string response = "HTTP/1.1 200 OK\r\n"
+    //        "Content-Type: text/plain\r\n"
+    //        "Content-Length: 13\r\n"
+    //        "\r\n"
+    //        "Hello, World!";
+    // //TODO: дописать все конструкторы копирования, что бы можно было обратиться к макс боти сайз
+    // // if(response.length() >= client._server.getMaxBodySize())
+    // //     std::cout << "Error 413";
+    // sendedBytes = write(fd, response.c_str(), response.length());
 
-    HttpResponse response;
-    response.setServer(client._server);
-    response.setHttpVersion("HTTP/1.1");
-
-    // Check max body size
-    if (static_cast<long>(response.getBody().length()) >= client._server.getMaxBodySize())
-    {
-        response.sendErrorPage(413, "Payload Too Large");
-    }
-    // Handle the request based on method and path
-    response.handleResponse(client._request);
-    client._request.clear();//очистка запроса
+    // HttpResponse response;
+    client._response.setServer(client._server);
+    client._response.setHttpVersion("HTTP/1.1");
     
+    // Get the path and method from client's request
+    // response.setPath(client._request.getPath());    // Use setter instead of direct access
+    // response.setMethod(client._request.getMethod()); 
 
+
+    // Handle the request based on method and path
+    client._response.handleResponse(client._request);
+    if(client._request.IsBodyTooBig())
+        client._request.setBodyTooBig(false);
+    else
+     client._request.clear(); //очистка запроса
+    
+    // Check max body size
+    // if (client._request.getContentLength() >= client._server.getMaxBodySize())
+    // {
+    //     response.sendErrorPage(413, "Payload Too Large");
+    // }
+    
     // Convert response to string
-    std::string responseStr = response.toString();
+    std::string responseStr = client._response.toString();
     sendedBytes = write(fd, responseStr.c_str(), responseStr.length());
     
     if (sendedBytes < 0)

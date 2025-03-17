@@ -4,14 +4,31 @@
 #include <vector>  // Добавляем include для vector
 #include <iostream>
 #include <cstdlib>
+#include <string>
+#include "../inc/Webserv.hpp"
 
 HttpRequest::HttpRequest() : method(""), uri(""), httpVersion(""), maxBodySize(0), isChunked(false) {}
 
-HttpRequest::HttpRequest(const std::string& rawRequest) {
-    parseRequest(rawRequest);
-}
 
-HttpRequest::~HttpRequest() {}
+HttpRequest::~HttpRequest()
+{
+    method.clear();
+    uri.clear();
+    httpVersion.clear();
+    query.clear();
+    body.clear();
+    headers.clear();
+    path.clear();          
+    queryParams.clear();   
+    
+    isChunked = false;    
+    isDone = false;       
+    isCGI = false;
+    ignorTillNext = false;
+    contentLength = 0;
+    maxBodySize = 0;
+    curBodySize = 0;
+}
 
 void HttpRequest::clear()
 {
@@ -25,27 +42,9 @@ void HttpRequest::clear()
     queryParams.clear();   
     isChunked = false;    
     isDone = false;       
-    isCGI = false;        
+    isCGI = false;
+    ignorTillNext = false;
 }
-
-bool HttpRequest::parseRequest(const std::string& rawRequest) 
-{
-    std::istringstream requestStream(rawRequest);
-    std::string firstLine;
-    
-    if (!std::getline(requestStream, firstLine))
-        return false;
-        
-    if (!parseRequestLine(firstLine))
-        return false;
-        
-    if (!parseHeaders(requestStream))
-        return false;
-    
-    
-    return parseBody(requestStream);
-}
-
 bool HttpRequest::parseRequest(const std::vector<char>& buffer, size_t contentLength) 
 {
     if (buffer.empty() || contentLength == 0)
@@ -60,6 +59,8 @@ bool HttpRequest::parseRequest(const std::vector<char>& buffer, size_t contentLe
 
     if(!this->method.empty())
         isChunked = true;
+    if(ignorTillNext)
+        body.clear();
     if(!isChunked)
     {
         if (!std::getline(requestStream, firstLine))
@@ -140,7 +141,11 @@ bool HttpRequest::parseHeaders(std::istringstream& requestStream) {
     std::string transferEncoding = getHeader("Transfer-Encoding");
     isChunked = (transferEncoding == "chunked");
     contentLength = getHeader("Content-Length").empty() ? 0 : std::atol(getHeader("Content-Length").c_str());
-    
+    if(contentLength > maxBodySize)
+    {
+        ignorTillNext = true;
+        bodyTooBig = true;
+    }
     return true;
 }
 
@@ -153,14 +158,17 @@ bool HttpRequest::parseBody(std::istringstream& requestStream) {
                 std::istreambuf_iterator<char>());
     if(method == "POST")
         isDone = (body.find("\r\n0\r\n\r\n") != std::string::npos);
+    else if(method == "DELETE")
+        isDone = (body.size() == static_cast<std::string::size_type>(contentLength));
     else
         isDone = true;
+    curBodySize = body.size();
     return isDone; 
 }
 
 bool HttpRequest::parseChunkedBody(std::istringstream& buffer) 
 {
-    if(!body.empty())
+    if(!body.empty())  
         body.append(std::string(std::istreambuf_iterator<char>(buffer), 
             std::istreambuf_iterator<char>()));
     else
@@ -168,55 +176,9 @@ bool HttpRequest::parseChunkedBody(std::istringstream& buffer)
             std::istreambuf_iterator<char>());
     // Check if body ends with "\r\n0\r\n\r\n" which indicates end of chunked transfer
     isDone = (body.find("\r\n0\r\n\r\n") != std::string::npos);
-    
-    
-     // Track the total size of processed chunks
-     static size_t totalBodySize = 0;
-    // If the request is complete, parse all chunks to calculate total size
-    if (isDone) {
-        size_t pos = 0;
-        
-        while (pos < body.length()) {
-            // Find the end of chunk size line
-            size_t lineEnd = body.find("\r\n", pos);
-            if (lineEnd == std::string::npos)
-                break;
-                
-            // Extract chunk size in hex format
-            std::string chunkSizeHex = body.substr(pos, lineEnd - pos);
-            size_t chunkSize;
-            std::istringstream ss(chunkSizeHex);
-            ss >> std::hex >> chunkSize;
-            
-            // Move past the chunk size line
-            pos = lineEnd + 2;
-            
-            // If chunk size is 0, we've reached the terminator
-            if (chunkSize == 0)
-                break;
-                
-            // Add this chunk's size to our running total
-            totalBodySize += chunkSize;
-            
-            // Check if the total size exceeds the limit
-            if (maxBodySize > 0 && totalBodySize > static_cast<size_t>(maxBodySize)) {
-                // Set flags to indicate oversized request
-                isTooLarge = true;
-                return true; // Stop processing
-            }
-            
-            // Skip to next chunk (current chunk plus trailing CRLF)
-            pos += chunkSize + 2;
-        }
-    }
-    
-    // For ongoing requests, do a rough estimate check
-    if (!isDone && maxBodySize > 0 && body.size() > static_cast<std::string::size_type>(maxBodySize)) {
-        // If the raw data is already larger than max, it's likely too large
-        isTooLarge = true;
+    curBodySize += body.size();
+    if(curBodySize == contentLength)
         isDone = true;
-        return true;
-    }
     return isDone; 
 }
 
@@ -399,4 +361,14 @@ bool HttpRequest::getStatus()
     if(!getHeader("Content-Length").empty() && static_cast<long>(body.size()) == contentLength)
         return true;
     return isDone;
+}
+
+bool HttpRequest::IsBodyTooBig()
+{
+    return bodyTooBig;
+}
+
+void HttpRequest::setBodyTooBig(bool value)
+{
+    bodyTooBig = value;
 }
