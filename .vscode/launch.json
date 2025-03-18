@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/webserv",
-            "args": ["configs/2servers.conf"], 
+            "args": ["configs/default.conf"], 
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

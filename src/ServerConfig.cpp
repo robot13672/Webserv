@@ -310,6 +310,7 @@ std::string ServerConfig::getErrorPage(int errorCode) const {
     return "";
 }
 
+
 std::string ServerConfig::getRoot()
 {
     return _root;
