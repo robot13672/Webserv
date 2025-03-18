@@ -64,6 +64,9 @@ class ServerConfig
         std::vector<std::string> getLocationCgiPath(const std::string &location) const;
 		std::vector<std::string> getLocationCgiExt(const std::string &location) const;
         bool getLocationAutoindex(const std::string &location) const;
+        std::string getRoot();
+        std::string getIndex();
+
 
         bool isAvailibleMethod(std::string path, std::string method);
         std::string getErrorPage(int errorCode) const;
