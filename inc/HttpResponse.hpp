@@ -86,6 +86,9 @@ public:
     void addCookie(const std::string& cookie);
     const std::vector<std::string>& getCookies() const;
 
+    std::string getMethod(void);
+    std::string getPath(void);
+
     // Добавьте в публичную часть класса HttpResponse:
 void handleDirectoryListing(const std::string& path);
 };

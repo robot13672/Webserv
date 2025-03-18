@@ -153,7 +153,7 @@ void Server::readRequest(int &fd, Client &client)
     buffer[readedBytes] = '\0';
     processClientData(client,buffer, readedBytes);
     buffer.clear();
-    logger.writeMessage("New message from " + intToString(fd));
+    // logger.writeMessage("New message from " + intToString(fd));
     if(client._request.getStatus() || client._request.IsBodyTooBig())//Проверка на полное чтение запроса
     {
         if(client._request.isChunkedTransfer() && client._request.getContentLength() == 0)
@@ -223,6 +223,7 @@ void Server::sendResponse(int &fd, Client &client)
     else
         client._request.clear(); //очистка запроса
     
+    logger.writeMessage("New message from " + intToString(fd) + " | " + "method: " + client._response.getMethod() + " | " + "path: " + client._response.getPath());
     // Check max body size
     // if (client._request.getContentLength() >= client._server.getMaxBodySize())
     // {

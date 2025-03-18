@@ -127,8 +127,8 @@ void HttpResponse::handleRequest()
     setHeader("Date", getCurrentTime());
     setHeader("Connection", "keep-alive");
 
-    std::cout << "Path: " << _path << std::endl;
-    std::cout << "Method: " << _method << std::endl;
+    // std::cout << "Path: " << _path << std::endl;
+    // std::cout << "Method: " << _method << std::endl;
     if (_request.getContentLength() >= _server.getMaxBodySize())
     {
         sendErrorPage(413, "Payload Too Large");
@@ -845,4 +845,14 @@ void HttpResponse::addCookie(const std::string& cookie) {
 }
 const std::vector<std::string>& HttpResponse::getCookies() const { 
     return _cookies; 
+}
+
+std::string HttpResponse::getMethod()
+{
+    return _method;
+}
+
+std::string HttpResponse::getPath()
+{
+    return _path;
 }
