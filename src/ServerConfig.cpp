@@ -14,6 +14,21 @@ ServerConfig::ServerConfig(std::string host, u_int16_t port) //для эмуля
 }
 ServerConfig::ServerConfig() {}
 
+ServerConfig::~ServerConfig()
+{
+    _methods.clear();
+    _errorPages.clear();
+    _locationRoots.clear();
+    _locationIndexes.clear();
+    _locationCgiPaths.clear();
+    _locationCgiExts.clear();
+    _locationAutoindex.clear();
+    
+    _name.clear();
+    _root.clear();
+    _index.clear();
+}
+
 ServerConfig::ServerConfig(const ServerConfig &other)
 {
     _adress = other._adress;

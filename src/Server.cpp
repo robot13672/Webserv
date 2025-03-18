@@ -8,18 +8,11 @@ Server::~Server()
         _allClients.erase(it++);
     }
 
-    // // Close all server sockets
-    // for (std::map<int, ServerConfig>::iterator it = _allServers.begin(); it != _allServers.end(); ++it) {
-    //     close(it->first);
-    // }
-
-    // _servers.clear();
-    // _allServers.clear();
-    // _allClients.clear();
-    
-    // // Clear fd sets
-    // FD_ZERO(&_request_fd_pool);
-    // FD_ZERO(&_response_fd_pool);
+    std::map<int, ServerConfig>::iterator server_it = _allServers.begin();
+    while (server_it != _allServers.end())
+    {
+        _allServers.erase(server_it++);
+    }
 }
 
 void Server::setupServer(std::vector<ServerConfig> servers) 

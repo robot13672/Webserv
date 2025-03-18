@@ -23,6 +23,7 @@ class ServerConfig
         std::map<std::string, bool>                         _locationAutoindex;
         // std::map<int, std::string>                          _errorPages;
     public:
+        ~ServerConfig();
         ServerConfig();
         ServerConfig(std::string host, u_int16_t port);//для эмуляции отработанного конфиг файла
         ServerConfig(const ServerConfig &other); // Copy constructor
