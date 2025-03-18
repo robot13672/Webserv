@@ -225,6 +225,9 @@ std::vector<ServerConfig> ParsedServerConfig::getVector()
         ServerConfig server;
 
         // Copy basic server configuration
+        server.setName(it->_name);
+        server.setRoot(it->_root);
+        server.setIndex(it->_index);
         server.setHost(it->getHost());
         const std::vector<u_int16_t>& ports = it->getPorts();
         for (std::vector<u_int16_t>::const_iterator portIt = ports.begin(); portIt != ports.end(); ++portIt)
