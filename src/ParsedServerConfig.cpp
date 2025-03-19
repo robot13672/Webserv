@@ -42,17 +42,6 @@ ParsedServerConfig &ParsedServerConfig::operator=(const ParsedServerConfig &othe
 	return *this;
 }
 
-// SET
-// void ParsedServerConfig::setPort(u_int16_t port)
-// {
-// 	_port = port;
-// }
-
-// u_int16_t ParsedServerConfig::getPort() const
-// {
-// 	return _port;
-// }
-// because of _ports vector start
 void ParsedServerConfig::addPort(u_int16_t port)
 {
     _ports.push_back(port);
@@ -74,7 +63,10 @@ void ParsedServerConfig::setHost(std::string host)
 }
 void ParsedServerConfig::setMaxBodySize(long max_body_size)
 {
-	_max_body_size = max_body_size;
+    if(max_body_size > 60000000)
+        _max_body_size = 60000000;
+    else
+	    _max_body_size = max_body_size;
 }
 
 void ParsedServerConfig::setName(std::string name)
@@ -92,34 +84,27 @@ void ParsedServerConfig::setIndex(std::string index)
 	_index = index;
 }
 
-// void ParsedServerConfig::setErrorPages(std::map<short, std::string> errorPages)
-// {
-//     _errorPages = errorPages;
-// }
 void ParsedServerConfig::setErrorPages(short errorCode, std::string errorPage)
 {
 	_errorPages[errorCode] = errorPage;
 }
-/*
-	3d verstion because every location has its own methods. - roi 0225
-*/
+
 void ParsedServerConfig::setMethods(const std::string &location, const std::vector<std::string> &methods)
 {
 	_methods[location] = methods;
 }
-// setters of 5 additional attributes in locations - roi 0227
+
 void ParsedServerConfig::setLocationRoot(const std::string &location, const std::string &root)
 {
 	_locationRoots[location] = root;
 }
 
-// termorary commented - roi 0227
+
 void ParsedServerConfig::setLocationIndex(const std::string &location, const std::string &index)
 {
 	_locationIndexes[location] = index;
 }
 
-// roi 0302
 void ParsedServerConfig::setLocationCgiPath(const std::string &location, const std::vector<std::string> &cgiPaths)
 {
 	_locationCgiPaths[location] = cgiPaths;
@@ -135,7 +120,6 @@ void ParsedServerConfig::setLocationAutoindex(const std::string &location, bool 
 	_locationAutoindex[location] = autoindex;
 }
 
-// GETTERS
 std::string ParsedServerConfig::getHost() const
 {
 	struct in_addr addr;
@@ -148,7 +132,6 @@ long ParsedServerConfig::getMaxBodySize() const
 	return _max_body_size;
 }
 
-// setters of 5 additional attributes in locations - roi 0227
 std::string ParsedServerConfig::getLocationRoot(const std::string &location) const
 {
 	std::map<std::string, std::string>::const_iterator it = _locationRoots.find(location);
@@ -169,7 +152,6 @@ std::string ParsedServerConfig::getLocationIndex(const std::string &location) co
 	return "";
 }
 
-// temporery commentd roi 0227 - 0302
 
 std::vector<std::string> ParsedServerConfig::getLocationCgiPath(const std::string &location) const
 {
@@ -201,20 +183,16 @@ bool ParsedServerConfig::getLocationAutoindex(const std::string &location) const
 	return false;
 }
 
-// To allow operator<<  after std::vector<ParsedServerConfig> serverParsedConfigs; is not extern anymore but became an attribute of the class ParsedServerConfig - commented by oleh 0309
 const std::vector<ParsedServerConfig>& ParsedServerConfig::getServerParsedConfigs() const {
     return serverParsedConfigs;
 }
 
-// roi 0225
 const char *ParsedServerConfig::NoFileError::what() const throw()
 {
 	return "Shit, an Error in roi's part: Could not open the file";
 }
 
 
-// Метод getVector используется для преобразования вектора объектов ParsedServerConfig в вектор объектов ServerConfig. 
-// corrected by olh 0315
 std::vector<ServerConfig> ParsedServerConfig::getVector()
 {
     std::vector<ServerConfig> servers;
@@ -224,7 +202,6 @@ std::vector<ServerConfig> ParsedServerConfig::getVector()
     {
         ServerConfig server;
 
-        // Copy basic server configuration
         server.setName(it->_name);
         server.setRoot(it->_root);
         server.setIndex(it->_index);
@@ -236,7 +213,6 @@ std::vector<ServerConfig> ParsedServerConfig::getVector()
         }
         server.setMaxBodySize(it->getMaxBodySize());
 
-        // Copy location-specific configurations
         for (std::map<std::string, std::vector<std::string> >::const_iterator methodIt = it->_methods.begin();
              methodIt != it->_methods.end(); ++methodIt)
         {
@@ -285,11 +261,6 @@ std::vector<ServerConfig> ParsedServerConfig::getVector()
     return servers;
 }
 
-/*
-	parsing started with methods - roi 0225
-	Если директива allow_methods отсутствует, NGINX обрабатвает все методы HTTP-запросов для этой локации.
-	Поэтому такая локация и методы не попадают в мапу methods (std::map<std::string, std::vector <std::string> > 	_methods;)
- */
 void ParsedServerConfig::parseConfig(const std::string &filename)
 {
     std::ifstream file(filename.c_str());
@@ -330,7 +301,7 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
             inServerBlock = true;
             currentLocation.clear();
             currentConfig._errorPages.clear();
-			currentConfig._ports.clear(); // Очистка вектора портов перед началом новой конфигурации сервера
+			currentConfig._ports.clear();
         }
         else if (key == "}")
         {
@@ -531,11 +502,6 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
     file.close();
 }
 
-/*
-	Перегрузка оператора <<
-	checks only location and methoes olh 0225
-	checks port olh 0315
- */
 std::ostream &operator<<(std::ostream &os, const ParsedServerConfig &config)
 {
     os << "ParsedServerConfig:\n";

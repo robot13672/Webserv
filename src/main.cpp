@@ -30,17 +30,13 @@ int main(int argc, char **argv)
 
 			a->parseConfig(confLoc);
             signal(SIGINT, signalHandler);
-            logger.setFile("logger.txt");//нужно будет ставить реальный с конфига
+            logger.setFile("logger.txt");
             globalServer = new Server();
-            // std::vector<ServerConfig> servers;
-            // servers.push_back(ServerConfig("127.0.0.1", 8084));
-            // servers.push_back(ServerConfig("127.0.0.1", 8085));
-            // servers.push_back(ServerConfig("127.0.0.1", 8084));
             globalServer->setupServer(a->getVector());
             delete a;
             a = NULL;
             globalServer->startServers();
-            delete globalServer;  // Освобождаем память при нормальном завершении
+            delete globalServer; 
             globalServer = NULL;
         }
         catch(const std::exception& e)

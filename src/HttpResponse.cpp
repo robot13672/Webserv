@@ -127,8 +127,6 @@ void HttpResponse::handleRequest()
     setHeader("Date", getCurrentTime());
     setHeader("Connection", "keep-alive");
 
-    // std::cout << "Path: " << _path << std::endl;
-    // std::cout << "Method: " << _method << std::endl;
     if (_request.getContentLength() >= _server.getMaxBodySize())
     {
         sendErrorPage(413, "Payload Too Large");
@@ -399,39 +397,23 @@ bool HttpResponse::isFileAccessible() {
             else
                 localPath = this->_server.getRoot() + "index.html";
     }
-        // localPath = "assets/html/index.html";
-        // if (_server.getRoot().empty())
-        //     if (_server.getIndex().empty())
-        //         localPath = "assets/html/index.html";
-        //     else
-        //         localPath = "assets/html/" + _server.getIndex();
-        // else{
-        //     if (_server.getIndex().empty())
-        //         localPath = _server.getRoot() + "index.html";
-        //     else
-        //         localPath = _server.getRoot() + _server.getIndex();
-        // }
     else {
         size_t dotPos = _path.find_last_of('.');
         if (dotPos != std::string::npos) {
             std::string extension = _path.substr(dotPos);
             if (extension == ".png" || extension == ".jpg" || extension == ".jpeg") {
-                // localPath = "assets/html";
                 localPath = this->_server.getRoot();
                 localPath.append(_path);
             }
             else if(extension == ".py") {
-                // localPath = "assets/html";
                 localPath = this->_server.getRoot();
                 localPath.append(_path);}
               else {
                 localPath = this->_server.getRoot();
-                // localPath = "assets/html";
                 localPath.append(_path);
                 localPath.append(".html");
             }
         } else {
-            // localPath = "assets/html";
             localPath = this->_server.getRoot();
             localPath.append(_path);
             localPath.append(".html");
@@ -456,75 +438,6 @@ std::string HttpResponse::getCurrentTime() {
     strftime(buf, sizeof(buf), "%a, %d %b %Y %H:%M:%S GMT", &tm);
     return std::string(buf);
 }
-
-// void HttpResponse::setErrorResponse(int code, const std::string& message) {
-//     std::string configPath = _server.getErrorPage(code);
-//     if (!configPath.empty()) {
-//         size_t start = configPath.find_last_of("/") + 1;
-//         size_t end = configPath.find_last_of(".");
-//         std::string newErrorCode = configPath.substr(start, end - start);
-//         int newCode = atoi(newErrorCode.c_str());
-        
-//         setStatus(newCode, message);
-//         std::string fullPath = "assets/" + configPath;
-//         std::ifstream file(fullPath.c_str(), std::ios::binary);
-//         if (file) {
-//             std::stringstream buffer;
-//             buffer << file.rdbuf();
-//             setHeader("Content-Type", "text/html");
-//             setBody(buffer.str());
-//             return;
-//         }
-//     }
-//     setStatus(code, message);
-//     std::string localPath;
-//     switch (code) {
-//         case 400:
-//             localPath = "assets/error_pages/400.html";
-//             break;
-//         case 403:
-//             localPath = "assets/error_pages/403.html";
-//             break;
-//         case 404:
-//             localPath = "assets/error_pages/404.html";
-//             break;
-//         case 405:
-//             localPath = "assets/error_pages/405.html";
-//             break;
-//         case 413:
-//             localPath = "assets/error_pages/413.html";
-//             break;
-//         case 500:
-//             localPath = "assets/error_pages/500.html";
-//             break;
-//         case 505:
-//             localPath = "assets/error_pages/505.html";
-//             break;
-//         default:
-//             localPath = "assets/error_pages/500.html";
-//     }
-
-//     std::ifstream file(localPath.c_str(), std::ios::binary);
-//     if (file) {
-//         std::stringstream buffer;
-//         buffer << file.rdbuf();
-//         setHeader("Content-Type", "text/html");
-//         setBody(buffer.str());
-//     } 
-//     else {
-//         std::stringstream ss;
-//         ss << "<!DOCTYPE html>\n<html>\n<head>\n";
-//         ss << "<title>Error " << code << "</title>\n";
-//         ss << "<style>body{font-family:Arial,sans-serif;background:#1a1a1a;color:#fff;";
-//         ss << "display:flex;justify-content:center;align-items:center;height:100vh;margin:0;}</style>\n";
-//         ss << "</head>\n<body>\n";
-//         ss << "<div><h1>Error " << code << "</h1>\n";
-//         ss << "<p>" << message << "</p></div>\n";
-//         ss << "</body>\n</html>";
-//         setHeader("Content-Type", "text/html");
-//         setBody(ss.str());
-//     }
-// }
 
 void HttpResponse::handleDirectoryListing(const std::string& path) {
     DIR *dir;
@@ -690,15 +603,6 @@ void HttpResponse::sendErrorPage(int code, const std::string& message) {
     }
 }
 
-// void HttpResponse::setRedirectResponse(const std::string& newLocation) {
-//     setStatus(301, "Moved Permanently");
-//     setHeader("Location", newLocation);
-//     std::string redirectPage = "<html><body><h1>301 Moved Permanently</h1>";
-//     redirectPage += "<p>The document has moved <a href=\"" + newLocation + "\">here</a>.</p></body></html>";
-//     setHeader("Content-Type", "text/html");
-//     setBody(redirectPage);
-// }
-
 void HttpResponse::sendFile() {
     std::string localPath;
 
@@ -709,39 +613,23 @@ void HttpResponse::sendFile() {
             else
                 localPath = this->_server.getRoot() + "index.html";
     }
-        // localPath = "assets/html/index.html";
-        // if (_server.getRoot().empty())
-        //     if (_server.getIndex().empty())
-        //         localPath = "assets/html/index.html";
-        //     else
-        //         localPath = "assets/html/" + _server.getIndex();
-        // else{
-        //     if (_server.getIndex().empty())
-        //         localPath = _server.getRoot() + "index.html";
-        //     else
-        //         localPath = _server.getRoot() + _server.getIndex();
-        // }
     else {
         size_t dotPos = _path.find_last_of('.');
         if (dotPos != std::string::npos) {
             std::string extension = _path.substr(dotPos);
             if (extension == ".png" || extension == ".jpg" || extension == ".jpeg") {
-                // localPath = "assets/html";
                 localPath = this->_server.getRoot();
                 localPath.append(_path);
             }
             else if(extension == ".py") {
-                // localPath = "assets/html";
                 localPath = this->_server.getRoot();
                 localPath.append(_path);}
               else {
                 localPath = this->_server.getRoot();
-                // localPath = "assets/html";
                 localPath.append(_path);
                 localPath.append(".html");
             }
         } else {
-            // localPath = "assets/html";
             localPath = this->_server.getRoot();
             if(_server.getLocationIndex(_path) != "")
                 localPath.append(_server.getLocationIndex(_path));

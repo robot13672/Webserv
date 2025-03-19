@@ -26,7 +26,5 @@ class Client
 
         //get
         time_t getLstMsg();
-        long getMaxBodySize();
-
         void updateTime();
 };

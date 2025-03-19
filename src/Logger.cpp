@@ -5,26 +5,7 @@
 Logger::Logger() : _file("")
 {
     _mode = CONSOLE_OUTPUT;
-    // std::cout << getCurrTime() << ": Logger ready in CONSOLE_OUTPUT_MODE" << std::endl;
 }
-
-// Logger::Logger(std::string file) : _file(file)
-// {
-//     _fileStream.open(_file.c_str(), std::ios::app);
-//     if(_fileStream)
-//     {
-//         _mode = FILE_OUTPUT;
-//         _fileStream << "-------------------------------------------------" << std::endl;
-//         _fileStream << "New session: " << getCurrTime() << std::endl;
-//         _fileStream << "-------------------------------------------------" << std::endl;
-//         std::cout << getCurrTime() <<": Logger ready in FILE_OUTPUT_MODE" << std::endl;
-//     }
-//     else
-//     {
-//         _mode = CONSOLE_OUTPUT;
-//         std::cout << getCurrTime() << ":Logger ready in CONSOLE_OUTPUT_MODE" << std::endl;
-//     }
-// }
 
 Logger::~Logger()
 {

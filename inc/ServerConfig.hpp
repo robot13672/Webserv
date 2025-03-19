@@ -21,11 +21,9 @@ class ServerConfig
         std::map<std::string, std::vector<std::string> >    _locationCgiPaths;
         std::map<std::string, std::vector<std::string> >    _locationCgiExts;
         std::map<std::string, bool>                         _locationAutoindex;
-        // std::map<int, std::string>                          _errorPages;
     public:
         ~ServerConfig();
         ServerConfig();
-        ServerConfig(std::string host, u_int16_t port);//для эмуляции отработанного конфиг файла
         ServerConfig(const ServerConfig &other); // Copy constructor
         ServerConfig& operator=(const ServerConfig &other); // Copy assignment operator
         //settings
@@ -52,7 +50,6 @@ class ServerConfig
         void setLocationAutoindexes(const std::map<std::string, bool> &locationAutoindex);
         void setMethods(const std::map<std::string, std::vector<std::string> > &methods);
         //GET
-        // in_addr_t getHost(void);
         std::string getHost();
         u_int16_t getPort(void);
         int getListenFd(void);

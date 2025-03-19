@@ -15,11 +15,6 @@ Client::Client(ServerConfig &serv)
 
 Client::~Client()
 {
-    // if (_sockfd > 0) 
-    // {
-    //     close(_sockfd);
-    //     _sockfd = -1;
-    // }
     _request.clear();
 }
 Client::Client(const Client &cop)

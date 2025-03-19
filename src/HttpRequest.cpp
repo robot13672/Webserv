@@ -77,7 +77,8 @@ bool HttpRequest::parseRequest(const std::vector<char>& buffer, size_t contentLe
     return parseBody(requestStream);
 }
 
-bool HttpRequest::parseRequestLine(const std::string& line) {
+bool HttpRequest::parseRequestLine(const std::string& line) 
+{
     std::istringstream lineStream(line);
     lineStream >> method;
     std::string fullUri;
@@ -103,7 +104,8 @@ bool HttpRequest::parseRequestLine(const std::string& line) {
     return true;
 }
 
-bool HttpRequest::parseHeaders(std::istringstream& requestStream) {
+bool HttpRequest::parseHeaders(std::istringstream& requestStream) 
+{
     std::string line;
     while (std::getline(requestStream, line) && line != "\r" && !line.empty()) 
     {
@@ -149,7 +151,8 @@ bool HttpRequest::parseHeaders(std::istringstream& requestStream) {
     return true;
 }
 
-bool HttpRequest::parseBody(std::istringstream& requestStream) {
+bool HttpRequest::parseBody(std::istringstream& requestStream) 
+{
     if(isChunked) 
     {
         return parseChunkedBody(requestStream);
@@ -188,7 +191,8 @@ void HttpRequest::parseFullChankedBody()
     size_t pos = 0;
     size_t totalSize = 0;
 
-    while (pos < body.length()) {
+    while (pos < body.length()) 
+    {
         // Находим конец строки с размером чанка
         size_t lineEnd = body.find("\r\n", pos);
         if (lineEnd == std::string::npos)
@@ -222,34 +226,41 @@ void HttpRequest::parseFullChankedBody()
     body = processedBody;
 }
 
-size_t HttpRequest::parseChunkSize(const std::string& line) {
+size_t HttpRequest::parseChunkSize(const std::string& line) 
+{
     size_t chunk_size = 0;
     std::istringstream hex_stream(line);
     hex_stream >> std::hex >> chunk_size;
     return chunk_size;
 }
 
-const std::string& HttpRequest::getMethod() const {
+const std::string& HttpRequest::getMethod() const 
+{
     return method;
 }
 
-const std::string& HttpRequest::getUri() const {
+const std::string& HttpRequest::getUri() const 
+{
     return uri;
 }
 
-const std::string& HttpRequest::getHttpVersion() const {
+const std::string& HttpRequest::getHttpVersion() const 
+{
     return httpVersion;
 }
 
-const std::map<std::string, std::string>& HttpRequest::getHeaders() const {
+const std::map<std::string, std::string>& HttpRequest::getHeaders() const 
+{
     return headers;
 }
 
-const std::string& HttpRequest::getBody() const {
+const std::string& HttpRequest::getBody() const 
+{
     return body;
 }
 
-std::string HttpRequest::getHeader(const std::string& key) const {
+std::string HttpRequest::getHeader(const std::string& key) const 
+{
     std::map<std::string, std::string>::const_iterator iter = headers.find(key);
     return (iter != headers.end()) ? iter->second : "";
 }
@@ -264,12 +275,15 @@ long HttpRequest::getContentLength()
     return contentLength;
 }
 
-bool HttpRequest::isValidMethod() const {
+bool HttpRequest::isValidMethod() const 
+{
     static const std::string validMethods[] = {"GET", "POST", "DELETE"};
     const size_t methodCount = sizeof(validMethods) / sizeof(validMethods[0]);
     
-    for (size_t i = 0; i < methodCount; ++i) {
-        if (method == validMethods[i]) {
+    for (size_t i = 0; i < methodCount; ++i) 
+    {
+        if (method == validMethods[i]) 
+        {
             return true;
         }
     }
@@ -289,15 +303,18 @@ void HttpRequest::isCgiRequest()
     isCGI = false;
 }
 
-bool HttpRequest::isValidUri() const {
+bool HttpRequest::isValidUri() const 
+{
     return !uri.empty() && uri[0] == '/';
 }
 
-bool HttpRequest::isValidHttpVersion() const {
+bool HttpRequest::isValidHttpVersion() const 
+{
     return httpVersion == "HTTP/1.1" || httpVersion == "HTTP/1.0";
 }
 
-void HttpRequest::setMaxBodySize(size_t size) {
+void HttpRequest::setMaxBodySize(size_t size) 
+{
     maxBodySize = size;
 }
 
@@ -306,10 +323,12 @@ bool HttpRequest::isChunkedTransfer() const
     return isChunked;
 }
 
-void HttpRequest::parseUri(const std::string& fullUri) {
+void HttpRequest::parseUri(const std::string& fullUri) 
+{
     size_t questionPos = fullUri.find('?');
     
-    if (questionPos == std::string::npos) {
+    if (questionPos == std::string::npos) 
+    {
         path = fullUri;
         return;
     }
@@ -321,36 +340,43 @@ void HttpRequest::parseUri(const std::string& fullUri) {
     size_t start = 0;
     size_t end;
     
-    while ((end = queryString.find('&', start)) != std::string::npos) {
+    while ((end = queryString.find('&', start)) != std::string::npos) 
+    {
         parseQueryParam(queryString.substr(start, end - start));
         start = end + 1;
     }
     parseQueryParam(queryString.substr(start));
 }
 
-void HttpRequest::parseQueryParam(const std::string& param) {
+void HttpRequest::parseQueryParam(const std::string& param) 
+{
     size_t equalPos = param.find('=');
-    if (equalPos != std::string::npos) {
+    if (equalPos != std::string::npos) 
+    {
         std::string key = param.substr(0, equalPos);
         std::string value = param.substr(equalPos + 1);
         queryParams[key] = value;
     }
 }
 
-const std::string& HttpRequest::getPath() const {
+const std::string& HttpRequest::getPath() const 
+{
     return path;
 }
 
-const std::map<std::string, std::string>& HttpRequest::getQueryParams() const {
+const std::map<std::string, std::string>& HttpRequest::getQueryParams() const 
+{
     return queryParams;
 }
 
-std::string HttpRequest::getQueryParam(const std::string& key) const {
+std::string HttpRequest::getQueryParam(const std::string& key) const 
+{
     std::map<std::string, std::string>::const_iterator it = queryParams.find(key);
     return (it != queryParams.end()) ? it->second : "";
 }
 
-bool HttpRequest::hasQueryParam(const std::string& key) const {
+bool HttpRequest::hasQueryParam(const std::string& key) const 
+{
     return queryParams.find(key) != queryParams.end();
 }
 

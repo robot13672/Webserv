@@ -1,17 +1,6 @@
 #include "../inc/ServerConfig.hpp"
 
 
-ServerConfig::ServerConfig(std::string host, u_int16_t port) //для эмуляции отработанного конфиг файла
-{
-    _host = inet_addr(host.c_str()); // Example IP address
-    if (_host == INADDR_NONE) {
-        std::cerr << "Error: Invalid IP address: " << host << std::endl;
-        exit(EXIT_FAILURE);
-    }
-    _port = port; // Example port number
-    _max_body_size = 200000000000;
-    // std::cout << _host << ":" << _port << "\n";
-}
 ServerConfig::ServerConfig() {}
 
 ServerConfig::~ServerConfig()
@@ -41,9 +30,9 @@ ServerConfig::ServerConfig(const ServerConfig &other)
 	_index = other._index;
 	_errorPages = other._errorPages;
 	_methods = other._methods;
-	_locationRoots = other._locationRoots;  // added roi 0301 
+	_locationRoots = other._locationRoots; 
 	_locationIndexes = other._locationIndexes;
-	_locationCgiPaths = other._locationCgiPaths; // roi 0302
+	_locationCgiPaths = other._locationCgiPaths;
 	_locationCgiExts = other._locationCgiExts;
 	_locationAutoindex = other._locationAutoindex;
 }
@@ -208,12 +197,6 @@ void ServerConfig::setMethods(const std::map<std::string, std::vector<std::strin
 {
     _methods = methods;
 }
-
-//GET
-// in_addr_t ServerConfig::getHost()
-// {
-//     return _host;
-// }
 
 std::string ServerConfig::getHost()
 {

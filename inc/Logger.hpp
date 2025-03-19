@@ -13,7 +13,6 @@ class Logger
 
     public:
         Logger();
-        // Logger(std::string file);
         ~Logger();
         std::string getCurrTime();
         void setFile(std::string _file);

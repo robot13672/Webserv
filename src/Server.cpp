@@ -25,7 +25,6 @@ void Server::setupServer(std::vector<ServerConfig> servers)
         else
             it->setupServer();
         logger.writeMessage("Server created with host:" + it->getHost() + ", port:" + uint16ToString(it->getPort()));
-        // std::cout << "Server created with host:" << it->getHost() << ", port:" << it->getPort() << std::endl; //Изменить это, и выводить через логер
     }
 }
 
@@ -91,8 +90,6 @@ void Server::startServers()// функция основного цикла се�
         }
         checkTimeout();
     }
-    
-
 }
 
 void Server::initializeServerConnections()//инициализация наборов дескрипторов, настройка серверных сокетов и обновление данных
@@ -153,7 +150,6 @@ void Server::readRequest(int &fd, Client &client)
     buffer[readedBytes] = '\0';
     processClientData(client,buffer, readedBytes);
     buffer.clear();
-    // logger.writeMessage("New message from " + intToString(fd));
     if(client._request.getStatus() || client._request.IsBodyTooBig())//Проверка на полное чтение запроса
     {
         if(client._request.isChunkedTransfer() && client._request.getContentLength() == 0)
@@ -163,74 +159,20 @@ void Server::readRequest(int &fd, Client &client)
         removeFromSet(fd, _request_fd_pool);
         addToSet(fd, _response_fd_pool);
     }
-    
-    // const int BUFFER_SIZE = 16384; // 16 kb
-    // char buffer[BUFFER_SIZE + 1];
-    // int readedBytes = read(fd, buffer, BUFFER_SIZE);
-    
-    // if(readedBytes == 0)
-    // {
-    //     handleClientDisconnection(fd);
-    //     return;
-    // }
-    // if(readedBytes < 0)
-    // {
-    //     handleReadError(fd);
-    //     return;
-    // }
-
-    // buffer[readedBytes] = '\0';
-
-    // std::string file = createNewTxt(buffer, readedBytes);
-    // int buff_fd = open(file.c_str(), O_RDONLY | O_APPEND);
-    // processClientData(client, buff_fd, readedBytes);
-    // memset(buffer, 0, readedBytes + 1);
-    // close(buff_fd);
-    // // if(!remove(file.c_str()))
-    // //     logger.writeMessage("Deleted file: " + file);
-    // logger.writeMessage("New message from " + intToString(fd));
-    // removeFromSet(fd, _request_fd_pool);
-    // addToSet(fd, _response_fd_pool);
 }
 
 void Server::sendResponse(int &fd, Client &client)
 {
-    int sendedBytes = 0;
-    //TODO поменять на реальный ответ
-    // std::string response = "HTTP/1.1 200 OK\r\n"
-    //        "Content-Type: text/plain\r\n"
-    //        "Content-Length: 13\r\n"
-    //        "\r\n"
-    //        "Hello, World!";
-    // //TODO: дописать все конструкторы копирования, что бы можно было обратиться к макс боти сайз
-    // // if(response.length() >= client._server.getMaxBodySize())
-    // //     std::cout << "Error 413";
-    // sendedBytes = write(fd, response.c_str(), response.length());
-
-    
+    int sendedBytes = 0; 
     client._response.setServer(client._server);
     client._response.setHttpVersion("HTTP/1.1");
-    
-    // Get the path and method from client's request
-    // response.setPath(client._request.getPath());    // Use setter instead of direct access
-    // response.setMethod(client._request.getMethod()); 
-
-
-    // Handle the request based on method and path
     client._response.handleResponse(client._request);
     if(client._request.IsBodyTooBig())
         client._request.setBodyTooBig(false);
     else
-        client._request.clear(); //очистка запроса
+        client._request.clear();
     
     logger.writeMessage("New message from " + intToString(fd) + " | " + "method: " + client._response.getMethod() + " | " + "path: " + client._response.getPath());
-    // Check max body size
-    // if (client._request.getContentLength() >= client._server.getMaxBodySize())
-    // {
-    //     response.setErrorResponse(413, "Payload Too Large");
-    // }
-    
-    // Convert response to string
     std::string responseStr = client._response.toString();
     sendedBytes = write(fd, responseStr.c_str(), responseStr.length());
     
@@ -260,9 +202,6 @@ void Server::processClientData(Client &client, std::vector<char> buffer, int rea
 {
     client.updateTime();
     client._request.parseRequest(buffer, readedBytes);
-    //TODO: отправить реквест который получили от клиента
-    
-    
 }
 void Server::closeFd(int fd)
 {
@@ -282,7 +221,6 @@ void Server::addNewConnect(ServerConfig &serv)
     struct sockaddr_in client_address;
     socklen_t client_address_len = sizeof(client_address);
     Client client(serv);
-    // char buff[INET_ADDRSTRLEN];//INET_ADDRSTRLEN - Это константа, она задает максимальную длину строки, необходимую для хранения IP-адреса в текстовом виде
     int client_sock = accept(serv.getListenFd(), (struct sockaddr *)&client_address, &client_address_len);
     client.setSocket(client_sock);
     if(client_sock == -1)
@@ -292,9 +230,9 @@ void Server::addNewConnect(ServerConfig &serv)
     }
     logger.writeMessage("New connection from: " + sockaddrToString(client_address) + ", with socket " + intToString(client_sock));
     addToSet(client_sock, _request_fd_pool);
-    if (fcntl(client_sock, F_SETFL, O_NONBLOCK)) //F_SETFL - указывает, то что я буду изменять флаги, O_NONBLOCK - флаг, который ставит сокет в неблокирующий режим
+    if (fcntl(client_sock, F_SETFL, O_NONBLOCK))
     {
-        std::cerr << "Error: Error with FCNL " << strerror(errno) << std::endl; // change to loger
+        std::cerr << "Error: Error with FCNL " << strerror(errno) << std::endl; 
         removeFromSet(client_sock, _request_fd_pool);
         close(client_sock);
         return;
@@ -326,7 +264,7 @@ void Server::checkTimeout()
     for(int i = 0; i <= _max_fd; i++)
     {
         if(_allClients.count(i))
-            if (time(NULL) - _allClients.find(i)->second.getLstMsg() > 6000)//TODO: изменить на 60
+            if (time(NULL) - _allClients.find(i)->second.getLstMsg() > 60)//TODO: изменить на 60
                 handleClientDisconnection(i);
     }
 }

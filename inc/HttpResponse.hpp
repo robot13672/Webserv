@@ -67,9 +67,7 @@ public:
 
     //ERORR
     void handleRequest();
-    void setErrorResponse(int code, const std::string& message);
     void sendErrorPage(int code, const std::string& message) ;
-    // void setRedirectResponse(const std::string& newLocation);
 
     bool isFileAccessible() ;
     std::string getCurrentTime();
@@ -85,12 +83,11 @@ public:
     void handleListFiles();
     void addCookie(const std::string& cookie);
     const std::vector<std::string>& getCookies() const;
+    void handleDirectoryListing(const std::string& path);
 
     std::string getMethod(void);
     std::string getPath(void);
 
-    // Добавьте в публичную часть класса HttpResponse:
-void handleDirectoryListing(const std::string& path);
 };
 
 #endif
