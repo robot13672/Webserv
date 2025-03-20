@@ -21,8 +21,8 @@ class ServerConfig
         std::map<std::string, std::vector<std::string> >    _locationCgiPaths;
         std::map<std::string, std::vector<std::string> >    _locationCgiExts;
         std::map<std::string, bool>                         _locationAutoindex;
-        std::map<std::string, std::string> _return; 
         public:
+        std::map<std::string, std::string> _return; 
         ~ServerConfig();
         ServerConfig();
         ServerConfig(const ServerConfig &other); // Copy constructor
@@ -70,6 +70,7 @@ class ServerConfig
         void parseErrorPage(const std::string& line);
         std::string getRoot();
         std::string getIndex();
+        std::string getReturn(std::string _path);
 
         
 };

@@ -99,8 +99,8 @@ try:
 <body>
     <div class="nav-buttons">
         <button class="button home-button" onclick="location.href='/'">HOME</button>
-        <button class="button cgi-button" onclick="location.href='/cgi'">CGI</button>
-        <button class="button calculator-button" onclick="location.href='/calculator'">CALCULATOR</button>
+        <button class="button cgi-button" onclick="location.href='/cgi.html'">CGI</button>
+        <button class="button calculator-button" onclick="location.href='/calculator.html'">CALCULATOR</button>
     </div>
     <div class="result">
         {num1} {operation} {num2} = {result}
@@ -162,8 +162,8 @@ except Exception as e:
 <body>
     <div class="nav-buttons">
         <button class="button home-button" onclick="location.href='/'">HOME</button>
-        <button class="button cgi-button" onclick="location.href='/cgi'">CGI</button>
-        <button class="button calculator-button" onclick="location.href='/calculator'">CALCULATOR</button>
+        <button class="button cgi-button" onclick="location.href='/cgi.html'">CGI</button>
+        <button class="button calculator-button" onclick="location.href='/calculator.html'">CALCULATOR</button>
     </div>
     <h1>Error: {str(e)}</h1>
 </body>

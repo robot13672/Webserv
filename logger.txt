@@ -15,76 +15,2241 @@ New session: 2025-03-19 18:28:22
 Session finish: 2025-03-19 18:29:03
 -------------------------------------------------
 -------------------------------------------------
-New session: 2025-03-20 17:31:07
+New session: 2025-03-20 12:41:32
 -------------------------------------------------
-2025-03-20 17:31:07: Successfully bound to host:127.0.0.1, port:8084 socket:4
-2025-03-20 17:31:07: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:41:32: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:41:32: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:41:35: New connection from: 127.0.0.1:57898, with socket 5
+2025-03-20 12:41:35: New connection from: 127.0.0.1:57912, with socket 6
+2025-03-20 12:41:35: New message from 5 | method: GET | path: /
+2025-03-20 12:41:35: New message from 5 | method: GET | path: /favicon.ico
+2025-03-20 12:41:36: New message from 5 | method: GET | path: /upload
+2025-03-20 12:41:37: New message from 5 | method: GET | path: /
+2025-03-20 12:41:46: New message from 5 | method: GET | path: /about
+2025-03-20 12:41:47: New message from 5 | method: GET | path: /
+2025-03-20 12:41:48: New message from 5 | method: GET | path: /media
+2025-03-20 12:41:49: New message from 5 | method: GET | path: /
+2025-03-20 12:42:36: webserv: Conenction with 6fd closed!
+2025-03-20 12:42:50: webserv: Conenction with 5fd closed!
 -------------------------------------------------
-New session: 2025-03-20 17:49:54
--------------------------------------------------
-2025-03-20 17:49:54: Successfully bound to host:127.0.0.1, port:8084 socket:4
-2025-03-20 17:49:54: Server created with host:127.0.0.1, port:8084
--------------------------------------------------
-New session: 2025-03-20 17:52:33
--------------------------------------------------
--------------------------------------------------
-New session: 2025-03-20 18:03:14
--------------------------------------------------
-2025-03-20 18:03:14: Successfully bound to host:127.0.0.1, port:8084 socket:4
-2025-03-20 18:03:14: Server created with host:127.0.0.1, port:8084
--------------------------------------------------
-New session: 2025-03-20 18:03:49
--------------------------------------------------
-2025-03-20 18:03:49: Successfully bound to host:127.0.0.1, port:8084 socket:4
-2025-03-20 18:03:49: Server created with host:127.0.0.1, port:8084
--------------------------------------------------
-New session: 2025-03-20 18:04:25
--------------------------------------------------
-2025-03-20 18:04:25: Successfully bound to host:127.0.0.1, port:8084 socket:4
-2025-03-20 18:04:25: Server created with host:127.0.0.1, port:8084
--------------------------------------------------
-New session: 2025-03-20 18:05:10
+Session finish: 2025-03-20 12:43:37
 -------------------------------------------------
 -------------------------------------------------
-New session: 2025-03-20 18:11:11
+New session: 2025-03-20 12:43:46
+-------------------------------------------------
+2025-03-20 12:43:46: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:43:46: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:43:48: New connection from: 127.0.0.1:45226, with socket 5
+2025-03-20 12:43:48: New connection from: 127.0.0.1:45232, with socket 6
+2025-03-20 12:43:48: New message from 5 | method: GET | path: /
+2025-03-20 12:43:49: New message from 5 | method: GET | path: /upload
+2025-03-20 12:43:50: New message from 5 | method: GET | path: /
+2025-03-20 12:43:51: New message from 5 | method: GET | path: /media
+2025-03-20 12:43:51: New message from 5 | method: GET | path: /ikhristi.jpg
+2025-03-20 12:43:51: New connection from: 127.0.0.1:45202, with socket 7
+2025-03-20 12:43:51: New message from 6 | method: GET | path: /rkrechun.png
+2025-03-20 12:43:51: New message from 7 | method: GET | path: /oruban.jpeg
+2025-03-20 12:43:52: New message from 7 | method: GET | path: /
+-------------------------------------------------
+Session finish: 2025-03-20 12:44:09
 -------------------------------------------------
 -------------------------------------------------
-New session: 2025-03-20 18:11:37
+New session: 2025-03-20 12:44:11
 -------------------------------------------------
-2025-03-20 18:11:37: Successfully bound to host:127.0.0.1, port:8084 socket:4
-2025-03-20 18:11:37: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:44:11: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:44:11: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:44:13: New connection from: 127.0.0.1:41540, with socket 5
+2025-03-20 12:44:13: New connection from: 127.0.0.1:41552, with socket 6
+2025-03-20 12:44:13: New message from 5 | method: GET | path: /
+2025-03-20 12:44:15: New message from 5 | method: GET | path: /cookie.html
 -------------------------------------------------
-New session: 2025-03-20 18:16:34
--------------------------------------------------
-2025-03-20 18:16:34: Successfully bound to host:127.0.0.1, port:8084 socket:4
-2025-03-20 18:16:34: Server created with host:127.0.0.1, port:8084
--------------------------------------------------
-Session finish: 2025-03-20 18:16:35
--------------------------------------------------
--------------------------------------------------
-New session: 2025-03-20 18:16:38
--------------------------------------------------
-2025-03-20 18:16:38: Successfully bound to host:127.0.0.1, port:8084 socket:4
-2025-03-20 18:16:38: Server created with host:127.0.0.1, port:8084
-2025-03-20 18:16:42: New connection from: 127.0.0.1:45136, with socket 5
-2025-03-20 18:16:42: New connection from: 127.0.0.1:45142, with socket 6
-2025-03-20 18:16:42: New message from 5 | method: GET | path: /upload
-2025-03-20 18:16:43: New message from 5 | method: GET | path: /favicon.ico
-2025-03-20 18:17:03: New message from 5 | method: GET | path: /
-2025-03-20 18:17:06: New message from 5 | method: GET | path: /media
-2025-03-20 18:17:10: New message from 5 | method: GET | path: /
-2025-03-20 18:17:11: New message from 5 | method: GET | path: /
-2025-03-20 18:17:12: New message from 5 | method: GET | path: /list
-2025-03-20 18:17:15: New message from 5 | method: GET | path: /cgi
-2025-03-20 18:17:17: New message from 5 | method: GET | path: /about
-2025-03-20 18:17:20: New message from 5 | method: GET | path: /media
-2025-03-20 18:17:43: webserv: Conenction with 6fd closed!
-2025-03-20 18:18:21: webserv: Conenction with 5fd closed!
--------------------------------------------------
-Session finish: 2025-03-20 18:55:17
+Session finish: 2025-03-20 12:44:32
 -------------------------------------------------
 -------------------------------------------------
-New session: 2025-03-20 18:57:17
+New session: 2025-03-20 12:44:33
 -------------------------------------------------
-2025-03-20 18:57:17: Successfully bound to host:127.0.0.1, port:8084 socket:4
-2025-03-20 18:57:17: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:44:33: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:44:33: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:44:36: New connection from: 127.0.0.1:53568, with socket 5
+2025-03-20 12:44:36: New connection from: 127.0.0.1:53576, with socket 6
+2025-03-20 12:44:36: New message from 5 | method: GET | path: /
+2025-03-20 12:44:37: New message from 5 | method: GET | path: /cgi
+-------------------------------------------------
+Session finish: 2025-03-20 12:45:04
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 12:45:19
+-------------------------------------------------
+2025-03-20 12:45:19: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:45:19: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:45:20: New connection from: 127.0.0.1:54386, with socket 5
+2025-03-20 12:45:20: New connection from: 127.0.0.1:54394, with socket 6
+2025-03-20 12:45:20: New message from 5 | method: GET | path: /
+2025-03-20 12:45:24: New message from 5 | method: GET | path: /calculator.html
+-------------------------------------------------
+New session: 2025-03-20 12:45:40
+-------------------------------------------------
+2025-03-20 12:45:40: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:45:40: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:45:44: New connection from: 127.0.0.1:45418, with socket 5
+2025-03-20 12:45:44: New connection from: 127.0.0.1:45430, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 12:52:58
+-------------------------------------------------
+2025-03-20 12:52:58: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:52:58: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:53:01: New connection from: 127.0.0.1:42464, with socket 5
+2025-03-20 12:53:01: New connection from: 127.0.0.1:42468, with socket 6
+2025-03-20 12:53:01: New message from 5 | method: GET | path: /
+2025-03-20 12:53:02: New message from 5 | method: GET | path: /about.html
+-------------------------------------------------
+Session finish: 2025-03-20 12:53:14
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 12:53:21
+-------------------------------------------------
+2025-03-20 12:53:21: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:53:21: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:53:26: New connection from: 127.0.0.1:51316, with socket 5
+2025-03-20 12:53:26: New connection from: 127.0.0.1:51324, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 12:54:28
+-------------------------------------------------
+2025-03-20 12:54:28: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:54:28: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:54:29: New connection from: 127.0.0.1:35900, with socket 5
+2025-03-20 12:54:29: New connection from: 127.0.0.1:35914, with socket 6
+2025-03-20 12:54:29: New message from 5 | method: GET | path: /about.html
+2025-03-20 12:54:30: New message from 5 | method: GET | path: /about.html
+2025-03-20 12:54:32: New message from 5 | method: GET | path: /cookie.html
+-------------------------------------------------
+Session finish: 2025-03-20 12:54:57
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 12:55:10
+-------------------------------------------------
+2025-03-20 12:55:10: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:55:10: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:55:13: New connection from: 127.0.0.1:52872, with socket 5
+2025-03-20 12:55:13: New connection from: 127.0.0.1:52882, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 12:56:13
+-------------------------------------------------
+2025-03-20 12:56:13: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:56:13: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:56:16: New connection from: 127.0.0.1:36686, with socket 5
+2025-03-20 12:56:16: New connection from: 127.0.0.1:36700, with socket 6
+2025-03-20 12:56:16: New message from 6 | method: GET | path: /ikhristi.jpg
+2025-03-20 12:56:17: New message from 6 | method: GET | path: /cookie.html
+2025-03-20 12:56:20: New message from 6 | method: GET | path: /cookie.html
+2025-03-20 12:56:22: New message from 6 | method: GET | path: /index.html
+2025-03-20 12:56:26: New message from 6 | method: GET | path: /ikhristi.jpg
+-------------------------------------------------
+Session finish: 2025-03-20 12:56:33
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 12:56:38
+-------------------------------------------------
+2025-03-20 12:56:38: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:56:38: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:56:40: New connection from: 127.0.0.1:38540, with socket 5
+2025-03-20 12:56:40: New connection from: 127.0.0.1:38548, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 12:57:11
+-------------------------------------------------
+2025-03-20 12:57:11: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:57:11: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:57:13: New connection from: 127.0.0.1:33518, with socket 5
+2025-03-20 12:57:13: New connection from: 127.0.0.1:33532, with socket 6
+2025-03-20 12:57:48: New message from 5 | method: GET | path: /cookie.html
+-------------------------------------------------
+New session: 2025-03-20 12:58:00
+-------------------------------------------------
+2025-03-20 12:58:00: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:58:00: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:58:00: New connection from: 127.0.0.1:49276, with socket 5
+-------------------------------------------------
+New session: 2025-03-20 12:59:25
+-------------------------------------------------
+2025-03-20 12:59:25: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 12:59:25: Server created with host:127.0.0.1, port:8084
+2025-03-20 12:59:28: New connection from: 127.0.0.1:60608, with socket 5
+2025-03-20 12:59:28: New connection from: 127.0.0.1:60620, with socket 6
+2025-03-20 12:59:28: New message from 5 | method: GET | path: /cookie.html
+2025-03-20 12:59:30: New message from 5 | method: GET | path: /index.html
+2025-03-20 12:59:35: New message from 5 | method: GET | path: /ikhristi.jpg
+2025-03-20 12:59:38: New message from 5 | method: GET | path: /about.html
+2025-03-20 12:59:39: New message from 5 | method: GET | path: /
+2025-03-20 13:00:29: webserv: Conenction with 6fd closed!
+2025-03-20 13:00:40: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 13:00:40
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 13:00:46
+-------------------------------------------------
+2025-03-20 13:00:46: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 13:00:46: Server created with host:127.0.0.1, port:8084
+2025-03-20 13:00:47: New connection from: 127.0.0.1:36676, with socket 5
+2025-03-20 13:00:47: New message from 5 | method: GET | path: /
+2025-03-20 13:00:47: New connection from: 127.0.0.1:36684, with socket 6
+2025-03-20 13:00:48: New message from 5 | method: GET | path: /calculator.html
+2025-03-20 13:00:49: New message from 5 | method: GET | path: /
+2025-03-20 13:00:49: New message from 5 | method: GET | path: /cookie.html
+2025-03-20 13:00:50: New message from 5 | method: GET | path: /
+2025-03-20 13:00:51: New message from 5 | method: GET | path: /ikhristi.jpg
+2025-03-20 13:00:53: New message from 5 | method: GET | path: /upload.html
+2025-03-20 13:00:55: New message from 5 | method: GET | path: /oruban.jpeg
+2025-03-20 13:01:15: New message from 5 | method: GET | path: /list.html
+2025-03-20 13:01:15: New message from 5 | method: GET | path: /list-files
+2025-03-20 13:01:21: New message from 5 | method: GET | path: /rkrechun.png
+2025-03-20 13:01:48: webserv: Conenction with 6fd closed!
+2025-03-20 13:02:22: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 13:04:30
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 13:04:36
+-------------------------------------------------
+2025-03-20 13:04:36: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 13:04:36: Server created with host:127.0.0.1, port:8084
+-------------------------------------------------
+Session finish: 2025-03-20 13:04:38
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 13:04:41
+-------------------------------------------------
+2025-03-20 13:04:41: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 13:04:41: Server created with host:127.0.0.1, port:8084
+2025-03-20 13:04:43: New connection from: 127.0.0.1:36764, with socket 5
+2025-03-20 13:04:43: New connection from: 127.0.0.1:36766, with socket 6
+2025-03-20 13:04:44: New message from 5 | method: GET | path: /about.html
+2025-03-20 13:04:46: New message from 5 | method: GET | path: /
+2025-03-20 13:04:47: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 13:04:47: New message from 5 | method: GET | path: /
+2025-03-20 13:04:49: New message from 5 | method: GET | path: /index.html
+-------------------------------------------------
+Session finish: 2025-03-20 13:04:50
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 13:13:17
+-------------------------------------------------
+2025-03-20 13:13:17: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 13:13:17: Server created with host:127.0.0.1, port:8084
+2025-03-20 13:13:22: New connection from: 127.0.0.1:52936, with socket 5
+2025-03-20 13:13:22: New connection from: 127.0.0.1:52952, with socket 6
+2025-03-20 13:13:22: New message from 5 | method: GET | path: /
+2025-03-20 13:13:52: New message from 5 | method: GET | path: /calculator.html
+2025-03-20 13:13:55: New message from 5 | method: GET | path: /list.html
+2025-03-20 13:13:55: New message from 5 | method: GET | path: /list-files
+2025-03-20 13:14:23: webserv: Conenction with 6fd closed!
+2025-03-20 13:14:56: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 13:30:53
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 17:22:33
+-------------------------------------------------
+2025-03-20 17:22:33: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:22:33: Server created with host:127.0.0.1, port:8084
+-------------------------------------------------
+Session finish: 2025-03-20 17:23:12
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 17:23:13
+-------------------------------------------------
+2025-03-20 17:23:13: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:23:13: Server created with host:127.0.0.1, port:8084
+2025-03-20 17:23:15: New connection from: 127.0.0.1:43570, with socket 5
+2025-03-20 17:23:15: New connection from: 127.0.0.1:43586, with socket 6
+2025-03-20 17:23:15: New message from 5 | method: GET | path: /
+2025-03-20 17:23:18: New message from 5 | method: GET | path: /dir/
+2025-03-20 17:23:24: New message from 5 | method: GET | path: /about.html
+2025-03-20 17:23:28: New message from 5 | method: GET | path: /
+2025-03-20 17:23:30: New message from 5 | method: GET | path: /ikhristi.jpg
+2025-03-20 17:23:32: New message from 5 | method: GET | path: /oruban.jpeg
+2025-03-20 17:23:34: New message from 5 | method: GET | path: /dir/
+2025-03-20 17:24:16: webserv: Conenction with 6fd closed!
+2025-03-20 17:24:35: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 17:25:21
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 17:25:35
+-------------------------------------------------
+2025-03-20 17:25:35: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:25:35: Server created with host:127.0.0.1, port:8084
+2025-03-20 17:25:37: New connection from: 127.0.0.1:41142, with socket 5
+2025-03-20 17:25:37: New connection from: 127.0.0.1:41144, with socket 6
+2025-03-20 17:25:37: New message from 5 | method: GET | path: /
+2025-03-20 17:25:38: New message from 5 | method: GET | path: /dir/
+-------------------------------------------------
+Session finish: 2025-03-20 17:25:50
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 17:25:53
+-------------------------------------------------
+2025-03-20 17:25:53: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:25:53: Server created with host:127.0.0.1, port:8084
+2025-03-20 17:25:56: New connection from: 127.0.0.1:48936, with socket 5
+2025-03-20 17:25:56: New connection from: 127.0.0.1:48950, with socket 6
+2025-03-20 17:25:56: New message from 5 | method: GET | path: /
+2025-03-20 17:26:15: New message from 5 | method: GET | path: /list.html
+2025-03-20 17:26:15: New message from 5 | method: GET | path: /list-files
+2025-03-20 17:26:57: webserv: Conenction with 6fd closed!
+2025-03-20 17:27:03: New connection from: 127.0.0.1:39552, with socket 6
+2025-03-20 17:27:03: New message from 5 | method: GET | path: /dir/
+2025-03-20 17:27:08: New message from 5 | method: GET | path: /dir/
+2025-03-20 17:28:04: webserv: Conenction with 6fd closed!
+2025-03-20 17:28:09: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 17:31:32
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 17:31:55
+-------------------------------------------------
+2025-03-20 17:31:55: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:31:55: Server created with host:127.0.0.1, port:8084
+2025-03-20 17:31:56: New connection from: 127.0.0.1:45736, with socket 5
+2025-03-20 17:31:56: New connection from: 127.0.0.1:45740, with socket 6
+2025-03-20 17:31:56: New message from 5 | method: GET | path: /
+-------------------------------------------------
+Session finish: 2025-03-20 17:31:58
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 17:32:06
+-------------------------------------------------
+2025-03-20 17:32:06: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:32:06: Server created with host:127.0.0.1, port:8084
+2025-03-20 17:32:08: New connection from: 127.0.0.1:59910, with socket 5
+2025-03-20 17:32:08: New connection from: 127.0.0.1:59926, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 17:33:15
+-------------------------------------------------
+2025-03-20 17:33:15: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:33:15: Server created with host:127.0.0.1, port:8084
+2025-03-20 17:33:17: New connection from: 127.0.0.1:47924, with socket 5
+2025-03-20 17:33:17: New connection from: 127.0.0.1:47928, with socket 6
+2025-03-20 17:33:18: New message from 6 | method: GET | path: /dir/
+-------------------------------------------------
+Session finish: 2025-03-20 17:33:26
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 17:33:26
+-------------------------------------------------
+2025-03-20 17:33:26: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:33:26: Server created with host:127.0.0.1, port:8084
+2025-03-20 17:33:32: New connection from: 127.0.0.1:54360, with socket 5
+2025-03-20 17:33:32: New connection from: 127.0.0.1:54362, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 17:35:09
+-------------------------------------------------
+2025-03-20 17:35:09: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:35:09: Server created with host:127.0.0.1, port:8084
+2025-03-20 17:35:11: New connection from: 127.0.0.1:44622, with socket 5
+2025-03-20 17:35:11: New connection from: 127.0.0.1:44634, with socket 6
+2025-03-20 17:35:12: New message from 5 | method: GET | path: /dir/
+2025-03-20 17:36:12: webserv: Conenction with 6fd closed!
+2025-03-20 17:36:13: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 17:37:54
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 17:38:11
+-------------------------------------------------
+2025-03-20 17:38:11: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:38:11: Server created with host:127.0.0.1, port:8084
+2025-03-20 17:38:13: New connection from: 127.0.0.1:37356, with socket 5
+2025-03-20 17:38:13: New connection from: 127.0.0.1:37360, with socket 6
+2025-03-20 17:38:13: New message from 5 | method: GET | path: /
+2025-03-20 17:38:13: New message from 5 | method: GET | path: /calculator.html
+2025-03-20 17:38:14: New message from 5 | method: GET | path: /
+2025-03-20 17:38:15: New message from 5 | method: GET | path: /ikhristi.jpg
+2025-03-20 17:38:17: New message from 5 | method: GET | path: /dir/
+2025-03-20 17:38:44: webserv: Conenction with 5fd closed!
+2025-03-20 17:38:44: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 17:43:49
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 17:43:58
+-------------------------------------------------
+2025-03-20 17:43:58: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:43:58: Server created with host:127.0.0.1, port:8084
+2025-03-20 17:44:00: New connection from: 127.0.0.1:50518, with socket 5
+2025-03-20 17:44:00: New connection from: 127.0.0.1:50530, with socket 6
+2025-03-20 17:44:00: New message from 5 | method: GET | path: /
+2025-03-20 17:44:01: New message from 5 | method: GET | path: /about.html
+2025-03-20 17:44:02: New message from 5 | method: GET | path: /
+2025-03-20 17:44:03: New message from 5 | method: GET | path: /cookie.html
+2025-03-20 17:44:04: New message from 5 | method: GET | path: /
+2025-03-20 17:44:04: New message from 5 | method: GET | path: /dir/
+2025-03-20 17:45:01: webserv: Conenction with 6fd closed!
+2025-03-20 17:45:05: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 17:46:07
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 17:46:10
+-------------------------------------------------
+2025-03-20 17:46:10: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:46:10: Server created with host:127.0.0.1, port:8084
+2025-03-20 17:46:12: New connection from: 127.0.0.1:37222, with socket 5
+2025-03-20 17:46:12: New connection from: 127.0.0.1:37234, with socket 6
+2025-03-20 17:46:12: New message from 5 | method: GET | path: /
+2025-03-20 17:46:13: New message from 5 | method: GET | path: /dir/
+-------------------------------------------------
+Session finish: 2025-03-20 17:46:19
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 17:49:21
+-------------------------------------------------
+2025-03-20 17:49:21: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:49:21: Server created with host:127.0.0.1, port:8084
+2025-03-20 17:49:24: New connection from: 127.0.0.1:52458, with socket 5
+2025-03-20 17:49:24: New connection from: 127.0.0.1:52470, with socket 6
+2025-03-20 17:49:24: New message from 5 | method: GET | path: /
+2025-03-20 17:49:25: New message from 5 | method: GET | path: /dir/
+-------------------------------------------------
+Session finish: 2025-03-20 17:50:23
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 17:50:26
+-------------------------------------------------
+2025-03-20 17:50:26: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:50:26: Server created with host:127.0.0.1, port:8084
+2025-03-20 17:50:28: New connection from: 127.0.0.1:50558, with socket 5
+2025-03-20 17:50:28: New connection from: 127.0.0.1:50568, with socket 6
+2025-03-20 17:50:28: New message from 5 | method: GET | path: /dir/
+2025-03-20 17:50:33: New message from 5 | method: GET | path: /
+2025-03-20 17:50:37: New message from 5 | method: GET | path: /cookie.html
+2025-03-20 17:50:44: webserv: Conenction with 5fd closed!
+2025-03-20 17:50:44: webserv: Conenction with 6fd closed!
+2025-03-20 17:50:53: New connection from: 127.0.0.1:38750, with socket 5
+2025-03-20 17:50:53: New connection from: 127.0.0.1:38752, with socket 6
+2025-03-20 17:50:53: New message from 5 | method: GET | path: /
+2025-03-20 17:50:56: New message from 5 | method: GET | path: /rkrechun.png
+2025-03-20 17:51:36: New message from 5 | method: GET | path: /dir/
+2025-03-20 17:51:37: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 17:51:50: New message from 6 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 17:51:50: webserv: Conenction with 5fd closed!
+2025-03-20 17:51:51: webserv: Conenction with 6fd closed!
+2025-03-20 17:51:52: New connection from: 127.0.0.1:59428, with socket 5
+2025-03-20 17:51:52: New connection from: 127.0.0.1:59434, with socket 6
+2025-03-20 17:51:52: New message from 5 | method: GET | path: /dir/list.html
+2025-03-20 17:51:52: New message from 5 | method: GET | path: /list-files
+2025-03-20 17:51:59: New message from 5 | method: GET | path: /
+-------------------------------------------------
+Session finish: 2025-03-20 17:52:41
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 17:53:42
+-------------------------------------------------
+2025-03-20 17:53:42: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 17:53:42: Server created with host:127.0.0.1, port:8084
+2025-03-20 17:53:43: New connection from: 127.0.0.1:37136, with socket 5
+2025-03-20 17:53:43: New connection from: 127.0.0.1:37142, with socket 6
+2025-03-20 17:53:43: New message from 5 | method: GET | path: /dir/
+2025-03-20 17:53:45: New message from 5 | method: GET | path: /dir/6_2_gif.gif
+2025-03-20 17:53:50: New message from 5 | method: GET | path: /dir/
+2025-03-20 17:53:51: New message from 5 | method: GET | path: /dir/list.html
+2025-03-20 17:53:51: New message from 5 | method: GET | path: /list-files
+2025-03-20 17:53:52: New message from 5 | method: GET | path: /
+2025-03-20 17:53:53: New message from 5 | method: GET | path: /dir/
+2025-03-20 17:53:54: New message from 5 | method: GET | path: /dir/6_2_gif.gif
+2025-03-20 17:54:14: New message from 5 | method: GET | path: /
+2025-03-20 17:54:15: New message from 5 | method: GET | path: /dir/
+2025-03-20 17:54:16: New message from 5 | method: GET | path: /dir/logger.txt
+2025-03-20 17:54:23: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 17:54:44: webserv: Conenction with 6fd closed!
+2025-03-20 17:55:23: webserv: Conenction with 5fd closed!
+2025-03-20 17:55:30: New connection from: 127.0.0.1:43012, with socket 5
+2025-03-20 17:55:30: New connection from: 127.0.0.1:43022, with socket 6
+2025-03-20 17:55:30: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 17:56:31: webserv: Conenction with 5fd closed!
+2025-03-20 17:56:31: webserv: Conenction with 6fd closed!
+2025-03-20 18:02:03: New connection from: 127.0.0.1:33184, with socket 5
+2025-03-20 18:02:03: New connection from: 127.0.0.1:33192, with socket 6
+2025-03-20 18:02:05: New message from 5 | method: GET | path: /
+2025-03-20 18:02:06: New message from 5 | method: GET | path: /dir/
+2025-03-20 18:02:07: New message from 5 | method: GET | path: /dir/2mb.pdf
+2025-03-20 18:02:34: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:02:51: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 18:03:00
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:03:41
+-------------------------------------------------
+2025-03-20 18:03:41: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:03:41: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:03:43: New connection from: 127.0.0.1:48214, with socket 5
+2025-03-20 18:03:43: New connection from: 127.0.0.1:48218, with socket 6
+2025-03-20 18:03:43: New message from 5 | method: GET | path: /
+2025-03-20 18:03:44: New message from 5 | method: GET | path: /dir/
+2025-03-20 18:03:45: New message from 5 | method: GET | path: /dir/2mb.pdf
+2025-03-20 18:03:47: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:03:54: New message from 5 | method: GET | path: /dir/6_2_gif.gif
+2025-03-20 18:03:55: New message from 5 | method: GET | path: /dir/list.html
+2025-03-20 18:03:55: New message from 5 | method: GET | path: /list-files
+2025-03-20 18:03:56: New message from 5 | method: GET | path: /
+2025-03-20 18:03:58: New message from 5 | method: GET | path: /ikhristi.jpg
+2025-03-20 18:03:59: New message from 5 | method: GET | path: /oruban.jpeg
+2025-03-20 18:04:10: New message from 5 | method: GET | path: /rkrechun.png
+2025-03-20 18:04:11: New message from 5 | method: GET | path: /upload.html
+2025-03-20 18:04:44: webserv: Conenction with 6fd closed!
+2025-03-20 18:05:12: webserv: Conenction with 5fd closed!
+2025-03-20 18:06:25: New connection from: 127.0.0.1:36458, with socket 5
+2025-03-20 18:06:25: New connection from: 127.0.0.1:36460, with socket 6
+2025-03-20 18:06:25: New message from 5 | method: GET | path: /calculator.html
+2025-03-20 18:06:39: New message from 5 | method: GET | path: /
+2025-03-20 18:06:40: New message from 5 | method: GET | path: /dir/
+2025-03-20 18:06:44: New message from 5 | method: GET | path: /dir/2mb.pdf
+2025-03-20 18:06:49: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:06:53: New message from 6 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:06:53: webserv: Conenction with 5fd closed!
+2025-03-20 18:06:55: New connection from: 127.0.0.1:51696, with socket 5
+2025-03-20 18:06:55: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:06:55: webserv: Conenction with 6fd closed!
+2025-03-20 18:06:56: New connection from: 127.0.0.1:51710, with socket 6
+2025-03-20 18:06:56: New message from 6 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:06:56: webserv: Conenction with 5fd closed!
+2025-03-20 18:06:57: New connection from: 127.0.0.1:51724, with socket 5
+2025-03-20 18:06:58: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:06:58: webserv: Conenction with 6fd closed!
+2025-03-20 18:07:07: New connection from: 127.0.0.1:33910, with socket 6
+2025-03-20 18:07:07: New message from 6 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:07:07: webserv: Conenction with 5fd closed!
+2025-03-20 18:07:13: New connection from: 127.0.0.1:36408, with socket 5
+2025-03-20 18:07:14: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:07:14: webserv: Conenction with 6fd closed!
+2025-03-20 18:07:14: New connection from: 127.0.0.1:36414, with socket 6
+2025-03-20 18:07:15: New message from 6 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:07:15: webserv: Conenction with 5fd closed!
+2025-03-20 18:07:16: New connection from: 127.0.0.1:36430, with socket 5
+2025-03-20 18:07:16: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:07:16: webserv: Conenction with 6fd closed!
+2025-03-20 18:07:17: New connection from: 127.0.0.1:36432, with socket 6
+2025-03-20 18:07:17: New message from 6 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:07:17: webserv: Conenction with 5fd closed!
+2025-03-20 18:07:19: New connection from: 127.0.0.1:36446, with socket 5
+2025-03-20 18:07:19: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:07:19: webserv: Conenction with 6fd closed!
+2025-03-20 18:07:23: New connection from: 127.0.0.1:57504, with socket 6
+2025-03-20 18:07:23: New message from 6 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:07:23: webserv: Conenction with 5fd closed!
+2025-03-20 18:07:27: webserv: Conenction with 6fd closed!
+2025-03-20 18:07:28: New connection from: 127.0.0.1:57518, with socket 5
+2025-03-20 18:07:28: New connection from: 127.0.0.1:57528, with socket 6
+2025-03-20 18:07:28: New message from 5 | method: GET | path: /dir/
+2025-03-20 18:07:30: New message from 5 | method: GET | path: /dir/2mb.pdf
+2025-03-20 18:07:33: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:07:35: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 18:07:38
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:08:34
+-------------------------------------------------
+2025-03-20 18:08:34: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:08:34: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:08:37: New connection from: 127.0.0.1:59982, with socket 5
+2025-03-20 18:08:37: New connection from: 127.0.0.1:59990, with socket 6
+2025-03-20 18:08:37: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:08:39: webserv: Conenction with 5fd closed!
+2025-03-20 18:08:40: New connection from: 127.0.0.1:59996, with socket 5
+2025-03-20 18:08:40: New message from 6 | method: GET | path: /dir/2mb.pdf
+2025-03-20 18:08:42: New message from 6 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:08:44: webserv: Conenction with 6fd closed!
+2025-03-20 18:08:47: New connection from: 127.0.0.1:34904, with socket 6
+2025-03-20 18:08:47: New message from 5 | method: GET | path: /dir/list.html
+2025-03-20 18:08:47: New message from 5 | method: GET | path: /list-files
+2025-03-20 18:08:48: New message from 5 | method: GET | path: /
+2025-03-20 18:08:48: webserv: Conenction with 5fd closed!
+2025-03-20 18:08:48: webserv: Conenction with 6fd closed!
+2025-03-20 18:08:49: New connection from: 127.0.0.1:34908, with socket 5
+2025-03-20 18:08:49: New connection from: 127.0.0.1:34924, with socket 6
+2025-03-20 18:08:49: New message from 5 | method: GET | path: /dir/
+2025-03-20 18:08:50: New message from 5 | method: GET | path: /dir/2mb.pdf
+2025-03-20 18:08:53: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:09:01: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:09:06: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:09:09: New message from 5 | method: GET | path: /dir/2mb.pdf
+2025-03-20 18:09:11: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:09:28: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:09:31: New message from 5 | method: GET | path: /dir/2mb.pdf
+2025-03-20 18:09:33: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:09:50: webserv: Conenction with 6fd closed!
+2025-03-20 18:10:29: New connection from: 127.0.0.1:51456, with socket 6
+2025-03-20 18:10:29: New message from 5 | method: GET | path: /dir/logger.txt
+2025-03-20 18:10:31: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:10:33: New message from 5 | method: GET | path: /
+2025-03-20 18:10:34: New message from 5 | method: GET | path: /calculator.html
+2025-03-20 18:10:35: New message from 5 | method: GET | path: /
+2025-03-20 18:10:36: New message from 5 | method: GET | path: /dir/
+2025-03-20 18:10:37: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:10:40: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:10:51: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+-------------------------------------------------
+Session finish: 2025-03-20 18:11:21
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:11:49
+-------------------------------------------------
+2025-03-20 18:11:49: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:11:49: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:11:52: New connection from: 127.0.0.1:56450, with socket 5
+2025-03-20 18:11:52: New connection from: 127.0.0.1:56462, with socket 6
+2025-03-20 18:11:52: New message from 5 | method: GET | path: /dir/
+2025-03-20 18:11:57: webserv: Conenction with 5fd closed!
+2025-03-20 18:11:59: New connection from: 127.0.0.1:57460, with socket 5
+2025-03-20 18:11:59: New message from 6 | method: GET | path: /dir/
+-------------------------------------------------
+Session finish: 2025-03-20 18:12:00
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:12:08
+-------------------------------------------------
+2025-03-20 18:12:08: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:12:08: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:12:10: New connection from: 127.0.0.1:33622, with socket 5
+2025-03-20 18:12:10: New connection from: 127.0.0.1:33638, with socket 6
+2025-03-20 18:12:10: New message from 6 | method: GET | path: /dir/
+2025-03-20 18:12:12: webserv: Conenction with 6fd closed!
+2025-03-20 18:12:13: New connection from: 127.0.0.1:33648, with socket 6
+2025-03-20 18:12:13: New message from 5 | method: GET | path: /dir/
+-------------------------------------------------
+Session finish: 2025-03-20 18:12:32
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:12:37
+-------------------------------------------------
+2025-03-20 18:12:37: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:12:37: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:12:38: New connection from: 127.0.0.1:40364, with socket 5
+2025-03-20 18:12:38: New connection from: 127.0.0.1:40380, with socket 6
+2025-03-20 18:12:38: New message from 5 | method: GET | path: /dir/
+2025-03-20 18:12:39: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:12:41: webserv: Conenction with 5fd closed!
+2025-03-20 18:12:43: New connection from: 127.0.0.1:40392, with socket 5
+2025-03-20 18:12:43: New message from 6 | method: GET | path: /dir/6_2_gif.gif
+2025-03-20 18:12:46: New message from 6 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:12:48: webserv: Conenction with 6fd closed!
+2025-03-20 18:12:52: New connection from: 127.0.0.1:36398, with socket 6
+2025-03-20 18:12:52: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:12:54: webserv: Conenction with 5fd closed!
+2025-03-20 18:13:08: New connection from: 127.0.0.1:41642, with socket 5
+2025-03-20 18:13:08: New message from 6 | method: GET | path: /dir/2mb.pdf
+2025-03-20 18:13:29: New message from 6 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:13:31: webserv: Conenction with 6fd closed!
+2025-03-20 18:13:50: New connection from: 127.0.0.1:37652, with socket 6
+2025-03-20 18:13:50: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:13:51: webserv: Conenction with 5fd closed!
+2025-03-20 18:13:52: New connection from: 127.0.0.1:37668, with socket 5
+2025-03-20 18:13:52: New message from 6 | method: GET | path: /dir/6_2_gif.gif
+2025-03-20 18:13:54: New message from 6 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:13:56: webserv: Conenction with 6fd closed!
+2025-03-20 18:13:57: New connection from: 127.0.0.1:59414, with socket 6
+2025-03-20 18:13:57: New message from 5 | method: GET | path: /dir/10MB-TESTFILE.ORG.pdf
+2025-03-20 18:14:01: webserv: Conenction with 5fd closed!
+2025-03-20 18:14:58: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 18:15:12
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:15:20
+-------------------------------------------------
+2025-03-20 18:15:20: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:15:20: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:15:27: New connection from: 127.0.0.1:40786, with socket 5
+2025-03-20 18:15:27: New connection from: 127.0.0.1:40794, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 18:16:31
+-------------------------------------------------
+2025-03-20 18:16:31: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:16:31: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:16:32: New connection from: 127.0.0.1:44040, with socket 5
+2025-03-20 18:16:33: New connection from: 127.0.0.1:44046, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 18:18:23
+-------------------------------------------------
+2025-03-20 18:18:23: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:18:23: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:18:31: New connection from: 127.0.0.1:39706, with socket 5
+2025-03-20 18:18:31: New connection from: 127.0.0.1:39716, with socket 6
+2025-03-20 18:18:31: New message from 6 | method: GET | path: /dir/list.html
+2025-03-20 18:18:31: New message from 6 | method: GET | path: /list-files
+2025-03-20 18:18:34: New message from 6 | method: GET | path: /
+2025-03-20 18:18:39: New message from 6 | method: GET | path: /
+2025-03-20 18:18:39: New message from 6 | method: GET | path: /
+2025-03-20 18:19:32: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 18:19:35
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:19:37
+-------------------------------------------------
+2025-03-20 18:19:37: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:19:37: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:19:39: New connection from: 127.0.0.1:38020, with socket 5
+2025-03-20 18:19:39: New connection from: 127.0.0.1:38034, with socket 6
+2025-03-20 18:19:39: New message from 5 | method: GET | path: /
+2025-03-20 18:19:40: New message from 5 | method: GET | path: /about.html
+2025-03-20 18:19:41: New message from 5 | method: GET | path: /
+2025-03-20 18:19:42: New message from 5 | method: GET | path: /media.html
+2025-03-20 18:19:42: New message from 5 | method: GET | path: /ikhristi.jpg
+2025-03-20 18:19:42: New connection from: 127.0.0.1:34732, with socket 7
+2025-03-20 18:19:42: New message from 6 | method: GET | path: /rkrechun.png
+2025-03-20 18:19:42: New message from 7 | method: GET | path: /oruban.jpeg
+2025-03-20 18:19:42: New message from 7 | method: GET | path: /
+2025-03-20 18:19:43: New message from 7 | method: GET | path: /about.html
+2025-03-20 18:19:44: New message from 7 | method: GET | path: /
+2025-03-20 18:19:45: New message from 7 | method: GET | path: /upload.html
+2025-03-20 18:20:04: New message from 7 | method: GET | path: /
+2025-03-20 18:20:05: New message from 7 | method: GET | path: /cgi
+-------------------------------------------------
+Session finish: 2025-03-20 18:20:36
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:20:37
+-------------------------------------------------
+2025-03-20 18:20:37: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:20:37: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:20:38: New connection from: 127.0.0.1:58134, with socket 5
+2025-03-20 18:20:38: New connection from: 127.0.0.1:58144, with socket 6
+2025-03-20 18:20:38: New message from 5 | method: GET | path: /cgi
+2025-03-20 18:20:39: New message from 5 | method: GET | path: /
+2025-03-20 18:20:41: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 18:20:42: New message from 5 | method: GET | path: /calculator
+-------------------------------------------------
+Session finish: 2025-03-20 18:20:54
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:20:56
+-------------------------------------------------
+2025-03-20 18:20:56: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:20:56: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:20:57: New connection from: 127.0.0.1:46350, with socket 5
+2025-03-20 18:20:57: New connection from: 127.0.0.1:46364, with socket 6
+2025-03-20 18:20:57: New message from 5 | method: GET | path: /calculator
+-------------------------------------------------
+Session finish: 2025-03-20 18:21:11
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:21:12
+-------------------------------------------------
+2025-03-20 18:21:12: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:21:12: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:21:14: New connection from: 127.0.0.1:35664, with socket 5
+2025-03-20 18:21:14: New connection from: 127.0.0.1:35680, with socket 6
+2025-03-20 18:21:14: New message from 6 | method: GET | path: /calculator
+-------------------------------------------------
+Session finish: 2025-03-20 18:21:20
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:21:22
+-------------------------------------------------
+2025-03-20 18:21:22: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:21:22: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:21:23: New connection from: 127.0.0.1:52764, with socket 5
+2025-03-20 18:21:23: New connection from: 127.0.0.1:52770, with socket 6
+2025-03-20 18:21:23: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 18:21:25: New message from 5 | method: GET | path: /calculator.py
+2025-03-20 18:21:26: New message from 5 | method: GET | path: /
+-------------------------------------------------
+Session finish: 2025-03-20 18:21:42
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:21:45
+-------------------------------------------------
+2025-03-20 18:21:45: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:21:45: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:21:47: New connection from: 127.0.0.1:45504, with socket 5
+2025-03-20 18:21:47: New connection from: 127.0.0.1:45514, with socket 6
+2025-03-20 18:21:47: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 18:21:48: New message from 5 | method: GET | path: /calculator.html
+2025-03-20 18:21:50: New message from 5 | method: GET | path: /cgi-bin/calculator.py
+2025-03-20 18:21:52: New message from 5 | method: GET | path: /cgi
+-------------------------------------------------
+Session finish: 2025-03-20 18:22:36
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:22:37
+-------------------------------------------------
+2025-03-20 18:22:37: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:22:37: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:22:39: New connection from: 127.0.0.1:54730, with socket 5
+2025-03-20 18:22:39: New connection from: 127.0.0.1:54746, with socket 6
+2025-03-20 18:22:39: New message from 5 | method: GET | path: /cgi
+2025-03-20 18:22:40: New message from 5 | method: GET | path: /
+2025-03-20 18:22:41: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 18:22:42: New message from 5 | method: GET | path: /calculator.html
+2025-03-20 18:22:42: New message from 5 | method: GET | path: /
+2025-03-20 18:22:43: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 18:22:44: New message from 5 | method: GET | path: /cookie.html
+2025-03-20 18:22:45: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 18:22:45: New message from 5 | method: GET | path: /calculator.html
+2025-03-20 18:22:46: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 18:22:47: New message from 5 | method: GET | path: /calculator.html
+2025-03-20 18:22:47: New message from 5 | method: GET | path: /
+2025-03-20 18:22:48: New message from 5 | method: GET | path: /upload.html
+2025-03-20 18:22:49: New message from 5 | method: GET | path: /
+2025-03-20 18:22:50: New message from 5 | method: GET | path: /
+2025-03-20 18:22:51: New message from 5 | method: GET | path: /media.html
+2025-03-20 18:22:51: New message from 5 | method: GET | path: /ikhristi.jpg
+2025-03-20 18:22:51: New connection from: 127.0.0.1:53726, with socket 7
+2025-03-20 18:22:51: New message from 6 | method: GET | path: /rkrechun.png
+2025-03-20 18:22:51: New message from 7 | method: GET | path: /oruban.jpeg
+2025-03-20 18:22:51: New message from 7 | method: GET | path: /
+2025-03-20 18:22:52: New message from 7 | method: GET | path: /about.html
+2025-03-20 18:22:52: New message from 7 | method: GET | path: /
+2025-03-20 18:22:53: New message from 7 | method: GET | path: /media.html
+2025-03-20 18:22:53: New message from 7 | method: GET | path: /ikhristi.jpg
+2025-03-20 18:22:53: New message from 5 | method: GET | path: /oruban.jpeg
+2025-03-20 18:22:53: New message from 6 | method: GET | path: /rkrechun.png
+2025-03-20 18:22:54: New message from 6 | method: GET | path: /
+2025-03-20 18:23:54: webserv: Conenction with 5fd closed!
+2025-03-20 18:23:54: webserv: Conenction with 7fd closed!
+2025-03-20 18:23:55: webserv: Conenction with 6fd closed!
+2025-03-20 18:53:38: New connection from: 127.0.0.1:45216, with socket 5
+2025-03-20 18:53:38: New connection from: 127.0.0.1:45218, with socket 6
+2025-03-20 18:53:38: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 18:53:39: New message from 5 | method: GET | path: /calculator.html
+2025-03-20 18:53:41: New message from 5 | method: GET | path: /cgi-bin/calculator.py
+2025-03-20 18:53:42: New message from 5 | method: GET | path: /cgi
+2025-03-20 18:53:44: New message from 5 | method: GET | path: /
+2025-03-20 18:53:47: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 18:53:48: New message from 5 | method: GET | path: /calculator.html
+2025-03-20 18:53:50: New message from 5 | method: GET | path: /cgi-bin/calculator.py
+2025-03-20 18:53:51: New message from 5 | method: GET | path: /cgi
+-------------------------------------------------
+Session finish: 2025-03-20 18:54:07
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:54:08
+-------------------------------------------------
+2025-03-20 18:54:08: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:54:08: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:54:09: New connection from: 127.0.0.1:55502, with socket 5
+2025-03-20 18:54:09: New connection from: 127.0.0.1:55512, with socket 6
+2025-03-20 18:54:09: New message from 5 | method: GET | path: /
+2025-03-20 18:54:10: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 18:54:11: New message from 5 | method: GET | path: /calculator.html
+2025-03-20 18:54:13: New message from 5 | method: GET | path: /cgi-bin/calculator.py
+2025-03-20 18:54:13: New message from 5 | method: GET | path: /cgi
+-------------------------------------------------
+Session finish: 2025-03-20 18:54:33
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:54:48
+-------------------------------------------------
+2025-03-20 18:54:48: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:54:48: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:54:50: New connection from: 127.0.0.1:42944, with socket 5
+2025-03-20 18:54:50: New connection from: 127.0.0.1:42958, with socket 6
+2025-03-20 18:54:50: New message from 6 | method: GET | path: /cgi
+2025-03-20 18:54:52: New message from 6 | method: GET | path: /
+2025-03-20 18:54:52: New message from 6 | method: GET | path: /about.html
+2025-03-20 18:54:53: New message from 6 | method: GET | path: /
+2025-03-20 18:54:54: New message from 6 | method: GET | path: /cgi.html
+2025-03-20 18:54:55: New message from 6 | method: GET | path: /
+2025-03-20 18:54:56: New message from 6 | method: GET | path: /cgi.html
+2025-03-20 18:54:56: New message from 6 | method: GET | path: /calculator.html
+2025-03-20 18:55:00: New message from 6 | method: GET | path: /cgi.html
+2025-03-20 18:55:00: New message from 6 | method: GET | path: /calculator.html
+2025-03-20 18:55:03: New message from 6 | method: GET | path: /cgi-bin/calculator.py
+2025-03-20 18:55:04: New message from 6 | method: GET | path: /calculator
+2025-03-20 18:55:05: New message from 6 | method: GET | path: /
+2025-03-20 18:55:06: New message from 6 | method: GET | path: /cgi.html
+2025-03-20 18:55:07: New message from 6 | method: GET | path: /calculator.html
+2025-03-20 18:55:09: New message from 6 | method: GET | path: /cgi-bin/calculator.py
+2025-03-20 18:55:10: New message from 6 | method: GET | path: /calculator
+-------------------------------------------------
+Session finish: 2025-03-20 18:55:40
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:55:51
+-------------------------------------------------
+2025-03-20 18:55:51: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:55:51: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:55:52: New connection from: 127.0.0.1:52468, with socket 5
+2025-03-20 18:55:52: New connection from: 127.0.0.1:52478, with socket 6
+2025-03-20 18:55:52: New message from 5 | method: GET | path: /calculator
+2025-03-20 18:55:53: New message from 5 | method: GET | path: /
+2025-03-20 18:55:54: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 18:55:55: New message from 5 | method: GET | path: /cookie.html
+2025-03-20 18:55:58: New message from 5 | method: GET | path: /cgi-bin/cookie.py
+2025-03-20 18:55:59: New message from 5 | method: GET | path: /cookie
+2025-03-20 18:56:05: New message from 5 | method: GET | path: /
+-------------------------------------------------
+Session finish: 2025-03-20 18:56:47
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:56:47
+-------------------------------------------------
+2025-03-20 18:56:47: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:56:47: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:56:49: New connection from: 127.0.0.1:60800, with socket 5
+2025-03-20 18:56:49: New connection from: 127.0.0.1:60812, with socket 6
+2025-03-20 18:56:49: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 18:56:49: New message from 5 | method: GET | path: /calculator.html
+2025-03-20 18:56:51: New message from 5 | method: GET | path: /cgi-bin/calculator.py
+2025-03-20 18:56:51: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 18:56:52: New message from 5 | method: GET | path: /calculator.html
+2025-03-20 18:56:54: New message from 5 | method: GET | path: /cgi-bin/calculator.py
+2025-03-20 18:56:54: New message from 5 | method: GET | path: /calculator.html
+-------------------------------------------------
+Session finish: 2025-03-20 18:57:14
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:57:16
+-------------------------------------------------
+2025-03-20 18:57:16: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:57:16: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:57:17: New connection from: 127.0.0.1:35514, with socket 5
+2025-03-20 18:57:17: New connection from: 127.0.0.1:35522, with socket 6
+2025-03-20 18:57:17: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 18:57:17: New message from 5 | method: GET | path: /cookie.html
+2025-03-20 18:57:19: New message from 5 | method: GET | path: /cgi-bin/cookie.py
+2025-03-20 18:57:20: New message from 5 | method: GET | path: /cookie.html
+2025-03-20 18:57:38: New message from 5 | method: GET | path: /
+2025-03-20 18:57:39: New message from 5 | method: GET | path: /upload.html
+2025-03-20 18:57:42: New message from 5 | method: POST | path: /upload
+2025-03-20 18:57:48: New message from 5 | method: GET | path: /upload.html
+2025-03-20 18:57:52: New message from 5 | method: POST | path: /upload
+2025-03-20 18:57:55: New message from 5 | method: GET | path: /upload.html
+2025-03-20 18:58:18: webserv: Conenction with 6fd closed!
+2025-03-20 18:58:56: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 18:59:36
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 18:59:42
+-------------------------------------------------
+2025-03-20 18:59:42: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 18:59:42: Server created with host:127.0.0.1, port:8084
+2025-03-20 18:59:45: New connection from: 127.0.0.1:49528, with socket 5
+-------------------------------------------------
+New session: 2025-03-20 19:00:47
+-------------------------------------------------
+2025-03-20 19:00:47: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:00:47: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:00:48: New connection from: 127.0.0.1:57968, with socket 5
+2025-03-20 19:00:48: New connection from: 127.0.0.1:57976, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 19:03:07
+-------------------------------------------------
+2025-03-20 19:03:07: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:03:07: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:03:09: New connection from: 127.0.0.1:50314, with socket 5
+2025-03-20 19:03:09: New connection from: 127.0.0.1:50330, with socket 6
+2025-03-20 19:03:09: New message from 5 | method: GET | path: /error
+-------------------------------------------------
+Session finish: 2025-03-20 19:03:11
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:03:14
+-------------------------------------------------
+2025-03-20 19:03:14: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:03:14: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:03:18: New connection from: 127.0.0.1:34458, with socket 5
+2025-03-20 19:03:18: New message from 5 | method: POST | path: /upload
+-------------------------------------------------
+Session finish: 2025-03-20 19:03:36
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:03:40
+-------------------------------------------------
+2025-03-20 19:03:40: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:03:40: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:03:41: New connection from: 127.0.0.1:36406, with socket 5
+2025-03-20 19:03:41: New connection from: 127.0.0.1:36412, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 19:03:49
+-------------------------------------------------
+2025-03-20 19:03:49: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:03:49: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:03:50: New connection from: 127.0.0.1:50990, with socket 5
+2025-03-20 19:03:50: New message from 5 | method: GET | path: /upload.html
+2025-03-20 19:03:50: New connection from: 127.0.0.1:51006, with socket 6
+2025-03-20 19:03:50: New connection from: 127.0.0.1:51008, with socket 7
+-------------------------------------------------
+Session finish: 2025-03-20 19:04:02
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:04:05
+-------------------------------------------------
+2025-03-20 19:04:05: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:04:05: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:04:11: New connection from: 127.0.0.1:49274, with socket 5
+-------------------------------------------------
+New session: 2025-03-20 19:04:36
+-------------------------------------------------
+2025-03-20 19:04:36: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:04:36: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:04:40: New connection from: 127.0.0.1:47442, with socket 5
+-------------------------------------------------
+New session: 2025-03-20 19:05:16
+-------------------------------------------------
+2025-03-20 19:05:16: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:05:16: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:05:17: New connection from: 127.0.0.1:42282, with socket 5
+2025-03-20 19:05:17: New connection from: 127.0.0.1:42284, with socket 6
+2025-03-20 19:05:17: New message from 5 | method: GET | path: /error
+2025-03-20 19:05:21: New message from 5 | method: POST | path: /upload
+2025-03-20 19:05:23: New message from 5 | method: GET | path: /list
+2025-03-20 19:06:18: webserv: Conenction with 6fd closed!
+2025-03-20 19:06:24: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 19:06:53
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:06:55
+-------------------------------------------------
+2025-03-20 19:06:55: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:06:55: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:06:57: New connection from: 127.0.0.1:35296, with socket 5
+2025-03-20 19:06:57: New connection from: 127.0.0.1:35304, with socket 6
+2025-03-20 19:06:59: New message from 5 | method: POST | path: /upload
+2025-03-20 19:07:00: New message from 5 | method: GET | path: /list
+-------------------------------------------------
+Session finish: 2025-03-20 19:07:23
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:07:26
+-------------------------------------------------
+2025-03-20 19:07:26: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:07:26: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:07:28: New connection from: 127.0.0.1:51818, with socket 5
+2025-03-20 19:07:28: New connection from: 127.0.0.1:51824, with socket 6
+2025-03-20 19:07:28: New message from 5 | method: GET | path: /
+2025-03-20 19:07:28: New message from 5 | method: GET | path: /upload.html
+2025-03-20 19:07:31: New message from 5 | method: POST | path: /upload.html
+2025-03-20 19:07:32: New message from 5 | method: GET | path: /list.html
+2025-03-20 19:07:32: New message from 5 | method: GET | path: /list-files
+2025-03-20 19:07:35: New message from 5 | method: GET | path: /
+2025-03-20 19:07:36: New message from 5 | method: GET | path: /upload.html
+2025-03-20 19:07:40: New message from 5 | method: POST | path: /cgi-bin/upload.py
+2025-03-20 19:07:41: New message from 5 | method: GET | path: /list.html
+2025-03-20 19:07:41: New message from 5 | method: GET | path: /list-files
+2025-03-20 19:07:43: New message from 5 | method: GET | path: /
+2025-03-20 19:07:44: New message from 5 | method: GET | path: /list.html
+2025-03-20 19:07:44: New message from 5 | method: GET | path: /list-files
+2025-03-20 19:07:45: New message from 5 | method: GET | path: /
+2025-03-20 19:07:45: New message from 5 | method: GET | path: /cgi.html
+2025-03-20 19:07:46: New message from 5 | method: GET | path: /
+2025-03-20 19:07:47: New message from 5 | method: GET | path: /media.html
+2025-03-20 19:07:47: New message from 5 | method: GET | path: /ikhristi.jpg
+2025-03-20 19:07:47: New connection from: 127.0.0.1:37044, with socket 7
+2025-03-20 19:07:47: New message from 6 | method: GET | path: /rkrechun.png
+2025-03-20 19:07:47: New message from 7 | method: GET | path: /oruban.jpeg
+2025-03-20 19:07:48: New message from 6 | method: GET | path: /
+2025-03-20 19:07:51: New message from 6 | method: GET | path: /about.html
+2025-03-20 19:07:52: New message from 6 | method: GET | path: /
+2025-03-20 19:07:53: New message from 6 | method: GET | path: /list.html
+2025-03-20 19:07:53: New message from 6 | method: GET | path: /list-files
+2025-03-20 19:07:55: New message from 6 | method: DELETE | path: /delete-file
+2025-03-20 19:07:55: New message from 6 | method: GET | path: /list-files
+2025-03-20 19:07:58: New message from 6 | method: DELETE | path: /delete-file
+2025-03-20 19:07:58: New message from 6 | method: GET | path: /list-files
+2025-03-20 19:07:59: New message from 6 | method: DELETE | path: /delete-file
+2025-03-20 19:07:59: New message from 6 | method: GET | path: /list-files
+2025-03-20 19:08:00: New message from 6 | method: DELETE | path: /delete-file
+2025-03-20 19:08:00: New message from 6 | method: GET | path: /list-files
+2025-03-20 19:08:01: New message from 6 | method: GET | path: /
+2025-03-20 19:08:02: New message from 6 | method: GET | path: /cgi.html
+2025-03-20 19:08:02: New message from 6 | method: GET | path: /cookie.html
+2025-03-20 19:08:05: New message from 6 | method: GET | path: /cgi-bin/cookie.py
+2025-03-20 19:08:05: New message from 6 | method: GET | path: /cookie.html
+2025-03-20 19:08:48: webserv: Conenction with 5fd closed!
+2025-03-20 19:08:48: webserv: Conenction with 7fd closed!
+2025-03-20 19:08:48: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 19:11:06
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:11:32
+-------------------------------------------------
+2025-03-20 19:11:32: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:11:32: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:11:33: New connection from: 127.0.0.1:47246, with socket 5
+2025-03-20 19:11:33: New connection from: 127.0.0.1:47250, with socket 6
+2025-03-20 19:11:33: New message from 5 | method: GET | path: /
+-------------------------------------------------
+Session finish: 2025-03-20 19:11:35
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:11:37
+-------------------------------------------------
+2025-03-20 19:11:37: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:11:37: Server created with host:127.0.0.1, port:8084
+-------------------------------------------------
+New session: 2025-03-20 19:13:36
+-------------------------------------------------
+2025-03-20 19:13:36: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:13:36: Server created with host:127.0.0.1, port:8084
+-------------------------------------------------
+New session: 2025-03-20 19:17:02
+-------------------------------------------------
+2025-03-20 19:17:02: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:17:02: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:17:08: New connection from: 127.0.0.1:49870, with socket 5
+2025-03-20 19:17:08: New connection from: 127.0.0.1:49872, with socket 6
+2025-03-20 19:17:08: New message from 5 | method: GET | path: /about.html
+2025-03-20 19:17:47: webserv: Conenction with 5fd closed!
+2025-03-20 19:17:47: webserv: Conenction with 6fd closed!
+2025-03-20 19:18:00: New connection from: 127.0.0.1:43082, with socket 5
+2025-03-20 19:18:00: New connection from: 127.0.0.1:43098, with socket 6
+2025-03-20 19:18:00: New message from 5 | method: GET | path: /media.html
+2025-03-20 19:18:00: New message from 5 | method: GET | path: /ikhristi.jpg
+2025-03-20 19:18:00: New message from 6 | method: GET | path: /rkrechun.png
+2025-03-20 19:18:00: New message from 6 | method: GET | path: /oruban.jpeg
+2025-03-20 19:18:00: New connection from: 127.0.0.1:43114, with socket 7
+2025-03-20 19:18:00: New message from 7 | method: GET | path: /rkrechun.png
+2025-03-20 19:18:04: New message from 6 | method: GET | path: /
+2025-03-20 19:18:08: New message from 6 | method: GET | path: /about.html
+-------------------------------------------------
+Session finish: 2025-03-20 19:18:28
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:18:30
+-------------------------------------------------
+2025-03-20 19:18:30: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:18:30: Server created with host:127.0.0.1, port:8084
+-------------------------------------------------
+New session: 2025-03-20 19:18:54
+-------------------------------------------------
+2025-03-20 19:18:54: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:18:54: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:18:58: New connection from: 127.0.0.1:42310, with socket 5
+2025-03-20 19:18:58: New connection from: 127.0.0.1:42324, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 19:19:03
+-------------------------------------------------
+2025-03-20 19:19:03: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:19:03: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:19:03: New connection from: 127.0.0.1:42156, with socket 5
+2025-03-20 19:19:03: New connection from: 127.0.0.1:42162, with socket 6
+2025-03-20 19:19:03: New message from 5 | method: GET | path: /
+2025-03-20 19:19:03: New connection from: 127.0.0.1:42170, with socket 7
+-------------------------------------------------
+Session finish: 2025-03-20 19:19:10
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:19:12
+-------------------------------------------------
+2025-03-20 19:19:12: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:19:12: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:19:14: New connection from: 127.0.0.1:36944, with socket 5
+2025-03-20 19:19:14: New connection from: 127.0.0.1:36946, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 19:19:49
+-------------------------------------------------
+2025-03-20 19:19:49: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:19:49: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:19:50: New connection from: 127.0.0.1:51300, with socket 5
+2025-03-20 19:19:50: New connection from: 127.0.0.1:51306, with socket 6
+2025-03-20 19:19:50: New message from 5 | method: GET | path: /about.html
+-------------------------------------------------
+New session: 2025-03-20 19:20:05
+-------------------------------------------------
+2025-03-20 19:20:05: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:20:05: Server created with host:127.0.0.1, port:8084
+-------------------------------------------------
+New session: 2025-03-20 19:20:12
+-------------------------------------------------
+2025-03-20 19:20:12: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:20:12: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:20:13: New connection from: 127.0.0.1:33986, with socket 5
+-------------------------------------------------
+New session: 2025-03-20 19:25:43
+-------------------------------------------------
+2025-03-20 19:25:43: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:25:43: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:25:51: New connection from: 127.0.0.1:39250, with socket 5
+2025-03-20 19:25:51: New connection from: 127.0.0.1:39262, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 19:26:20
+-------------------------------------------------
+2025-03-20 19:26:20: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:26:20: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:26:21: New connection from: 127.0.0.1:40954, with socket 5
+2025-03-20 19:26:21: New connection from: 127.0.0.1:40956, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 19:27:52
+-------------------------------------------------
+2025-03-20 19:27:52: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:27:52: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:27:55: New connection from: 127.0.0.1:54866, with socket 5
+2025-03-20 19:27:55: New connection from: 127.0.0.1:54872, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 19:28:56
+-------------------------------------------------
+2025-03-20 19:28:56: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:28:56: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:28:57: New connection from: 127.0.0.1:39254, with socket 5
+2025-03-20 19:28:57: New connection from: 127.0.0.1:39256, with socket 6
+2025-03-20 19:28:57: New message from 5 | method: GET | path: /about.html
+2025-03-20 19:28:57: webserv: Conenction with 5fd closed!
+2025-03-20 19:28:57: New message from 6 | method: GET | path: /upload
+2025-03-20 19:28:58: New connection from: 127.0.0.1:39272, with socket 5
+2025-03-20 19:28:59: New message from 6 | method: GET | path: /about.html
+2025-03-20 19:28:59: webserv: Conenction with 6fd closed!
+2025-03-20 19:28:59: New message from 5 | method: GET | path: /upload
+-------------------------------------------------
+Session finish: 2025-03-20 19:29:19
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:29:43
+-------------------------------------------------
+2025-03-20 19:29:43: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:29:43: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:29:46: New connection from: 127.0.0.1:54632, with socket 5
+2025-03-20 19:29:46: New connection from: 127.0.0.1:54640, with socket 6
+2025-03-20 19:29:46: New message from 5 | method: GET | path: /about.html
+2025-03-20 19:29:46: webserv: Conenction with 5fd closed!
+2025-03-20 19:29:46: New message from 6 | method: GET | path: /upload.html
+2025-03-20 19:30:47: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 19:32:12
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:32:25
+-------------------------------------------------
+2025-03-20 19:32:25: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:32:25: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:32:30: New connection from: 127.0.0.1:52256, with socket 5
+2025-03-20 19:32:30: New connection from: 127.0.0.1:52270, with socket 6
+2025-03-20 19:32:30: New message from 5 | method: GET | path: /
+2025-03-20 19:32:31: New message from 5 | method: GET | path: /about.html
+2025-03-20 19:32:31: webserv: Conenction with 5fd closed!
+2025-03-20 19:32:31: New message from 6 | method: GET | path: /upload
+-------------------------------------------------
+Session finish: 2025-03-20 19:33:01
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:33:04
+-------------------------------------------------
+2025-03-20 19:33:04: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:33:04: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:33:06: New connection from: 127.0.0.1:54198, with socket 5
+2025-03-20 19:33:06: New connection from: 127.0.0.1:54210, with socket 6
+2025-03-20 19:33:06: New message from 6 | method: GET | path: /about.html
+2025-03-20 19:33:06: webserv: Conenction with 6fd closed!
+2025-03-20 19:33:06: New message from 5 | method: GET | path: /upload.html
+2025-03-20 19:34:07: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 19:34:29
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:34:33
+-------------------------------------------------
+2025-03-20 19:34:33: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:34:33: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:34:36: New connection from: 127.0.0.1:58436, with socket 5
+2025-03-20 19:34:36: New connection from: 127.0.0.1:58440, with socket 6
+2025-03-20 19:34:36: New message from 5 | method: GET | path: /
+2025-03-20 19:34:37: New message from 5 | method: GET | path: /upload.html
+2025-03-20 19:34:43: New message from 5 | method: GET | path: /upload
+2025-03-20 19:34:53: New message from 5 | method: GET | path: /list.html
+2025-03-20 19:34:53: New message from 5 | method: GET | path: /list-files
+-------------------------------------------------
+Session finish: 2025-03-20 19:35:12
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:35:17
+-------------------------------------------------
+2025-03-20 19:35:17: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:35:17: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:35:24: New connection from: 127.0.0.1:46208, with socket 5
+2025-03-20 19:35:24: New connection from: 127.0.0.1:46218, with socket 6
+2025-03-20 19:35:24: New message from 5 | method: GET | path: /about.html
+2025-03-20 19:35:24: webserv: Conenction with 5fd closed!
+2025-03-20 19:35:24: New message from 6 | method: GET | path: /upload
+2025-03-20 19:36:13: New connection from: 127.0.0.1:44464, with socket 5
+2025-03-20 19:36:13: New message from 6 | method: GET | path: /
+2025-03-20 19:36:15: New message from 6 | method: GET | path: /about.html
+2025-03-20 19:36:15: webserv: Conenction with 6fd closed!
+2025-03-20 19:36:15: New message from 5 | method: GET | path: /upload
+2025-03-20 19:37:16: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 19:37:38
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:37:42
+-------------------------------------------------
+2025-03-20 19:37:42: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:37:42: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:37:44: New connection from: 127.0.0.1:52968, with socket 5
+2025-03-20 19:37:44: New connection from: 127.0.0.1:52970, with socket 6
+2025-03-20 19:37:44: New message from 5 | method: GET | path: /upload.html
+2025-03-20 19:37:48: New message from 5 | method: POST | path: /upload.html
+2025-03-20 19:37:50: New message from 5 | method: GET | path: /list.html
+2025-03-20 19:37:50: New message from 5 | method: GET | path: /list-files
+2025-03-20 19:38:43: webserv: Conenction with 5fd closed!
+2025-03-20 19:38:43: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 19:38:59
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:39:02
+-------------------------------------------------
+2025-03-20 19:39:02: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:39:02: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:39:05: New connection from: 127.0.0.1:56538, with socket 5
+2025-03-20 19:39:05: New connection from: 127.0.0.1:56542, with socket 6
+2025-03-20 19:39:05: New message from 5 | method: GET | path: /
+2025-03-20 19:39:06: New message from 5 | method: GET | path: /upload.html
+2025-03-20 19:39:09: New message from 5 | method: POST | path: /upload.html
+2025-03-20 19:39:10: New message from 5 | method: GET | path: /list.html
+2025-03-20 19:39:10: New message from 5 | method: GET | path: /list-files
+-------------------------------------------------
+Session finish: 2025-03-20 19:39:33
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:39:39
+-------------------------------------------------
+2025-03-20 19:39:39: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:39:39: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:39:41: New connection from: 127.0.0.1:52146, with socket 5
+2025-03-20 19:39:41: New connection from: 127.0.0.1:52150, with socket 6
+2025-03-20 19:39:41: New message from 5 | method: GET | path: /upload.html
+-------------------------------------------------
+Session finish: 2025-03-20 19:39:43
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:39:47
+-------------------------------------------------
+2025-03-20 19:39:47: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:39:47: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:39:52: New connection from: 127.0.0.1:48654, with socket 5
+-------------------------------------------------
+New session: 2025-03-20 19:41:24
+-------------------------------------------------
+2025-03-20 19:41:24: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:41:24: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:41:25: New connection from: 127.0.0.1:43042, with socket 5
+2025-03-20 19:41:25: New connection from: 127.0.0.1:43058, with socket 6
+2025-03-20 19:41:25: New message from 5 | method: GET | path: /error
+2025-03-20 19:41:29: New message from 5 | method: POST | path: /upload.html
+2025-03-20 19:41:53: New message from 5 | method: GET | path: /upload
+2025-03-20 19:41:56: New message from 5 | method: GET | path: /photo_2025-02-21_11-39-53.jpg
+2025-03-20 19:42:06: New message from 5 | method: GET | path: /photo_2025-02-21_11-39-53.jpg
+2025-03-20 19:42:26: webserv: Conenction with 6fd closed!
+2025-03-20 19:42:27: New connection from: 127.0.0.1:41574, with socket 6
+2025-03-20 19:43:07: webserv: Conenction with 5fd closed!
+2025-03-20 19:43:28: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 19:44:50
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:44:52
+-------------------------------------------------
+2025-03-20 19:44:52: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:44:52: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:44:54: New connection from: 127.0.0.1:32930, with socket 5
+2025-03-20 19:44:54: New connection from: 127.0.0.1:32942, with socket 6
+2025-03-20 19:44:54: New message from 5 | method: GET | path: /photo_2025-02-21_11-39-53.jpg
+2025-03-20 19:44:57: New message from 5 | method: GET | path: /upload.html
+2025-03-20 19:44:58: New message from 5 | method: GET | path: /
+2025-03-20 19:44:59: New message from 5 | method: GET | path: /upload.html
+2025-03-20 19:45:02: New message from 5 | method: POST | path: /upload.html
+-------------------------------------------------
+Session finish: 2025-03-20 19:45:40
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:46:22
+-------------------------------------------------
+2025-03-20 19:46:22: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:46:22: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:46:24: New connection from: 127.0.0.1:47706, with socket 5
+2025-03-20 19:46:24: New connection from: 127.0.0.1:47722, with socket 6
+2025-03-20 19:46:24: New message from 5 | method: GET | path: /
+2025-03-20 19:46:24: New message from 5 | method: GET | path: /upload.html
+2025-03-20 19:46:27: New message from 5 | method: POST | path: /upload.html
+2025-03-20 19:46:28: New message from 5 | method: GET | path: /list.html
+2025-03-20 19:46:28: New message from 5 | method: GET | path: /list-files
+2025-03-20 19:46:34: New message from 5 | method: GET | path: /upload.html
+2025-03-20 19:46:38: New message from 5 | method: POST | path: /upload.html
+2025-03-20 19:46:45: New message from 5 | method: POST | path: /upload.html
+2025-03-20 19:46:53: New message from 5 | method: POST | path: /upload.html
+-------------------------------------------------
+Session finish: 2025-03-20 19:47:00
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:47:11
+-------------------------------------------------
+2025-03-20 19:47:11: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:47:11: Server created with host:127.0.0.1, port:8084
+-------------------------------------------------
+Session finish: 2025-03-20 19:47:44
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:48:00
+-------------------------------------------------
+2025-03-20 19:48:00: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:48:00: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:48:02: New connection from: 127.0.0.1:36012, with socket 5
+2025-03-20 19:48:02: New connection from: 127.0.0.1:36024, with socket 6
+2025-03-20 19:48:02: New message from 6 | method: GET | path: /
+2025-03-20 19:48:03: New message from 6 | method: GET | path: /media.html
+2025-03-20 19:48:03: New message from 6 | method: GET | path: /ikhristi.jpg
+2025-03-20 19:48:03: New connection from: 127.0.0.1:36030, with socket 7
+2025-03-20 19:48:03: New message from 5 | method: GET | path: /rkrechun.png
+2025-03-20 19:48:03: New message from 7 | method: GET | path: /oruban.jpeg
+2025-03-20 19:48:03: New message from 7 | method: GET | path: /
+2025-03-20 19:48:04: New message from 7 | method: GET | path: /about.html
+2025-03-20 19:48:04: webserv: Conenction with 7fd closed!
+2025-03-20 19:48:04: New message from 5 | method: GET | path: /upload
+2025-03-20 19:48:24: New message from 5 | method: GET | path: /about.html
+2025-03-20 19:48:24: webserv: Conenction with 5fd closed!
+2025-03-20 19:48:24: New message from 6 | method: GET | path: /upload
+2025-03-20 19:48:29: New connection from: 127.0.0.1:41034, with socket 5
+2025-03-20 19:48:29: New message from 6 | method: GET | path: /Auszug_2024_10-11.PDF
+2025-03-20 19:48:36: New message from 6 | method: GET | path: /list.html
+2025-03-20 19:48:37: New message from 6 | method: GET | path: /list-files
+2025-03-20 19:48:39: New message from 6 | method: GET | path: /Konto_0162859235-Auszug_2024_0011.PDF
+-------------------------------------------------
+Session finish: 2025-03-20 19:49:00
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:49:01
+-------------------------------------------------
+2025-03-20 19:49:01: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:49:01: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:49:05: New connection from: 127.0.0.1:42330, with socket 5
+2025-03-20 19:49:05: New connection from: 127.0.0.1:42346, with socket 6
+2025-03-20 19:49:06: New message from 5 | method: GET | path: /about.html
+2025-03-20 19:49:08: New message from 5 | method: GET | path: /
+2025-03-20 19:49:09: New message from 5 | method: GET | path: /upload.html
+2025-03-20 19:49:11: New message from 5 | method: GET | path: /upload
+2025-03-20 19:49:13: New message from 5 | method: GET | path: /Konto_0162859235-Auszug_2024_0011.PDF
+2025-03-20 19:49:52: New message from 5 | method: GET | path: /Adobe%20Scan%2015%20%D0%A1%D0%8F%D0%A0%D0%85%D0%A0%D0%86.%202025%D0%B2%D0%82%D0%87%D0%A0%D1%96..pdf
+2025-03-20 19:50:06: webserv: Conenction with 6fd closed!
+2025-03-20 19:50:06: New connection from: 127.0.0.1:53054, with socket 6
+2025-03-20 19:50:06: New message from 5 | method: GET | path: /uload/Adobe%20Scan%2015%20%D0%A1%D0%8F%D0%A0%D0%85%D0%A0%D0%86.%202025%D0%B2%D0%82%D0%87%D0%A0%D1%96..pdf
+2025-03-20 19:50:29: New message from 5 | method: GET | path: /assets/html/uload/Adobe%20Scan%2015%20%D0%A1%D0%8F%D0%A0%D0%85%D0%A0%D0%86.%202025%D0%B2%D0%82%D0%87%D0%A0%D1%96..pdf
+-------------------------------------------------
+Session finish: 2025-03-20 19:50:46
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:51:10
+-------------------------------------------------
+2025-03-20 19:51:10: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:51:10: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:51:16: New connection from: 127.0.0.1:34538, with socket 5
+2025-03-20 19:51:16: New connection from: 127.0.0.1:34548, with socket 6
+2025-03-20 19:54:43: New message from 5 | method: GET | path: /Konto_0162859235-Auszug_2024_0011.PDF
+-------------------------------------------------
+New session: 2025-03-20 19:55:21
+-------------------------------------------------
+2025-03-20 19:55:21: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:55:21: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:55:23: New connection from: 127.0.0.1:41362, with socket 5
+2025-03-20 19:55:23: New connection from: 127.0.0.1:41374, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 19:56:41
+-------------------------------------------------
+2025-03-20 19:56:41: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:56:41: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:56:41: New connection from: 127.0.0.1:43884, with socket 5
+2025-03-20 19:56:41: New message from 5 | method: GET | path: /upload
+2025-03-20 19:56:42: New connection from: 127.0.0.1:43888, with socket 6
+2025-03-20 19:56:42: New connection from: 127.0.0.1:43890, with socket 7
+-------------------------------------------------
+Session finish: 2025-03-20 19:56:44
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:56:49
+-------------------------------------------------
+2025-03-20 19:56:49: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:56:49: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:56:50: New connection from: 127.0.0.1:60072, with socket 5
+2025-03-20 19:56:50: New message from 5 | method: GET | path: /upload
+2025-03-20 19:56:51: New connection from: 127.0.0.1:60080, with socket 6
+2025-03-20 19:56:51: New connection from: 127.0.0.1:60086, with socket 7
+2025-03-20 19:56:51: New message from 5 | method: GET | path: /upload
+2025-03-20 19:56:53: New message from 5 | method: GET | path: /
+2025-03-20 19:56:55: New message from 5 | method: GET | path: /about.html
+2025-03-20 19:56:56: New message from 5 | method: GET | path: /upload.html
+2025-03-20 19:56:58: New message from 5 | method: GET | path: /upload
+2025-03-20 19:57:02: New message from 5 | method: GET | path: /
+-------------------------------------------------
+Session finish: 2025-03-20 19:57:31
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:57:34
+-------------------------------------------------
+2025-03-20 19:57:34: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:57:34: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:57:36: New connection from: 127.0.0.1:52806, with socket 5
+2025-03-20 19:57:36: New connection from: 127.0.0.1:52814, with socket 6
+2025-03-20 19:57:36: New message from 5 | method: GET | path: /upload.html
+2025-03-20 19:57:37: New message from 5 | method: GET | path: /upload
+-------------------------------------------------
+Session finish: 2025-03-20 19:57:45
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 19:57:50
+-------------------------------------------------
+2025-03-20 19:57:50: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:57:50: Server created with host:127.0.0.1, port:8084
+-------------------------------------------------
+New session: 2025-03-20 19:58:08
+-------------------------------------------------
+2025-03-20 19:58:08: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:58:08: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:58:12: New connection from: 127.0.0.1:35544, with socket 5
+2025-03-20 19:58:12: New connection from: 127.0.0.1:35554, with socket 6
+2025-03-20 19:58:12: New message from 5 | method: GET | path: /Konto_0162859235-Auszug_2024_0011.PDF
+-------------------------------------------------
+New session: 2025-03-20 19:58:38
+-------------------------------------------------
+2025-03-20 19:58:38: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:58:38: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:58:40: New connection from: 127.0.0.1:51382, with socket 5
+2025-03-20 19:58:40: New connection from: 127.0.0.1:51394, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 19:59:59
+-------------------------------------------------
+2025-03-20 19:59:59: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 19:59:59: Server created with host:127.0.0.1, port:8084
+2025-03-20 19:59:59: New connection from: 127.0.0.1:43224, with socket 5
+2025-03-20 19:59:59: New connection from: 127.0.0.1:43240, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 20:01:14
+-------------------------------------------------
+2025-03-20 20:01:14: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:01:14: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:01:14: New connection from: 127.0.0.1:39676, with socket 5
+2025-03-20 20:01:14: New message from 5 | method: GET | path: /upload
+2025-03-20 20:01:15: New connection from: 127.0.0.1:39684, with socket 6
+2025-03-20 20:01:15: New connection from: 127.0.0.1:39698, with socket 7
+-------------------------------------------------
+Session finish: 2025-03-20 20:01:35
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:01:38
+-------------------------------------------------
+2025-03-20 20:01:38: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:01:38: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:01:40: New connection from: 127.0.0.1:41110, with socket 5
+-------------------------------------------------
+New session: 2025-03-20 20:03:20
+-------------------------------------------------
+2025-03-20 20:03:20: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:03:20: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:03:21: New connection from: 127.0.0.1:38476, with socket 5
+2025-03-20 20:03:21: New connection from: 127.0.0.1:38462, with socket 6
+2025-03-20 20:03:21: New message from 6 | method: GET | path: /upload
+2025-03-20 20:03:22: New connection from: 127.0.0.1:38488, with socket 7
+2025-03-20 20:03:24: New message from 6 | method: GET | path: /assets/html/upload/Auszug_2024_10-11.PDF
+2025-03-20 20:03:34: New message from 6 | method: GET | path: /assets/html/upload/list.html
+2025-03-20 20:04:09: New message from 6 | method: GET | path: /assets/html/upload/Auszug_2024_11-12.PDF
+2025-03-20 20:04:22: webserv: Conenction with 5fd closed!
+2025-03-20 20:04:23: webserv: Conenction with 7fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 20:04:24
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:04:40
+-------------------------------------------------
+2025-03-20 20:04:40: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:04:40: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:04:41: New connection from: 127.0.0.1:46320, with socket 5
+2025-03-20 20:04:41: New connection from: 127.0.0.1:46326, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 20:07:12
+-------------------------------------------------
+2025-03-20 20:07:12: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:07:12: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:07:15: New connection from: 127.0.0.1:33506, with socket 5
+-------------------------------------------------
+New session: 2025-03-20 20:11:56
+-------------------------------------------------
+2025-03-20 20:11:56: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:11:56: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:11:57: New connection from: 127.0.0.1:48234, with socket 5
+2025-03-20 20:11:57: New connection from: 127.0.0.1:48242, with socket 6
+2025-03-20 20:11:57: New message from 5 | method: GET | path: /upload
+2025-03-20 20:11:59: New message from 5 | method: GET | path: /assets/html//cgi.html
+2025-03-20 20:12:20: New message from 5 | method: GET | path: /upload/
+-------------------------------------------------
+Session finish: 2025-03-20 20:12:34
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:12:35
+-------------------------------------------------
+2025-03-20 20:12:35: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:12:35: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:12:36: New connection from: 127.0.0.1:54836, with socket 5
+2025-03-20 20:12:36: New connection from: 127.0.0.1:54838, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 20:13:06
+-------------------------------------------------
+2025-03-20 20:13:06: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:13:06: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:13:07: New connection from: 127.0.0.1:38078, with socket 5
+2025-03-20 20:13:07: New connection from: 127.0.0.1:38086, with socket 6
+2025-03-20 20:13:07: New message from 5 | method: GET | path: /upload
+2025-03-20 20:13:07: New connection from: 127.0.0.1:38102, with socket 7
+2025-03-20 20:13:08: New message from 5 | method: GET | path: /upload
+2025-03-20 20:13:10: New message from 5 | method: GET | path: /upload/
+2025-03-20 20:13:14: New message from 5 | method: GET | path: /assets/html//oruban.jpeg
+2025-03-20 20:14:08: webserv: Conenction with 6fd closed!
+2025-03-20 20:14:08: webserv: Conenction with 7fd closed!
+2025-03-20 20:14:15: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 20:15:12
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:15:16
+-------------------------------------------------
+2025-03-20 20:15:16: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:15:16: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:15:18: New connection from: 127.0.0.1:44650, with socket 5
+2025-03-20 20:15:18: New connection from: 127.0.0.1:44652, with socket 6
+2025-03-20 20:15:20: New message from 6 | method: GET | path: /upload
+2025-03-20 20:15:22: New message from 6 | method: GET | path: /assets/html/upload/Auszug_2024_10-11.PDF
+-------------------------------------------------
+Session finish: 2025-03-20 20:15:36
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:15:39
+-------------------------------------------------
+2025-03-20 20:15:39: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:15:39: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:15:42: New connection from: 127.0.0.1:34206, with socket 5
+2025-03-20 20:15:42: New connection from: 127.0.0.1:34222, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 20:15:55
+-------------------------------------------------
+2025-03-20 20:15:55: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:15:55: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:15:56: New connection from: 127.0.0.1:34202, with socket 5
+2025-03-20 20:15:56: New connection from: 127.0.0.1:34216, with socket 6
+2025-03-20 20:15:56: New message from 6 | method: GET | path: /assets/html/upload/Konto_0162859235-Auszug_2024_0011.PDF
+2025-03-20 20:15:56: New connection from: 127.0.0.1:34230, with socket 7
+2025-03-20 20:15:59: New message from 6 | method: GET | path: /assets/html/upload/Konto_0162859235-Auszug_2024_0011.PDF
+-------------------------------------------------
+Session finish: 2025-03-20 20:16:03
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:16:07
+-------------------------------------------------
+2025-03-20 20:16:07: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:16:07: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:16:09: New connection from: 127.0.0.1:54042, with socket 5
+2025-03-20 20:16:09: New connection from: 127.0.0.1:54044, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 20:17:48
+-------------------------------------------------
+2025-03-20 20:17:48: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:17:48: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:17:49: New connection from: 127.0.0.1:47204, with socket 5
+-------------------------------------------------
+New session: 2025-03-20 20:18:16
+-------------------------------------------------
+2025-03-20 20:18:16: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:18:16: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:18:18: New connection from: 127.0.0.1:56642, with socket 5
+2025-03-20 20:18:18: New connection from: 127.0.0.1:56650, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 20:19:19
+-------------------------------------------------
+2025-03-20 20:19:19: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:19:19: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:19:20: New connection from: 127.0.0.1:53606, with socket 5
+2025-03-20 20:19:20: New connection from: 127.0.0.1:53620, with socket 6
+2025-03-20 20:19:20: New message from 5 | method: GET | path: /assets/html/upload/Konto_0162859235-Auszug_2024_0011.PDF
+2025-03-20 20:19:20: New connection from: 127.0.0.1:53630, with socket 7
+2025-03-20 20:19:21: New message from 5 | method: GET | path: /assets/html/upload/Konto_0162859235-Auszug_2024_0011.PDF
+2025-03-20 20:19:23: New message from 5 | method: GET | path: /assets/html/upload/Konto_0162859235-Auszug_2024_0011.PDF
+2025-03-20 20:19:28: New message from 5 | method: GET | path: /assets/html/upload/Adobe%20Scan%2015%20%D0%A1%D0%8F%D0%A0%D0%85%D0%A0%D0%86.%202025%D0%B2%D0%82%D0%87%D0%A0%D1%96..pdf
+-------------------------------------------------
+Session finish: 2025-03-20 20:19:41
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:19:47
+-------------------------------------------------
+2025-03-20 20:19:47: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:19:47: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:19:50: New connection from: 127.0.0.1:54292, with socket 5
+2025-03-20 20:19:50: New connection from: 127.0.0.1:54300, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 20:23:03
+-------------------------------------------------
+2025-03-20 20:23:03: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:23:03: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:23:05: New connection from: 127.0.0.1:48392, with socket 5
+2025-03-20 20:23:05: New connection from: 127.0.0.1:48400, with socket 6
+2025-03-20 20:23:06: New message from 5 | method: GET | path: /assets/html/upload/Konto_0162859235-Auszug_2024_0011.PDF
+-------------------------------------------------
+Session finish: 2025-03-20 20:23:12
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:23:15
+-------------------------------------------------
+2025-03-20 20:23:15: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:23:15: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:23:18: New connection from: 127.0.0.1:50896, with socket 5
+2025-03-20 20:23:18: New connection from: 127.0.0.1:50910, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 20:25:12
+-------------------------------------------------
+2025-03-20 20:25:12: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:25:12: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:25:14: New connection from: 127.0.0.1:46576, with socket 5
+2025-03-20 20:25:14: New connection from: 127.0.0.1:46582, with socket 6
+2025-03-20 20:25:15: New message from 5 | method: GET | path: /assets/html/upload/Konto_0162859235-Auszug_2024_0011.PDF
+2025-03-20 20:25:23: New message from 5 | method: GET | path: /assets/html/upload/Auszug_2024_10-11.PDF
+2025-03-20 20:25:32: New message from 5 | method: GET | path: /
+2025-03-20 20:25:32: New message from 5 | method: GET | path: /about.html
+2025-03-20 20:25:33: New message from 5 | method: GET | path: /
+2025-03-20 20:25:34: New message from 5 | method: GET | path: /media.html
+2025-03-20 20:25:34: New message from 5 | method: GET | path: /ikhristi.jpg
+2025-03-20 20:25:34: New connection from: 127.0.0.1:52484, with socket 7
+2025-03-20 20:25:34: New message from 6 | method: GET | path: /rkrechun.png
+2025-03-20 20:25:34: New message from 7 | method: GET | path: /oruban.jpeg
+2025-03-20 20:25:37: New message from 7 | method: GET | path: /
+2025-03-20 20:25:38: New message from 7 | method: GET | path: /upload.html
+2025-03-20 20:25:41: New message from 7 | method: POST | path: /upload.html
+2025-03-20 20:26:08: New message from 7 | method: GET | path: /list.html
+2025-03-20 20:26:08: New message from 7 | method: GET | path: /list-files
+2025-03-20 20:26:35: webserv: Conenction with 5fd closed!
+2025-03-20 20:26:35: webserv: Conenction with 6fd closed!
+2025-03-20 20:27:09: webserv: Conenction with 7fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 20:28:24
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:28:28
+-------------------------------------------------
+2025-03-20 20:28:28: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:28:28: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:28:30: New connection from: 127.0.0.1:54444, with socket 5
+2025-03-20 20:28:30: New connection from: 127.0.0.1:54458, with socket 6
+2025-03-20 20:28:30: New message from 5 | method: GET | path: /upload.html
+2025-03-20 20:28:32: New message from 5 | method: GET | path: /
+2025-03-20 20:28:33: New message from 5 | method: GET | path: /list.html
+2025-03-20 20:28:33: New message from 5 | method: GET | path: /list-files
+-------------------------------------------------
+Session finish: 2025-03-20 20:29:01
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:29:12
+-------------------------------------------------
+2025-03-20 20:29:12: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:29:12: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:29:13: New connection from: 127.0.0.1:46852, with socket 5
+2025-03-20 20:29:13: New connection from: 127.0.0.1:46860, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 20:29:24
+-------------------------------------------------
+2025-03-20 20:29:24: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:29:24: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:29:25: New connection from: 127.0.0.1:35254, with socket 5
+2025-03-20 20:29:25: New connection from: 127.0.0.1:35264, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 20:29:43
+-------------------------------------------------
+2025-03-20 20:29:43: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:29:43: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:29:44: New connection from: 127.0.0.1:44762, with socket 5
+2025-03-20 20:29:44: New connection from: 127.0.0.1:44768, with socket 6
+2025-03-20 20:29:44: New message from 5 | method: GET | path: /list.html
+2025-03-20 20:29:46: New message from 5 | method: GET | path: /assets/html/upload//Auszug_2024_11-12.PDF
+2025-03-20 20:29:51: New message from 5 | method: GET | path: /
+2025-03-20 20:29:52: New message from 5 | method: GET | path: /about.html
+2025-03-20 20:29:53: New message from 5 | method: GET | path: /
+2025-03-20 20:29:53: New message from 5 | method: GET | path: /media.html
+2025-03-20 20:29:54: New message from 5 | method: GET | path: /ikhristi.jpg
+2025-03-20 20:29:54: New connection from: 127.0.0.1:41274, with socket 7
+2025-03-20 20:29:54: New message from 6 | method: GET | path: /rkrechun.png
+2025-03-20 20:29:54: New message from 7 | method: GET | path: /oruban.jpeg
+2025-03-20 20:29:54: New message from 7 | method: GET | path: /
+2025-03-20 20:29:55: New message from 7 | method: GET | path: /upload.html
+2025-03-20 20:29:59: New message from 7 | method: POST | path: /upload.html
+2025-03-20 20:30:00: New message from 7 | method: GET | path: /list.html
+2025-03-20 20:30:02: New message from 7 | method: GET | path: /
+2025-03-20 20:30:03: New message from 7 | method: GET | path: /cgi.html
+2025-03-20 20:30:04: New message from 7 | method: GET | path: /calculator.html
+2025-03-20 20:30:05: New message from 7 | method: GET | path: /cgi-bin/calculator.py
+2025-03-20 20:30:06: New message from 7 | method: GET | path: /cgi.html
+2025-03-20 20:30:07: New message from 7 | method: GET | path: /cookie.html
+2025-03-20 20:30:09: New message from 7 | method: GET | path: /cgi-bin/cookie.py
+2025-03-20 20:30:10: New message from 7 | method: GET | path: /cookie.html
+2025-03-20 20:30:11: New message from 7 | method: GET | path: /
+2025-03-20 20:30:17: New message from 7 | method: GET | path: /upload.html
+2025-03-20 20:30:33: New message from 7 | method: POST | path: /upload.html
+2025-03-20 20:30:34: New message from 7 | method: GET | path: /list.html
+2025-03-20 20:30:38: New message from 7 | method: GET | path: /assets/html/upload//10MB-TESTFILE.ORG.pdf
+2025-03-20 20:30:49: webserv: Conenction with 7fd closed!
+2025-03-20 20:30:52: New message from 6 | method: GET | path: /assets/html/upload//Konto_0162859235-Auszug_2024_0011.PDF
+2025-03-20 20:30:55: webserv: Conenction with 5fd closed!
+2025-03-20 20:30:58: New message from 6 | method: GET | path: /assets/html/upload//Adobe%20Scan%2015%20%D0%A1%D0%8F%D0%A0%D0%85%D0%A0%D0%86.%202025%D0%B2%D0%82%D0%87%D0%A0%D1%96..pdf
+2025-03-20 20:30:58: New connection from: 127.0.0.1:57804, with socket 5
+2025-03-20 20:31:02: New message from 6 | method: GET | path: /assets/html/upload//list.html
+2025-03-20 20:31:02: New message from 6 | method: GET | path: /list-files
+2025-03-20 20:31:04: New message from 6 | method: GET | path: /
+2025-03-20 20:31:05: New message from 6 | method: GET | path: /list.html
+2025-03-20 20:31:23: New message from 6 | method: GET | path: /assets/html/upload//10MB-TESTFILE.ORG.pdf
+2025-03-20 20:31:26: webserv: Conenction with 6fd closed!
+2025-03-20 20:31:59: webserv: Conenction with 5fd closed!
+2025-03-20 20:32:10: New connection from: 127.0.0.1:49534, with socket 5
+2025-03-20 20:32:10: New connection from: 127.0.0.1:49542, with socket 6
+2025-03-20 20:32:10: New message from 6 | method: GET | path: /list.html
+2025-03-20 20:32:11: New message from 6 | method: GET | path: /assets/html/upload//10MB-TESTFILE.ORG.PDF
+-------------------------------------------------
+Session finish: 2025-03-20 20:32:54
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:32:56
+-------------------------------------------------
+2025-03-20 20:32:56: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:32:56: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:32:58: New connection from: 127.0.0.1:59516, with socket 5
+2025-03-20 20:32:59: New connection from: 127.0.0.1:59526, with socket 6
+2025-03-20 20:32:59: New message from 5 | method: GET | path: /list.html
+2025-03-20 20:33:00: New message from 5 | method: GET | path: /assets/html/upload//Auszug_2024_10-11.PDF
+2025-03-20 20:33:05: New message from 5 | method: GET | path: /assets/html/upload//10MB-TESTFILE.ORG.PDF
+2025-03-20 20:33:15: New message from 6 | method: GET | path: /assets/html/upload//10MB-TESTFILE.ORG.PDF
+2025-03-20 20:33:15: webserv: Conenction with 5fd closed!
+2025-03-20 20:33:30: New connection from: 127.0.0.1:58536, with socket 5
+2025-03-20 20:33:30: webserv: Conenction with 6fd closed!
+2025-03-20 20:33:31: New connection from: 127.0.0.1:58548, with socket 6
+2025-03-20 20:33:31: New message from 5 | method: GET | path: /assets/html/upload//10MB-TESTFILE.ORG.PDF
+2025-03-20 20:33:32: webserv: Conenction with 5fd closed!
+2025-03-20 20:33:33: New connection from: 127.0.0.1:58554, with socket 5
+2025-03-20 20:33:33: New message from 6 | method: GET | path: /assets/html/upload//10MB-TESTFILE.ORG.PDF
+2025-03-20 20:33:34: webserv: Conenction with 6fd closed!
+2025-03-20 20:33:35: New connection from: 127.0.0.1:50376, with socket 6
+2025-03-20 20:33:35: New message from 5 | method: GET | path: /assets/html/upload//10MB-TESTFILE.ORG.PDF
+2025-03-20 20:33:37: webserv: Conenction with 5fd closed!
+2025-03-20 20:33:37: New message from 6 | method: GET | path: /assets/html/upload//Adobe%20Scan%2015%20%D0%A1%D0%8F%D0%A0%D0%85%D0%A0%D0%86.%202025%D0%B2%D0%82%D0%87%D0%A0%D1%96.(1).pdf
+2025-03-20 20:33:37: New connection from: 127.0.0.1:50388, with socket 5
+2025-03-20 20:33:46: New message from 6 | method: GET | path: /assets/html/upload//Auszug_2024_11-12.PDF
+2025-03-20 20:34:09: New message from 6 | method: GET | path: /list.html
+2025-03-20 20:34:11: New message from 6 | method: GET | path: /assets/html/upload//photo_2025-02-21_11-39-53.jpg
+2025-03-20 20:34:16: New message from 6 | method: GET | path: /assets/html/upload//send_chunked.sh
+2025-03-20 20:34:38: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 20:34:59
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:35:03
+-------------------------------------------------
+2025-03-20 20:35:03: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:35:03: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:35:05: New connection from: 127.0.0.1:52942, with socket 5
+2025-03-20 20:35:05: New connection from: 127.0.0.1:52948, with socket 6
+2025-03-20 20:35:05: New message from 5 | method: GET | path: /list.html
+2025-03-20 20:35:06: New message from 5 | method: GET | path: /assets/html/upload//send_chunked.sh
+-------------------------------------------------
+Session finish: 2025-03-20 20:35:21
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:35:28
+-------------------------------------------------
+2025-03-20 20:35:28: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:35:28: Server created with host:127.0.0.1, port:8084
+-------------------------------------------------
+New session: 2025-03-20 20:35:53
+-------------------------------------------------
+2025-03-20 20:35:53: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:35:53: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:35:55: New connection from: 127.0.0.1:36802, with socket 5
+2025-03-20 20:35:55: New connection from: 127.0.0.1:36806, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 20:36:13
+-------------------------------------------------
+2025-03-20 20:36:13: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:36:13: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:36:15: New connection from: 127.0.0.1:37336, with socket 5
+-------------------------------------------------
+New session: 2025-03-20 20:36:44
+-------------------------------------------------
+2025-03-20 20:36:44: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:36:44: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:36:45: New connection from: 127.0.0.1:55506, with socket 5
+2025-03-20 20:36:45: New connection from: 127.0.0.1:55510, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 20:37:48
+-------------------------------------------------
+2025-03-20 20:37:48: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:37:48: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:37:50: New connection from: 127.0.0.1:40340, with socket 5
+2025-03-20 20:37:50: New connection from: 127.0.0.1:40352, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 20:38:27
+-------------------------------------------------
+2025-03-20 20:38:27: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:38:27: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:38:27: New connection from: 127.0.0.1:58050, with socket 5
+2025-03-20 20:38:27: New connection from: 127.0.0.1:58054, with socket 6
+2025-03-20 20:38:27: New message from 6 | method: GET | path: /assets/html/upload//Auszug_2024_10-11.PDF
+2025-03-20 20:38:28: New connection from: 127.0.0.1:58068, with socket 7
+-------------------------------------------------
+Session finish: 2025-03-20 20:38:38
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:38:52
+-------------------------------------------------
+2025-03-20 20:38:52: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:38:52: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:38:54: New connection from: 127.0.0.1:51406, with socket 5
+2025-03-20 20:38:54: New connection from: 127.0.0.1:51408, with socket 6
+-------------------------------------------------
+New session: 2025-03-20 20:39:40
+-------------------------------------------------
+2025-03-20 20:39:40: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:39:40: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:39:43: New connection from: 127.0.0.1:41248, with socket 5
+2025-03-20 20:39:43: New connection from: 127.0.0.1:41250, with socket 6
+2025-03-20 20:40:43: New message from 5 | method: GET | path: /assets/html/upload//Auszug_2024_11-12.PDF
+-------------------------------------------------
+New session: 2025-03-20 20:42:35
+-------------------------------------------------
+2025-03-20 20:42:35: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:42:35: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:42:37: New connection from: 127.0.0.1:51064, with socket 5
+2025-03-20 20:42:37: New connection from: 127.0.0.1:51080, with socket 6
+2025-03-20 20:42:39: New message from 5 | method: GET | path: /assets/html/upload//10MB-TESTFILE.ORG.PDF
+2025-03-20 20:42:54: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 20:43:09
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:43:39
+-------------------------------------------------
+2025-03-20 20:43:39: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:43:39: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:43:42: New connection from: 127.0.0.1:57814, with socket 5
+2025-03-20 20:43:42: New connection from: 127.0.0.1:57818, with socket 6
+2025-03-20 20:43:44: New message from 5 | method: GET | path: /about.html
+2025-03-20 20:43:44: webserv: Conenction with 5fd closed!
+2025-03-20 20:43:44: New message from 6 | method: GET | path: /upload
+2025-03-20 20:43:47: New connection from: 127.0.0.1:57822, with socket 5
+2025-03-20 20:43:47: New message from 6 | method: GET | path: /assets/html/upload/10MB-TESTFILE.ORG.PDF
+2025-03-20 20:43:49: webserv: Conenction with 6fd closed!
+2025-03-20 20:43:50: New connection from: 127.0.0.1:33286, with socket 6
+2025-03-20 20:43:50: New message from 5 | method: GET | path: /assets/html/upload/Konto_0162859235-Auszug_2024_0011.PDF
+2025-03-20 20:43:52: New message from 5 | method: GET | path: /about.html
+2025-03-20 20:43:52: webserv: Conenction with 5fd closed!
+2025-03-20 20:43:52: New message from 6 | method: GET | path: /upload
+2025-03-20 20:43:54: New connection from: 127.0.0.1:33292, with socket 5
+2025-03-20 20:43:54: New message from 6 | method: GET | path: /
+2025-03-20 20:43:55: New message from 6 | method: GET | path: /media.html
+2025-03-20 20:43:55: New message from 6 | method: GET | path: /ikhristi.jpg
+2025-03-20 20:43:55: New connection from: 127.0.0.1:33304, with socket 7
+2025-03-20 20:43:55: New message from 5 | method: GET | path: /rkrechun.png
+2025-03-20 20:43:55: New message from 7 | method: GET | path: /oruban.jpeg
+2025-03-20 20:43:56: New message from 5 | method: GET | path: /
+2025-03-20 20:43:57: New message from 5 | method: GET | path: /upload.html
+2025-03-20 20:43:58: New message from 5 | method: GET | path: /
+2025-03-20 20:44:00: New message from 5 | method: GET | path: /upload.html
+2025-03-20 20:44:04: New message from 5 | method: POST | path: /upload.html
+2025-03-20 20:44:05: New message from 5 | method: GET | path: /list.html
+2025-03-20 20:44:08: New message from 5 | method: GET | path: /assets/html/upload//.gitignore
+2025-03-20 20:44:13: New message from 5 | method: GET | path: /upload.html
+2025-03-20 20:44:14: New message from 5 | method: GET | path: /
+2025-03-20 20:44:15: New message from 5 | method: GET | path: /list.html
+2025-03-20 20:44:47: New message from 5 | method: GET | path: /list.html
+2025-03-20 20:44:56: webserv: Conenction with 6fd closed!
+2025-03-20 20:44:56: webserv: Conenction with 7fd closed!
+2025-03-20 20:45:48: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 20:48:52
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:49:01
+-------------------------------------------------
+2025-03-20 20:49:01: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:49:01: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:49:04: New connection from: 127.0.0.1:57256, with socket 5
+2025-03-20 20:49:04: New connection from: 127.0.0.1:57270, with socket 6
+2025-03-20 20:49:04: New message from 5 | method: GET | path: /list.html
+2025-03-20 20:49:09: New message from 5 | method: DELETE | path: /delete-file
+2025-03-20 20:50:05: webserv: Conenction with 6fd closed!
+2025-03-20 20:50:10: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 20:51:16
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:52:17
+-------------------------------------------------
+2025-03-20 20:52:17: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:52:17: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:52:20: New connection from: 127.0.0.1:33924, with socket 5
+2025-03-20 20:52:20: New message from 5 | method: DELETE | path: /delete-file
+2025-03-20 20:53:21: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 20:54:11
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:54:15
+-------------------------------------------------
+2025-03-20 20:54:15: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:54:15: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:54:17: New connection from: 127.0.0.1:38886, with socket 5
+2025-03-20 20:54:17: New message from 5 | method: DELETE | path: /delete-file
+-------------------------------------------------
+Session finish: 2025-03-20 20:54:31
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:54:34
+-------------------------------------------------
+2025-03-20 20:54:34: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:54:34: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:54:37: New connection from: 127.0.0.1:55940, with socket 5
+2025-03-20 20:54:38: New message from 5 | method: DELETE | path: /delete-file
+2025-03-20 20:55:19: New connection from: 127.0.0.1:38434, with socket 6
+2025-03-20 20:55:19: New message from 5 | method: GET | path: /10MB-TESTFILE.ORG.PDF
+-------------------------------------------------
+Session finish: 2025-03-20 20:56:01
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:56:05
+-------------------------------------------------
+2025-03-20 20:56:05: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:56:05: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:56:06: New connection from: 127.0.0.1:46880, with socket 5
+2025-03-20 20:56:06: New connection from: 127.0.0.1:46894, with socket 6
+2025-03-20 20:56:06: New message from 5 | method: GET | path: /list.html
+2025-03-20 20:57:07: webserv: Conenction with 5fd closed!
+2025-03-20 20:57:07: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 20:59:08
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 20:59:11
+-------------------------------------------------
+2025-03-20 20:59:11: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 20:59:11: Server created with host:127.0.0.1, port:8084
+2025-03-20 20:59:13: New connection from: 127.0.0.1:57736, with socket 5
+2025-03-20 20:59:13: New connection from: 127.0.0.1:57744, with socket 6
+2025-03-20 20:59:13: New message from 5 | method: GET | path: /list.html
+2025-03-20 21:00:14: webserv: Conenction with 5fd closed!
+2025-03-20 21:00:14: webserv: Conenction with 6fd closed!
+2025-03-20 21:11:19: New connection from: 127.0.0.1:39568, with socket 5
+2025-03-20 21:11:20: New connection from: 127.0.0.1:39580, with socket 6
+2025-03-20 21:11:20: New message from 5 | method: GET | path: /assets/html/upload//Auszug_2024_10-11(1).PDF
+-------------------------------------------------
+Session finish: 2025-03-20 21:11:37
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 21:11:40
+-------------------------------------------------
+2025-03-20 21:11:40: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 21:11:40: Server created with host:127.0.0.1, port:8084
+2025-03-20 21:11:41: New connection from: 127.0.0.1:52556, with socket 5
+2025-03-20 21:11:41: New connection from: 127.0.0.1:52572, with socket 6
+2025-03-20 21:11:42: New message from 5 | method: GET | path: /list.html
+2025-03-20 21:11:44: New message from 5 | method: GET | path: /10MB-TESTFILE.ORG.PDF
+2025-03-20 21:12:42: webserv: Conenction with 6fd closed!
+2025-03-20 21:12:45: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 21:14:12
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 21:15:00
+-------------------------------------------------
+2025-03-20 21:15:00: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 21:15:00: Server created with host:127.0.0.1, port:8084
+2025-03-20 21:15:01: New connection from: 127.0.0.1:44376, with socket 5
+2025-03-20 21:15:01: New connection from: 127.0.0.1:44388, with socket 6
+2025-03-20 21:15:01: New message from 5 | method: GET | path: /list.html
+2025-03-20 21:15:42: New message from 5 | method: GET | path: /assets/html/upload//Auszug_2024_10-11.PDF
+2025-03-20 21:16:02: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 21:16:15
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 21:16:19
+-------------------------------------------------
+2025-03-20 21:16:19: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 21:16:19: Server created with host:127.0.0.1, port:8084
+2025-03-20 21:16:21: New connection from: 127.0.0.1:44400, with socket 5
+2025-03-20 21:16:21: New connection from: 127.0.0.1:44416, with socket 6
+2025-03-20 21:16:21: New message from 5 | method: GET | path: /list.html
+2025-03-20 21:16:23: New message from 5 | method: GET | path: /assets/html/upload//10MB-TESTFILE.ORG.PDF
+2025-03-20 21:16:25: webserv: Conenction with 5fd closed!
+2025-03-20 21:16:26: New connection from: 127.0.0.1:44428, with socket 5
+2025-03-20 21:16:26: New message from 6 | method: GET | path: /assets/html/upload//Auszug_2024_10-11(1).PDF
+2025-03-20 21:16:29: New message from 6 | method: DELETE | path: /delete-file
+-------------------------------------------------
+Session finish: 2025-03-20 21:17:11
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 21:17:17
+-------------------------------------------------
+2025-03-20 21:17:17: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 21:17:17: Server created with host:127.0.0.1, port:8084
+2025-03-20 21:17:22: New connection from: 127.0.0.1:45406, with socket 5
+-------------------------------------------------
+New session: 2025-03-20 21:20:53
+-------------------------------------------------
+2025-03-20 21:20:53: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 21:20:53: Server created with host:127.0.0.1, port:8084
+2025-03-20 21:20:55: New connection from: 127.0.0.1:46926, with socket 5
+2025-03-20 21:20:55: New connection from: 127.0.0.1:46934, with socket 6
+2025-03-20 21:20:55: New message from 5 | method: GET | path: /list.html
+2025-03-20 21:21:56: webserv: Conenction with 5fd closed!
+2025-03-20 21:21:56: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 21:22:22
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 21:22:25
+-------------------------------------------------
+2025-03-20 21:22:25: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 21:22:25: Server created with host:127.0.0.1, port:8084
+2025-03-20 21:22:27: New connection from: 127.0.0.1:53002, with socket 5
+2025-03-20 21:22:27: New connection from: 127.0.0.1:53018, with socket 6
+2025-03-20 21:22:27: New message from 5 | method: GET | path: /list.html
+2025-03-20 21:22:31: New message from 5 | method: DELETE | path: /delete-file
+2025-03-20 21:23:28: webserv: Conenction with 6fd closed!
+2025-03-20 21:23:32: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 21:23:34
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 21:23:37
+-------------------------------------------------
+2025-03-20 21:23:37: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 21:23:37: Server created with host:127.0.0.1, port:8084
+2025-03-20 21:23:39: New connection from: 127.0.0.1:38518, with socket 5
+2025-03-20 21:23:39: New connection from: 127.0.0.1:38526, with socket 6
+2025-03-20 21:23:39: New message from 5 | method: GET | path: /list.html
+2025-03-20 21:23:42: New message from 5 | method: DELETE | path: /delete-file
+-------------------------------------------------
+Session finish: 2025-03-20 21:24:22
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 21:24:24
+-------------------------------------------------
+2025-03-20 21:24:24: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 21:24:24: Server created with host:127.0.0.1, port:8084
+2025-03-20 21:24:26: New connection from: 127.0.0.1:58874, with socket 5
+2025-03-20 21:24:26: New connection from: 127.0.0.1:58878, with socket 6
+2025-03-20 21:24:26: New message from 5 | method: GET | path: /list.html
+2025-03-20 21:24:28: New message from 5 | method: DELETE | path: /delete-file
+2025-03-20 21:24:29: New message from 5 | method: GET | path: /list.html
+2025-03-20 21:25:02: New message from 5 | method: DELETE | path: /delete-file
+2025-03-20 21:25:04: New message from 5 | method: GET | path: /list.html
+2025-03-20 21:25:13: New message from 5 | method: DELETE | path: /delete-file
+2025-03-20 21:25:15: New message from 5 | method: GET | path: /list.html
+2025-03-20 21:25:27: webserv: Conenction with 6fd closed!
+2025-03-20 21:25:33: New message from 5 | method: DELETE | path: /delete-file
+2025-03-20 21:25:35: New connection from: 127.0.0.1:48982, with socket 6
+2025-03-20 21:25:35: New message from 5 | method: GET | path: /list.html
+2025-03-20 21:26:36: webserv: Conenction with 5fd closed!
+2025-03-20 21:26:36: webserv: Conenction with 6fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 21:26:49
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 21:26:58
+-------------------------------------------------
+2025-03-20 21:26:58: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 21:26:58: Server created with host:127.0.0.1, port:8084
+2025-03-20 21:27:01: New connection from: 127.0.0.1:49504, with socket 5
+2025-03-20 21:27:01: New connection from: 127.0.0.1:49510, with socket 6
+2025-03-20 21:27:01: New message from 5 | method: GET | path: /
+2025-03-20 21:27:03: New message from 5 | method: GET | path: /about.html
+2025-03-20 21:27:03: webserv: Conenction with 5fd closed!
+2025-03-20 21:27:03: New message from 6 | method: GET | path: /upload
+-------------------------------------------------
+Session finish: 2025-03-20 21:27:10
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 21:27:11
+-------------------------------------------------
+2025-03-20 21:27:11: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 21:27:11: Server created with host:127.0.0.1, port:8084
+2025-03-20 21:27:18: New connection from: 127.0.0.1:60734, with socket 5
+2025-03-20 21:27:18: New connection from: 127.0.0.1:60742, with socket 6
+2025-03-20 21:27:18: New message from 5 | method: GET | path: /
+2025-03-20 21:27:19: New message from 5 | method: GET | path: /about.html
+2025-03-20 21:27:20: New message from 5 | method: GET | path: /
+2025-03-20 21:27:20: New message from 5 | method: GET | path: /media.html
+2025-03-20 21:27:20: New message from 5 | method: GET | path: /ikhristi.jpg
+2025-03-20 21:27:20: New connection from: 127.0.0.1:60758, with socket 7
+2025-03-20 21:27:20: New message from 6 | method: GET | path: /rkrechun.png
+2025-03-20 21:27:20: New message from 7 | method: GET | path: /oruban.jpeg
+2025-03-20 21:27:21: New message from 7 | method: GET | path: /
+2025-03-20 21:27:21: New message from 7 | method: GET | path: /upload.html
+2025-03-20 21:27:24: New message from 7 | method: POST | path: /upload.html
+2025-03-20 21:27:25: New message from 7 | method: GET | path: /list.html
+2025-03-20 21:27:29: New message from 7 | method: DELETE | path: /delete-file
+2025-03-20 21:27:33: New message from 7 | method: GET | path: /list.html
+2025-03-20 21:27:35: New message from 7 | method: GET | path: /
+2025-03-20 21:27:36: New message from 7 | method: GET | path: /list.html
+2025-03-20 21:27:37: New message from 7 | method: GET | path: /
+2025-03-20 21:27:39: New message from 7 | method: GET | path: /cgi.html
+2025-03-20 21:27:39: New message from 7 | method: GET | path: /calculator.html
+2025-03-20 21:27:42: New message from 7 | method: GET | path: /cgi-bin/calculator.py
+2025-03-20 21:27:43: New message from 7 | method: GET | path: /cgi.html
+2025-03-20 21:27:44: New message from 7 | method: GET | path: /cookie.html
+2025-03-20 21:27:46: New message from 7 | method: GET | path: /cgi-bin/cookie.py
+2025-03-20 21:27:51: New message from 7 | method: GET | path: /
+-------------------------------------------------
+Session finish: 2025-03-20 21:27:53
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 21:27:59
+-------------------------------------------------
+2025-03-20 21:27:59: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 21:27:59: Server created with host:127.0.0.1, port:8084
+2025-03-20 21:28:00: New connection from: 127.0.0.1:54948, with socket 5
+2025-03-20 21:28:00: New connection from: 127.0.0.1:54950, with socket 6
+2025-03-20 21:28:00: New message from 5 | method: GET | path: /
+2025-03-20 21:28:12: New message from 5 | method: GET | path: /upload
+2025-03-20 21:28:20: New message from 5 | method: GET | path: /
+2025-03-20 21:28:21: New message from 5 | method: GET | path: /upload/
+2025-03-20 21:28:24: New message from 5 | method: GET | path: /
+-------------------------------------------------
+Session finish: 2025-03-20 21:28:40
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 21:28:44
+-------------------------------------------------
+2025-03-20 21:28:44: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 21:28:44: Server created with host:127.0.0.1, port:8084
+2025-03-20 21:28:46: New connection from: 127.0.0.1:49028, with socket 5
+2025-03-20 21:28:46: New connection from: 127.0.0.1:49030, with socket 6
+2025-03-20 21:28:46: New message from 5 | method: GET | path: /
+2025-03-20 21:29:11: New message from 5 | method: GET | path: /list
+2025-03-20 21:29:19: New message from 5 | method: GET | path: /list.html
+2025-03-20 21:29:22: New message from 5 | method: GET | path: /
+-------------------------------------------------
+Session finish: 2025-03-20 21:29:23
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 21:33:21
+-------------------------------------------------
+2025-03-20 21:33:21: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 21:33:21: Server created with host:127.0.0.1, port:8084
+2025-03-20 21:33:29: New connection from: 127.0.0.1:58798, with socket 5
+2025-03-20 21:33:29: New message from 5 | method: GET | path: /
+2025-03-20 21:33:30: New message from 5 | method: GET | path: /favicon.ico
+-------------------------------------------------
+Session finish: 2025-03-20 21:34:00
+-------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-20 21:34:04
+-------------------------------------------------
+2025-03-20 21:34:04: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-20 21:34:04: Server created with host:127.0.0.1, port:8084
+2025-03-20 21:34:05: New connection from: 127.0.0.1:41046, with socket 5
+2025-03-20 21:34:05: New connection from: 127.0.0.1:41056, with socket 6
+2025-03-20 21:34:05: New message from 5 | method: GET | path: /
+2025-03-20 21:34:07: New message from 5 | method: GET | path: /upload.html
+2025-03-20 21:34:13: New message from 5 | method: POST | path: /upload.html
+2025-03-20 21:34:21: New message from 5 | method: POST | path: /cgi-bin/upload.py
+2025-03-20 21:34:23: New message from 5 | method: GET | path: /list.html
+2025-03-20 21:35:06: webserv: Conenction with 6fd closed!
+2025-03-20 21:35:24: webserv: Conenction with 5fd closed!
+-------------------------------------------------
+Session finish: 2025-03-20 21:57:00
+-------------------------------------------------

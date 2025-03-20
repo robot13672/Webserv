@@ -21,8 +21,8 @@ class ParsedServerConfig
         std::map<std::string, bool> _locationAutoindex; // location autoindex
         std::vector<ParsedServerConfig> serverParsedConfigs; // vector of server configurations
         std::map<std::string, std::string> _return; 
-
-    public:
+        
+        public:
         ParsedServerConfig();
         ParsedServerConfig(const ParsedServerConfig &other); // Copy constructor
         ParsedServerConfig& operator=(const ParsedServerConfig &other); // Copy assignment operator

@@ -587,4 +587,3 @@ std::ostream &operator<<(std::ostream &os, const ParsedServerConfig &config)
     }
     return os;
 }
-

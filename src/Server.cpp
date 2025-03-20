@@ -167,6 +167,7 @@ void Server::sendResponse(int &fd, Client &client)
     client._response.setServer(client._server);
     client._response.setHttpVersion("HTTP/1.1");
     client._response.handleResponse(client._request);
+    // std::cout << "Response: " << client._response.getBody().length() << std::endl;
     if(client._request.IsBodyTooBig())
         client._request.setBodyTooBig(false);
     else

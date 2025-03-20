@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Code+Pro:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a1a1a;
+            font-family: 'Roboto', sans-serif;
+            padding: 40px 20px;
+            color: #fff;
+        }
+
+        h2 {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 36px;
+            color: #00ff9d;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.3);
+        }
+
+        table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background-color: rgba(0, 255, 157, 0.1);
+            color: #00ff9d;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .delete-btn img {
+            width: 20px;
+            height: 20px;
+            filter: invert(1);
+        }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            background: #00ff9d;
+            color: #1a1a1a;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            z-index: 1000; 
+        }
+
+        .home-button:hover {
+            background: #00cc7d;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <button class="home-button" onclick="location.href='/'">HOME</button>
+    <h2>Uploaded Files</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Size</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="fileTableBody">
+            <tr>
+                <td colspan="3">Loading...</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function formatFileSize(bytes) {
+            if (bytes < 1024) {
+                return bytes + " B";
+            } else if (bytes < 1024 * 1024) {
+                return (bytes / 1024).toFixed(2) + " KB";
+            } else if (bytes < 1024 * 1024 * 1024) {
+                return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+            }
+            return (bytes / (1024 * 1024 * 1024)).toFixed(2) + " GB";
+        }
+        async function deleteFile(fileName) {
+        if (!confirm(`Delete file ${fileName}?`)) return;
+
+        try {
+            const response = await fetch('/delete-file', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: fileName  // Send just the filename
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // Reload the file list after successful deletion
+            await loadFiles();
+        } catch (error) {
+            console.error('Error:', error);
+            alert('ERROR: Failed to delete the file');
+        }
+        }
+
+        async function loadFiles() {
+            try {
+                let response = await fetch('/list-files');
+                if (!response.ok) throw new Error("Error loading the file list");
+
+                let files = await response.json();
+                let tableBody = document.getElementById("fileTableBody");
+                tableBody.innerHTML = "";
+
+                if (files.length === 0) {
+                    tableBody.innerHTML = "<tr><td colspan='3'>Empty list</td></tr>";
+                    return;
+                }
+
+                files.forEach(file => {
+                    let row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${file.name}</td>
+                        <td>${formatFileSize(parseInt(file.size))}</td>
+                        <td>
+                            <button class="delete-btn" onclick="deleteFile('${file.name}')">
+                                <img src="https://img.icons8.com/ios-filled/50/fa314a/trash.png" alt="Delete">
+                            </button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error(error);
+                document.getElementById("fileTableBody").innerHTML = 
+                    "<tr><td colspan='3'>Error loading the file list</td></tr>";
+            }
+        }
+
+        window.onload = loadFiles;
+    </script>
+</body>
+</html>

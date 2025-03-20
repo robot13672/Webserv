@@ -127,6 +127,15 @@ void HttpResponse::handleRequest()
     setHeader("Date", getCurrentTime());
     setHeader("Connection", "keep-alive");
 
+    std::string lock = _path;
+    lock = lock.substr(0, lock.find_last_of("."));
+    if (_server.getReturn(lock) != "") {
+        setHeader("Location", (_server.getReturn(lock)));
+        setStatus(302, "OK");
+        // setBody(_server._return[_path]);
+        return;
+    }
+
     if (_request.getContentLength() >= _server.getMaxBodySize())
     {
         sendErrorPage(413, "Payload Too Large");
@@ -142,8 +151,8 @@ void HttpResponse::handleRequest()
         setHeader("Allow", "GET, POST, DELETE");
         return;
     }
-    if (_path == "/list-files") {
-        handleListFiles();
+    if (_path == "/list.html") {
+        handleDirectoryListing(_server.getRoot() + "upload");
         return;
     }
     if (_path.find("/cgi-bin/") == 0) {
@@ -155,6 +164,7 @@ void HttpResponse::handleRequest()
 
     if (_method == "DELETE" && _path == "/delete-file") {
         std::string filename = _request.getBody();
+        std::cout << "Deleting file: " << filename << std::endl;
         handleDelete(filename);
         return;
     }
@@ -178,7 +188,7 @@ void HttpResponse::handleListFiles() {
     setHeader("Access-Control-Allow-Methods", "GET, DELETE, OPTIONS");
     setHeader("Content-Type", "application/json");
     
-    if ((dir = opendir("upload/")) == NULL) {
+    if ((dir = opendir("_server")) == NULL) {
         if (mkdir("upload/", 0777) != 0) {
             sendErrorPage(500, "Cannot create directory");
             return;
@@ -198,7 +208,7 @@ void HttpResponse::handleListFiles() {
         if (ent->d_type == DT_REG) {
             struct stat st;
             std::string fullPath;
-            fullPath.append("upload/");
+            fullPath.append("upload");
             fullPath.append(ent->d_name);
             
             if (stat(fullPath.c_str(), &st) == 0) {
@@ -234,8 +244,8 @@ void HttpResponse::handleListFiles() {
 void HttpResponse::handleDelete(const std::string& filename) 
 {
     std::string fullPath;
-    fullPath.append("upload/");
     fullPath.append(filename);
+    std::cout << "Deleting file: " << fullPath << std::endl;
     if (access(fullPath.c_str(), F_OK) != 0) {
         sendErrorPage(404, "File not found");
         return;
@@ -314,7 +324,7 @@ std::string HttpResponse::createUniqueFilename(const std::string& dir, const std
 void HttpResponse::handlePost() {
 
     struct stat st;
-    std::string dir = "upload/";
+    std::string dir = _server.getRoot() + "upload/";
     
     if (stat(dir.c_str(), &st) != 0) {
         if (mkdir(dir.c_str(), 0777) != 0) {
@@ -398,10 +408,13 @@ bool HttpResponse::isFileAccessible() {
             localPath = this->_server.getRoot() + "index.html";
     }
     else {
-        localPath = this->_server.getRoot();
-            if (localPath[localPath.length()-1] == '/')
-                localPath = localPath.substr(0, localPath.length()-1);
-            localPath.append(_path);
+        if (_path.find(_server.getRoot()) == std::string::npos)
+            localPath = this->_server.getRoot();
+        if (this->_server.getRoot()[this->_server.getRoot().length()-1] == '/')
+            localPath = localPath.substr(0, localPath.length()-1);
+        localPath.append(_path);
+        if (localPath[0] == '/')
+            localPath = localPath.substr(1);
     }       
     //changes files to directories
     if (S_ISDIR(st.st_mode)){
@@ -426,6 +439,115 @@ std::string HttpResponse::getCurrentTime() {
     strftime(buf, sizeof(buf), "%a, %d %b %Y %H:%M:%S GMT", &tm);
     return std::string(buf);
 }
+
+
+// void HttpResponse::handleDirectoryListing(const std::string& path) {
+//     DIR *dir;
+//     struct dirent *ent;
+//     std::vector<std::string> files;
+//     std::vector<std::string> directories;
+    
+//     if ((dir = opendir(path.c_str())) == NULL) {
+//         sendErrorPage(500, "Cannot open directory");
+//         return;
+//     }
+    
+//     // Получаем список файлов и директорий
+//     while ((ent = readdir(dir)) != NULL) {
+//         std::string name = ent->d_name;
+        
+//         // Пропускаем текущую и родительскую директории
+//         if (name == "." || name == "..") {
+//             continue;
+//         }
+        
+//         // Формируем полный путь
+//         std::string fullPath = path + "/" + name;
+//         struct stat st;
+//         if (stat(fullPath.c_str(), &st) == 0) {
+//             if (S_ISDIR(st.st_mode)) {
+//                 directories.push_back(name);
+//             } else {
+//                 files.push_back(fullPath);
+//             }
+//         }
+//     }
+//     closedir(dir);
+    
+//     // Сортируем списки файлов и директорий
+//     std::sort(directories.begin(), directories.end());
+//     std::sort(files.begin(), files.end());
+    
+//     // Формируем HTML-страницу
+//     std::stringstream html;
+//     html << "<!DOCTYPE html>\n"
+//          << "<html>\n"
+//          << "<head>\n"
+//          << "    <title>Index of " << _path << "</title>\n"
+//          << "    <style>\n"
+//          << "        body { font-family: Arial, sans-serif; margin: 20px; }\n"
+//          << "        h1 { margin-bottom: 20px; }\n"
+//          << "        table { border-collapse: collapse; width: 100%; }\n"
+//          << "        th, td { text-align: left; padding: 8px; }\n"
+//          << "        tr:nth-child(even) { background-color: #f2f2f2; }\n"
+//          << "        a { text-decoration: none; }\n"
+//          << "        a:hover { text-decoration: underline; }\n"
+//          << "    </style>\n"
+//          << "</head>\n"
+//          << "<body>\n"
+//          << "    <h1>Index of " << _path << "</h1>\n"
+//          << "    <hr>\n"
+//          << "    <table>\n"
+//          << "        <tr>\n"
+//          << "            <th>Name</th>\n"
+//          << "            <th>Last Modified</th>\n"
+//          << "            <th>Size</th>\n"
+//          << "        </tr>\n";
+    
+//     // Добавляем ссылку на родительскую директорию
+//     if (_path != "/") {
+//         html << "        <tr>\n"
+//              << "            <td><a href=\"../\">../</a></td>\n"
+//              << "            <td></td>\n"
+//              << "            <td>-</td>\n"
+//              << "        </tr>\n";
+//     }
+    
+//     // Добавляем директории
+//     for (size_t i = 0; i < directories.size(); ++i) {
+//         html << "        <tr>\n"
+//              << "            <td><a href=\"" << directories[i] << "/\">" << directories[i] << "/</a></td>\n"
+//              << "            <td></td>\n"
+//              << "            <td>-</td>\n"
+//              << "        </tr>\n";
+//     }
+    
+//     // Добавляем файлы
+//     for (size_t i = 0; i < files.size(); ++i) {
+//         struct stat st;
+//         std::string fullPath =files[i];
+//         if (stat(fullPath.c_str(), &st) == 0) {
+//             char timeStr[100];
+//             strftime(timeStr, sizeof(timeStr), "%Y-%m-%d %H:%M:%S", localtime(&st.st_mtime));
+            
+//             html << "        <tr>\n"
+//                  << "            <td><a href=\"" << files[i] << "\">" << files[i] << "</a></td>\n"
+//                  << "            <td>" << timeStr << "</td>\n"
+//                  << "            <td>" << st.st_size << " bytes</td>\n"
+//                  << "        </tr>\n";
+//         }
+//     }
+    
+//     html << "    </table>\n"
+//          << "    <hr>\n"
+//          << "</body>\n"
+//          << "</html>\n";
+    
+//     // Устанавливаем код ответа и заголовки
+//     setStatus(200, "OK");
+//     setHeader("Content-Type", "text/html");
+//     setBody(html.str());
+// }
 
 void HttpResponse::handleDirectoryListing(const std::string& path) {
     DIR *dir;
@@ -454,7 +576,7 @@ void HttpResponse::handleDirectoryListing(const std::string& path) {
             if (S_ISDIR(st.st_mode)) {
                 directories.push_back(name);
             } else {
-                files.push_back(name);
+                files.push_back(fullPath);
             }
         }
     }
@@ -478,7 +600,33 @@ void HttpResponse::handleDirectoryListing(const std::string& path) {
          << "        tr:nth-child(even) { background-color: #f2f2f2; }\n"
          << "        a { text-decoration: none; }\n"
          << "        a:hover { text-decoration: underline; }\n"
+         << "        .delete-btn { background-color: #ff4d4d; color: white; border: none; padding: 5px 10px; cursor: pointer; }\n"
+         << "        .delete-btn:hover { background-color: #cc0000; }\n"
          << "    </style>\n"
+         << "    <script>\n"
+         << "        async function deleteFile(filename) {\n"
+         << "            if (!confirm('Are you sure you want to delete ' + filename + '?')) {\n"
+         << "                return;\n"
+         << "            }\n"
+         << "            try {\n"
+         << "                const response = await fetch('/delete-file', {\n"
+         << "                    method: 'DELETE',\n"
+         << "                    headers: {\n"
+         << "                        'Content-Type': 'text/plain'\n"
+         << "                    },\n"
+         << "                    body: filename\n"
+         << "                });\n"
+         << "                if (response.ok) {\n"
+         << "                    alert('File successfully deleted');\n"
+         << "                    location.reload();\n"
+         << "                } else {\n"
+         << "                    alert('Error deleting file: ' + response.status);\n"
+         << "                }\n"
+         << "            } catch (error) {\n"
+         << "                alert('Error sending request: ' + error);\n"
+         << "            }\n"
+         << "        }\n"
+         << "    </script>\n"
          << "</head>\n"
          << "<body>\n"
          << "    <h1>Index of " << _path << "</h1>\n"
@@ -488,6 +636,7 @@ void HttpResponse::handleDirectoryListing(const std::string& path) {
          << "            <th>Name</th>\n"
          << "            <th>Last Modified</th>\n"
          << "            <th>Size</th>\n"
+         << "            <th>Actions</th>\n"
          << "        </tr>\n";
     
     // Добавляем ссылку на родительскую директорию
@@ -496,6 +645,7 @@ void HttpResponse::handleDirectoryListing(const std::string& path) {
              << "            <td><a href=\"../\">../</a></td>\n"
              << "            <td></td>\n"
              << "            <td>-</td>\n"
+             << "            <td></td>\n"
              << "        </tr>\n";
     }
     
@@ -505,21 +655,27 @@ void HttpResponse::handleDirectoryListing(const std::string& path) {
              << "            <td><a href=\"" << directories[i] << "/\">" << directories[i] << "/</a></td>\n"
              << "            <td></td>\n"
              << "            <td>-</td>\n"
+             << "            <td></td>\n"
              << "        </tr>\n";
     }
     
     // Добавляем файлы
     for (size_t i = 0; i < files.size(); ++i) {
         struct stat st;
-        std::string fullPath = path + "/" + files[i];
+        std::string fullPath = files[i];
         if (stat(fullPath.c_str(), &st) == 0) {
             char timeStr[100];
             strftime(timeStr, sizeof(timeStr), "%Y-%m-%d %H:%M:%S", localtime(&st.st_mtime));
+            
+            // Получаем только имя файла из полного пути для кнопки удаления
+            size_t lastSlash = fullPath.find_last_of('/');
+            std::string fileName = (lastSlash != std::string::npos) ? fullPath.substr(lastSlash + 1) : fullPath;
             
             html << "        <tr>\n"
                  << "            <td><a href=\"" << files[i] << "\">" << files[i] << "</a></td>\n"
                  << "            <td>" << timeStr << "</td>\n"
                  << "            <td>" << st.st_size << " bytes</td>\n"
+                 << "            <td><button class=\"delete-btn\" onclick=\"deleteFile('" << fullPath << "')\">Delete</button></td>\n"
                  << "        </tr>\n";
         }
     }
@@ -602,10 +758,13 @@ void HttpResponse::sendFile() {
         localPath = this->_server.getRoot() + "index.html";
     }
     else {
-        localPath = this->_server.getRoot();
+        if (_path.find(_server.getRoot()) == std::string::npos)
+            localPath = this->_server.getRoot();
         if (localPath[localPath.length()-1] == '/')
-        localPath = localPath.substr(0, localPath.length()-1);
+            localPath = localPath.substr(0, localPath.length()-1);
         localPath.append(_path);
+        if (localPath[0] == '/')
+            localPath = localPath.substr(1);
     }
     struct stat st;
     if (stat(localPath.c_str(), &st) == 0 && S_ISDIR(st.st_mode)) {
@@ -648,7 +807,7 @@ void HttpResponse::sendFile() {
                 setHeader("Content-Type", "image/jpeg");
             else if (ext == "gif") 
                 setHeader("Content-Type", "image/gif");
-            else if (ext == "pdf") 
+            else if (ext == "pdf" || ext == "PDF") 
                 setHeader("Content-Type", "application/pdf");
             else if (ext == "xml") 
                 setHeader("Content-Type", "application/xml");

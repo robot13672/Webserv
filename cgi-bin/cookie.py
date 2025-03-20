@@ -105,8 +105,8 @@ try:
 <body>
     <div class="nav-buttons">
         <button class="button home-button" onclick="location.href='/'">HOME</button>
-        <button class="button cgi-button" onclick="location.href='/cgi'">CGI</button>
-        <button class="button cookie-button" onclick="location.href='/cookie'">COOKIE</button>
+        <button class="button cgi-button" onclick="location.href='/cgi.html'">CGI</button>
+        <button class="button cookie-button" onclick="location.href='/cookie.html'">COOKIE</button>
     </div>
     <div class="container">
         <h1>Cookie Status</h1>

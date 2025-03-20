@@ -310,3 +310,12 @@ std::string ServerConfig::getIndex()
 {
     return _index;
 }
+
+std::string ServerConfig::getReturn(std::string _path){
+    std::map<std::string, std::string>::const_iterator it = _return.find(_path);
+
+    if (it != _return.end()) {
+        return it->second;
+    }
+    return "";
+}

@@ -110,7 +110,7 @@
             <button type="submit" class="upload-button">Upload File</button> 
             <div id="errorMessage" class="error-message"></div> 
             <div id="successMessage" class="success-message"></div>
-            <button type="button" class="upload-button" id="listButton" onclick="location.href='/list'" style="display: none;">
+            <button type="button" class="upload-button" id="listButton" onclick="location.href='/list.html'" style="display: none;">
                 View Files List
             </button>
         </form>
@@ -185,7 +185,7 @@
                     });
                 } else {
                     // Regular upload
-                    response = await fetch('/upload', {
+                    response = await fetch('/upload.html', {
                         method: 'POST',
                         body: formData
                     });
