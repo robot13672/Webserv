@@ -75,9 +75,9 @@ void HttpResponse::setHeader(const std::string& key, const std::string& value) {
 
 void HttpResponse::setBody(const std::string& body) {
     _body = body;
-    if (!_chunked) {
+    if (getHeader("Content-Length").empty()) {
         std::stringstream ss;
-        ss << body.length();
+        ss << body.size();
         setHeader("Content-Length", ss.str());
     }
 }
@@ -391,36 +391,24 @@ bool HttpResponse::isFileAccessible() {
     std::string localPath;
 
     if (_path == "/")
-        {
-            if (!this->_server.getIndex().empty())
-                localPath = this->_server.getRoot() +this->_server.getIndex();
-            else
-                localPath = this->_server.getRoot() + "index.html";
+    {
+        if (!this->_server.getIndex().empty())
+            localPath = this->_server.getRoot() +this->_server.getIndex();
+        else
+            localPath = this->_server.getRoot() + "index.html";
     }
     else {
-        size_t dotPos = _path.find_last_of('.');
-        if (dotPos != std::string::npos) {
-            std::string extension = _path.substr(dotPos);
-            if (extension == ".png" || extension == ".jpg" || extension == ".jpeg") {
-                localPath = this->_server.getRoot();
-                localPath.append(_path);
-            }
-            else if(extension == ".py") {
-                localPath = this->_server.getRoot();
-                localPath.append(_path);}
-              else {
-                localPath = this->_server.getRoot();
-                localPath.append(_path);
-                localPath.append(".html");
-            }
-        } else {
-            localPath = this->_server.getRoot();
+        localPath = this->_server.getRoot();
+            if (localPath[localPath.length()-1] == '/')
+                localPath = localPath.substr(0, localPath.length()-1);
             localPath.append(_path);
-            localPath.append(".html");
-        }
-    
     }       
-    if (stat(localPath.c_str(), &st) != 0) {
+    //changes files to directories
+    if (S_ISDIR(st.st_mode)){
+            handleDirectoryListing(localPath);
+            return false;
+    }
+    if (stat(localPath.c_str(), &st)!= 0) {
         sendErrorPage(404, "Not Found");
         return false;
     }
@@ -551,7 +539,7 @@ void HttpResponse::sendErrorPage(int code, const std::string& message) {
     // Сначала устанавливаем код ошибки и сообщение
     setStatus(code, message);
     if (code == 404 && _server.getLocationAutoindex(_path)){
-        handleDirectoryListing("assets/html");
+        handleDirectoryListing(_server.getRoot());
         return;
     }
 
@@ -605,42 +593,25 @@ void HttpResponse::sendErrorPage(int code, const std::string& message) {
 
 void HttpResponse::sendFile() {
     std::string localPath;
-
+    
     if (_path == "/")
-        {
-            if (!this->_server.getIndex().empty())
-                localPath = this->_server.getRoot() +this->_server.getIndex();
-            else
-                localPath = this->_server.getRoot() + "index.html";
+    {
+        if (!this->_server.getIndex().empty())
+        localPath = this->_server.getRoot() +this->_server.getIndex();
+        else
+        localPath = this->_server.getRoot() + "index.html";
     }
     else {
-        size_t dotPos = _path.find_last_of('.');
-        if (dotPos != std::string::npos) {
-            std::string extension = _path.substr(dotPos);
-            if (extension == ".png" || extension == ".jpg" || extension == ".jpeg") {
-                localPath = this->_server.getRoot();
-                localPath.append(_path);
-            }
-            else if(extension == ".py") {
-                localPath = this->_server.getRoot();
-                localPath.append(_path);}
-              else {
-                localPath = this->_server.getRoot();
-                localPath.append(_path);
-                localPath.append(".html");
-            }
-        } else {
-            localPath = this->_server.getRoot();
-            if(_server.getLocationIndex(_path) != "")
-                localPath.append(_server.getLocationIndex(_path));
-            else
-            {
-                localPath.append(_path);
-                localPath.append(".html");
-            }
-        }
-    
+        localPath = this->_server.getRoot();
+        if (localPath[localPath.length()-1] == '/')
+        localPath = localPath.substr(0, localPath.length()-1);
+        localPath.append(_path);
     }
+    struct stat st;
+    if (stat(localPath.c_str(), &st) == 0 && S_ISDIR(st.st_mode)) {
+            handleDirectoryListing(localPath);
+            return;
+    }      
     std::ifstream file(localPath.c_str(), std::ios::binary);
     if (!file) {
         sendErrorPage(404, "Not Found");

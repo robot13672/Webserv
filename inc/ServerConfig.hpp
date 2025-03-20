@@ -21,7 +21,8 @@ class ServerConfig
         std::map<std::string, std::vector<std::string> >    _locationCgiPaths;
         std::map<std::string, std::vector<std::string> >    _locationCgiExts;
         std::map<std::string, bool>                         _locationAutoindex;
-    public:
+        std::map<std::string, std::string> _return; 
+        public:
         ~ServerConfig();
         ServerConfig();
         ServerConfig(const ServerConfig &other); // Copy constructor
@@ -49,6 +50,8 @@ class ServerConfig
         void setLocationCgiExts(const std::map<std::string, std::vector<std::string> > &locationCgiExts);
         void setLocationAutoindexes(const std::map<std::string, bool> &locationAutoindex);
         void setMethods(const std::map<std::string, std::vector<std::string> > &methods);
+        void setLocationRet(const std::string &location, const std::string &root);
+
         //GET
         std::string getHost();
         u_int16_t getPort(void);

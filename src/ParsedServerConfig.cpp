@@ -19,6 +19,7 @@ ParsedServerConfig::ParsedServerConfig(const ParsedServerConfig &other)
 	_locationCgiPaths = other._locationCgiPaths; // roi 0302
 	_locationCgiExts = other._locationCgiExts;
 	_locationAutoindex = other._locationAutoindex;
+    _return = other._return;
 }
 
 ParsedServerConfig &ParsedServerConfig::operator=(const ParsedServerConfig &other)
@@ -38,6 +39,7 @@ ParsedServerConfig &ParsedServerConfig::operator=(const ParsedServerConfig &othe
 		_locationCgiPaths = other._locationCgiPaths; // roi 0302
 		_locationCgiExts = other._locationCgiExts;
 		_locationAutoindex = other._locationAutoindex;
+        _return = other._return;
 	}
 	return *this;
 }
@@ -99,6 +101,10 @@ void ParsedServerConfig::setLocationRoot(const std::string &location, const std:
 	_locationRoots[location] = root;
 }
 
+void ParsedServerConfig::setLocationRet(const std::string &location, const std::string &root)
+{
+    _return[location] = root;
+}
 
 void ParsedServerConfig::setLocationIndex(const std::string &location, const std::string &index)
 {
@@ -248,13 +254,16 @@ std::vector<ServerConfig> ParsedServerConfig::getVector()
         {
             server.setLocationAutoindex(autoindexIt->first, autoindexIt->second);
         }
-
         for (std::map<short, std::string>::const_iterator errorIt = it->_errorPages.begin();
              errorIt != it->_errorPages.end(); ++errorIt)
         {
             server.setErrorPages(errorIt->first, errorIt->second);
         }
-
+        for (std::map<std::string, std::string>::const_iterator errorIt = it->_return.begin();
+             errorIt != it->_return.end(); ++errorIt)
+        {
+            server.setLocationRet(errorIt->first, errorIt->second);
+        }
         servers.push_back(server);
     }
 
@@ -329,6 +338,7 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
                 currentConfig._locationCgiPaths.clear();
                 currentConfig._locationCgiExts.clear();
                 currentConfig._locationAutoindex.clear();
+                currentConfig._return.clear();
             }
         }
         else if (inLocationBlock && key == "allow_methods")
@@ -350,6 +360,14 @@ void ParsedServerConfig::parseConfig(const std::string &filename)
             if (!root.empty() && root[root.size() - 1] == ';')
                 root.erase(root.size() - 1);
             currentConfig.setLocationRoot(currentLocation, root);
+        }
+        else if (inLocationBlock && key == "return")
+        {
+            std::string ret;
+            iss >> ret;
+            if (!ret.empty() && ret[ret.size() - 1] == ';')
+                ret.erase(ret.size() - 1);
+            currentConfig.setLocationRet(currentLocation, ret);
         }
         else if (inLocationBlock && key == "index")
         {
@@ -569,3 +587,4 @@ std::ostream &operator<<(std::ostream &os, const ParsedServerConfig &config)
     }
     return os;
 }
+

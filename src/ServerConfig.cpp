@@ -35,6 +35,7 @@ ServerConfig::ServerConfig(const ServerConfig &other)
 	_locationCgiPaths = other._locationCgiPaths;
 	_locationCgiExts = other._locationCgiExts;
 	_locationAutoindex = other._locationAutoindex;
+    _return = other._return;
 }
 
 ServerConfig& ServerConfig::operator=(const ServerConfig &other)
@@ -56,6 +57,7 @@ ServerConfig& ServerConfig::operator=(const ServerConfig &other)
 		_locationCgiPaths = other._locationCgiPaths; // roi 0302
 		_locationCgiExts = other._locationCgiExts;
 		_locationAutoindex = other._locationAutoindex;
+        _return = other._return;
     }
     return *this;
 }
@@ -156,6 +158,11 @@ void ServerConfig::setLocationIndex(const std::string &location, const std::stri
 void ServerConfig::setLocationCgiPath(const std::string &location, const std::vector<std::string> &cgiPaths)
 {
     _locationCgiPaths[location] = cgiPaths;
+}
+
+void ServerConfig::setLocationRet(const std::string &location, const std::string &root)
+{
+    _return[location] = root;
 }
 
 void ServerConfig::setLocationCgiExt(const std::string &location, const std::vector<std::string> &cgiExts)

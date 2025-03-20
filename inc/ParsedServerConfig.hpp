@@ -20,6 +20,7 @@ class ParsedServerConfig
         std::map<std::string, std::vector<std::string> > _locationCgiExts; // location cgi_ext
         std::map<std::string, bool> _locationAutoindex; // location autoindex
         std::vector<ParsedServerConfig> serverParsedConfigs; // vector of server configurations
+        std::map<std::string, std::string> _return; 
 
     public:
         ParsedServerConfig();
@@ -40,6 +41,7 @@ class ParsedServerConfig
         void setLocationCgiPath(const std::string &location, const std::vector<std::string> &cgiPaths);
         void setLocationCgiExt(const std::string &location, const std::vector<std::string> &cgiExts);
         void setLocationAutoindex(const std::string &location, bool autoindex);
+        void setLocationRet(const std::string &location, const std::string &root);
 
         // GETTERS
         std::string getHost() const;
