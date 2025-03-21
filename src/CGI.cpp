@@ -4,7 +4,7 @@
 #include <iostream>
 #include <algorithm>
 
-CGI::CGI() :  _exitStatus(0) {}
+CGI::CGI() {}
 
 CGI::~CGI() {}
 

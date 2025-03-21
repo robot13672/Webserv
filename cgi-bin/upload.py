@@ -162,7 +162,7 @@ try:
 
     # Get file extension and create new filename
     ext = Path(original_filename).suffix
-    upload_dir = "upload"
+    upload_dir = "assets/html/upload"
     
     # Create upload directory if needed
     if not os.path.exists(upload_dir):

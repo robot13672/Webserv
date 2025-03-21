@@ -2253,3 +2253,33 @@ New session: 2025-03-20 21:34:04
 -------------------------------------------------
 Session finish: 2025-03-20 21:57:00
 -------------------------------------------------
+-------------------------------------------------
+New session: 2025-03-21 17:07:14
+-------------------------------------------------
+2025-03-21 17:07:14: Successfully bound to host:127.0.0.1, port:8084 socket:4
+2025-03-21 17:07:14: Server created with host:127.0.0.1, port:8084
+2025-03-21 17:07:17: New connection from: 127.0.0.1:50662, with socket 5
+2025-03-21 17:07:17: New connection from: 127.0.0.1:50668, with socket 6
+2025-03-21 17:07:17: New message from 5 | method: GET | path: /list.html
+2025-03-21 17:07:19: New message from 5 | method: GET | path: /favicon.ico
+2025-03-21 17:07:19: New message from 5 | method: GET | path: /
+2025-03-21 17:07:21: New message from 5 | method: GET | path: /media.html
+2025-03-21 17:07:21: New message from 5 | method: GET | path: /ikhristi.jpg
+2025-03-21 17:07:21: New message from 6 | method: GET | path: /rkrechun.png
+2025-03-21 17:07:22: New message from 6 | method: GET | path: /oruban.jpeg
+2025-03-21 17:07:23: New message from 6 | method: GET | path: /
+2025-03-21 17:07:24: New message from 6 | method: GET | path: /upload.html
+2025-03-21 17:07:30: New message from 6 | method: POST | path: /upload.html
+2025-03-21 17:07:33: New message from 6 | method: GET | path: /list.html
+2025-03-21 17:07:37: New message from 6 | method: DELETE | path: /delete-file
+2025-03-21 17:07:38: New message from 6 | method: GET | path: /list.html
+2025-03-21 17:07:40: New message from 6 | method: DELETE | path: /delete-file
+2025-03-21 17:07:41: New message from 6 | method: GET | path: /list.html
+2025-03-21 17:07:48: New message from 6 | method: GET | path: /upload.html
+2025-03-21 17:07:55: New message from 6 | method: POST | path: /cgi-bin/upload.py
+2025-03-21 17:07:59: New message from 6 | method: GET | path: /list.html
+2025-03-21 17:08:05: New message from 6 | method: DELETE | path: /delete-file
+2025-03-21 17:08:06: New message from 6 | method: GET | path: /list.html
+-------------------------------------------------
+Session finish: 2025-03-21 17:08:08
+-------------------------------------------------

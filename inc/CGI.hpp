@@ -14,7 +14,7 @@ class HttpResponse;
 class CGI {
     private:
         std::map<std::string, std::string>  _cgiEnv;
-        int                                 _exitStatus; // Exit status of CGI process
+        // int                                 _exitStatus; // Exit status of CGI process
         std::string                         _scriptPath;
         std::string                         _requestBody;
     public:
